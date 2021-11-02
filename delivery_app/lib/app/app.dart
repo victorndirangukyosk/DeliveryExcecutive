@@ -1,3 +1,4 @@
+import 'package:delivery_app/configuration/configuration.dart';
 import 'package:delivery_app/cubits/obscure_password/obscure_password_cubit.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +27,22 @@ class KwikBasketDeliveryApp extends StatelessWidget {
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
           ],
-          theme: ThemeData(textTheme: GoogleFonts.poppinsTextTheme()),
+          theme: ThemeData(
+              textTheme: GoogleFonts.poppinsTextTheme(),
+              colorScheme: ColorScheme(
+                  primary: Palette.greenColor,
+                  primaryVariant: Colors.black,
+                  secondary: Palette.orangeColor,
+                  secondaryVariant: Colors.amber,
+                  surface: Colors.white,
+                  background: Colors.white,
+                  error: Colors.red,
+                  onPrimary: Colors.white,
+                  onSecondary: Colors.white,
+                  onSurface: Palette.greenColor,
+                  onBackground: Palette.greenColor,
+                  onError: Colors.white,
+                  brightness: Brightness.light)),
           routerDelegate: _appRouter.delegate(),
           routeInformationParser: _appRouter.defaultRouteParser()),
     );
