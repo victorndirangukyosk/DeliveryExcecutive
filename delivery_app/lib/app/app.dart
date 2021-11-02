@@ -1,5 +1,5 @@
 import 'package:delivery_app/configuration/configuration.dart';
-import 'package:delivery_app/cubits/obscure_password/obscure_password_cubit.dart';
+import 'package:delivery_app/cubits/cubits.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,7 +15,8 @@ class KwikBasketDeliveryApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => ObscurePasswordCubit(true))
+        BlocProvider(create: (context) => ObscurePasswordCubit(true)),
+        BlocProvider(create: (context) => HomeBottomNavigationIndexCubit(0)),
       ],
       child: MaterialApp.router(
           title: "Kwikbasket Delivery App",
