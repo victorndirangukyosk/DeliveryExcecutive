@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.kwikbasket.delivery_app.delivery_app">
    <application
-        android:label="delivery_app"
+        android:label="Kwikbasket Delivery"
         android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
