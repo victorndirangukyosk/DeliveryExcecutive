@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () async {
-      AutoRouter.of(context).push(const LoginRoute());
+      AutoRouter.of(context).replace(const LoginRoute());
     });
   }
 
