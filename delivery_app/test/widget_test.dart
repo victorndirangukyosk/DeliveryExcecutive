@@ -12,7 +12,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   testWidgets('App launches successfully', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const KwikBasketDeliveryApp());
+    await tester.pumpWidget(KwikBasketDeliveryApp());
     Widget widget = Image.asset(
       'assets/icon/icon.png',
       height: 200,
