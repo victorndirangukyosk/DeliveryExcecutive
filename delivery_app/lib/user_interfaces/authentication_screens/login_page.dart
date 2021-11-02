@@ -1,4 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:delivery_app/cubits/cubits.dart';
+import 'package:delivery_app/routes/router.gr.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -56,11 +58,13 @@ class LoginPage extends StatelessWidget {
                     border: const OutlineInputBorder()),
               ),
               const SizedBox(
-                height: 40,
+                height: 100,
               ),
               CupertinoButton(
                 child: const Text("Login"),
-                onPressed: () {},
+                onPressed: () {
+                  AutoRouter.of(context).replace(const MainHomeRoute());
+                },
                 color: Theme.of(context).primaryColor,
               )
             ],
