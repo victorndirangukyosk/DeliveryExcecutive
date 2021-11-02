@@ -2,7 +2,6 @@ import 'package:delivery_app/cubits/obscure_password/obscure_password_cubit.dart
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
