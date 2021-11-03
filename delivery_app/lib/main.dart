@@ -6,10 +6,12 @@ import 'app/app.dart';
 
 ///This is the starting point for the application
 main() async {
-  //Set the license fot the poppins google font
+  //Set the license font the poppins google font
+
   LicenseRegistry.addLicense(() async* {
     final license = await rootBundle.loadString('google_fonts/OFL.txt');
     yield LicenseEntryWithLineBreaks(['google_fonts'], license);
   });
+
   runApp(KwikBasketDeliveryApp());
 }

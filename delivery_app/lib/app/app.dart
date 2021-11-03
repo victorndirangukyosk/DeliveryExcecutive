@@ -30,6 +30,7 @@ class KwikBasketDeliveryApp extends StatelessWidget {
           ],
           theme: ThemeData(
               textTheme: GoogleFonts.poppinsTextTheme(),
+              primaryColor: Palette.greenColor,
               colorScheme: ColorScheme(
                   primary: Palette.greenColor,
                   primaryVariant: Colors.black,

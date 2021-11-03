@@ -13,62 +13,59 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(
-                height: 100,
-              ),
-              Image.asset(
-                'assets/icon/icon.png',
-                height: 200,
-                width: 200,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              TextFormField(
-                keyboardType: TextInputType.emailAddress,
-                decoration: const InputDecoration(
-                    hintText: "Email",
-                    contentPadding: EdgeInsets.only(left: 16, right: 16),
-                    border: OutlineInputBorder()),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              TextFormField(
-                keyboardType: TextInputType.visiblePassword,
-                obscureText: context.watch<ObscurePasswordCubit>().state,
-                decoration: InputDecoration(
-                    hintText: "Password",
-                    suffixIcon: CupertinoButton(
-                      padding: const EdgeInsets.all(0),
-                      onPressed: () {
-                        context.read<ObscurePasswordCubit>().toggle();
-                      },
-                      child: Icon(context.watch<ObscurePasswordCubit>().state
-                          ? CupertinoIcons.lock
-                          : CupertinoIcons.lock_open),
-                    ),
-                    contentPadding: const EdgeInsets.only(left: 16, right: 16),
-                    border: const OutlineInputBorder()),
-              ),
-              const SizedBox(
-                height: 100,
-              ),
-              CupertinoButton(
-                child: const Text("Login"),
-                onPressed: () {
-                  AutoRouter.of(context).replace(const MainHomeRoute());
-                },
-                color: Theme.of(context).primaryColor,
-              )
-            ],
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(
+              height: 100,
+            ),
+            Image.asset(
+              'assets/icon/icon.png',
+              height: 200,
+              width: 200,
+            ),
+            const SizedBox(
+              height: 100,
+            ),
+            TextFormField(
+              keyboardType: TextInputType.emailAddress,
+              decoration: const InputDecoration(
+                  hintText: "Email",
+                  contentPadding: EdgeInsets.only(left: 16, right: 16),
+                  border: OutlineInputBorder()),
+            ),
+            const SizedBox(
+              height: 40,
+            ),
+            TextFormField(
+              keyboardType: TextInputType.visiblePassword,
+              obscureText: context.watch<ObscurePasswordCubit>().state,
+              decoration: InputDecoration(
+                  hintText: "Password",
+                  suffixIcon: CupertinoButton(
+                    padding: const EdgeInsets.all(0),
+                    onPressed: () {
+                      context.read<ObscurePasswordCubit>().toggle();
+                    },
+                    child: Icon(context.watch<ObscurePasswordCubit>().state
+                        ? CupertinoIcons.lock
+                        : CupertinoIcons.lock_open),
+                  ),
+                  contentPadding: const EdgeInsets.only(left: 16, right: 16),
+                  border: const OutlineInputBorder()),
+            ),
+            const SizedBox(
+              height: 100,
+            ),
+            CupertinoButton(
+              child: const Text("Login"),
+              onPressed: () {
+                AutoRouter.of(context).replace(const MainHomeRoute());
+              },
+              color: Theme.of(context).primaryColor,
+            )
+          ],
         ),
       ),
     );
