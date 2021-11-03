@@ -23,6 +23,7 @@ class MainHomePage extends StatelessWidget {
     return Scaffold(
       body: widgets[context.watch<HomeBottomNavigationIndexCubit>().state],
       bottomNavigationBar: CupertinoTabBar(
+          currentIndex: context.watch<HomeBottomNavigationIndexCubit>().state,
           onTap: (index) {
             context.read<HomeBottomNavigationIndexCubit>().emit(index);
           },
