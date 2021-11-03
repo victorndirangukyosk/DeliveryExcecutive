@@ -44,6 +44,8 @@ dependencies:
   form_builder_validators: ^7.0.0
   mpesa_flutter_plugin: ^1.6.0
   flutter_bloc: ^7.3.1
+  # Kiosk mode to restrict users only to the application
+  kiosk_mode: ^0.1.3
 
 
 dev_dependencies:
