@@ -1,7 +1,7 @@
 # Kwik Basket Delivery Executive
 This is the quick basket delivery executive application.
 
-##Project structure
+## Project structure
 The application source code is contained in the [delivery_app](https://github.com/MyDhuka/KB-DeliveryExecutiveApp/tree/main/delivery_app) folder.
 
 ## Packages/Libraries used
