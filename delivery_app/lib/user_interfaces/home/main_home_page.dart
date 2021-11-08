@@ -1,4 +1,5 @@
 import 'package:delivery_app/configuration/configuration.dart';
+import 'package:delivery_app/user_interfaces/my_orders/my_orders_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -123,15 +124,37 @@ class MainHomePage extends StatelessWidget {
                 left: 20,
                 top: 80,
                 right: 20,
+                bottom: 100,
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    ListTile(
+                      contentPadding: const EdgeInsets.all(0),
+                      onTap: () {},
+                      title: Text(
+                        "My Deliveries",
+                        style: TextStyle(
+                            fontSize: 30,
+                            color: Palette.orangeColor,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      trailing: CupertinoButton(
+                          padding: const EdgeInsets.all(0),
+                          child: Icon(
+                            Icons.arrow_forward_ios,
+                            size: 25,
+                            color: Palette.orangeColor,
+                          ),
+                          onPressed: () {}),
+                    ),
                     Text(
                       "My Orders",
                       style: TextStyle(
-                          fontSize: 30,
-                          color: Palette.orangeColor,
+                          fontSize: 16,
+                          color: Palette.greenColor,
                           fontWeight: FontWeight.bold),
-                    )
+                    ),
+                    Expanded(child: MyOrdersList())
                   ],
                 )),
             Positioned(
@@ -140,22 +163,25 @@ class MainHomePage extends StatelessWidget {
                 right: 0,
                 child: CupertinoButton(
                   onPressed: () {},
-                  child: CircleAvatar(
-                    // radius: context.watch<StartTripTickCubit>().state ? 50 : 70,
-                    radius: 50,
-                    backgroundColor: Palette.greenColor,
-                    child: Stack(
-                      children: const [
-                        SpinKitRipple(
-                          color: Colors.white,
-                          size: 200,
-                        ),
-                        Center(
-                            child: Text(
-                          "Start trip",
-                          style: TextStyle(color: Colors.white),
-                        ))
-                      ],
+                  child: Card(
+                    elevation: 20,
+                    shape: const CircleBorder(),
+                    child: CircleAvatar(
+                      radius: 50,
+                      backgroundColor: Palette.greenColor,
+                      child: Stack(
+                        children: const [
+                          SpinKitRipple(
+                            color: Colors.white,
+                            size: 200,
+                          ),
+                          Center(
+                              child: Text(
+                            "Start trip",
+                            style: TextStyle(color: Colors.white),
+                          ))
+                        ],
+                      ),
                     ),
                   ),
                 ))
