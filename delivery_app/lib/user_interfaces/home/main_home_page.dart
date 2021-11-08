@@ -1,9 +1,13 @@
+import 'package:calendar_time/calendar_time.dart';
 import 'package:delivery_app/configuration/configuration.dart';
+import 'package:delivery_app/cubits/select_date_cubit/select_date_cubit.dart';
 import 'package:delivery_app/user_interfaces/my_orders/my_orders_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MainHomePage extends StatelessWidget {
   const MainHomePage({Key? key}) : super(key: key);
@@ -39,11 +43,11 @@ class MainHomePage extends StatelessWidget {
                                           const SizedBox(
                                             height: 20,
                                           ),
-                                          CircleAvatar(
+                                          const CircleAvatar(
                                             radius: 58,
                                             backgroundColor:
                                                 Palette.orangeColor,
-                                            child: const CircleAvatar(
+                                            child: CircleAvatar(
                                               radius: 54,
                                               backgroundColor: Colors.white,
                                               child: CircleAvatar(
@@ -90,29 +94,32 @@ class MainHomePage extends StatelessWidget {
                                                     height: 30),
                                               );
                                             },
-                                            leading: Icon(
+                                            leading: const Icon(
                                               CupertinoIcons.info,
                                               color: Palette.greenColor,
                                             ),
-                                            title: Text(
+                                            title: const Text(
                                               "About",
                                               style: TextStyle(
                                                   color: Palette.greenColor),
                                             ),
-                                            trailing: Icon(
+                                            trailing: const Icon(
                                               CupertinoIcons.forward,
                                               color: Palette.greenColor,
                                             ),
                                             subtitle: const Text(
                                               "About this application",
                                             ),
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
                                           )
                                         ],
                                       ),
                                     ),
                                   )));
                         },
-                        child: Center(
+                        child: const Center(
                             child: Icon(
                           Icons.dehaze,
                           size: 40,
@@ -131,7 +138,7 @@ class MainHomePage extends StatelessWidget {
                     ListTile(
                       contentPadding: const EdgeInsets.all(0),
                       onTap: () {},
-                      title: Text(
+                      title: const Text(
                         "My Deliveries",
                         style: TextStyle(
                             fontSize: 30,
@@ -140,21 +147,38 @@ class MainHomePage extends StatelessWidget {
                       ),
                       trailing: CupertinoButton(
                           padding: const EdgeInsets.all(0),
-                          child: Icon(
+                          child: const Icon(
                             Icons.arrow_forward_ios,
                             size: 25,
                             color: Palette.orangeColor,
                           ),
                           onPressed: () {}),
                     ),
-                    Text(
-                      "My Orders",
-                      style: TextStyle(
-                          fontSize: 16,
-                          color: Palette.greenColor,
-                          fontWeight: FontWeight.bold),
+                    Row(
+                      children: [
+                        const Text(
+                          "My Orders",
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Palette.greenColor,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        const Expanded(child: SizedBox()),
+                        TextButton(
+                            onPressed: () async {
+                              var x = await showDatePicker(
+                                  context: context,
+                                  initialDate: DateTime.now(),
+                                  firstDate: DateTime(1970),
+                                  lastDate: DateTime.now());
+                              context.read<SelectDateCubit>().emit(x!);
+                            },
+                            child: Text(CalendarTime(
+                                    context.watch<SelectDateCubit>().state)
+                                .toHuman))
+                      ],
                     ),
-                    Expanded(child: MyOrdersList())
+                    const Expanded(child: MyOrdersList())
                   ],
                 )),
             Positioned(
