@@ -1,5 +1,6 @@
 import 'package:delivery_app/configuration/configuration.dart';
 import 'package:delivery_app/cubits/cubits.dart';
+import 'package:delivery_app/cubits/user_interface/start_trip_tick_cubit.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,6 +18,7 @@ class KwikBasketDeliveryApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => ObscurePasswordCubit(true)),
         BlocProvider(create: (context) => HomeBottomNavigationIndexCubit(0)),
+        BlocProvider(create: (context) => StartTripTickCubit(true)..tick()),
       ],
       child: MaterialApp.router(
           title: "Kwikbasket Delivery App",

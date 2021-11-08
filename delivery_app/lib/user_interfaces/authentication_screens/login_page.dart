@@ -1,4 +1,6 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:delivery_app/configuration/configuration.dart';
+import 'package:delivery_app/configuration/palette/palette.dart';
 import 'package:delivery_app/cubits/cubits.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,64 +13,78 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(
-                height: 200,
+        body: AnimatedContainer(
+      duration: const Duration(seconds: 1),
+      child: const Center(
+        child: LoginCard(),
+      ),
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [Palette.greenColor, Palette.orangeColor])),
+    ));
+  }
+}
+
+class LoginCard extends StatelessWidget {
+  const LoginCard({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 20,
+      margin: const EdgeInsets.all(20),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(
+              height: 20,
+            ),
+            Image.asset('assets/logo.png'),
+            const SizedBox(
+              height: 40,
+            ),
+            TextFormField(
+              decoration: const InputDecoration(
+                helperText: "Email",
+                border: OutlineInputBorder(),
               ),
-              Image.asset(
-                'assets/icon/icon.png',
-                height: 200,
-                width: 200,
-              ),
-              const SizedBox(
-                height: 100,
-              ),
-              TextFormField(
-                keyboardType: TextInputType.emailAddress,
-                decoration: const InputDecoration(
-                    hintText: "Email",
-                    contentPadding: EdgeInsets.only(left: 16, right: 16),
-                    border: OutlineInputBorder()),
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-              TextFormField(
-                keyboardType: TextInputType.visiblePassword,
-                obscureText: context.watch<ObscurePasswordCubit>().state,
-                decoration: InputDecoration(
-                    hintText: "Password",
-                    suffixIcon: CupertinoButton(
-                      padding: const EdgeInsets.all(0),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            TextFormField(
+              obscureText: context.watch<ObscurePasswordCubit>().state,
+              decoration: InputDecoration(
+                  suffixIcon: CupertinoButton(
+                      padding: const EdgeInsets.all(0.0),
+                      child: Icon(!context.watch<ObscurePasswordCubit>().state
+                          ? CupertinoIcons.lock_open
+                          : CupertinoIcons.lock),
                       onPressed: () {
                         context.read<ObscurePasswordCubit>().toggle();
-                      },
-                      child: Icon(context.watch<ObscurePasswordCubit>().state
-                          ? CupertinoIcons.lock
-                          : CupertinoIcons.lock_open),
-                    ),
-                    contentPadding: const EdgeInsets.only(left: 16, right: 16),
-                    border: const OutlineInputBorder()),
-              ),
-              const SizedBox(
-                height: 100,
-              ),
-              CupertinoButton(
+                      }),
+                  helperText: "Password",
+                  border: const OutlineInputBorder()),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            CupertinoButton(
                 child: const Text("Login"),
+                color: Palette.greenColor,
                 onPressed: () {
-                  AutoRouter.of(context).replace(const MainHomeRoute());
-                },
-                color: Theme.of(context).primaryColor,
-              )
-            ],
-          ),
+                  AutoRouter.of(context).push(const MainHomeRoute());
+                }),
+            const SizedBox(
+              height: 20,
+            ),
+          ],
         ),
       ),
     );
