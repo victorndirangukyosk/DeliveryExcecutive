@@ -1,4 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:delivery_app/configuration/configuration.dart';
+import 'package:delivery_app/routes/router.gr.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -29,7 +31,7 @@ class SingleOrderPage extends StatelessWidget {
                   child: const Text('Ready for delivery.'),
                   value: 'ready_for_delivery',
                   onTap: () {
-                    print("ready");
+                    AutoRouter.of(context).push(ReadyForDelivery());
                   },
                 ),
                 PopupMenuItem<String>(

@@ -43,7 +43,7 @@ class SingleOrder extends StatelessWidget {
               child: const Text('Ready for delivery.'),
               value: 'ready_for_delivery',
               onTap: () {
-                print("ready");
+                AutoRouter.of(context).push(ReadyForDelivery());
               },
             ),
             PopupMenuItem<String>(
