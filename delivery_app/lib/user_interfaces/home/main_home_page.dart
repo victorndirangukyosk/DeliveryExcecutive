@@ -171,11 +171,18 @@ class MainHomePage extends StatelessWidget {
                                   initialDate: DateTime.now(),
                                   firstDate: DateTime(1970),
                                   lastDate: DateTime.now());
-                              context.read<SelectDateCubit>().emit(x!);
+                              if (CalendarTime(x).isToday) {
+                                context
+                                    .read<SelectDateCubit>()
+                                    .emit(DateTime.now());
+                              } else {
+                                context.read<SelectDateCubit>().emit(x!);
+                              }
                             },
                             child: Text(CalendarTime(
                                     context.watch<SelectDateCubit>().state)
-                                .toHuman))
+                                .toHuman
+                                .replaceFirst("at 12:00 AM", "")))
                       ],
                     ),
                     const Expanded(child: MyOrdersList())

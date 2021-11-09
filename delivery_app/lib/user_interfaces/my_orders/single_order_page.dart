@@ -49,6 +49,7 @@ class SingleOrderPage extends StatelessWidget {
         ),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const ListTile(
             leading: FaIcon(
@@ -76,9 +77,67 @@ class SingleOrderPage extends StatelessWidget {
                   color: Palette.orangeColor,
                 )),
           ),
-          const Text("Order list"),
+          const Text(
+            "Product notes",
+            style: TextStyle(fontSize: 16),
+          ),
+          SizedBox(
+            height: 200,
+            child: NotesWidget(),
+          ),
+          const Text(
+            "Order list",
+            style: TextStyle(fontSize: 16),
+          ),
           Expanded(child: ProductList())
         ],
+      ),
+    );
+  }
+}
+
+class NotesWidget extends StatelessWidget {
+  const NotesWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return PageView(
+      controller: PageController(viewportFraction: 0.8),
+      children: const [
+        SingleNote(
+            notes:
+                "Lorem ipsum dolor sit amet, consectetur adi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris vel mattis massa, vitae tempor leo."),
+        SingleNote(notes: "notes")
+      ],
+    );
+  }
+}
+
+class SingleNote extends StatelessWidget {
+  final String notes;
+  const SingleNote({Key? key, required this.notes}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Container(
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              notes,
+              style: const TextStyle(color: Colors.white),
+            ),
+          ),
+        ),
+        decoration: const BoxDecoration(
+            color: Palette.greenColor,
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(60),
+                topRight: Radius.circular(20),
+                bottomLeft: Radius.circular(20),
+                bottomRight: Radius.circular(60))),
       ),
     );
   }
