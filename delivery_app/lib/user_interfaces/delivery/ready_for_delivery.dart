@@ -1,4 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:delivery_app/configuration/configuration.dart';
+import 'package:delivery_app/routes/router.gr.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +21,9 @@ class ReadyForDelivery extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  AutoRouter.of(context).push(CustomerVerification());
+                },
                 icon: const Icon(
                   CupertinoIcons.check_mark,
                   size: 30,
