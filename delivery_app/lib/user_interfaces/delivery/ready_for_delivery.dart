@@ -22,7 +22,7 @@ class ReadyForDelivery extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: IconButton(
                 onPressed: () {
-                  AutoRouter.of(context).push(CustomerVerification());
+                  AutoRouter.of(context).push(const CustomerVerification());
                 },
                 icon: const Icon(
                   CupertinoIcons.check_mark,
@@ -48,7 +48,7 @@ class CustomerProductList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: List.generate(13, (index) => CustomerProductListItem()),
+      children: List.generate(13, (index) => const CustomerProductListItem()),
     );
   }
 }

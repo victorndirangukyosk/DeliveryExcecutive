@@ -11,7 +11,7 @@ class MyOrdersList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       physics: const BouncingScrollPhysics(),
-      children: List.generate(20, (index) => SingleOrder()),
+      children: List.generate(20, (index) => const SingleOrder()),
     );
   }
 }
@@ -21,58 +21,93 @@ class SingleOrder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      // onTap: () {},
-      leading: const CircleAvatar(),
-      title: const Text("Order KBTYEONDKU by Sarova Stanley"),
-      subtitle: const Text("Westlands CBD, 25KM away"),
-      trailing: PopupMenuButton(
-        child: const Icon(
-          Icons.more_vert,
-          color: Palette.greenColor,
-        ),
-        itemBuilder: (context) {
-          return [
-            PopupMenuItem<String>(
-                child: const Text('View order.'),
+    return PopupMenuButton(
+      itemBuilder: (context) {
+        return [
+          PopupMenuItem<String>(
+              child: const Text('View order.'),
+              onTap: () {
+                AutoRouter.of(context).push(const SingleOrderRoute());
+              },
+              value: 'view'),
+          PopupMenuItem<String>(
+            child: const Text('Ready for delivery.'),
+            value: 'ready_for_delivery',
+            onTap: () {
+              AutoRouter.of(context).push(const ReadyForDelivery());
+            },
+          ),
+          PopupMenuItem<String>(
+            child: const Text('Show missing items.'),
+            value: 'missing_items',
+            onTap: () {},
+          ),
+          PopupMenuItem<String>(
+            child: Row(
+              children: const [
+                FaIcon(
+                  FontAwesomeIcons.directions,
+                  color: Palette.orangeColor,
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Text("Directions to address.")
+              ],
+            ),
+            value: 'missing_items',
+            onTap: () {},
+          ),
+        ];
+      },
+      child: ListTile(
+        leading: const CircleAvatar(),
+        title: const Text("Order KBTYEONDKU by Sarova Stanley"),
+        subtitle: const Text("Westlands CBD, 25KM away"),
+        trailing: PopupMenuButton(
+          child: const Icon(
+            Icons.more_vert,
+            color: Palette.greenColor,
+          ),
+          itemBuilder: (context) {
+            return [
+              PopupMenuItem<String>(
+                  child: const Text('View order.'),
+                  onTap: () {
+                    AutoRouter.of(context).push(const SingleOrderRoute());
+                  },
+                  value: 'view'),
+              PopupMenuItem<String>(
+                child: const Text('Ready for delivery.'),
+                value: 'ready_for_delivery',
                 onTap: () {
-                  AutoRouter.of(context).push(SingleOrderRoute());
+                  AutoRouter.of(context).push(const ReadyForDelivery());
                 },
-                value: 'view'),
-            PopupMenuItem<String>(
-              child: const Text('Ready for delivery.'),
-              value: 'ready_for_delivery',
-              onTap: () {
-                AutoRouter.of(context).push(ReadyForDelivery());
-              },
-            ),
-            PopupMenuItem<String>(
-              child: const Text('Show missing items.'),
-              value: 'missing_items',
-              onTap: () {
-                print("Show missing items");
-              },
-            ),
-            PopupMenuItem<String>(
-              child: Row(
-                children: const [
-                  FaIcon(
-                    FontAwesomeIcons.directions,
-                    color: Palette.orangeColor,
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text("Directions to address.")
-                ],
               ),
-              value: 'missing_items',
-              onTap: () {
-                print("Show missing items");
-              },
-            ),
-          ];
-        },
+              PopupMenuItem<String>(
+                child: const Text('Show missing items.'),
+                value: 'missing_items',
+                onTap: () {},
+              ),
+              PopupMenuItem<String>(
+                child: Row(
+                  children: const [
+                    FaIcon(
+                      FontAwesomeIcons.directions,
+                      color: Palette.orangeColor,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text("Directions to address.")
+                  ],
+                ),
+                value: 'missing_items',
+                onTap: () {},
+              ),
+            ];
+          },
+        ),
       ),
     );
   }

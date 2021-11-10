@@ -18,7 +18,7 @@ class LoginPage extends StatelessWidget {
       child: const Center(
         child: LoginCard(),
       ),
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
@@ -84,6 +84,8 @@ class LoginCard extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
+            CupertinoButton(
+                child: const Text("Forgot password?"), onPressed: () {}),
           ],
         ),
       ),

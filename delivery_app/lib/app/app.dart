@@ -1,7 +1,8 @@
+import 'dart:io';
+
 import 'package:delivery_app/configuration/configuration.dart';
 import 'package:delivery_app/cubits/cubits.dart';
 import 'package:delivery_app/cubits/select_date_cubit/select_date_cubit.dart';
-import 'package:delivery_app/cubits/user_interface/start_trip_tick_cubit.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,7 +21,7 @@ class KwikBasketDeliveryApp extends StatelessWidget {
         BlocProvider(create: (context) => ObscurePasswordCubit(true)),
         BlocProvider(create: (context) => HomeBottomNavigationIndexCubit(0)),
         BlocProvider(create: (context) => SelectDateCubit(DateTime.now())),
-        BlocProvider(create: (context) => StartTripTickCubit(true)..tick()),
+        BlocProvider(create: (context) => PickImageCubit(File(''))),
       ],
       child: MaterialApp.router(
           title: "Kwikbasket Delivery App",
