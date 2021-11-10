@@ -57,6 +57,8 @@ dependencies:
   image_picker: ^0.8.4+4
   # To take the signature of the delivered to person
   signature: ^4.1.1
+  # For google maps integration
+  google_maps_flutter: ^2.1.0
 
 
 dev_dependencies:
