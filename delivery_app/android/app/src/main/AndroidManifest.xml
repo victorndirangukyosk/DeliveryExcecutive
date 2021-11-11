@@ -2,7 +2,9 @@
     package="com.kwikbasket.delivery_app.delivery_app">
    <application
         android:label="Kwikbasket Delivery"
-        android:icon="@mipmap/launcher_icon">
+        android:icon="@mipmap/launcher_icon"
+        
+        >
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -37,5 +39,7 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+            <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyC609B_WIP-xSXEWnauc4p-xGvV3draH2s"/>
     </application>
 </manifest>

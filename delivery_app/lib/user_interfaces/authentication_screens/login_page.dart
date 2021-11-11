@@ -18,11 +18,13 @@ class LoginPage extends StatelessWidget {
       child: const Center(
         child: LoginCard(),
       ),
-      decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [Palette.greenColor, Palette.orangeColor])),
+      decoration: const BoxDecoration(color: Palette.orangeColor
+          // gradient: LinearGradient(
+          //     begin: Alignment.topLeft,
+          //     end: Alignment.bottomRight,
+          //     colors: [Palette.greenColor, Palette.orangeColor]
+          //     )
+          ),
     ));
   }
 }
@@ -34,33 +36,51 @@ class LoginCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 20,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       margin: const EdgeInsets.all(20),
       child: Padding(
         padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(
-              height: 20,
-            ),
-            Image.asset('assets/logo.png'),
-            const SizedBox(
-              height: 40,
-            ),
-            TextFormField(
-              decoration: const InputDecoration(
-                helperText: "Email",
-                border: OutlineInputBorder(),
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(
+                height: 20,
               ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            TextFormField(
-              obscureText: context.watch<ObscurePasswordCubit>().state,
-              decoration: InputDecoration(
+              const Text.rich(TextSpan(
+                  text: "Kwik ",
+                  style: TextStyle(
+                      fontSize: 60,
+                      fontWeight: FontWeight.w900,
+                      color: Palette.orangeColor),
+                  children: [
+                    TextSpan(
+                        text: "Delivery",
+                        style: TextStyle(color: Palette.greenColor))
+                  ])),
+              const SizedBox(
+                height: 40,
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  hintText: "Email",
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: const BorderSide(width: 2)),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: const BorderSide(width: 2)),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                obscureText: context.watch<ObscurePasswordCubit>().state,
+                decoration: InputDecoration(
                   suffixIcon: CupertinoButton(
                       padding: const EdgeInsets.all(0.0),
                       child: Icon(!context.watch<ObscurePasswordCubit>().state
@@ -69,22 +89,34 @@ class LoginCard extends StatelessWidget {
                       onPressed: () {
                         context.read<ObscurePasswordCubit>().toggle();
                       }),
-                  helperText: "Password",
-                  border: const OutlineInputBorder()),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            CupertinoButton(
-                child: const Text("Login"),
-                color: Palette.greenColor,
-                onPressed: () {
-                  AutoRouter.of(context).push(const MainHomeRoute());
-                }),
-            const SizedBox(
-              height: 20,
-            ),
-          ],
+                  hintText: "Password",
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: const BorderSide(width: 2)),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: const BorderSide(width: 2)),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              CupertinoButton(
+                  child: const Text("Login"),
+                  color: Palette.greenColor,
+                  onPressed: () {
+                    AutoRouter.of(context).push(const MainHomeRoute());
+                  }),
+              const SizedBox(
+                height: 20,
+              ),
+              CupertinoButton(
+                  child: const Text("Forgot password?"), onPressed: () {}),
+              const SizedBox(
+                height: 20,
+              ),
+            ],
+          ),
         ),
       ),
     );
