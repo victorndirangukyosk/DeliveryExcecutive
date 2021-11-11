@@ -23,21 +23,15 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var _formKey = GlobalKey<FormBuilderState>();
     return Scaffold(
-      body: FormBuilder(
-        key: _formKey,
-        child: Padding(
-          padding: const EdgeInsets.all(30.0),
-          child: Center(
-            child: Image.asset(
-              'assets/icon/icon.png',
-              height: 200,
-              width: 200,
-            ),
-          ),
-        ),
-      ),
-    );
+        body: Stack(
+      children: [
+        Positioned(
+            left: 0,
+            right: 0,
+            bottom: -10,
+            child: Image.asset("assets/rider_image.png"))
+      ],
+    ));
   }
 }
