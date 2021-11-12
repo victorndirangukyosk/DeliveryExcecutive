@@ -3,7 +3,7 @@ import 'package:delivery_app/configuration/configuration.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:kiosk_mode/kiosk_mode.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -29,6 +29,16 @@ class _SplashScreenState extends State<SplashScreen> {
         body: Stack(
       children: [
         const Positioned(
+          left: 200,
+          right: 200,
+          top: 200,
+          child: Center(
+            child: SpinKitCircle(
+              color: Palette.greenColor,
+            ),
+          ),
+        ),
+        const Positioned(
           top: 100,
           right: 0,
           left: 0,
@@ -51,8 +61,8 @@ class _SplashScreenState extends State<SplashScreen> {
             right: 0,
             bottom: -10,
             child: Image.asset(
-              "assets/truck_image.svg",
-              width: MediaQuery.of(context).size.width,
+              "assets/truck_image.png",
+              width: MediaQuery.of(context).size.width + 20,
             ))
       ],
     ));
