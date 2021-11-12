@@ -5,9 +5,9 @@ import 'package:delivery_app/user_interfaces/my_orders/my_orders_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class MainHomePage extends StatelessWidget {
   const MainHomePage({Key? key}) : super(key: key);
@@ -18,6 +18,20 @@ class MainHomePage extends StatelessWidget {
         floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
         body: Stack(
           children: [
+            const Positioned(
+                top: 30,
+                child: Text.rich(TextSpan(
+                    text: "Kwik ",
+                    style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w900,
+                        color: Palette.orangeColor),
+                    children: [
+                      TextSpan(
+                          text: "Delivery",
+                          style: TextStyle(color: Palette.greenColor))
+                    ])),
+                left: 20),
             Positioned(
                 top: 20,
                 right: 20,
@@ -198,22 +212,25 @@ class MainHomePage extends StatelessWidget {
                     elevation: 20,
                     shape: const CircleBorder(),
                     child: CircleAvatar(
-                      radius: 50,
-                      backgroundColor: Palette.greenColor,
-                      child: Stack(
-                        children: const [
-                          SpinKitRipple(
-                            color: Colors.white,
-                            size: 200,
-                          ),
-                          Center(
-                              child: Text(
-                            "Start trip",
-                            style: TextStyle(color: Colors.white),
-                          ))
-                        ],
-                      ),
-                    ),
+                        radius: 60,
+                        backgroundColor: Palette.greenColor,
+                        child: Center(
+                            child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            SvgPicture.asset(
+                              'assets/gis_route.svg',
+                              height: 50,
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            const Text(
+                              "Start trip",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
+                        ))),
                   ),
                 ))
           ],
