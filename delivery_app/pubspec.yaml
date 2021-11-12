@@ -61,6 +61,8 @@ dependencies:
   google_maps_flutter: ^2.1.0
   # For svg display
   flutter_svg: ^0.23.0+1
+  # For permissions
+  permission_handler: ^8.2.6
 
 
 dev_dependencies:
