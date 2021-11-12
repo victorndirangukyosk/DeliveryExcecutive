@@ -11,13 +11,18 @@ class MyOrdersList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       physics: const BouncingScrollPhysics(),
-      children: List.generate(20, (index) => const SingleOrder()),
+      children: List.generate(
+          20,
+          (index) => SingleOrder(
+                index: index,
+              )),
     );
   }
 }
 
 class SingleOrder extends StatelessWidget {
-  const SingleOrder({Key? key}) : super(key: key);
+  final int index;
+  const SingleOrder({Key? key, required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -61,8 +66,18 @@ class SingleOrder extends StatelessWidget {
         ];
       },
       child: ListTile(
-        leading: const CircleAvatar(),
-        title: const Text("Order KBTYEONDKU by Sarova Stanley"),
+        tileColor: index % 2 == -0 ? Colors.white : const Color(0xffF5F5F5),
+        leading: const CircleAvatar(
+          backgroundColor: Palette.orangeColor,
+          radius: 25,
+          child: Icon(
+            Icons.person,
+            size: 40,
+            color: Colors.white,
+          ),
+        ),
+        title: const Text("Order KBTYEONDKU by Sarova Stanley",
+            style: TextStyle(fontWeight: FontWeight.bold)),
         subtitle: const Text("Westlands CBD, 25KM away"),
         trailing: PopupMenuButton(
           child: const Icon(
