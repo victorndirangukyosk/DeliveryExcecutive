@@ -13,30 +13,48 @@ class ReadyForDelivery extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        title: const Text(
-          "Ready for delivery",
-          style: TextStyle(color: Palette.greenColor),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: IconButton(
-                onPressed: () {
-                  AutoRouter.of(context).push(const CustomerVerification());
-                },
-                icon: const Icon(
-                  CupertinoIcons.check_mark,
-                  size: 30,
-                  color: Palette.greenColor,
-                )),
-          )
-        ],
+        title: const Text.rich(TextSpan(
+            text: "Kwik ",
+            style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.w900,
+                color: Palette.orangeColor),
+            children: [
+              TextSpan(
+                  text: "Delivery", style: TextStyle(color: Palette.greenColor))
+            ])),
         iconTheme: const IconThemeData(color: Palette.orangeColor),
         actionsIconTheme: const IconThemeData(color: Palette.orangeColor),
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(8.0),
-        child: CustomerProductList(),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                const Text(
+                  "Ready for delivery",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                Expanded(child: Container()),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: IconButton(
+                      onPressed: () {
+                        AutoRouter.of(context)
+                            .push(const CustomerVerification());
+                      },
+                      icon: const Icon(
+                        CupertinoIcons.check_mark,
+                        size: 30,
+                        color: Palette.greenColor,
+                      )),
+                )
+              ],
+            ),
+            const Expanded(child: CustomerProductList()),
+          ],
+        ),
       ),
     );
   }
@@ -47,8 +65,14 @@ class CustomerProductList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: List.generate(13, (index) => const CustomerProductListItem()),
+    return ListView.separated(
+      itemCount: 13,
+      itemBuilder: (context, index) {
+        return const CustomerProductListItem();
+      },
+      separatorBuilder: (context, index) {
+        return const Divider();
+      },
     );
   }
 }
@@ -73,9 +97,9 @@ class CustomerProductListItem extends StatelessWidget {
         CupertinoButton(
             onPressed: () {},
             padding: const EdgeInsets.all(8),
-            color: Colors.red,
             child: const Icon(
-              CupertinoIcons.clear_circled,
+              CupertinoIcons.clear_circled_solid,
+              color: Colors.red,
               size: 30,
             )),
         const SizedBox(
@@ -84,9 +108,9 @@ class CustomerProductListItem extends StatelessWidget {
         CupertinoButton(
             onPressed: () {},
             padding: const EdgeInsets.all(8),
-            color: Colors.green,
             child: const Icon(
-              CupertinoIcons.check_mark_circled,
+              CupertinoIcons.check_mark_circled_solid,
+              color: Colors.green,
               size: 30,
             )),
       ],
