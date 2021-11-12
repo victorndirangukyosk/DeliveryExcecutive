@@ -30,6 +30,7 @@ class CustomerVerification extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Text(
               "Customer photo",
@@ -52,17 +53,24 @@ class CustomerVerification extends StatelessWidget {
                 : Image.file(
                     context.read<PickImageCubit>().state,
                     height: 200,
+                    width: 300,
+                    fit: BoxFit.cover,
                   ),
             const Text(
               "Customer signature",
               style: TextStyle(color: Palette.greenColor, fontSize: 20),
             ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+            ),
             Container(
-              decoration: BoxDecoration(border: Border.all(width: 2)),
+              height: 200,
+              width: 300,
+              decoration: BoxDecoration(border: Border.all(width: 1)),
               child: Signature(
                 controller: SignatureController(),
                 height: 200,
-                width: 200,
+                width: 300,
                 backgroundColor: Colors.white,
               ),
             ),
