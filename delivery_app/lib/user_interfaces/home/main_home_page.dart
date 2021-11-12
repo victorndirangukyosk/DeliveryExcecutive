@@ -137,7 +137,7 @@ class MainHomePage extends StatelessWidget {
                             child: Icon(
                           Icons.dehaze,
                           size: 40,
-                          color: Palette.greenColor,
+                          color: Palette.orangeColor,
                         ))),
                   ),
                 )),
@@ -149,24 +149,35 @@ class MainHomePage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    ListTile(
-                      contentPadding: const EdgeInsets.all(0),
-                      onTap: () {},
-                      title: const Text(
-                        "My Deliveries",
-                        style: TextStyle(
-                            fontSize: 30,
-                            color: Palette.orangeColor,
-                            fontWeight: FontWeight.bold),
+                    CupertinoButton(
+                      onPressed: () {},
+                      padding: const EdgeInsets.all(0),
+                      child: Container(
+                        padding: const EdgeInsets.only(left: 8, right: 8),
+                        decoration: BoxDecoration(
+                            color: Palette.greenColor,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Row(
+                          children: [
+                            const Text(
+                              "My Deliveries",
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            const Expanded(child: SizedBox()),
+                            CupertinoButton(
+                                padding: const EdgeInsets.all(0),
+                                child: const Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 25,
+                                  color: Colors.white,
+                                ),
+                                onPressed: () {}),
+                          ],
+                        ),
                       ),
-                      trailing: CupertinoButton(
-                          padding: const EdgeInsets.all(0),
-                          child: const Icon(
-                            Icons.arrow_forward_ios,
-                            size: 25,
-                            color: Palette.orangeColor,
-                          ),
-                          onPressed: () {}),
                     ),
                     Row(
                       children: [
