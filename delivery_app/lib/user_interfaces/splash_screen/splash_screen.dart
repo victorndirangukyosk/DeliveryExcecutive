@@ -50,7 +50,7 @@ class _SplashScreenState extends State<SplashScreen> {
             left: 0,
             right: 0,
             bottom: -10,
-            child: SvgPicture.asset(
+            child: Image.asset(
               "assets/truck_image.svg",
               width: MediaQuery.of(context).size.width,
             ))
