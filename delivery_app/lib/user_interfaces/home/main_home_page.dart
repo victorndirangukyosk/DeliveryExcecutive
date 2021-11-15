@@ -153,7 +153,7 @@ class MainHomePage extends StatelessWidget {
                       onPressed: () {},
                       padding: const EdgeInsets.all(0),
                       child: Container(
-                        padding: const EdgeInsets.only(left: 8, right: 8),
+                        padding: const EdgeInsets.only(left: 20, right: 8),
                         decoration: BoxDecoration(
                             color: Palette.greenColor,
                             borderRadius: BorderRadius.circular(10)),
