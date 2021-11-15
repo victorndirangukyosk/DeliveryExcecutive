@@ -126,7 +126,9 @@ class SingleOrderPage extends StatelessWidget {
               title: const Text("Westlands, CBD"),
               subtitle: const Text("2 KM from your location"),
               trailing: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    AutoRouter.of(context).push(const DirectionsToAddress());
+                  },
                   tooltip: 'View directions.',
                   icon: const FaIcon(
                     FontAwesomeIcons.directions,
