@@ -87,6 +87,7 @@ class SingleOrderPage extends StatelessWidget {
                         ),
                       ),
                       title: Text("Sarova Stanley"),
+                      subtitle: Text("2 Days ago"),
                     ),
                   ),
                 ),
@@ -101,8 +102,14 @@ class SingleOrderPage extends StatelessWidget {
                         border: Border.all(width: 1, color: Colors.grey),
                         borderRadius: BorderRadius.circular(5)),
                     child: const ListTile(
+                      leading: CircleAvatar(
+                        backgroundColor: Palette.orangeColor,
+                        child: FaIcon(
+                          FontAwesomeIcons.shoppingBasket,
+                          color: Colors.white,
+                        ),
+                      ),
                       title: Text("Order number KBTYEONDKU"),
-                      subtitle: Text("2 Days ago"),
                     ),
                   ),
                 ),
@@ -175,11 +182,12 @@ class SingleNote extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(20.0),
-      child: Padding(
+      child: Container(
         padding: const EdgeInsets.all(8.0),
-        child: Text(
-          notes,
-        ),
+        decoration: const BoxDecoration(
+            color: Palette.greenColor,
+            borderRadius: BorderRadius.all((Radius.circular(20)))),
+        child: Text(notes, style: const TextStyle(color: Colors.white)),
       ),
     );
   }
