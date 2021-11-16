@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:calendar_time/calendar_time.dart';
 import 'package:delivery_app/configuration/configuration.dart';
 import 'package:delivery_app/cubits/select_date_cubit/select_date_cubit.dart';
+import 'package:delivery_app/routes/router.gr.dart';
 import 'package:delivery_app/user_interfaces/my_orders/my_orders_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -218,7 +220,9 @@ class MainHomePage extends StatelessWidget {
                 left: 0,
                 right: 0,
                 child: CupertinoButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    AutoRouter.of(context).push(const DirectionsToAddress());
+                  },
                   child: Card(
                     elevation: 20,
                     shape: const CircleBorder(),

@@ -60,8 +60,10 @@ class SingleOrder extends StatelessWidget {
                 Text("Directions to address.")
               ],
             ),
-            value: 'missing_items',
-            onTap: () {},
+            value: 'directions',
+            onTap: () {
+              AutoRouter.of(context).push(const DirectionsToAddress());
+            },
           ),
         ];
       },
@@ -117,8 +119,10 @@ class SingleOrder extends StatelessWidget {
                     Text("Directions to address.")
                   ],
                 ),
-                value: 'missing_items',
-                onTap: () {},
+                value: 'directions',
+                onTap: () {
+                  AutoRouter.of(context).push(const DirectionsToAddress());
+                },
               ),
             ];
           },
