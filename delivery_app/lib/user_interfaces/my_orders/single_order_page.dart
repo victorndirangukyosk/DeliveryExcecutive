@@ -47,14 +47,14 @@ class SingleOrderPage extends StatelessWidget {
           )
         ],
         title: const Text.rich(TextSpan(
-            text: "Kwik ",
+            text: 'Kwik ',
             style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.w900,
                 color: Palette.orangeColor),
             children: [
               TextSpan(
-                  text: "Delivery", style: TextStyle(color: Palette.greenColor))
+                  text: 'Delivery', style: TextStyle(color: Palette.greenColor))
             ])),
       ),
       body: Padding(
@@ -63,7 +63,7 @@ class SingleOrderPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              "Order details",
+              'Order details',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(
@@ -86,8 +86,8 @@ class SingleOrderPage extends StatelessWidget {
                           color: Colors.white,
                         ),
                       ),
-                      title: Text("Sarova Stanley"),
-                      subtitle: Text("2 Days ago"),
+                      title: Text('Sarova Stanley'),
+                      subtitle: Text('2 Days ago'),
                     ),
                   ),
                 ),
@@ -109,7 +109,7 @@ class SingleOrderPage extends StatelessWidget {
                           color: Colors.white,
                         ),
                       ),
-                      title: Text("Order number KBTYEONDKU"),
+                      title: Text('Order number KBTYEONDKU'),
                     ),
                   ),
                 ),

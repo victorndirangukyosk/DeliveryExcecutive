@@ -23,14 +23,14 @@ class MainHomePage extends StatelessWidget {
             const Positioned(
                 top: 30,
                 child: Text.rich(TextSpan(
-                    text: "Kwik ",
+                    text: 'Kwik ',
                     style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.w900,
                         color: Palette.orangeColor),
                     children: [
                       TextSpan(
-                          text: "Delivery",
+                          text: 'Delivery',
                           style: TextStyle(color: Palette.greenColor))
                     ])),
                 left: 20),
@@ -69,37 +69,37 @@ class MainHomePage extends StatelessWidget {
                                               child: CircleAvatar(
                                                 radius: 50,
                                                 backgroundImage: NetworkImage(
-                                                    "https://th.bing.com/th/id/R.a5758d6fb64904904ec75fd1f083e3fb?rik=QVwaYy2Fd7Xi%2fA&pid=ImgRaw&r=0"),
+                                                    'https://th.bing.com/th/id/R.a5758d6fb64904904ec75fd1f083e3fb?rik=QVwaYy2Fd7Xi%2fA&pid=ImgRaw&r=0'),
                                               ),
                                             ),
                                           ),
                                           const SizedBox(
                                             height: 20,
                                           ),
-                                          const Text("Samuel Baraka"),
+                                          const Text('Samuel Baraka'),
                                           const Text(
-                                              "sababuvercetti@gmail.com"),
+                                              'sababuvercetti@gmail.com'),
                                           const SizedBox(
                                             height: 20,
                                           ),
                                           ListTile(
                                             onTap: () {},
                                             leading: const Icon(Icons.history),
-                                            title: const Text("Order history"),
+                                            title: const Text('Order history'),
                                             trailing: const Icon(
                                                 CupertinoIcons.forward),
                                             subtitle: const Text(
-                                                "View order history"),
+                                                'View order history'),
                                           ),
                                           ListTile(
                                             onTap: () {},
                                             leading: const Icon(
                                                 CupertinoIcons.settings),
-                                            title: const Text("Settings"),
+                                            title: const Text('Settings'),
                                             trailing: const Icon(
                                                 CupertinoIcons.forward),
                                             subtitle: const Text(
-                                                "Application settings"),
+                                                'Application settings'),
                                           ),
                                           ListTile(
                                             onTap: () {
@@ -115,7 +115,7 @@ class MainHomePage extends StatelessWidget {
                                               color: Palette.greenColor,
                                             ),
                                             title: const Text(
-                                              "About",
+                                              'About',
                                               style: TextStyle(
                                                   color: Palette.greenColor),
                                             ),
@@ -124,7 +124,7 @@ class MainHomePage extends StatelessWidget {
                                               color: Palette.greenColor,
                                             ),
                                             subtitle: const Text(
-                                              "About this application",
+                                              'About this application',
                                             ),
                                           ),
                                           const SizedBox(
@@ -162,7 +162,7 @@ class MainHomePage extends StatelessWidget {
                         child: Row(
                           children: [
                             const Text(
-                              "My Deliveries",
+                              'My Deliveries',
                               style: TextStyle(
                                   fontSize: 20,
                                   color: Colors.white,
@@ -184,7 +184,7 @@ class MainHomePage extends StatelessWidget {
                     Row(
                       children: [
                         const Text(
-                          "My Orders",
+                          'My Orders',
                           style: TextStyle(
                               fontSize: 16,
                               color: Palette.greenColor,
@@ -209,7 +209,7 @@ class MainHomePage extends StatelessWidget {
                             child: Text(CalendarTime(
                                     context.watch<SelectDateCubit>().state)
                                 .toHuman
-                                .replaceFirst("at 12:00 AM", "")))
+                                .replaceFirst('at 12:00 AM', '')))
                       ],
                     ),
                     const Expanded(child: MyOrdersList())
@@ -241,7 +241,7 @@ class MainHomePage extends StatelessWidget {
                               height: 10,
                             ),
                             const Text(
-                              "Start trip",
+                              'Start trip',
                               style: TextStyle(color: Colors.white),
                             ),
                           ],

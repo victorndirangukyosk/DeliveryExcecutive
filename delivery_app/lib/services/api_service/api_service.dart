@@ -15,7 +15,7 @@ class ApiService {
     try {
       ///Get the response after posting
       var response = await restClient.dio!
-          .post("${restClient.baseURL}$path", data: data, options: options);
+          .post('${restClient.baseURL}$path', data: data, options: options);
       return response.data;
     }
 
@@ -32,7 +32,7 @@ class ApiService {
     try {
       ///Get the response after posting
       var response = await restClient.dio!
-          .get("${restClient.baseURL}$path", options: options);
+          .get('${restClient.baseURL}$path', options: options);
       return response.data;
     }
 

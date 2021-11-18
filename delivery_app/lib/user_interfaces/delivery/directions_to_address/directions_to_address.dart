@@ -79,7 +79,7 @@ class DirectionsToAddress extends StatelessWidget {
                       child: Padding(
                         padding: EdgeInsets.all(16.0),
                         child: Center(
-                          child: Text("Sarova Stanley",
+                          child: Text('Sarova Stanley',
                               style:
                                   TextStyle(color: Colors.white, fontSize: 18)),
                         ),
@@ -114,36 +114,36 @@ class DirectionsToAddress extends StatelessWidget {
                                             child: CircleAvatar(
                                               radius: 50,
                                               backgroundImage: NetworkImage(
-                                                  "https://th.bing.com/th/id/R.a5758d6fb64904904ec75fd1f083e3fb?rik=QVwaYy2Fd7Xi%2fA&pid=ImgRaw&r=0"),
+                                                  'https://th.bing.com/th/id/R.a5758d6fb64904904ec75fd1f083e3fb?rik=QVwaYy2Fd7Xi%2fA&pid=ImgRaw&r=0'),
                                             ),
                                           ),
                                         ),
                                         const SizedBox(
                                           height: 20,
                                         ),
-                                        const Text("Samuel Baraka"),
-                                        const Text("sababuvercetti@gmail.com"),
+                                        const Text('Samuel Baraka'),
+                                        const Text('sababuvercetti@gmail.com'),
                                         const SizedBox(
                                           height: 20,
                                         ),
                                         ListTile(
                                           onTap: () {},
                                           leading: const Icon(Icons.history),
-                                          title: const Text("Order history"),
+                                          title: const Text('Order history'),
                                           trailing: const Icon(
                                               CupertinoIcons.forward),
                                           subtitle:
-                                              const Text("View order history"),
+                                              const Text('View order history'),
                                         ),
                                         ListTile(
                                           onTap: () {},
                                           leading: const Icon(
                                               CupertinoIcons.settings),
-                                          title: const Text("Settings"),
+                                          title: const Text('Settings'),
                                           trailing: const Icon(
                                               CupertinoIcons.forward),
                                           subtitle: const Text(
-                                              "Application settings"),
+                                              'Application settings'),
                                         ),
                                         ListTile(
                                           onTap: () {
@@ -159,7 +159,7 @@ class DirectionsToAddress extends StatelessWidget {
                                             color: Palette.greenColor,
                                           ),
                                           title: const Text(
-                                            "About",
+                                            'About',
                                             style: TextStyle(
                                                 color: Palette.greenColor),
                                           ),
@@ -168,7 +168,7 @@ class DirectionsToAddress extends StatelessWidget {
                                             color: Palette.greenColor,
                                           ),
                                           subtitle: const Text(
-                                            "About this application",
+                                            'About this application',
                                           ),
                                         ),
                                         const SizedBox(
@@ -200,14 +200,14 @@ class DirectionsToAddress extends StatelessWidget {
                           color: Palette.orangeColor,
                         ),
                         SizedBox(width: 10),
-                        Text("Distance : 5KM", style: TextStyle(fontSize: 16)),
+                        Text('Distance : 5KM', style: TextStyle(fontSize: 16)),
                         Expanded(child: SizedBox(width: 10)),
                         FaIcon(
                           FontAwesomeIcons.clock,
                           color: Palette.orangeColor,
                         ),
                         SizedBox(width: 10),
-                        Text("Expected Delivery Time: 5 Minutes",
+                        Text('Expected Delivery Time: 5 Minutes',
                             style: TextStyle(fontSize: 16)),
                         SizedBox(width: 10),
                       ],
@@ -216,7 +216,7 @@ class DirectionsToAddress extends StatelessWidget {
                       height: 20,
                     ),
                     CupertinoButton(
-                        child: const Text("Ready for delivery"),
+                        child: const Text('Ready for delivery'),
                         color: Palette.greenColor,
                         onPressed: () {
                           AutoRouter.of(context).push(const ReadyForDelivery());

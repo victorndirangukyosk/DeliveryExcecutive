@@ -57,7 +57,7 @@ class SingleOrder extends StatelessWidget {
                 SizedBox(
                   width: 10,
                 ),
-                Text("Directions to address.")
+                Text('Directions to address.')
               ],
             ),
             value: 'directions',
@@ -78,9 +78,9 @@ class SingleOrder extends StatelessWidget {
             color: Colors.white,
           ),
         ),
-        title: const Text("Order KBTYEONDKU by Sarova Stanley",
+        title: const Text('Order KBTYEONDKU by Sarova Stanley',
             style: TextStyle(fontWeight: FontWeight.bold)),
-        subtitle: const Text("Westlands CBD, 25KM away"),
+        subtitle: const Text('Westlands CBD, 25KM away'),
         trailing: PopupMenuButton(
           child: const Icon(
             Icons.more_vert,
@@ -116,7 +116,7 @@ class SingleOrder extends StatelessWidget {
                     SizedBox(
                       width: 10,
                     ),
-                    Text("Directions to address.")
+                    Text('Directions to address.')
                   ],
                 ),
                 value: 'directions',

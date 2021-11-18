@@ -24,7 +24,7 @@ class KwikBasketDeliveryApp extends StatelessWidget {
         BlocProvider(create: (context) => PickImageCubit(File(''))),
       ],
       child: MaterialApp.router(
-          title: "Kwikbasket Delivery App",
+          title: 'Kwikbasket Delivery App',
           debugShowCheckedModeBanner: false,
           supportedLocales: const [
             Locale('en'),

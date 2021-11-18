@@ -51,14 +51,14 @@ class LoginCard extends StatelessWidget {
                 height: 20,
               ),
               const Text.rich(TextSpan(
-                  text: "Kwik ",
+                  text: 'Kwik ',
                   style: TextStyle(
                       fontSize: 60,
                       fontWeight: FontWeight.w900,
                       color: Palette.orangeColor),
                   children: [
                     TextSpan(
-                        text: "Delivery",
+                        text: 'Delivery',
                         style: TextStyle(color: Palette.greenColor))
                   ])),
               const SizedBox(
@@ -66,7 +66,7 @@ class LoginCard extends StatelessWidget {
               ),
               TextFormField(
                 decoration: InputDecoration(
-                  hintText: "Email",
+                  hintText: 'Email',
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide: const BorderSide(width: 2)),
@@ -89,7 +89,7 @@ class LoginCard extends StatelessWidget {
                       onPressed: () {
                         context.read<ObscurePasswordCubit>().toggle();
                       }),
-                  hintText: "Password",
+                  hintText: 'Password',
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide: const BorderSide(width: 2)),
@@ -102,7 +102,7 @@ class LoginCard extends StatelessWidget {
                 height: 20,
               ),
               CupertinoButton(
-                  child: const Text("Login"),
+                  child: const Text('Login'),
                   color: Palette.greenColor,
                   onPressed: () {
                     AutoRouter.of(context).push(const MainHomeRoute());
@@ -111,7 +111,7 @@ class LoginCard extends StatelessWidget {
                 height: 20,
               ),
               CupertinoButton(
-                  child: const Text("Forgot password?"), onPressed: () {}),
+                  child: const Text('Forgot password?'), onPressed: () {}),
               const SizedBox(
                 height: 20,
               ),

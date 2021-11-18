@@ -20,7 +20,7 @@ class CustomerVerification extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         title: const Text(
-          "Customer verification",
+          'Customer verification',
           style: TextStyle(color: Palette.greenColor),
         ),
         iconTheme: const IconThemeData(color: Palette.orangeColor),
@@ -33,7 +33,7 @@ class CustomerVerification extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Text(
-              "Customer photo",
+              'Customer photo',
               style: TextStyle(color: Palette.greenColor, fontSize: 20),
             ),
             context.watch<PickImageCubit>().state.path.length < 2
@@ -57,7 +57,7 @@ class CustomerVerification extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
             const Text(
-              "Customer signature",
+              'Customer signature',
               style: TextStyle(color: Palette.greenColor, fontSize: 20),
             ),
             SizedBox(
@@ -78,7 +78,7 @@ class CustomerVerification extends StatelessWidget {
               height: 20,
             ),
             CupertinoButton(
-                child: const Text("Submit"),
+                child: const Text('Submit'),
                 color: Palette.greenColor,
                 onPressed: () {
                   AutoRouter.of(context).replace(const MainHomeRoute());

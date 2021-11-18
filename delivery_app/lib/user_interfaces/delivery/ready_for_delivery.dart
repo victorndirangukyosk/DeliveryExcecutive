@@ -14,14 +14,14 @@ class ReadyForDelivery extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         title: const Text.rich(TextSpan(
-            text: "Kwik ",
+            text: 'Kwik ',
             style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.w900,
                 color: Palette.orangeColor),
             children: [
               TextSpan(
-                  text: "Delivery", style: TextStyle(color: Palette.greenColor))
+                  text: 'Delivery', style: TextStyle(color: Palette.greenColor))
             ])),
         iconTheme: const IconThemeData(color: Palette.orangeColor),
         actionsIconTheme: const IconThemeData(color: Palette.orangeColor),
@@ -33,7 +33,7 @@ class ReadyForDelivery extends StatelessWidget {
             Row(
               children: [
                 const Text(
-                  "Ready for delivery",
+                  'Ready for delivery',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 Expanded(child: Container()),
@@ -88,10 +88,10 @@ class CustomerProductListItem extends StatelessWidget {
           child: ListTile(
             leading: CircleAvatar(
               backgroundImage: NetworkImage(
-                  "https://st3.depositphotos.com/1003495/16332/i/600/depositphotos_163323236-stock-photo-heap-of-potatoes.jpg"),
+                  'https://st3.depositphotos.com/1003495/16332/i/600/depositphotos_163323236-stock-photo-heap-of-potatoes.jpg'),
             ),
-            title: Text("Irish potatoes"),
-            subtitle: Text("Quantity : 2 Tons"),
+            title: Text('Irish potatoes'),
+            subtitle: Text('Quantity : 2 Tons'),
           ),
         ),
         CupertinoButton(
