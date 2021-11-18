@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
+/// This class configures the base API requests
+
 class RestClient {
   Dio? _dio;
 
@@ -13,6 +15,7 @@ class RestClient {
     create(options);
   }
 
+  /// Instantiate the restclient class
   void create([BaseOptions? options]) {
     _dio = Dio(options);
 
