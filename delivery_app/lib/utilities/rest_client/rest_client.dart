@@ -18,6 +18,7 @@ class RestClient {
 
     ///Add the interceptors
     if (kDebugMode) {
+      //The logger interceptor
       _dio!.interceptors.add(PrettyDioLogger(
           requestHeader: true,
           requestBody: true,
