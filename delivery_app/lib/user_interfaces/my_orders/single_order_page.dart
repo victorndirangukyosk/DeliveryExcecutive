@@ -130,8 +130,8 @@ class SingleOrderPage extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              title: const Text("Westlands, CBD"),
-              subtitle: const Text("2 KM from your location"),
+              title: const Text('Westlands, CBD'),
+              subtitle: const Text('2 KM from your location'),
               trailing: IconButton(
                   onPressed: () {
                     AutoRouter.of(context).push(const DirectionsToAddress());
@@ -147,12 +147,12 @@ class SingleOrderPage extends StatelessWidget {
               height: 20,
             ),
             const Text(
-              "Product notes",
+              'Product notes',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const NotesWidget(),
             const Text(
-              "Order list",
+              'Order list',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const Expanded(child: ProductList())
@@ -170,7 +170,7 @@ class NotesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return const SingleNote(
         notes:
-            "Lorem ipsum dolor sit amet, consectetur adi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris vel mattis massa, vitae tempor leo.");
+            'Lorem ipsum dolor sit amet, consectetur adi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris vel mattis massa, vitae tempor leo.');
   }
 }
 

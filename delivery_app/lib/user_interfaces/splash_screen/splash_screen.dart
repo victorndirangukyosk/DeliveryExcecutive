@@ -44,14 +44,14 @@ class _SplashScreenState extends State<SplashScreen> {
           left: 0,
           child: Center(
             child: Text.rich(TextSpan(
-                text: "Kwik ",
+                text: 'Kwik ',
                 style: TextStyle(
                     fontSize: 60,
                     fontWeight: FontWeight.w900,
                     color: Palette.orangeColor),
                 children: [
                   TextSpan(
-                      text: "Delivery",
+                      text: 'Delivery',
                       style: TextStyle(color: Palette.greenColor))
                 ])),
           ),
@@ -61,7 +61,7 @@ class _SplashScreenState extends State<SplashScreen> {
             right: 0,
             bottom: -10,
             child: Image.asset(
-              "assets/truck_image.png",
+              'assets/truck_image.png',
               width: MediaQuery.of(context).size.width + 20,
             ))
       ],
