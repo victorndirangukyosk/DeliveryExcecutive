@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:delivery_app/configuration/configuration.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:kiosk_mode/kiosk_mode.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -16,28 +18,53 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () async {
-      // await startKioskMode();
+      await startKioskMode();
       AutoRouter.of(context).replace(const LoginRoute());
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    var _formKey = GlobalKey<FormBuilderState>();
     return Scaffold(
-      body: FormBuilder(
-        key: _formKey,
-        child: Padding(
-          padding: const EdgeInsets.all(30.0),
+        body: Stack(
+      children: [
+        const Positioned(
+          left: 200,
+          right: 200,
+          top: 200,
           child: Center(
-            child: Image.asset(
-              'assets/icon/icon.png',
-              height: 200,
-              width: 200,
+            child: SpinKitCircle(
+              color: Palette.greenColor,
             ),
           ),
         ),
-      ),
-    );
+        const Positioned(
+          top: 100,
+          right: 0,
+          left: 0,
+          child: Center(
+            child: Text.rich(TextSpan(
+                text: "Kwik ",
+                style: TextStyle(
+                    fontSize: 60,
+                    fontWeight: FontWeight.w900,
+                    color: Palette.orangeColor),
+                children: [
+                  TextSpan(
+                      text: "Delivery",
+                      style: TextStyle(color: Palette.greenColor))
+                ])),
+          ),
+        ),
+        Positioned(
+            left: 0,
+            right: 0,
+            bottom: -10,
+            child: Image.asset(
+              "assets/truck_image.png",
+              width: MediaQuery.of(context).size.width + 20,
+            ))
+      ],
+    ));
   }
 }

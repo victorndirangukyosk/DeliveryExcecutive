@@ -25,7 +25,12 @@ class ProductListItem extends StatelessWidget {
       ),
       title: const Text("Tomatoes"),
       subtitle: const Text("50 Units"),
-      trailing: IconButton(icon: const Icon(Icons.check), onPressed: () {}),
+      trailing: IconButton(
+          icon: const Icon(
+            Icons.check_circle,
+            color: Colors.green,
+          ),
+          onPressed: () {}),
     );
   }
 }
