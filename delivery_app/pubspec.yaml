@@ -58,7 +58,17 @@ dependencies:
   # To take the signature of the delivered to person
   signature: ^4.1.1
   # For google maps integration
-  google_maps_flutter: ^2.1.0
+  # google_maps_flutter: ^2.1.0
+  # For svg display
+  flutter_svg: ^0.23.0+1
+  # For permissions
+  permission_handler: ^8.2.6
+  # For open maps display
+  flutter_map: ^0.14.0
+  # For Latitude and Longitude calculations
+  latlong2: ^0.8.1
+  # For open street map display
+  flutter_osm_plugin: ^0.22.3+1
 
 
 dev_dependencies:

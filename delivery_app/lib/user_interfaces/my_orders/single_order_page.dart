@@ -21,8 +21,9 @@ class SingleOrderPage extends StatelessWidget {
         actions: [
           PopupMenuButton(
             child: const Icon(
-              Icons.more_vert,
-              color: Palette.greenColor,
+              Icons.dehaze,
+              color: Palette.orangeColor,
+              size: 40,
             ),
             itemBuilder: (context) {
               return [
@@ -41,51 +42,118 @@ class SingleOrderPage extends StatelessWidget {
               ];
             },
           ),
+          const SizedBox(
+            width: 20,
+          )
         ],
-        title: const Text(
-          "Order details",
-          style: TextStyle(color: Palette.greenColor),
-        ),
+        title: const Text.rich(TextSpan(
+            text: "Kwik ",
+            style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.w900,
+                color: Palette.orangeColor),
+            children: [
+              TextSpan(
+                  text: "Delivery", style: TextStyle(color: Palette.greenColor))
+            ])),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const ListTile(
-              leading: FaIcon(
-                FontAwesomeIcons.building,
-                color: Palette.greenColor,
-              ),
-              title: Text("Sarova Stanley"),
+            const Text(
+              "Order details",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            const ListTile(
-              title: Text("Order number KBTYEONDKU"),
-              subtitle: Text("2 Days ago"),
+            const SizedBox(
+              height: 20,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    height: 70,
+                    decoration: BoxDecoration(
+                        color: Palette.greyColor,
+                        border: Border.all(width: 1, color: Colors.grey),
+                        borderRadius: BorderRadius.circular(5)),
+                    child: const ListTile(
+                      leading: CircleAvatar(
+                        backgroundColor: Palette.orangeColor,
+                        child: FaIcon(
+                          Icons.person,
+                          color: Colors.white,
+                        ),
+                      ),
+                      title: Text("Sarova Stanley"),
+                      subtitle: Text("2 Days ago"),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 20,
+                ),
+                Expanded(
+                  child: Container(
+                    height: 70,
+                    decoration: BoxDecoration(
+                        color: Palette.greyColor,
+                        border: Border.all(width: 1, color: Colors.grey),
+                        borderRadius: BorderRadius.circular(5)),
+                    child: const ListTile(
+                      leading: CircleAvatar(
+                        backgroundColor: Palette.orangeColor,
+                        child: FaIcon(
+                          FontAwesomeIcons.shoppingBasket,
+                          color: Colors.white,
+                        ),
+                      ),
+                      title: Text("Order number KBTYEONDKU"),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 20,
             ),
             ListTile(
-              leading: const Icon(
-                CupertinoIcons.location,
-                color: Colors.green,
+              tileColor: Palette.greyColor,
+              shape: RoundedRectangleBorder(
+                  side: const BorderSide(width: 1, color: Colors.grey),
+                  borderRadius: BorderRadius.circular(5)),
+              leading: const CircleAvatar(
+                backgroundColor: Palette.orangeColor,
+                child: FaIcon(
+                  Icons.location_pin,
+                  color: Colors.white,
+                ),
               ),
               title: const Text("Westlands, CBD"),
               subtitle: const Text("2 KM from your location"),
               trailing: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    AutoRouter.of(context).push(const DirectionsToAddress());
+                  },
                   tooltip: 'View directions.',
                   icon: const FaIcon(
                     FontAwesomeIcons.directions,
+                    size: 30,
                     color: Palette.orangeColor,
                   )),
             ),
+            const SizedBox(
+              height: 20,
+            ),
             const Text(
               "Product notes",
-              style: TextStyle(fontSize: 16),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const NotesWidget(),
             const Text(
               "Order list",
-              style: TextStyle(fontSize: 16),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const Expanded(child: ProductList())
           ],
@@ -114,11 +182,12 @@ class SingleNote extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(20.0),
-      child: Padding(
+      child: Container(
         padding: const EdgeInsets.all(8.0),
-        child: Text(
-          notes,
-        ),
+        decoration: const BoxDecoration(
+            color: Palette.greenColor,
+            borderRadius: BorderRadius.all((Radius.circular(20)))),
+        child: Text(notes, style: const TextStyle(color: Colors.white)),
       ),
     );
   }

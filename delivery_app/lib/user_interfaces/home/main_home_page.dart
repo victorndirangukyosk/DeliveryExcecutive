@@ -1,13 +1,15 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:calendar_time/calendar_time.dart';
 import 'package:delivery_app/configuration/configuration.dart';
 import 'package:delivery_app/cubits/select_date_cubit/select_date_cubit.dart';
+import 'package:delivery_app/routes/router.gr.dart';
 import 'package:delivery_app/user_interfaces/my_orders/my_orders_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class MainHomePage extends StatelessWidget {
   const MainHomePage({Key? key}) : super(key: key);
@@ -18,6 +20,20 @@ class MainHomePage extends StatelessWidget {
         floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
         body: Stack(
           children: [
+            const Positioned(
+                top: 30,
+                child: Text.rich(TextSpan(
+                    text: "Kwik ",
+                    style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w900,
+                        color: Palette.orangeColor),
+                    children: [
+                      TextSpan(
+                          text: "Delivery",
+                          style: TextStyle(color: Palette.greenColor))
+                    ])),
+                left: 20),
             Positioned(
                 top: 20,
                 right: 20,
@@ -123,7 +139,7 @@ class MainHomePage extends StatelessWidget {
                             child: Icon(
                           Icons.dehaze,
                           size: 40,
-                          color: Palette.greenColor,
+                          color: Palette.orangeColor,
                         ))),
                   ),
                 )),
@@ -135,24 +151,35 @@ class MainHomePage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    ListTile(
-                      contentPadding: const EdgeInsets.all(0),
-                      onTap: () {},
-                      title: const Text(
-                        "My Deliveries",
-                        style: TextStyle(
-                            fontSize: 30,
-                            color: Palette.orangeColor,
-                            fontWeight: FontWeight.bold),
+                    CupertinoButton(
+                      onPressed: () {},
+                      padding: const EdgeInsets.all(0),
+                      child: Container(
+                        padding: const EdgeInsets.only(left: 20, right: 8),
+                        decoration: BoxDecoration(
+                            color: Palette.greenColor,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Row(
+                          children: [
+                            const Text(
+                              "My Deliveries",
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            const Expanded(child: SizedBox()),
+                            CupertinoButton(
+                                padding: const EdgeInsets.all(0),
+                                child: const Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 25,
+                                  color: Colors.white,
+                                ),
+                                onPressed: () {}),
+                          ],
+                        ),
                       ),
-                      trailing: CupertinoButton(
-                          padding: const EdgeInsets.all(0),
-                          child: const Icon(
-                            Icons.arrow_forward_ios,
-                            size: 25,
-                            color: Palette.orangeColor,
-                          ),
-                          onPressed: () {}),
                     ),
                     Row(
                       children: [
@@ -193,27 +220,32 @@ class MainHomePage extends StatelessWidget {
                 left: 0,
                 right: 0,
                 child: CupertinoButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    AutoRouter.of(context).push(const DirectionsToAddress());
+                  },
                   child: Card(
                     elevation: 20,
                     shape: const CircleBorder(),
                     child: CircleAvatar(
-                      radius: 50,
-                      backgroundColor: Palette.greenColor,
-                      child: Stack(
-                        children: const [
-                          SpinKitRipple(
-                            color: Colors.white,
-                            size: 200,
-                          ),
-                          Center(
-                              child: Text(
-                            "Start trip",
-                            style: TextStyle(color: Colors.white),
-                          ))
-                        ],
-                      ),
-                    ),
+                        radius: 60,
+                        backgroundColor: Palette.greenColor,
+                        child: Center(
+                            child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            SvgPicture.asset(
+                              'assets/gis_route.svg',
+                              height: 50,
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            const Text(
+                              "Start trip",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
+                        ))),
                   ),
                 ))
           ],
