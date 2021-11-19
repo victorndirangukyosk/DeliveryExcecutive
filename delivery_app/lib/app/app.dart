@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:delivery_app/configuration/configuration.dart';
+import 'package:delivery_app/cubits/authentication/token_cubit.dart';
 import 'package:delivery_app/cubits/cubits.dart';
 import 'package:delivery_app/cubits/select_date_cubit/select_date_cubit.dart';
 import 'package:delivery_app/routes/router.gr.dart';
@@ -22,6 +23,9 @@ class KwikBasketDeliveryApp extends StatelessWidget {
         BlocProvider(create: (context) => HomeBottomNavigationIndexCubit(0)),
         BlocProvider(create: (context) => SelectDateCubit(DateTime.now())),
         BlocProvider(create: (context) => PickImageCubit(File(''))),
+
+        /// This blocprovider persists the token state
+        BlocProvider(create: (context) => TokenCubit('')),
       ],
       child: MaterialApp.router(
           title: 'Kwikbasket Delivery App',
