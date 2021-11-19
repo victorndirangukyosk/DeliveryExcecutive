@@ -1,3 +1,4 @@
+import 'package:delivery_app/utilities/interceptors/auth_interceptor.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -20,6 +21,8 @@ class RestClient {
     _dio = Dio(options);
 
     ///Add the interceptors
+    // The [AuthInterceptor] to authenticate all requests
+    _dio!.interceptors.add(AuthInterceptor());
     if (kDebugMode) {
       //The logger interceptor
       _dio!.interceptors.add(PrettyDioLogger(
