@@ -26,7 +26,7 @@ class ApiService {
     }
   }
 
-  ///This method gets data to the API via the [Dio] in the [restClient]
+  ///This method gets data from the API via the [Dio] in the [restClient]
   ///Returns a dynamic based on the API Response
   static Future<dynamic> get({required String path, Options? options}) async {
     try {
