@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'apiresponse.dart';
+part of 'api_response.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -21,10 +21,8 @@ ApiResponse _$ApiResponseFromJson(Map<String, dynamic> json) {
 class _$ApiResponseTearOff {
   const _$ApiResponseTearOff();
 
-  _ApiResponse call({bool? success}) {
-    return _ApiResponse(
-      success: success,
-    );
+  _ApiResponse call() {
+    return _ApiResponse();
   }
 
   ApiResponse fromJson(Map<String, Object> json) {
@@ -37,12 +35,7 @@ const $ApiResponse = _$ApiResponseTearOff();
 
 /// @nodoc
 mixin _$ApiResponse {
-  bool? get success => throw _privateConstructorUsedError;
-
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $ApiResponseCopyWith<ApiResponse> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -50,7 +43,6 @@ abstract class $ApiResponseCopyWith<$Res> {
   factory $ApiResponseCopyWith(
           ApiResponse value, $Res Function(ApiResponse) then) =
       _$ApiResponseCopyWithImpl<$Res>;
-  $Res call({bool? success});
 }
 
 /// @nodoc
@@ -60,28 +52,13 @@ class _$ApiResponseCopyWithImpl<$Res> implements $ApiResponseCopyWith<$Res> {
   final ApiResponse _value;
   // ignore: unused_field
   final $Res Function(ApiResponse) _then;
-
-  @override
-  $Res call({
-    Object? success = freezed,
-  }) {
-    return _then(_value.copyWith(
-      success: success == freezed
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class _$ApiResponseCopyWith<$Res>
-    implements $ApiResponseCopyWith<$Res> {
+abstract class _$ApiResponseCopyWith<$Res> {
   factory _$ApiResponseCopyWith(
           _ApiResponse value, $Res Function(_ApiResponse) then) =
       __$ApiResponseCopyWithImpl<$Res>;
-  @override
-  $Res call({bool? success});
 }
 
 /// @nodoc
@@ -93,52 +70,28 @@ class __$ApiResponseCopyWithImpl<$Res> extends _$ApiResponseCopyWithImpl<$Res>
 
   @override
   _ApiResponse get _value => super._value as _ApiResponse;
-
-  @override
-  $Res call({
-    Object? success = freezed,
-  }) {
-    return _then(_ApiResponse(
-      success: success == freezed
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
-  }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$_ApiResponse implements _ApiResponse {
-  _$_ApiResponse({this.success});
+  _$_ApiResponse();
 
   factory _$_ApiResponse.fromJson(Map<String, dynamic> json) =>
       _$$_ApiResponseFromJson(json);
 
   @override
-  final bool? success;
-
-  @override
   String toString() {
-    return 'ApiResponse(success: $success)';
+    return 'ApiResponse()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _ApiResponse &&
-            (identical(other.success, success) ||
-                const DeepCollectionEquality().equals(other.success, success)));
+    return identical(this, other) || (other is _ApiResponse);
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(success);
-
-  @JsonKey(ignore: true)
-  @override
-  _$ApiResponseCopyWith<_ApiResponse> get copyWith =>
-      __$ApiResponseCopyWithImpl<_ApiResponse>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   Map<String, dynamic> toJson() {
@@ -147,15 +100,8 @@ class _$_ApiResponse implements _ApiResponse {
 }
 
 abstract class _ApiResponse implements ApiResponse {
-  factory _ApiResponse({bool? success}) = _$_ApiResponse;
+  factory _ApiResponse() = _$_ApiResponse;
 
   factory _ApiResponse.fromJson(Map<String, dynamic> json) =
       _$_ApiResponse.fromJson;
-
-  @override
-  bool? get success => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(ignore: true)
-  _$ApiResponseCopyWith<_ApiResponse> get copyWith =>
-      throw _privateConstructorUsedError;
 }
