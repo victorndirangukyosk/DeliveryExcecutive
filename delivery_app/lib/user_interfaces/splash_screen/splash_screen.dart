@@ -1,9 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:delivery_app/configuration/configuration.dart';
+import 'package:delivery_app/cubits/authentication/token_cubit.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:get_it/get_it.dart';
 import 'package:kiosk_mode/kiosk_mode.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -25,6 +28,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    /// Register the token cubit
+    TokenCubit tokenCubit = BlocProvider.of<TokenCubit>(context);
+    GetIt.I.registerSingleton(tokenCubit);
     return Scaffold(
         body: Stack(
       children: [
