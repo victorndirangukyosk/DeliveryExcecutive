@@ -21,8 +21,25 @@ LoginResponse _$LoginResponseFromJson(Map<String, dynamic> json) {
 class _$LoginResponseTearOff {
   const _$LoginResponseTearOff();
 
-  _LoginResponse call() {
-    return _LoginResponse();
+  _LoginResponse call(
+      {int? delivery_executive_id,
+      String? firstname,
+      String? lastname,
+      String? email,
+      String? telephone,
+      int? status,
+      String? date_added,
+      String? token}) {
+    return _LoginResponse(
+      delivery_executive_id: delivery_executive_id,
+      firstname: firstname,
+      lastname: lastname,
+      email: email,
+      telephone: telephone,
+      status: status,
+      date_added: date_added,
+      token: token,
+    );
   }
 
   LoginResponse fromJson(Map<String, Object> json) {
@@ -35,7 +52,19 @@ const $LoginResponse = _$LoginResponseTearOff();
 
 /// @nodoc
 mixin _$LoginResponse {
+  int? get delivery_executive_id => throw _privateConstructorUsedError;
+  String? get firstname => throw _privateConstructorUsedError;
+  String? get lastname => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
+  String? get telephone => throw _privateConstructorUsedError;
+  int? get status => throw _privateConstructorUsedError;
+  String? get date_added => throw _privateConstructorUsedError;
+  String? get token => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $LoginResponseCopyWith<LoginResponse> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -43,6 +72,15 @@ abstract class $LoginResponseCopyWith<$Res> {
   factory $LoginResponseCopyWith(
           LoginResponse value, $Res Function(LoginResponse) then) =
       _$LoginResponseCopyWithImpl<$Res>;
+  $Res call(
+      {int? delivery_executive_id,
+      String? firstname,
+      String? lastname,
+      String? email,
+      String? telephone,
+      int? status,
+      String? date_added,
+      String? token});
 }
 
 /// @nodoc
@@ -53,13 +91,71 @@ class _$LoginResponseCopyWithImpl<$Res>
   final LoginResponse _value;
   // ignore: unused_field
   final $Res Function(LoginResponse) _then;
+
+  @override
+  $Res call({
+    Object? delivery_executive_id = freezed,
+    Object? firstname = freezed,
+    Object? lastname = freezed,
+    Object? email = freezed,
+    Object? telephone = freezed,
+    Object? status = freezed,
+    Object? date_added = freezed,
+    Object? token = freezed,
+  }) {
+    return _then(_value.copyWith(
+      delivery_executive_id: delivery_executive_id == freezed
+          ? _value.delivery_executive_id
+          : delivery_executive_id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      firstname: firstname == freezed
+          ? _value.firstname
+          : firstname // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastname: lastname == freezed
+          ? _value.lastname
+          : lastname // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      telephone: telephone == freezed
+          ? _value.telephone
+          : telephone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
+      date_added: date_added == freezed
+          ? _value.date_added
+          : date_added // ignore: cast_nullable_to_non_nullable
+              as String?,
+      token: token == freezed
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
-abstract class _$LoginResponseCopyWith<$Res> {
+abstract class _$LoginResponseCopyWith<$Res>
+    implements $LoginResponseCopyWith<$Res> {
   factory _$LoginResponseCopyWith(
           _LoginResponse value, $Res Function(_LoginResponse) then) =
       __$LoginResponseCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {int? delivery_executive_id,
+      String? firstname,
+      String? lastname,
+      String? email,
+      String? telephone,
+      int? status,
+      String? date_added,
+      String? token});
 }
 
 /// @nodoc
@@ -72,28 +168,136 @@ class __$LoginResponseCopyWithImpl<$Res>
 
   @override
   _LoginResponse get _value => super._value as _LoginResponse;
+
+  @override
+  $Res call({
+    Object? delivery_executive_id = freezed,
+    Object? firstname = freezed,
+    Object? lastname = freezed,
+    Object? email = freezed,
+    Object? telephone = freezed,
+    Object? status = freezed,
+    Object? date_added = freezed,
+    Object? token = freezed,
+  }) {
+    return _then(_LoginResponse(
+      delivery_executive_id: delivery_executive_id == freezed
+          ? _value.delivery_executive_id
+          : delivery_executive_id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      firstname: firstname == freezed
+          ? _value.firstname
+          : firstname // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastname: lastname == freezed
+          ? _value.lastname
+          : lastname // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      telephone: telephone == freezed
+          ? _value.telephone
+          : telephone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
+      date_added: date_added == freezed
+          ? _value.date_added
+          : date_added // ignore: cast_nullable_to_non_nullable
+              as String?,
+      token: token == freezed
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$_LoginResponse implements _LoginResponse {
-  _$_LoginResponse();
+  _$_LoginResponse(
+      {this.delivery_executive_id,
+      this.firstname,
+      this.lastname,
+      this.email,
+      this.telephone,
+      this.status,
+      this.date_added,
+      this.token});
 
   factory _$_LoginResponse.fromJson(Map<String, dynamic> json) =>
       _$$_LoginResponseFromJson(json);
 
   @override
+  final int? delivery_executive_id;
+  @override
+  final String? firstname;
+  @override
+  final String? lastname;
+  @override
+  final String? email;
+  @override
+  final String? telephone;
+  @override
+  final int? status;
+  @override
+  final String? date_added;
+  @override
+  final String? token;
+
+  @override
   String toString() {
-    return 'LoginResponse()';
+    return 'LoginResponse(delivery_executive_id: $delivery_executive_id, firstname: $firstname, lastname: $lastname, email: $email, telephone: $telephone, status: $status, date_added: $date_added, token: $token)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _LoginResponse);
+    return identical(this, other) ||
+        (other is _LoginResponse &&
+            (identical(other.delivery_executive_id, delivery_executive_id) ||
+                const DeepCollectionEquality().equals(
+                    other.delivery_executive_id, delivery_executive_id)) &&
+            (identical(other.firstname, firstname) ||
+                const DeepCollectionEquality()
+                    .equals(other.firstname, firstname)) &&
+            (identical(other.lastname, lastname) ||
+                const DeepCollectionEquality()
+                    .equals(other.lastname, lastname)) &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)) &&
+            (identical(other.telephone, telephone) ||
+                const DeepCollectionEquality()
+                    .equals(other.telephone, telephone)) &&
+            (identical(other.status, status) ||
+                const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.date_added, date_added) ||
+                const DeepCollectionEquality()
+                    .equals(other.date_added, date_added)) &&
+            (identical(other.token, token) ||
+                const DeepCollectionEquality().equals(other.token, token)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(delivery_executive_id) ^
+      const DeepCollectionEquality().hash(firstname) ^
+      const DeepCollectionEquality().hash(lastname) ^
+      const DeepCollectionEquality().hash(email) ^
+      const DeepCollectionEquality().hash(telephone) ^
+      const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(date_added) ^
+      const DeepCollectionEquality().hash(token);
+
+  @JsonKey(ignore: true)
+  @override
+  _$LoginResponseCopyWith<_LoginResponse> get copyWith =>
+      __$LoginResponseCopyWithImpl<_LoginResponse>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -102,8 +306,37 @@ class _$_LoginResponse implements _LoginResponse {
 }
 
 abstract class _LoginResponse implements LoginResponse {
-  factory _LoginResponse() = _$_LoginResponse;
+  factory _LoginResponse(
+      {int? delivery_executive_id,
+      String? firstname,
+      String? lastname,
+      String? email,
+      String? telephone,
+      int? status,
+      String? date_added,
+      String? token}) = _$_LoginResponse;
 
   factory _LoginResponse.fromJson(Map<String, dynamic> json) =
       _$_LoginResponse.fromJson;
+
+  @override
+  int? get delivery_executive_id => throw _privateConstructorUsedError;
+  @override
+  String? get firstname => throw _privateConstructorUsedError;
+  @override
+  String? get lastname => throw _privateConstructorUsedError;
+  @override
+  String? get email => throw _privateConstructorUsedError;
+  @override
+  String? get telephone => throw _privateConstructorUsedError;
+  @override
+  int? get status => throw _privateConstructorUsedError;
+  @override
+  String? get date_added => throw _privateConstructorUsedError;
+  @override
+  String? get token => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$LoginResponseCopyWith<_LoginResponse> get copyWith =>
+      throw _privateConstructorUsedError;
 }
