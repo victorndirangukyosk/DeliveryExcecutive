@@ -1,3 +1,4 @@
+import 'package:delivery_app/models/api_response/api_response.dart';
 import 'package:delivery_app/utilities/rest_client/rest_client.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -21,8 +22,8 @@ class ApiService {
 
     /// Throw the dio error
     on DioError catch (e) {
-      print(e.message);
-      rethrow;
+      ApiResponse apiResponse = ApiResponse.fromJson(e.response!.data);
+      throw apiResponse.message!;
     }
   }
 
@@ -38,8 +39,8 @@ class ApiService {
 
     /// Throw the dio error
     on DioError catch (e) {
-      print(e.message);
-      rethrow;
+      ApiResponse apiResponse = ApiResponse.fromJson(e.response!.data);
+      throw apiResponse.message!;
     }
   }
 }
