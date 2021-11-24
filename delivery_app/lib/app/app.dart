@@ -27,6 +27,8 @@ class KwikBasketDeliveryApp extends StatelessWidget {
 
           /// This blocprovider persists the token state
           BlocProvider(create: (context) => TokenCubit('')),
+
+          BlocProvider(create: (context) => LoginCubit()),
         ],
         child: OverlaySupport.global(
           child: MaterialApp.router(
