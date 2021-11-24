@@ -4,11 +4,12 @@ import 'package:overlay_support/overlay_support.dart';
 import 'custom_animation_toast.dart';
 
 class AppToast {
-  showToast() {
+  static showToast({required String message, required bool isError}) {
     showOverlay((context, t) {
       return CustomAnimationToast(
         value: t,
-        message: 'Set password successfull',
+        isError: isError,
+        message: message,
       );
     }, key: const ValueKey('success'), curve: Curves.decelerate);
   }
