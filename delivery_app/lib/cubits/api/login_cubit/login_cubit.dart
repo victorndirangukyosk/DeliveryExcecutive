@@ -13,12 +13,14 @@ class LoginCubit extends Cubit<LoginState> {
   login({required Map<String, dynamic> data}) async {
     emit(LoginLoading());
     try {
-      ApiResponse apiResponse =
-          await ApiService.post(data: data, path: '/login');
+      ApiResponse apiResponse = ApiResponse.fromJson(
+          await ApiService.post(data: data, path: '/login'));
       LoginResponse loginResponse = LoginResponse.fromJson(apiResponse.data!);
       emit(LoginSuccess(loginResponse: loginResponse));
     } on String catch (e) {
       emit(LoginFailed(error: e));
+    } catch (e) {
+      emit(LoginFailed(error: 'An error has occured'));
     }
   }
 }
