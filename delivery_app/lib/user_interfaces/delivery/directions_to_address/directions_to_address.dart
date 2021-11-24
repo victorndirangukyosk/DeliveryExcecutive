@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:delivery_app/configuration/configuration.dart';
+import 'package:delivery_app/cubits/authentication/token_cubit.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -144,6 +146,29 @@ class DirectionsToAddress extends StatelessWidget {
                                               CupertinoIcons.forward),
                                           subtitle: const Text(
                                               'Application settings'),
+                                        ),
+                                        ListTile(
+                                          onTap: () {
+                                            // Clear the token
+                                            context.read<TokenCubit>().clear();
+                                            AutoRouter.of(context)
+                                                .replace(const SplashScreen());
+                                          },
+                                          leading: const Icon(
+                                            Icons.logout_outlined,
+                                            color: Palette.greenColor,
+                                          ),
+                                          title: const Text(
+                                            'Logout',
+                                            style: TextStyle(color: Colors.red),
+                                          ),
+                                          trailing: const Icon(
+                                            CupertinoIcons.forward,
+                                            color: Palette.greenColor,
+                                          ),
+                                          subtitle: const Text(
+                                            'Logout of this application',
+                                          ),
                                         ),
                                         ListTile(
                                           onTap: () {

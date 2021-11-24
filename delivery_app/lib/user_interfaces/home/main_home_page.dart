@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:calendar_time/calendar_time.dart';
 import 'package:delivery_app/configuration/configuration.dart';
-import 'package:delivery_app/cubits/select_date_cubit/select_date_cubit.dart';
+import 'package:delivery_app/cubits/cubits.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 import 'package:delivery_app/user_interfaces/my_orders/my_orders_list.dart';
 import 'package:flutter/cupertino.dart';
@@ -100,6 +100,32 @@ class MainHomePage extends StatelessWidget {
                                                 CupertinoIcons.forward),
                                             subtitle: const Text(
                                                 'Application settings'),
+                                          ),
+                                          ListTile(
+                                            onTap: () {
+                                              // Clear the token
+                                              context
+                                                  .read<TokenCubit>()
+                                                  .clear();
+                                              AutoRouter.of(context).replace(
+                                                  const SplashScreen());
+                                            },
+                                            leading: const Icon(
+                                              Icons.logout_outlined,
+                                              color: Palette.greenColor,
+                                            ),
+                                            title: const Text(
+                                              'Logout',
+                                              style:
+                                                  TextStyle(color: Colors.red),
+                                            ),
+                                            trailing: const Icon(
+                                              CupertinoIcons.forward,
+                                              color: Palette.greenColor,
+                                            ),
+                                            subtitle: const Text(
+                                              'Logout of this application',
+                                            ),
                                           ),
                                           ListTile(
                                             onTap: () {

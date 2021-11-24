@@ -22,7 +22,10 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () async {
       await startKioskMode();
-      AutoRouter.of(context).replace(const LoginRoute());
+      TokenCubit tokenCubit = GetIt.I.get<TokenCubit>();
+      tokenCubit.state.isEmpty
+          ? AutoRouter.of(context).replace(const LoginRoute())
+          : AutoRouter.of(context).replace(const MainHomeRoute());
     });
   }
 
