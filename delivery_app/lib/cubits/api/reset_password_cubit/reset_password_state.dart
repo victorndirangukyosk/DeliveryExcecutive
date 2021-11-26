@@ -13,6 +13,9 @@ class ResetPasswordLoading extends ResetPasswordState {
 }
 
 class ResetPasswordSuccess extends ResetPasswordState {
+  final ResetPasswordResponse resetPasswordResponse;
+
+  ResetPasswordSuccess(this.resetPasswordResponse);
   @override
   List<Object?> get props => [];
 }
