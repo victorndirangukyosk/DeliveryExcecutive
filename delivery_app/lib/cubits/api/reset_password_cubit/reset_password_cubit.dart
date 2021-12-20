@@ -12,7 +12,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
     emit(ResetPasswordLoading());
     try {
       ApiResponse apiResponse = ApiResponse.fromJson(
-          await ApiService.post(data: data, path: '/resetPassword'));
+          await ApiService.post(data: data, path: '/forgotPassword'));
       ResetPasswordResponse resetPasswordResponse =
           ResetPasswordResponse.fromJson(apiResponse.data!);
       emit(ResetPasswordSuccess(resetPasswordResponse));

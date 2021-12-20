@@ -46,6 +46,7 @@ dependencies:
   form_builder_validators: ^7.0.0
   get_it: ^7.2.0
   google_fonts: ^2.1.0
+  google_maps_flutter: ^2.1.1
   hydrated_bloc: ^8.0.0
   image_picker: ^0.8.4+4
   json_annotation: ^4.3.0

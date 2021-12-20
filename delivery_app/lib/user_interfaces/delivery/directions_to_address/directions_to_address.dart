@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class DirectionsToAddress extends StatelessWidget {
   const DirectionsToAddress({Key? key}) : super(key: key);
@@ -21,54 +22,10 @@ class DirectionsToAddress extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          OSMFlutter(
-            controller: controller,
-            trackMyPosition: true,
-            initZoom: 12,
-            minZoomLevel: 8,
-            maxZoomLevel: 14,
-            stepZoom: 1.0,
-            userLocationMarker: UserLocationMaker(
-              personMarker: MarkerIcon(
-                icon: const Icon(
-                  Icons.location_history_rounded,
-                  color: Colors.red,
-                  size: 48,
-                ),
-              ),
-              directionArrowMarker: MarkerIcon(
-                icon: const Icon(
-                  Icons.double_arrow,
-                  size: 48,
-                ),
-              ),
-            ),
-            road: Road(
-              startIcon: MarkerIcon(
-                icon: const Icon(
-                  Icons.person,
-                  size: 64,
-                  color: Colors.brown,
-                ),
-              ),
-              endIcon: MarkerIcon(
-                icon: const Icon(
-                  Icons.person,
-                  size: 64,
-                  color: Colors.brown,
-                ),
-              ),
-              roadColor: Colors.yellowAccent,
-            ),
-            markerOption: MarkerOption(
-                defaultMarker: MarkerIcon(
-              icon: const Icon(
-                Icons.person_pin_circle,
-                color: Colors.blue,
-                size: 56,
-              ),
-            )),
-          ),
+          const GoogleMap(
+              myLocationEnabled: true,
+              initialCameraPosition: CameraPosition(
+                  target: LatLng(-1.286389, 36.817223), zoom: 18)),
           Positioned(
               right: 20,
               top: 60,

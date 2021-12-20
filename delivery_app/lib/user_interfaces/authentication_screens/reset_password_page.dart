@@ -9,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 class ResetPasswordPage extends StatelessWidget {
@@ -104,7 +105,7 @@ class ResetCard extends StatelessWidget {
                   },
                   builder: (context, state) {
                     if (state is ResetPasswordLoading) {
-                      return const CupertinoActivityIndicator();
+                      return const SpinKitHourGlass(color: Palette.greenColor);
                     }
                     return CupertinoButton(
                         child: const Text('Reset password'),

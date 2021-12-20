@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:delivery_app/configuration/configuration.dart';
+import 'package:delivery_app/cubits/api/reset_password_cubit/reset_password_cubit.dart';
 import 'package:delivery_app/cubits/authentication/token_cubit.dart';
 import 'package:delivery_app/cubits/cubits.dart';
 import 'package:delivery_app/cubits/select_date_cubit/select_date_cubit.dart';
@@ -29,6 +30,7 @@ class KwikBasketDeliveryApp extends StatelessWidget {
           BlocProvider(create: (context) => TokenCubit('')),
 
           BlocProvider(create: (context) => LoginCubit()),
+          BlocProvider(create: (context) => ResetPasswordCubit()),
         ],
         child: OverlaySupport.global(
           child: MaterialApp.router(
