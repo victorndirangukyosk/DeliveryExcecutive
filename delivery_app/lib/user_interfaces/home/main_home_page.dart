@@ -141,7 +141,7 @@ class MainHomePage extends StatelessWidget {
                                               color: Palette.greenColor,
                                             ),
                                             title: const Text(
-                                              'About',
+                                              "About",
                                               style: TextStyle(
                                                   color: Palette.greenColor),
                                             ),
