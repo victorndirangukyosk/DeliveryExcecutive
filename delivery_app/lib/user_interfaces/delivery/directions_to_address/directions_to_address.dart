@@ -5,8 +5,6 @@ import 'package:delivery_app/routes/router.gr.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -15,10 +13,6 @@ class DirectionsToAddress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var controller = MapController(
-      initMapWithUserPosition: false,
-      initPosition: GeoPoint(latitude: -1.286389, longitude: 36.817223),
-    );
     return Scaffold(
       body: Stack(
         children: [
