@@ -22,6 +22,8 @@ class MainHomePage extends StatelessWidget {
         color: Colors.green,
       ),
       Container(color: Colors.blue),
+      Container(color: Colors.purple),
+      Container(color: Colors.white),
     ];
     return Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
@@ -32,8 +34,12 @@ class MainHomePage extends StatelessWidget {
             },
             items: const [
               BottomNavigationBarItem(icon: Icon(Icons.home)),
-              BottomNavigationBarItem(icon: Icon(Icons.pending)),
-              BottomNavigationBarItem(icon: Icon(Icons.star)),
+              BottomNavigationBarItem(icon: Icon(Icons.qr_code_scanner_sharp)),
+              BottomNavigationBarItem(icon: Icon(Icons.list_alt_rounded)),
+              //TODO: get corresponding icons for each of these
+              BottomNavigationBarItem(icon: Icon(Icons.list_alt_rounded)),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.delivery_dining_rounded)),
             ]),
         body: Stack(
           children: [
