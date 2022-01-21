@@ -16,8 +16,25 @@ class MainHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> pages = [
+      HomeIconPage(),
+      Container(
+        color: Colors.green,
+      ),
+      Container(color: Colors.blue),
+    ];
     return Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+        bottomNavigationBar: CupertinoTabBar(
+            currentIndex: context.watch<HomeBottomNavigationIndexCubit>().state,
+            onTap: (val) {
+              context.read<HomeBottomNavigationIndexCubit>().emit(val);
+            },
+            items: const [
+              BottomNavigationBarItem(icon: Icon(Icons.home)),
+              BottomNavigationBarItem(icon: Icon(Icons.pending)),
+              BottomNavigationBarItem(icon: Icon(Icons.star)),
+            ]),
         body: Stack(
           children: [
             const Positioned(
@@ -170,77 +187,13 @@ class MainHomePage extends StatelessWidget {
                   ),
                 )),
             Positioned(
-                left: 20,
-                top: 80,
-                right: 20,
-                bottom: 100,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CupertinoButton(
-                      onPressed: () {},
-                      padding: const EdgeInsets.all(0),
-                      child: Container(
-                        padding: const EdgeInsets.only(left: 20, right: 8),
-                        decoration: BoxDecoration(
-                            color: Palette.greenColor,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Row(
-                          children: [
-                            const Text(
-                              'My Deliveries',
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            const Expanded(child: SizedBox()),
-                            CupertinoButton(
-                                padding: const EdgeInsets.all(0),
-                                child: const Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 25,
-                                  color: Colors.white,
-                                ),
-                                onPressed: () {}),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        const Text(
-                          'My Orders',
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: Palette.greenColor,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        const Expanded(child: SizedBox()),
-                        TextButton(
-                            onPressed: () async {
-                              var x = await showDatePicker(
-                                  context: context,
-                                  initialDate: DateTime.now(),
-                                  firstDate: DateTime(1970),
-                                  lastDate: DateTime.now());
-                              if (CalendarTime(x).isToday) {
-                                context
-                                    .read<SelectDateCubit>()
-                                    .emit(DateTime.now());
-                              } else {
-                                context.read<SelectDateCubit>().emit(x!);
-                              }
-                            },
-                            child: Text(CalendarTime(
-                                    context.watch<SelectDateCubit>().state)
-                                .toHuman
-                                .replaceFirst('at 12:00 AM', '')))
-                      ],
-                    ),
-                    const Expanded(child: MyOrdersList())
-                  ],
-                )),
+              left: 20,
+              top: 80,
+              right: 20,
+              bottom: 100,
+              child:
+                  pages[context.watch<HomeBottomNavigationIndexCubit>().state],
+            ),
             Positioned(
                 bottom: 40,
                 left: 0,
@@ -250,7 +203,7 @@ class MainHomePage extends StatelessWidget {
                     AutoRouter.of(context).push(const DirectionsToAddress());
                   },
                   child: Card(
-                    elevation: 20,
+                    elevation: 10,
                     shape: const CircleBorder(),
                     child: CircleAvatar(
                         radius: 60,
@@ -276,5 +229,85 @@ class MainHomePage extends StatelessWidget {
                 ))
           ],
         ));
+  }
+}
+
+class HomeIconPage extends StatefulWidget {
+  const HomeIconPage({Key? key}) : super(key: key);
+
+  @override
+  _HomeIconPageState createState() => _HomeIconPageState();
+}
+
+class _HomeIconPageState extends State<HomeIconPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CupertinoButton(
+            onPressed: () {},
+            padding: const EdgeInsets.all(0),
+            child: Container(
+              padding: const EdgeInsets.only(left: 20, right: 8),
+              decoration: BoxDecoration(
+                  color: Palette.greenColor,
+                  borderRadius: BorderRadius.circular(10)),
+              child: Row(
+                children: [
+                  const Text(
+                    'My Deliveries',
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  const Expanded(child: SizedBox()),
+                  CupertinoButton(
+                      padding: const EdgeInsets.all(0),
+                      child: const Icon(
+                        Icons.arrow_forward_ios,
+                        size: 25,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {}),
+                ],
+              ),
+            ),
+          ),
+          Row(
+            children: [
+              const Text(
+                'My Orders',
+                style: TextStyle(
+                    fontSize: 16,
+                    color: Palette.greenColor,
+                    fontWeight: FontWeight.bold),
+              ),
+              const Expanded(child: SizedBox()),
+              TextButton(
+                  onPressed: () async {
+                    var x = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(1970),
+                        lastDate: DateTime.now());
+                    if (CalendarTime(x).isToday) {
+                      context.read<SelectDateCubit>().emit(DateTime.now());
+                    } else {
+                      context.read<SelectDateCubit>().emit(x!);
+                    }
+                  },
+                  child: Text(
+                      CalendarTime(context.watch<SelectDateCubit>().state)
+                          .toHuman
+                          .replaceFirst('at 12:00 AM', '')))
+            ],
+          ),
+          const Expanded(child: MyOrdersList())
+        ],
+      ),
+    );
   }
 }
