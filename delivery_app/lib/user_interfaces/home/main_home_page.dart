@@ -5,11 +5,14 @@ import 'package:delivery_app/cubits/cubits.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 import 'package:delivery_app/user_interfaces/my_orders/my_orders_list.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MainHomePage extends StatelessWidget {
   const MainHomePage({Key? key}) : super(key: key);
@@ -17,14 +20,13 @@ class MainHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Widget> pages = [
-      HomeIconPage(),
-      Container(
-        color: Colors.green,
-      ),
+      const HomeIconPage(),
+      Scanner(),
       Container(color: Colors.blue),
       Container(color: Colors.purple),
       Container(color: Colors.white),
     ];
+
     return Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
         bottomNavigationBar: CupertinoTabBar(
@@ -315,5 +317,104 @@ class _HomeIconPageState extends State<HomeIconPage> {
         ],
       ),
     );
+  }
+}
+
+class Scanner extends StatefulWidget {
+  @override
+  _ScannerState createState() => _ScannerState();
+}
+
+class _ScannerState extends State<Scanner> {
+  final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
+  late QRViewController controller;
+
+  @override
+  void dispose() {
+    controller?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Scanner"),
+      ),
+      body: Stack(
+        children: [
+          Column(
+            children: <Widget>[
+              Expanded(
+                flex: 5,
+                child: Stack(
+                  children: [
+                    QRView(
+                      key: qrKey,
+                      onQRViewCreated: _onQRViewCreated,
+                    ),
+                    Center(
+                      child: Container(
+                        width: 300,
+                        height: 300,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.red,
+                            width: 4,
+                          ),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              const Expanded(
+                flex: 1,
+                child: Center(
+                  child: Text('Scan a code'),
+                ),
+              )
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _onQRViewCreated(QRViewController controller) {
+    this.controller = controller;
+    controller.scannedDataStream.listen((scanData) async {
+      controller.pauseCamera();
+      if (await canLaunch(scanData.code)) {
+        await launch(scanData.code);
+        controller.resumeCamera();
+      } else {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Could not find viable url'),
+              content: SingleChildScrollView(
+                child: ListBody(
+                  children: <Widget>[
+                    Text('Barcode Type: ${describeEnum(scanData.format)}'),
+                    Text('Data: ${scanData.code}'),
+                  ],
+                ),
+              ),
+              actions: <Widget>[
+                TextButton(
+                  child: Text('Ok'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        ).then((value) => controller.resumeCamera());
+      }
+    });
   }
 }

@@ -1,10 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.kwikbasket.delivery_app.delivery_app">
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
    <application
         android:label="Kwikbasket Delivery"
         android:icon="@mipmap/launcher_icon"
         
         >
+        <activity android:name="io.flutter.plugins.urllauncher.WebViewActivity"
+           android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+           android:exported="false"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
