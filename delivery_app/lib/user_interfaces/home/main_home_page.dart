@@ -13,6 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class MainHomePage extends StatelessWidget {
   const MainHomePage({Key? key}) : super(key: key);
@@ -21,8 +22,8 @@ class MainHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Widget> pages = [
       const HomeIconPage(),
-      Scanner(),
-      Container(color: Colors.blue),
+      const Scanner(),
+      const OrderList(),
       Container(color: Colors.purple),
       Container(color: Colors.white),
     ];
@@ -196,45 +197,12 @@ class MainHomePage extends StatelessWidget {
                 )),
             Positioned(
               left: 20,
-              top: 80,
+              top: 120,
               right: 20,
-              bottom: 100,
+              bottom: 0,
               child:
                   pages[context.watch<HomeBottomNavigationIndexCubit>().state],
             ),
-            Positioned(
-                bottom: 40,
-                left: 0,
-                right: 0,
-                child: CupertinoButton(
-                  onPressed: () {
-                    AutoRouter.of(context).push(const DirectionsToAddress());
-                  },
-                  child: Card(
-                    elevation: 10,
-                    shape: const CircleBorder(),
-                    child: CircleAvatar(
-                        radius: 60,
-                        backgroundColor: Palette.greenColor,
-                        child: Center(
-                            child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            SvgPicture.asset(
-                              'assets/gis_route.svg',
-                              height: 50,
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            const Text(
-                              'Start trip',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ],
-                        ))),
-                  ),
-                ))
           ],
         ));
   }
@@ -313,7 +281,42 @@ class _HomeIconPageState extends State<HomeIconPage> {
                           .replaceFirst('at 12:00 AM', '')))
             ],
           ),
-          const Expanded(child: MyOrdersList())
+          const Expanded(
+            child: MyOrdersList(),
+          ),
+          Positioned(
+              bottom: 100,
+              left: 0,
+              right: 0,
+              child: CupertinoButton(
+                onPressed: () {
+                  AutoRouter.of(context).push(const DirectionsToAddress());
+                },
+                child: Card(
+                  elevation: 10,
+                  shape: const CircleBorder(),
+                  child: CircleAvatar(
+                      radius: 60,
+                      backgroundColor: Palette.greenColor,
+                      child: Center(
+                          child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SvgPicture.asset(
+                            'assets/gis_route.svg',
+                            height: 50,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          const Text(
+                            'Start trip',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ],
+                      ))),
+                ),
+              ))
         ],
       ),
     );
@@ -321,6 +324,8 @@ class _HomeIconPageState extends State<HomeIconPage> {
 }
 
 class Scanner extends StatefulWidget {
+  const Scanner({Key? key}) : super(key: key);
+
   @override
   _ScannerState createState() => _ScannerState();
 }
@@ -328,6 +333,7 @@ class Scanner extends StatefulWidget {
 class _ScannerState extends State<Scanner> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   late QRViewController controller;
+  TextEditingController textarea = TextEditingController();
 
   @override
   void dispose() {
@@ -338,63 +344,94 @@ class _ScannerState extends State<Scanner> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Scanner"),
-      ),
-      body: Stack(
-        children: [
-          Column(
-            children: <Widget>[
-              Expanded(
-                flex: 5,
-                child: Stack(
-                  children: [
-                    QRView(
-                      key: qrKey,
-                      onQRViewCreated: _onQRViewCreated,
-                    ),
-                    Center(
-                      child: Container(
-                        width: 300,
-                        height: 300,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.red,
-                            width: 4,
-                          ),
-                          borderRadius: BorderRadius.circular(12),
+        // appBar: AppBar(
+        //   title: Text("Scanner"),
+        // ),
+        resizeToAvoidBottomInset: false,
+        body: SafeArea(
+            child: Center(
+          child: Stack(
+            children: [
+              Column(
+                children: <Widget>[
+                  Expanded(
+                    flex: 5,
+                    child: Stack(
+                      children: [
+                        QRView(
+                          key: qrKey,
+                          onQRViewCreated: _onQRViewCreated,
                         ),
+                        Center(
+                          child: Container(
+                            width: 300,
+                            height: 300,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Palette.orangeColor,
+                                width: 4,
+                              ),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  const Expanded(
+                    flex: 1,
+                    child: Center(
+                      child: TextField(
+                        // ignore: todo
+                        //TODO:CORRECT THIS CONTROLLER ERROR
+                        // controller: textarea,
+                        keyboardType: TextInputType.multiline,
+                        maxLines: 5,
+                        decoration: InputDecoration(
+                            hintText: 'Notes',
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                              width: 5,
+                              color: Palette.orangeColor,
+                            ))),
                       ),
-                    )
-                  ],
-                ),
+                    ),
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        print(textarea.text);
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        // ignore: prefer_const_literals_to_create_immutables
+                        children: <Widget>[
+                          const Text('CONTINUE'),
+                          const Icon(
+                            Icons.arrow_forward,
+                            color: Colors.white,
+                          )
+                        ],
+                      ))
+                ],
               ),
-              const Expanded(
-                flex: 1,
-                child: Center(
-                  child: Text('Scan a code'),
-                ),
-              )
             ],
           ),
-        ],
-      ),
-    );
+        )));
   }
 
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
     controller.scannedDataStream.listen((scanData) async {
       controller.pauseCamera();
-      if (await canLaunch(scanData.code)) {
-        await launch(scanData.code);
+      if (await canLaunch(scanData.code!)) {
+        await launch(scanData.code!);
         controller.resumeCamera();
       } else {
         showDialog(
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text('Could not find viable url'),
+              title: const Text('Could not find viable url'),
               content: SingleChildScrollView(
                 child: ListBody(
                   children: <Widget>[
@@ -416,5 +453,55 @@ class _ScannerState extends State<Scanner> {
         ).then((value) => controller.resumeCamera());
       }
     });
+  }
+}
+
+class OrderList extends StatefulWidget {
+  const OrderList({Key? key}) : super(key: key);
+
+  @override
+  _OrderListState createState() => _OrderListState();
+}
+
+class _OrderListState extends State<OrderList> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        border: Border(
+          bottom: BorderSide(width: 1.5, color: Colors.grey),
+        ),
+      ),
+      child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              child: Row(
+                children: const [
+                  Text(
+                    'Order ID',
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Palette.greenColor,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Expanded(child: SizedBox()),
+                  Text(
+                    'Product',
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Palette.orangeColor,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ),
+            const Divider(
+              height: 50,
+              thickness: 2,
+              color: Palette.orangeColor,
+            ),
+          ]),
+    );
   }
 }
