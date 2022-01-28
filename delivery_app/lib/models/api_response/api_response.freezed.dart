@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'api_response.dart';
@@ -34,7 +35,7 @@ class _$ApiResponseTearOff {
     );
   }
 
-  ApiResponse fromJson(Map<String, Object> json) {
+  ApiResponse fromJson(Map<String, Object?> json) {
     return ApiResponse.fromJson(json);
   }
 }
@@ -180,26 +181,21 @@ class _$_ApiResponse implements _ApiResponse {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ApiResponse &&
-            (identical(other.success, success) ||
-                const DeepCollectionEquality()
-                    .equals(other.success, success)) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality()
-                    .equals(other.message, message)) &&
-            (identical(other.data, data) ||
-                const DeepCollectionEquality().equals(other.data, data)));
+        (other.runtimeType == runtimeType &&
+            other is _ApiResponse &&
+            const DeepCollectionEquality().equals(other.success, success) &&
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality().equals(other.message, message) &&
+            const DeepCollectionEquality().equals(other.data, data));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(success) ^
-      const DeepCollectionEquality().hash(status) ^
-      const DeepCollectionEquality().hash(message) ^
-      const DeepCollectionEquality().hash(data);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(success),
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(message),
+      const DeepCollectionEquality().hash(data));
 
   @JsonKey(ignore: true)
   @override
@@ -223,13 +219,13 @@ abstract class _ApiResponse implements ApiResponse {
       _$_ApiResponse.fromJson;
 
   @override
-  bool? get success => throw _privateConstructorUsedError;
+  bool? get success;
   @override
-  int? get status => throw _privateConstructorUsedError;
+  int? get status;
   @override
-  String? get message => throw _privateConstructorUsedError;
+  String? get message;
   @override
-  Map<String, dynamic>? get data => throw _privateConstructorUsedError;
+  Map<String, dynamic>? get data;
   @override
   @JsonKey(ignore: true)
   _$ApiResponseCopyWith<_ApiResponse> get copyWith =>

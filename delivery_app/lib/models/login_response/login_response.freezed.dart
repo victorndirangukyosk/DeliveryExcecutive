@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'login_response.dart';
@@ -42,7 +43,7 @@ class _$LoginResponseTearOff {
     );
   }
 
-  LoginResponse fromJson(Map<String, Object> json) {
+  LoginResponse fromJson(Map<String, Object?> json) {
     return LoginResponse.fromJson(json);
   }
 }
@@ -258,41 +259,31 @@ class _$_LoginResponse implements _LoginResponse {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _LoginResponse &&
-            (identical(other.delivery_executive_id, delivery_executive_id) ||
-                const DeepCollectionEquality().equals(
-                    other.delivery_executive_id, delivery_executive_id)) &&
-            (identical(other.firstname, firstname) ||
-                const DeepCollectionEquality()
-                    .equals(other.firstname, firstname)) &&
-            (identical(other.lastname, lastname) ||
-                const DeepCollectionEquality()
-                    .equals(other.lastname, lastname)) &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.telephone, telephone) ||
-                const DeepCollectionEquality()
-                    .equals(other.telephone, telephone)) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
-            (identical(other.date_added, date_added) ||
-                const DeepCollectionEquality()
-                    .equals(other.date_added, date_added)) &&
-            (identical(other.token, token) ||
-                const DeepCollectionEquality().equals(other.token, token)));
+        (other.runtimeType == runtimeType &&
+            other is _LoginResponse &&
+            const DeepCollectionEquality()
+                .equals(other.delivery_executive_id, delivery_executive_id) &&
+            const DeepCollectionEquality().equals(other.firstname, firstname) &&
+            const DeepCollectionEquality().equals(other.lastname, lastname) &&
+            const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality().equals(other.telephone, telephone) &&
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality()
+                .equals(other.date_added, date_added) &&
+            const DeepCollectionEquality().equals(other.token, token));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(delivery_executive_id) ^
-      const DeepCollectionEquality().hash(firstname) ^
-      const DeepCollectionEquality().hash(lastname) ^
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(telephone) ^
-      const DeepCollectionEquality().hash(status) ^
-      const DeepCollectionEquality().hash(date_added) ^
-      const DeepCollectionEquality().hash(token);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(delivery_executive_id),
+      const DeepCollectionEquality().hash(firstname),
+      const DeepCollectionEquality().hash(lastname),
+      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(telephone),
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(date_added),
+      const DeepCollectionEquality().hash(token));
 
   @JsonKey(ignore: true)
   @override
@@ -320,21 +311,21 @@ abstract class _LoginResponse implements LoginResponse {
       _$_LoginResponse.fromJson;
 
   @override
-  int? get delivery_executive_id => throw _privateConstructorUsedError;
+  int? get delivery_executive_id;
   @override
-  String? get firstname => throw _privateConstructorUsedError;
+  String? get firstname;
   @override
-  String? get lastname => throw _privateConstructorUsedError;
+  String? get lastname;
   @override
-  String? get email => throw _privateConstructorUsedError;
+  String? get email;
   @override
-  String? get telephone => throw _privateConstructorUsedError;
+  String? get telephone;
   @override
-  int? get status => throw _privateConstructorUsedError;
+  int? get status;
   @override
-  String? get date_added => throw _privateConstructorUsedError;
+  String? get date_added;
   @override
-  String? get token => throw _privateConstructorUsedError;
+  String? get token;
   @override
   @JsonKey(ignore: true)
   _$LoginResponseCopyWith<_LoginResponse> get copyWith =>
