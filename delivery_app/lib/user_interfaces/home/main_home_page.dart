@@ -338,7 +338,7 @@ class _ScannerState extends State<Scanner> {
 
   @override
   void dispose() {
-    controller?.dispose();
+    controller.dispose();
     super.dispose();
   }
 
@@ -489,28 +489,34 @@ class _OrderListState extends State<OrderList> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            child: const ListTile(
-              leading: Text(
-                'ID',
-                style: TextStyle(
-                    fontSize: 16,
-                    color: Palette.greenColor,
-                    fontWeight: FontWeight.bold),
-              ),
-              title: Text(
-                'ORDER ID',
-                style: TextStyle(
-                    fontSize: 16,
-                    color: Palette.orangeColor,
-                    fontWeight: FontWeight.bold),
-              ),
-              trailing: Text(
-                'Available',
-                style: TextStyle(
-                    fontSize: 16,
-                    color: Palette.greenColor,
-                    fontWeight: FontWeight.bold),
-              ),
+            child: Row(
+              children: [
+                const Text(
+                  'My Orders',
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: Palette.greenColor,
+                      fontWeight: FontWeight.bold),
+                ),
+                const Expanded(child: SizedBox()),
+                TextButton(
+                    onPressed: () async {
+                      var x = await showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime(1970),
+                          lastDate: DateTime.now());
+                      if (CalendarTime(x).isToday) {
+                        context.read<SelectDateCubit>().emit(DateTime.now());
+                      } else {
+                        context.read<SelectDateCubit>().emit(x!);
+                      }
+                    },
+                    child: Text(
+                        CalendarTime(context.watch<SelectDateCubit>().state)
+                            .toHuman
+                            .replaceFirst('at 12:00 AM', '')))
+              ],
             ),
           ),
           const Divider(
@@ -523,7 +529,6 @@ class _OrderListState extends State<OrderList> {
               itemCount: _data.length,
               itemBuilder: (context, index) {
                 return CheckboxListTile(
-                  secondary: const Icon(Icons.person),
                   title: Text(
                     _data[index].title + ' ' + (index + 1).toString(),
                   ),
