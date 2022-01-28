@@ -38,9 +38,10 @@ class MainHomePage extends StatelessWidget {
             items: const [
               BottomNavigationBarItem(icon: Icon(Icons.home)),
               BottomNavigationBarItem(icon: Icon(Icons.qr_code_scanner_sharp)),
-              BottomNavigationBarItem(icon: Icon(Icons.list_alt_rounded)),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.check_box_outline_blank)),
               //TODO: get corresponding icons for each of these
-              BottomNavigationBarItem(icon: Icon(Icons.list_alt_rounded)),
+              BottomNavigationBarItem(icon: Icon(Icons.check_box_rounded)),
               BottomNavigationBarItem(
                   icon: Icon(Icons.delivery_dining_rounded)),
             ]),
@@ -199,7 +200,7 @@ class MainHomePage extends StatelessWidget {
               left: 20,
               top: 120,
               right: 20,
-              bottom: 0,
+              bottom: 20,
               child:
                   pages[context.watch<HomeBottomNavigationIndexCubit>().state],
             ),
@@ -464,44 +465,95 @@ class OrderList extends StatefulWidget {
 }
 
 class _OrderListState extends State<OrderList> {
+  final List<Data> _data = [
+    Data(title: 'Option ', subTitle: "Description", isSelected: false),
+    Data(title: "Option ", subTitle: "Description", isSelected: false),
+    Data(title: "Option ", subTitle: "Description", isSelected: false),
+    Data(title: 'Option ', subTitle: "Description", isSelected: false),
+    Data(title: 'Option ', subTitle: "Description", isSelected: false),
+    Data(title: 'Option ', subTitle: "Description", isSelected: false),
+    Data(title: 'Option ', subTitle: "Description", isSelected: false),
+    Data(title: 'Option ', subTitle: "Description", isSelected: false),
+    Data(title: 'Option ', subTitle: "Description", isSelected: false),
+    Data(title: 'Option ', subTitle: "Description", isSelected: false),
+    Data(title: 'Option ', subTitle: "Description", isSelected: false),
+    Data(title: 'Option ', subTitle: "Description", isSelected: false),
+    Data(title: 'Option ', subTitle: "Description", isSelected: false),
+    Data(title: 'Option ', subTitle: "Description", isSelected: false),
+    Data(title: 'Option ', subTitle: "Description", isSelected: false),
+  ];
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        border: Border(
-          bottom: BorderSide(width: 1.5, color: Colors.grey),
-        ),
-      ),
-      child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              child: Row(
-                children: const [
-                  Text(
-                    'Order ID',
-                    style: TextStyle(
-                        fontSize: 16,
-                        color: Palette.greenColor,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Expanded(child: SizedBox()),
-                  Text(
-                    'Product',
-                    style: TextStyle(
-                        fontSize: 16,
-                        color: Palette.orangeColor,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ],
+    return Scaffold(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            child: const ListTile(
+              leading: Text(
+                'ID',
+                style: TextStyle(
+                    fontSize: 16,
+                    color: Palette.greenColor,
+                    fontWeight: FontWeight.bold),
+              ),
+              title: Text(
+                'ORDER ID',
+                style: TextStyle(
+                    fontSize: 16,
+                    color: Palette.orangeColor,
+                    fontWeight: FontWeight.bold),
+              ),
+              trailing: Text(
+                'Available',
+                style: TextStyle(
+                    fontSize: 16,
+                    color: Palette.greenColor,
+                    fontWeight: FontWeight.bold),
               ),
             ),
-            const Divider(
-              height: 50,
-              thickness: 2,
-              color: Palette.orangeColor,
+          ),
+          const Divider(
+            height: 30,
+            thickness: 2,
+            color: Palette.orangeColor,
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: _data.length,
+              itemBuilder: (context, index) {
+                return CheckboxListTile(
+                  secondary: const Icon(Icons.person),
+                  title: Text(
+                    _data[index].title + ' ' + (index + 1).toString(),
+                  ),
+                  subtitle: Text(
+                    _data[index].subTitle + ' ' + (index + 1).toString(),
+                  ),
+                  value: _data[index].isSelected,
+                  onChanged: (val) {
+                    setState(
+                      () {
+                        _data[index].isSelected = val!;
+                      },
+                    );
+                  },
+                );
+              },
             ),
-          ]),
+          ),
+        ],
+      ),
     );
   }
+}
+
+// ignore: todo
+//TODO:move these lines to models folder
+//data class for the list tile
+class Data {
+  final String title, subTitle;
+  bool isSelected;
+
+  Data({required this.isSelected, required this.title, required this.subTitle});
 }
