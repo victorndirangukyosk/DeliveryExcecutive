@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -24,8 +25,8 @@ class MainHomePage extends StatelessWidget {
       const HomeIconPage(),
       const Scanner(),
       const OrderList(),
-      Container(color: Colors.purple),
-      Container(color: Colors.white),
+      const OrderSummary(),
+      const Dispatch(),
     ];
 
     return Scaffold(
@@ -465,22 +466,23 @@ class OrderList extends StatefulWidget {
 }
 
 class _OrderListState extends State<OrderList> {
+  TextEditingController textarea = TextEditingController();
   final List<Data> _data = [
-    Data(title: 'Option ', subTitle: "Description", isSelected: false),
-    Data(title: "Option ", subTitle: "Description", isSelected: false),
-    Data(title: "Option ", subTitle: "Description", isSelected: false),
-    Data(title: 'Option ', subTitle: "Description", isSelected: false),
-    Data(title: 'Option ', subTitle: "Description", isSelected: false),
-    Data(title: 'Option ', subTitle: "Description", isSelected: false),
-    Data(title: 'Option ', subTitle: "Description", isSelected: false),
-    Data(title: 'Option ', subTitle: "Description", isSelected: false),
-    Data(title: 'Option ', subTitle: "Description", isSelected: false),
-    Data(title: 'Option ', subTitle: "Description", isSelected: false),
-    Data(title: 'Option ', subTitle: "Description", isSelected: false),
-    Data(title: 'Option ', subTitle: "Description", isSelected: false),
-    Data(title: 'Option ', subTitle: "Description", isSelected: false),
-    Data(title: 'Option ', subTitle: "Description", isSelected: false),
-    Data(title: 'Option ', subTitle: "Description", isSelected: false),
+    Data(title: 'REF ID ', subTitle: '', isSelected: false),
+    Data(title: 'REF ID ', subTitle: 'Description', isSelected: false),
+    Data(title: 'REF ID ', subTitle: 'Description', isSelected: false),
+    Data(title: 'REF ID ', subTitle: 'Description', isSelected: false),
+    Data(title: 'REF ID ', subTitle: 'Description', isSelected: false),
+    Data(title: 'REF ID ', subTitle: "Description", isSelected: false),
+    Data(title: 'REF ID ', subTitle: 'Description', isSelected: false),
+    Data(title: 'REF ID ', subTitle: "Description", isSelected: false),
+    Data(title: 'REF ID ', subTitle: "Description", isSelected: false),
+    Data(title: 'REF ID ', subTitle: "Description", isSelected: false),
+    Data(title: 'REF ID ', subTitle: "Description", isSelected: false),
+    Data(title: 'REF ID ', subTitle: "Description", isSelected: false),
+    Data(title: 'REF ID ', subTitle: "Description", isSelected: false),
+    Data(title: 'REF ID ', subTitle: "Description", isSelected: false),
+    Data(title: 'REF ID ', subTitle: "Description", isSelected: false),
   ];
   @override
   Widget build(BuildContext context) {
@@ -490,32 +492,22 @@ class _OrderListState extends State<OrderList> {
         children: <Widget>[
           Container(
             child: Row(
-              children: [
-                const Text(
-                  'My Orders',
+              children: const [
+                Text(
+                  'ORDER ID',
                   style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 20,
                       color: Palette.greenColor,
                       fontWeight: FontWeight.bold),
                 ),
-                const Expanded(child: SizedBox()),
-                TextButton(
-                    onPressed: () async {
-                      var x = await showDatePicker(
-                          context: context,
-                          initialDate: DateTime.now(),
-                          firstDate: DateTime(1970),
-                          lastDate: DateTime.now());
-                      if (CalendarTime(x).isToday) {
-                        context.read<SelectDateCubit>().emit(DateTime.now());
-                      } else {
-                        context.read<SelectDateCubit>().emit(x!);
-                      }
-                    },
-                    child: Text(
-                        CalendarTime(context.watch<SelectDateCubit>().state)
-                            .toHuman
-                            .replaceFirst('at 12:00 AM', '')))
+                Expanded(child: SizedBox()),
+                Text(
+                  'Select',
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: Palette.greenColor,
+                      fontWeight: FontWeight.bold),
+                ),
               ],
             ),
           ),
@@ -530,7 +522,9 @@ class _OrderListState extends State<OrderList> {
               itemBuilder: (context, index) {
                 return CheckboxListTile(
                   title: Text(
-                    _data[index].title + ' ' + (index + 1).toString(),
+                    (_data[index].title + ' ' + (index + 1).toString()),
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   subtitle: Text(
                     _data[index].subTitle + ' ' + (index + 1).toString(),
@@ -547,6 +541,27 @@ class _OrderListState extends State<OrderList> {
               },
             ),
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              IconButton(
+                icon: const Icon(Icons.arrow_forward),
+                color: Colors.orange,
+                iconSize: 48,
+                tooltip: 'Toggle Bluetooth',
+                onPressed: () {
+                  setState(() {});
+                },
+              ),
+              const Text(
+                'Continue ',
+                style: TextStyle(
+                    fontSize: 20,
+                    color: Palette.greenColor,
+                    fontWeight: FontWeight.bold),
+              ),
+            ],
+          )
         ],
       ),
     );
@@ -561,4 +576,180 @@ class Data {
   bool isSelected;
 
   Data({required this.isSelected, required this.title, required this.subTitle});
+}
+
+class OrderSummary extends StatefulWidget {
+  const OrderSummary({Key? key}) : super(key: key);
+
+  @override
+  _OrderSummaryState createState() => _OrderSummaryState();
+}
+
+class _OrderSummaryState extends State<OrderSummary> {
+  final List<Data> _data = [
+    Data(title: 'REF ID ', subTitle: '', isSelected: false),
+    Data(title: 'REF ID ', subTitle: 'Oranges', isSelected: false),
+    Data(title: 'REF ID ', subTitle: 'Tomatoes', isSelected: false),
+    Data(title: 'REF ID ', subTitle: 'onions', isSelected: false),
+    Data(title: 'REF ID ', subTitle: 'avocados', isSelected: false),
+    Data(title: 'REF ID ', subTitle: 'apples', isSelected: false),
+    Data(title: 'REF ID ', subTitle: 'Strawberries', isSelected: false),
+    Data(title: 'REF ID ', subTitle: "Cucumber", isSelected: false),
+    Data(title: 'REF ID ', subTitle: "melons", isSelected: false),
+    Data(title: 'REF ID ', subTitle: 'Description', isSelected: false),
+    Data(title: 'REF ID ', subTitle: "Description", isSelected: false),
+    Data(title: 'REF ID ', subTitle: "Description", isSelected: false),
+    Data(title: 'REF ID ', subTitle: "Description", isSelected: false),
+    Data(title: 'REF ID ', subTitle: "Description", isSelected: false),
+    Data(title: 'REF ID ', subTitle: "Description", isSelected: false),
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            child: Row(
+              children: const [
+                Text(
+                  'ORDER ID',
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: Palette.greenColor,
+                      fontWeight: FontWeight.bold),
+                ),
+                Expanded(child: SizedBox()),
+                Text(
+                  'PRODUCT NAME ',
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: Palette.greenColor,
+                      fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+          ),
+          const Divider(
+            height: 30,
+            thickness: 2,
+            color: Palette.orangeColor,
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: 5,
+              itemBuilder: (context, index) {
+                return ListTile(
+                    leading: Icon(Icons.list),
+                    trailing: Text(
+                      (_data[index].subTitle),
+                      style: const TextStyle(
+                        fontSize: 14,
+                      ),
+                    ),
+                    title: Text(
+                      (_data[index].title + ' ' + (index + 1).toString()),
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.bold),
+                    ));
+              },
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              IconButton(
+                icon: const Icon(Icons.arrow_forward),
+                color: Colors.orange,
+                iconSize: 48,
+                tooltip: 'Mark as unavailable',
+                onPressed: () {
+                  setState(() {});
+                },
+              ),
+              const Text(
+                'unavailable ',
+                style: TextStyle(
+                    fontSize: 20,
+                    color: Palette.greenColor,
+                    fontWeight: FontWeight.bold),
+              ),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class Dispatch extends StatefulWidget {
+  const Dispatch({Key? key}) : super(key: key);
+
+  @override
+  _DispatchState createState() => _DispatchState();
+}
+
+class _DispatchState extends State<Dispatch> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Stack(
+      children: [
+        const Positioned(
+          left: 200,
+          right: 200,
+          top: 200,
+          child: Center(
+            child: SpinKitCircle(
+              color: Palette.greenColor,
+            ),
+          ),
+        ),
+        const Positioned(
+          top: 100,
+          right: 0,
+          left: 0,
+          child: Center(
+            child: Text.rich(TextSpan(
+                text: 'Kwik ',
+                style: TextStyle(
+                    fontSize: 60,
+                    fontWeight: FontWeight.w900,
+                    color: Palette.orangeColor),
+                children: [
+                  TextSpan(
+                      text: 'Delivery',
+                      style: TextStyle(color: Palette.greenColor))
+                ])),
+          ),
+        ),
+        Positioned(
+            left: 0,
+            right: 0,
+            bottom: -10,
+            child: Image.asset(
+              'assets/truck_image.png',
+              width: MediaQuery.of(context).size.width + 20,
+            )),
+        const Positioned(
+          left: 480,
+          right: 0,
+          bottom: 250,
+          child: Text(
+            'READY FOR DISPATCH',
+            style: TextStyle(
+                fontSize: 35,
+                color: Palette.greenColor,
+                fontWeight: FontWeight.bold),
+          ),
+        ),
+        // Positioned(
+        //   left: 80,
+        //   right: 0,
+        //   bottom: 250,
+        //   child:
+        // )
+      ],
+    ));
+  }
 }
