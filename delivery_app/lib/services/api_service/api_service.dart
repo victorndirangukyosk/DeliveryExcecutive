@@ -43,4 +43,6 @@ class ApiService {
       throw apiResponse.message!;
     }
   }
+
+  static getData({required String path}) {}
 }

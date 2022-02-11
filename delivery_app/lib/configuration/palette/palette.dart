@@ -4,6 +4,10 @@ class Palette {
   /// The green primary app color
   static const Color greenColor = Color(0xff2ba349);
 
+  static const Color orangeBackgroundColor = Color.fromRGBO(255, 248, 233, 1);
+
+  static const Color placeholderGrey = Color(0xffA0A3BD);
+
   /// The orange accent app color
   static const Color orangeColor = Color(0xffef7b24);
 

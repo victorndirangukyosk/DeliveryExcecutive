@@ -2,8 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:calendar_time/calendar_time.dart';
 import 'package:delivery_app/configuration/configuration.dart';
 import 'package:delivery_app/cubits/cubits.dart';
+import 'package:delivery_app/cubits/my_orders_cubit.dart/my_orders_cubit.dart';
+import 'package:delivery_app/models/order/order.dart';
 import 'package:delivery_app/routes/router.gr.dart';
-import 'package:delivery_app/user_interfaces/my_orders/my_orders_list.dart';
+import 'package:delivery_app/user_interfaces/my_orders_packing_person/my_orders_list.dart';
+import 'package:delivery_app/user_interfaces/my_orders_packing_person/my_orders_page.dart';
+import 'package:delivery_app/utilities/toast/toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +26,8 @@ class MainHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Widget> pages = [
-      const HomeIconPage(),
+      const HomeIconPagePacking(),
+      // const HomeIconPagedelivery(),
       const Scanner(),
       const OrderList(),
       const OrderSummary(),
@@ -41,6 +46,7 @@ class MainHomePage extends StatelessWidget {
               BottomNavigationBarItem(icon: Icon(Icons.qr_code_scanner_sharp)),
               BottomNavigationBarItem(
                   icon: Icon(Icons.check_box_outline_blank)),
+              // ignore: todo
               //TODO: get corresponding icons for each of these
               BottomNavigationBarItem(icon: Icon(Icons.check_box_rounded)),
               BottomNavigationBarItem(
@@ -210,14 +216,179 @@ class MainHomePage extends StatelessWidget {
   }
 }
 
-class HomeIconPage extends StatefulWidget {
-  const HomeIconPage({Key? key}) : super(key: key);
+class SingleOrderWidget extends StatelessWidget {
+  final Order order;
+  const SingleOrderWidget({Key? key, required this.order}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Container(
+        padding: EdgeInsets.all(8),
+        decoration: BoxDecoration(
+            color: Colors.white, borderRadius: BorderRadius.circular(8)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: 12,
+            ),
+            Row(
+              children: [
+                Container(
+                  padding: EdgeInsets.all(4),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: Palette.orangeBackgroundColor),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Order',
+                        style: TextStyle(
+                            color: Palette.placeholderGrey, fontSize: 14),
+                      ),
+                      Text(
+                        order.order_id!,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Status',
+                        style: TextStyle(
+                            color: Palette.placeholderGrey, fontSize: 14),
+                      ),
+                      Text(
+                        order.status!,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  flex: 2,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Date of Order',
+                        style: TextStyle(
+                            color: Palette.placeholderGrey, fontSize: 14),
+                      ),
+                      Text(
+                        order.date_added!,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 12,
+            ),
+            Text(
+              'Vendor',
+              style: TextStyle(color: Palette.placeholderGrey, fontSize: 14),
+            ),
+            Text(
+              order.order_company!,
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 12,
+            ),
+            Row(
+              children: [
+                Expanded(
+                    child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Order Amount',
+                      style: TextStyle(
+                          color: Palette.placeholderGrey, fontSize: 14),
+                    ),
+                    Text(
+                      order.total!,
+                      style: TextStyle(
+                          color: Palette.orangeColor,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                )),
+                Expanded(
+                    child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Order Quantity',
+                      style: TextStyle(
+                          color: Palette.placeholderGrey, fontSize: 14),
+                    ),
+                    Text(
+                      '${order.products} Items',
+                      style: TextStyle(
+                          color: Palette.orangeColor,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                )),
+              ],
+            ),
+            SizedBox(
+              height: 12,
+            ),
+            CupertinoButton(
+                child: Text('View Details'),
+                padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                color: Palette.orangeColor,
+                onPressed: () {
+                  AutoRouter.of(context).push(SingleOrderRoute());
+                }),
+            SizedBox(
+              height: 12,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class HomeIconPagedelivery extends StatefulWidget {
+  const HomeIconPagedelivery({Key? key}) : super(key: key);
 
   @override
   _HomeIconPageState createState() => _HomeIconPageState();
 }
 
-class _HomeIconPageState extends State<HomeIconPage> {
+class _HomeIconPageState extends State<HomeIconPagedelivery> {
   @override
   Widget build(BuildContext context) {
     return Container(
