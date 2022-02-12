@@ -7,6 +7,7 @@ import 'package:delivery_app/models/order/order.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 import 'package:delivery_app/user_interfaces/my_orders_packing_person/my_orders_list.dart';
 import 'package:delivery_app/user_interfaces/my_orders_packing_person/my_orders_page.dart';
+import 'package:delivery_app/user_interfaces/order_summary/order_summary.dart';
 import 'package:delivery_app/utilities/toast/toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -639,21 +640,18 @@ class OrderList extends StatefulWidget {
 class _OrderListState extends State<OrderList> {
   TextEditingController textarea = TextEditingController();
   final List<Data> _data = [
-    Data(title: 'REF ID ', subTitle: '', isSelected: false),
-    Data(title: 'REF ID ', subTitle: 'Description', isSelected: false),
-    Data(title: 'REF ID ', subTitle: 'Description', isSelected: false),
-    Data(title: 'REF ID ', subTitle: 'Description', isSelected: false),
-    Data(title: 'REF ID ', subTitle: 'Description', isSelected: false),
-    Data(title: 'REF ID ', subTitle: "Description", isSelected: false),
-    Data(title: 'REF ID ', subTitle: 'Description', isSelected: false),
-    Data(title: 'REF ID ', subTitle: "Description", isSelected: false),
-    Data(title: 'REF ID ', subTitle: "Description", isSelected: false),
-    Data(title: 'REF ID ', subTitle: "Description", isSelected: false),
-    Data(title: 'REF ID ', subTitle: "Description", isSelected: false),
-    Data(title: 'REF ID ', subTitle: "Description", isSelected: false),
-    Data(title: 'REF ID ', subTitle: "Description", isSelected: false),
-    Data(title: 'REF ID ', subTitle: "Description", isSelected: false),
-    Data(title: 'REF ID ', subTitle: "Description", isSelected: false),
+    Data(title: 'CRATE NO ', subTitle: '', isSelected: false),
+    Data(title: 'CRATE NO ', subTitle: 'Description', isSelected: false),
+    Data(title: 'CRATE NO ', subTitle: 'Description', isSelected: false),
+    Data(title: 'CRATE NO ', subTitle: 'Description', isSelected: false),
+    Data(title: 'CRATE NO ', subTitle: 'Description', isSelected: false),
+    Data(title: 'CRATE NO ', subTitle: 'Description', isSelected: false),
+    Data(title: 'CRATE NO ', subTitle: 'Description', isSelected: false),
+    Data(title: 'CRATE NO ', subTitle: 'Description', isSelected: false),
+    Data(title: 'CRATE NO ', subTitle: 'Description', isSelected: false),
+    Data(title: 'CRATE NO ', subTitle: 'Description', isSelected: false),
+    Data(title: 'CRATE NO ', subTitle: 'Description', isSelected: false),
+    Data(title: 'CRATE NO ', subTitle: 'Description', isSelected: false),
   ];
   @override
   Widget build(BuildContext context) {
@@ -665,7 +663,7 @@ class _OrderListState extends State<OrderList> {
             child: Row(
               children: const [
                 Text(
-                  'ORDER ID',
+                  'ORDER ID 4444333',
                   style: TextStyle(
                       fontSize: 20,
                       color: Palette.greenColor,
@@ -693,13 +691,13 @@ class _OrderListState extends State<OrderList> {
               itemBuilder: (context, index) {
                 return CheckboxListTile(
                   title: Text(
-                    (_data[index].title + ' ' + (index + 1).toString()),
+                    (_data[index].title),
                     style: const TextStyle(
                         fontSize: 16, fontWeight: FontWeight.bold),
                   ),
-                  subtitle: Text(
-                    _data[index].subTitle + ' ' + (index + 1).toString(),
-                  ),
+                  // subtitle: Text(
+                  //   _data[index].subTitle + ' ' + (index + 1).toString(),
+                  // ),
                   value: _data[index].isSelected,
                   onChanged: (val) {
                     setState(
@@ -747,110 +745,6 @@ class Data {
   bool isSelected;
 
   Data({required this.isSelected, required this.title, required this.subTitle});
-}
-
-class OrderSummary extends StatefulWidget {
-  const OrderSummary({Key? key}) : super(key: key);
-
-  @override
-  _OrderSummaryState createState() => _OrderSummaryState();
-}
-
-class _OrderSummaryState extends State<OrderSummary> {
-  final List<Data> _data = [
-    Data(title: 'REF ID ', subTitle: '', isSelected: false),
-    Data(title: 'REF ID ', subTitle: 'Oranges', isSelected: false),
-    Data(title: 'REF ID ', subTitle: 'Tomatoes', isSelected: false),
-    Data(title: 'REF ID ', subTitle: 'onions', isSelected: false),
-    Data(title: 'REF ID ', subTitle: 'avocados', isSelected: false),
-    Data(title: 'REF ID ', subTitle: 'apples', isSelected: false),
-    Data(title: 'REF ID ', subTitle: 'Strawberries', isSelected: false),
-    Data(title: 'REF ID ', subTitle: "Cucumber", isSelected: false),
-    Data(title: 'REF ID ', subTitle: "melons", isSelected: false),
-    Data(title: 'REF ID ', subTitle: 'Description', isSelected: false),
-    Data(title: 'REF ID ', subTitle: "Description", isSelected: false),
-    Data(title: 'REF ID ', subTitle: "Description", isSelected: false),
-    Data(title: 'REF ID ', subTitle: "Description", isSelected: false),
-    Data(title: 'REF ID ', subTitle: "Description", isSelected: false),
-    Data(title: 'REF ID ', subTitle: "Description", isSelected: false),
-  ];
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            child: Row(
-              children: const [
-                Text(
-                  'ORDER ID',
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: Palette.greenColor,
-                      fontWeight: FontWeight.bold),
-                ),
-                Expanded(child: SizedBox()),
-                Text(
-                  'PRODUCT NAME ',
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: Palette.greenColor,
-                      fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-          ),
-          const Divider(
-            height: 30,
-            thickness: 2,
-            color: Palette.orangeColor,
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: 5,
-              itemBuilder: (context, index) {
-                return ListTile(
-                    leading: Icon(Icons.list),
-                    trailing: Text(
-                      (_data[index].subTitle),
-                      style: const TextStyle(
-                        fontSize: 14,
-                      ),
-                    ),
-                    title: Text(
-                      (_data[index].title + ' ' + (index + 1).toString()),
-                      style: const TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.bold),
-                    ));
-              },
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              IconButton(
-                icon: const Icon(Icons.arrow_forward),
-                color: Colors.orange,
-                iconSize: 48,
-                tooltip: 'Mark as unavailable',
-                onPressed: () {
-                  setState(() {});
-                },
-              ),
-              const Text(
-                'unavailable ',
-                style: TextStyle(
-                    fontSize: 20,
-                    color: Palette.greenColor,
-                    fontWeight: FontWeight.bold),
-              ),
-            ],
-          )
-        ],
-      ),
-    );
-  }
 }
 
 class Dispatch extends StatefulWidget {
