@@ -111,124 +111,124 @@ class _OrderSummaryState extends State<OrderSummary> {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      CupertinoButton(
-                          child: const Text('Approve'),
-                          color: Colors.blue,
-                          onPressed: context.watch<CheckedBloc>().state ==
-                                      'approve' ||
-                                  context.watch<CheckedBloc>().state == null
-                              ? () {
-                                  context.read<CheckedBloc>().emit('approve');
-                                }
-                              : null),
-                      CupertinoButton(
-                          child: const Text('Reject'),
-                          color: Colors.blue,
-                          onPressed: context.watch<CheckedBloc>().state ==
-                                      'reject' ||
-                                  context.watch<CheckedBloc>().state == null
-                              ? () {
-                                  context.read<CheckedBloc>().emit('reject');
-                                }
-                              : null),
-                      CupertinoButton(
-                          child: const Text('No'),
-                          color: Colors.blue,
-                          onPressed:
-                              context.watch<CheckedBloc>().state == 'no' ||
-                                      context.watch<CheckedBloc>().state == null
-                                  ? () {
-                                      context.read<CheckedBloc>().emit('no');
-                                    }
-                                  : null),
+                      // CupertinoButton(
+                      //     child: const Text('Approve'),
+                      //     color: Colors.blue,
+                      //     onPressed: context.watch<CheckedBloc>().state ==
+                      //                 'approve' ||
+                      //             context.watch<CheckedBloc>().state == null
+                      //         ? () {
+                      //             context.read<CheckedBloc>().emit('approve');
+                      //           }
+                      //         : null),
+                      // CupertinoButton(
+                      //     child: const Text('Reject'),
+                      //     color: Colors.blue,
+                      //     onPressed: context.watch<CheckedBloc>().state ==
+                      //                 'reject' ||
+                      //             context.watch<CheckedBloc>().state == null
+                      //         ? () {
+                      //             context.read<CheckedBloc>().emit('reject');
+                      //           }
+                      //         : null),
+                      // CupertinoButton(
+                      //     child: const Text('No'),
+                      //     color: Colors.blue,
+                      //     onPressed:
+                      //         context.watch<CheckedBloc>().state == 'no' ||
+                      //                 context.watch<CheckedBloc>().state == null
+                      //             ? () {
+                      //                 context.read<CheckedBloc>().emit('no');
+                      //               }
+                      //             : null),
 
-                      // GestureDetector(
-                      //     onTap: () {
-                      //       context.watch<CheckedBloc>().state == 'approve' ||
-                      //               context.watch<CheckedBloc>().state == null
-                      //           ? () {
-                      //               context.read<CheckedBloc>().emit('approve');
-                      //             }
-                      //           : null;
-                      //     },
-                      //     child: Tooltip(
-                      //       triggerMode: TooltipTriggerMode.tap,
-                      //       message: 'Fully Packed',
-                      //       child: Image.asset(
-                      //         'assets/good.png',
-                      //       ),
-                      //     )),
-                      // const SizedBox(width: 20),
-                      // GestureDetector(
-                      //     onTap: () {
-                      //       context.watch<CheckedBloc>().state ==
-                      //                   'disaaprove' ||
-                      //               context.watch<CheckedBloc>().state == null
-                      //           ? () {
-                      //               context
-                      //                   .read<CheckedBloc>()
-                      //                   .emit('disapprove');
-                      //             }
-                      //           : null;
-                      //     },
-                      //     child: Tooltip(
-                      //         triggerMode: TooltipTriggerMode.tap,
-                      //         message: 'Not good/Damaged Products',
-                      //         child: Image.asset('assets/ungood.png'))),
-                      // const SizedBox(width: 20),
-                      // GestureDetector(
-                      //     onTap: () {
-                      //       context.watch<CheckedBloc>().state == 'raise' ||
-                      //               context.watch<CheckedBloc>().state == null
-                      //           ? () {
-                      //               context.read<CheckedBloc>().emit('raise');
-                      //             }
-                      //           : null;
-                      //     },
-                      //     child: Tooltip(
-                      //         triggerMode: TooltipTriggerMode.tap,
-                      //         message: 'Unavailable',
-                      //         child: Image.asset('assets/unavailable.png'))),
-                      // const SizedBox(width: 20),
-                      // GestureDetector(
-                      //     onTap: () {
-                      //       context.watch<CheckedBloc>().state == 'record' ||
-                      //               context.watch<CheckedBloc>().state == null
-                      //           ? () {
-                      //               context.read<CheckedBloc>().emit('record');
-                      //             }
-                      //           : null;
-                      //     },
-                      //     child: Tooltip(
-                      //         triggerMode: TooltipTriggerMode.tap,
-                      //         message: 'Record addtional infor',
-                      //         child: Image.asset('assets/infor.png'))),
-                      // IconButton(
-                      //     color: Colors.blue,
-                      //     onPressed: () {
-                      //       context.watch<CheckedBloc>().state == 'record' ||
-                      //               context.watch<CheckedBloc>().state == null
-                      //           ? () {
-                      //               context.read<CheckedBloc>().emit('record');
-                      //             }
-                      //           : null;
-                      //     },
-                      //     icon: const Tooltip(
-                      //         triggerMode: TooltipTriggerMode.tap,
-                      //         message: 'Record addtional infor',
-                      //         child: Icon(Icons.done_all_outlined))),
-                      // IconButton(
-                      //     color: Colors.blue,
-                      //     onPressed: () {},
-                      //     icon: const Tooltip(
-                      //         triggerMode: TooltipTriggerMode.tap,
-                      //         message: 'Record addtional infor',
-                      //         child: Icon(Icons.delete))),
-                      // IconButton(
-                      //     onPressed: () {}, icon: const Icon(Icons.add_box)),
-                      // IconButton(
-                      //     onPressed: () {},
-                      //     icon: const Icon(Icons.edit_rounded)),
+                      GestureDetector(
+                          onTap: () {
+                            context.watch<CheckedBloc>().state == 'approve' ||
+                                    context.watch<CheckedBloc>().state == null
+                                ? () {
+                                    context.read<CheckedBloc>().emit('approve');
+                                  }
+                                : null;
+                          },
+                          child: Tooltip(
+                            triggerMode: TooltipTriggerMode.tap,
+                            message: 'Fully Packed',
+                            child: Image.asset(
+                              'assets/good.png',
+                            ),
+                          )),
+                      const SizedBox(width: 20),
+                      GestureDetector(
+                          onTap: () {
+                            context.watch<CheckedBloc>().state ==
+                                        'disaaprove' ||
+                                    context.watch<CheckedBloc>().state == null
+                                ? () {
+                                    context
+                                        .read<CheckedBloc>()
+                                        .emit('disapprove');
+                                  }
+                                : null;
+                          },
+                          child: Tooltip(
+                              triggerMode: TooltipTriggerMode.tap,
+                              message: 'Not good/Damaged Products',
+                              child: Image.asset('assets/ungood.png'))),
+                      const SizedBox(width: 20),
+                      GestureDetector(
+                          onTap: () {
+                            context.watch<CheckedBloc>().state == 'raise' ||
+                                    context.watch<CheckedBloc>().state == null
+                                ? () {
+                                    context.read<CheckedBloc>().emit('raise');
+                                  }
+                                : null;
+                          },
+                          child: Tooltip(
+                              triggerMode: TooltipTriggerMode.tap,
+                              message: 'Unavailable',
+                              child: Image.asset('assets/unavailable.png'))),
+                      const SizedBox(width: 20),
+                      GestureDetector(
+                          onTap: () {
+                            context.watch<CheckedBloc>().state == 'record' ||
+                                    context.watch<CheckedBloc>().state == null
+                                ? () {
+                                    context.read<CheckedBloc>().emit('record');
+                                  }
+                                : null;
+                          },
+                          child: Tooltip(
+                              triggerMode: TooltipTriggerMode.tap,
+                              message: 'Record addtional infor',
+                              child: Image.asset('assets/infor.png'))),
+                      IconButton(
+                          color: Colors.blue,
+                          onPressed: () {
+                            context.watch<CheckedBloc>().state == 'record' ||
+                                    context.watch<CheckedBloc>().state == null
+                                ? () {
+                                    context.read<CheckedBloc>().emit('record');
+                                  }
+                                : null;
+                          },
+                          icon: const Tooltip(
+                              triggerMode: TooltipTriggerMode.tap,
+                              message: 'Record addtional infor',
+                              child: Icon(Icons.done_all_outlined))),
+                      IconButton(
+                          color: Colors.blue,
+                          onPressed: () {},
+                          icon: const Tooltip(
+                              triggerMode: TooltipTriggerMode.tap,
+                              message: 'Record addtional infor',
+                              child: Icon(Icons.delete))),
+                      IconButton(
+                          onPressed: () {}, icon: const Icon(Icons.add_box)),
+                      IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.edit_rounded)),
                     ],
                   ),
                 ),
