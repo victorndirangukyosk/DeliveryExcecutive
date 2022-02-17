@@ -20,6 +20,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MainHomePage extends StatelessWidget {
   const MainHomePage({Key? key}) : super(key: key);
@@ -637,104 +638,666 @@ class OrderList extends StatefulWidget {
   _OrderListState createState() => _OrderListState();
 }
 
+class Item {
+  const Item(this.name, this.icon);
+  final String name;
+  final Icon icon;
+}
+
 class _OrderListState extends State<OrderList> {
   TextEditingController textarea = TextEditingController();
-  final List<Data> _data = [
-    Data(title: 'CRATE NO ', subTitle: '', isSelected: false),
-    Data(title: 'CRATE NO ', subTitle: 'Description', isSelected: false),
-    Data(title: 'CRATE NO ', subTitle: 'Description', isSelected: false),
-    Data(title: 'CRATE NO ', subTitle: 'Description', isSelected: false),
-    Data(title: 'CRATE NO ', subTitle: 'Description', isSelected: false),
-    Data(title: 'CRATE NO ', subTitle: 'Description', isSelected: false),
-    Data(title: 'CRATE NO ', subTitle: 'Description', isSelected: false),
-    Data(title: 'CRATE NO ', subTitle: 'Description', isSelected: false),
-    Data(title: 'CRATE NO ', subTitle: 'Description', isSelected: false),
-    Data(title: 'CRATE NO ', subTitle: 'Description', isSelected: false),
-    Data(title: 'CRATE NO ', subTitle: 'Description', isSelected: false),
-    Data(title: 'CRATE NO ', subTitle: 'Description', isSelected: false),
+  List<Item> users = [
+    const Item('Fully Packed', Icon(FontAwesomeIcons.dolly)),
+    const Item('Not Good/Damaged products', Icon(FontAwesomeIcons.question)),
+    const Item('Not Available', Icon(FontAwesomeIcons.minusCircle)),
+    const Item('Information Recording', Icon(FontAwesomeIcons.edit)),
   ];
+
+  final List<String> quantity = <String>[
+    '1 Kg',
+    '3Kg',
+    '10kg',
+    '1kg',
+    '1kg',
+    '3Kg',
+    '10kg',
+    '1kg',
+    '1 Kg',
+    '3Kg',
+    '10kg',
+    '1kg',
+    '1kg',
+    '3Kg',
+    '10kg',
+    '1kg',
+    '1 Kg',
+    '3Kg',
+    '10kg',
+    '1kg',
+    '1kg',
+    '3Kg',
+    '10kg',
+    '1kg',
+    '1 Kg',
+    '3Kg',
+    '10kg',
+    '1kg',
+    '1kg',
+    '3Kg',
+    '10kg',
+    '1kg',
+    '1 Kg',
+    '3Kg',
+    '10kg',
+    '1kg',
+    '1kg',
+    '3Kg',
+    '10kg',
+    '1kg',
+    '1 Kg',
+    '3Kg',
+    '10kg',
+    '1kg',
+    '1kg',
+    '3Kg',
+    '10kg',
+    '1kg',
+    '1 Kg',
+    '3Kg',
+    '10kg',
+    '1kg',
+    '1kg',
+    '3Kg',
+    '10kg',
+    '1kg',
+    '1 Kg',
+    '3Kg',
+    '10kg',
+    '1kg',
+    '1kg',
+    '3Kg',
+    '10kg',
+    '1kg',
+    '1 Kg',
+    '3Kg',
+    '10kg',
+    '1kg',
+    '1kg',
+    '3Kg',
+    '10kg',
+    '1kg',
+    '1 Kg',
+    '3Kg',
+    '10kg',
+    '1kg',
+    '1kg',
+    '3Kg',
+    '10kg',
+    '1kg',
+    '1 Kg',
+    '3Kg',
+    '10kg',
+    '1kg',
+    '1kg',
+    '3Kg',
+    '10kg',
+    '1kg',
+    '1 Kg',
+    '3Kg',
+    '10kg',
+    '1kg',
+  ];
+  final List<String> notes = <String>[
+    'half kg semi ripe',
+    'medium to large head',
+    'Heads should be firm ',
+    'jazz,GrannySmith,Jonagold and Fuji',
+    'half kg semi ripe',
+    'medium to large head',
+    'Heads should be firm ',
+    'jazz,GrannySmith,Jonagold and Fuji',
+    'half kg semi ripe',
+    'medium to large head',
+    'Heads should be firm ',
+    'jazz,GrannySmith,Jonagold and Fuji',
+    'half kg semi ripe',
+    'medium to large head',
+    'Heads should be firm ',
+    'jazz,GrannySmith,Jonagold and Fuji',
+    'half kg semi ripe',
+    'medium to large head',
+    'Heads should be firm ',
+    'jazz,GrannySmith,Jonagold and Fuji',
+    'half kg semi ripe',
+    'medium to large head',
+    'Heads should be firm ',
+    'jazz,GrannySmith,Jonagold and Fuji',
+    'half kg semi ripe',
+    'medium to large head',
+    'Heads should be firm ',
+    'jazz,GrannySmith,Jonagold and Fuji',
+    'half kg semi ripe',
+    'medium to large head',
+    'Heads should be firm ',
+    'jazz,GrannySmith,Jonagold and Fuji',
+    'half kg semi ripe',
+    'medium to large head',
+    'Heads should be firm ',
+    'jazz,GrannySmith,Jonagold and Fuji',
+    'half kg semi ripe',
+    'medium to large head',
+    'Heads should be firm ',
+    'jazz,GrannySmith,Jonagold and Fuji',
+    'half kg semi ripe',
+    'medium to large head',
+    'Heads should be firm ',
+    'jazz,GrannySmith,Jonagold and Fuji',
+  ];
+  final List<String> names = <String>[
+    'Tomatoes ',
+    'Cauliflower ',
+    'Brocolli ',
+    'Apples ',
+    'Tomatoes ',
+    'Cauliflower ',
+    'Brocolli ',
+    'Apples ',
+    'Tomatoes ',
+    'Cauliflower ',
+    'Brocolli ',
+    'Apples ',
+    'Tomatoes ',
+    'Cauliflower ',
+    'Brocolli ',
+    'Apples ',
+    'Tomatoes ',
+    'Cauliflower ',
+    'Brocolli ',
+    'Apples ',
+    'Tomatoes ',
+    'Cauliflower ',
+    'Brocolli ',
+    'Apples ',
+    'Tomatoes ',
+    'Cauliflower ',
+    'Brocolli ',
+    'Apples ',
+    'Tomatoes ',
+    'Cauliflower ',
+    'Brocolli ',
+    'Apples ',
+    'Tomatoes ',
+    'Cauliflower ',
+    'Brocolli ',
+    'Apples ',
+    'Tomatoes ',
+    'Cauliflower ',
+    'Brocolli ',
+    'Apples ',
+    'Tomatoes ',
+    'Cauliflower ',
+    'Brocolli ',
+    'Apples ',
+    'Tomatoes ',
+    'Cauliflower ',
+    'Brocolli ',
+    'Apples ',
+    'Tomatoes ',
+    'Cauliflower ',
+    'Brocolli ',
+    'Apples ',
+    'Tomatoes ',
+    'Cauliflower ',
+    'Brocolli ',
+    'Apples ',
+    'Tomatoes ',
+    'Cauliflower ',
+    'Brocolli ',
+    'Apples ',
+    'Tomatoes ',
+    'Cauliflower ',
+    'Brocolli ',
+    'Apples ',
+    'Tomatoes ',
+    'Cauliflower ',
+    'Brocolli ',
+    'Apples ',
+    'Tomatoes ',
+    'Cauliflower ',
+    'Brocolli ',
+    'Apples ',
+    'Tomatoes ',
+    'Cauliflower ',
+    'Brocolli ',
+    'Apples ',
+    'Tomatoes ',
+    'Cauliflower ',
+    'Brocolli ',
+    'Apples ',
+    'Tomatoes ',
+    'Cauliflower ',
+    'Brocolli ',
+    'Apples ',
+    'Tomatoes ',
+    'Cauliflower ',
+    'Brocolli ',
+    'Apples ',
+    'Tomatoes ',
+    'Cauliflower ',
+    'Brocolli ',
+    'Apples ',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            child: Row(
-              children: const [
-                Text(
-                  'ORDER ID 4444333',
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: Palette.greenColor,
-                      fontWeight: FontWeight.bold),
-                ),
-                Expanded(child: SizedBox()),
-                Text(
-                  'Select',
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: Palette.greenColor,
-                      fontWeight: FontWeight.bold),
-                ),
-              ],
+        body: Stack(children: <Widget>[
+      // Container(
+      //   padding: const EdgeInsets.only(left: 20, right: 8),
+      //   decoration: BoxDecoration(
+      //       color: Palette.greenColor, borderRadius: BorderRadius.circular(10)),
+      //   child: Row(
+      //     children: [
+      //       const Text(
+      //         'My Deliveries',
+      //         style: TextStyle(
+      //             fontSize: 20,
+      //             color: Colors.white,
+      //             fontWeight: FontWeight.bold),
+      //       ),
+      //       const Expanded(child: SizedBox()),
+      //       CupertinoButton(
+      //           padding: const EdgeInsets.all(0),
+      //           child: const Icon(
+      //             Icons.arrow_forward_ios,
+      //             size: 25,
+      //             color: Colors.white,
+      //           ),
+      //           onPressed: () {}),
+      //     ],
+      //   ),
+      // ),
+      CustomScrollView(
+        slivers: [
+          // const SliverPadding(
+          //   padding: EdgeInsets.only(bottom: 50.0),
+          //   sliver: SliverAppBar(
+          //     backgroundColor: Colors.white,
+          //     title:
+          //      Text.rich(TextSpan(
+          //         text: 'Kwik ',
+          //         style: TextStyle(
+          //             fontSize: 30,
+          //             fontWeight: FontWeight.w900,
+          //             color: Palette.orangeColor),
+          //         children: [
+          //           TextSpan(
+          //               text: 'Delivery',
+          //               style: TextStyle(color: Palette.greenColor))
+          //         ]),
+          //         ),
+          //     expandedHeight: 30,
+          //     // collapsedHeight: 150,
+          //   ),
+          // ),
+          SliverPadding(
+            padding: EdgeInsets.only(bottom: 10.0),
+            sliver: SliverAppBar(
+              leading: IconButton(
+                  icon: Icon(Icons.chevron_left),
+                  tooltip: 'Click to Home Screen',
+                  onPressed: () {
+                    //  handle the press
+                  }),
+              // Provide a standard title
+              title: const Text.rich(
+                TextSpan(
+                    text: 'Order Id:',
+                    style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w900,
+                        color: Palette.orangeColor),
+                    children: [
+                      TextSpan(
+                          text: '4444333',
+                          style: TextStyle(color: Palette.greenColor))
+                    ]),
+              ),
+              // actions: <Widget>[
+              //   IconButton(
+              //     icon: Icon(Icons.shopping_cart),
+              //     tooltip: 'Open shopping cart',
+              //     onPressed: () {
+              //       // handle the press
+              //     },
+              //   ),
+              // ],
+              // brightness: Brightness.light,
+              backgroundColor: Colors.white,
+              iconTheme: IconThemeData(
+                color: Palette.greyColor,
+              ),
+              // textTheme: TextTheme(
+              //   :
+              //   TextStyle(fontFamily: 'RobotoMono', color: Colors.deepOrange,
+              //       fontSize: 36.0),
+              // ),
+              forceElevated: true,
+              floating: true,
+              pinned: true,
+              // Make the initial height of the SliverAppBar larger than normal
+              expandedHeight: 100,
             ),
           ),
-          const Divider(
-            height: 30,
-            thickness: 2,
-            color: Palette.orangeColor,
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: _data.length,
-              itemBuilder: (context, index) {
-                return CheckboxListTile(
-                  title: Text(
-                    (_data[index].title),
-                    style: const TextStyle(
-                        fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
-                  // subtitle: Text(
-                  //   _data[index].subTitle + ' ' + (index + 1).toString(),
-                  // ),
-                  value: _data[index].isSelected,
-                  onChanged: (val) {
-                    setState(
-                      () {
-                        _data[index].isSelected = val!;
-                      },
-                    );
-                  },
-                );
-              },
+
+          SliverToBoxAdapter(
+            child: Container(
+              padding: const EdgeInsets.only(left: 20, right: 8),
+              decoration: BoxDecoration(
+                  color: Palette.greenColor,
+                  borderRadius: BorderRadius.circular(10)),
+              child: IntrinsicHeight(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: const [
+                    Text(
+                      'Product Name',
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      'Quantity',
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      'Specifications',
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      'Action Area',
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              IconButton(
-                icon: const Icon(Icons.arrow_forward),
-                color: Colors.orange,
-                iconSize: 48,
-                tooltip: 'Toggle Bluetooth',
-                onPressed: () {
-                  setState(() {});
+          // const SliverAppBar(
+          //   backgroundColor: Colors.orangeAccent,
+          //   title: Text('Items in this order'), //IconButton
+          //   actions: <Widget>[],
+          //   floating: true,
+          // ),
+          SliverPadding(
+            padding: const EdgeInsets.only(top: 40.0),
+            sliver: SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (BuildContext context, int index) {
+                  return Card(
+                    margin: const EdgeInsets.all(15),
+                    child: Container(
+                      color: Colors.grey[100 * (index % 3 + 1)],
+                      height: 80,
+                      // alignment: Alignment.center,
+                      child: Container(
+                        height: 50,
+                        margin: const EdgeInsets.all(2),
+                        // color: msgCount[index]>=10? Colors.blue[400]:
+                        //   msgCount[index]>3? Colors.blue[100]: Colors.grey,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Column(
+                              children: [
+                                Text(
+                                  '${names[index]} ',
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                              ],
+                            ),
+                            const VerticalDivider(),
+                            Column(
+                              children: [
+                                Text(
+                                  '${quantity[index]} ',
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                              ],
+                            ),
+                            const VerticalDivider(),
+                            Column(
+                              children: [
+                                Flexible(
+                                  child: Text(
+                                    '${notes[index]} ',
+                                    softWrap: true,
+                                    style: TextStyle(fontSize: 14),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const VerticalDivider(),
+                            Column(
+                              children: [
+                                DropdownButtonHideUnderline(
+                                  child: ButtonTheme(
+                                    alignedDropdown: true,
+                                    child: DropdownButton(
+                                        items: List.generate(
+                                            users.length,
+                                            (index) => DropdownMenuItem(
+                                                  value: users[index],
+                                                  child: Row(
+                                                    children: [
+                                                      users[index].icon,
+                                                      SizedBox(
+                                                        width: 10,
+                                                      ),
+                                                      Text(
+                                                        users[index].name,
+                                                        style: TextStyle(
+                                                            color: Colors.red),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                )),
+                                        // items: users.map((Item user) {
+                                        //   return DropdownMenuItem(
+                                        //     value: user,
+
+                                        //   );
+                                        // }).toList(),
+                                        onChanged: (value) {
+                                          setState(() {
+                                            value;
+                                          });
+                                        },
+                                        hint: Text("Status")),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            // BlocProvider(
+                            //   create: (context) => CheckedBloc(null),
+                            //   child: Row(
+                            //     mainAxisSize: MainAxisSize.min,
+                            //     children: <Widget>[
+                            //       // CupertinoButton(
+                            //       //     child: const Text('Approve'),
+                            //       //     color: Colors.blue,
+                            //       //     onPressed: context.watch<CheckedBloc>().state ==
+                            //       //                 'approve' ||
+                            //       //             context.watch<CheckedBloc>().state == null
+                            //       //         ? () {
+                            //       //             context.read<CheckedBloc>().emit('approve');
+                            //       //           }
+                            //       //         : null),
+                            //       // CupertinoButton(
+                            //       //     child: const Text('Reject'),
+                            //       //     color: Colors.blue,
+                            //       //     onPressed: context.watch<CheckedBloc>().state ==
+                            //       //                 'reject' ||
+                            //       //             context.watch<CheckedBloc>().state == null
+                            //       //         ? () {
+                            //       //             context.read<CheckedBloc>().emit('reject');
+                            //       //           }
+                            //       //         : null),
+                            //       // CupertinoButton(
+                            //       //     child: const Text('No'),
+                            //       //     color: Colors.blue,
+                            //       //     onPressed:
+                            //       //         context.watch<CheckedBloc>().state == 'no' ||
+                            //       //                 context.watch<CheckedBloc>().state == null
+                            //       //             ? () {
+                            //       //                 context.read<CheckedBloc>().emit('no');
+                            //       //               }
+                            //       //             : null),
+
+                            //       GestureDetector(
+                            //           onTap: () {
+                            //             context.watch<CheckedBloc>().state ==
+                            //                         'approve' ||
+                            //                     context
+                            //                             .watch<CheckedBloc>()
+                            //                             .state ==
+                            //                         null
+                            //                 ? () {
+                            //                     context
+                            //                         .read<CheckedBloc>()
+                            //                         .emit('approve');
+                            //                   }
+                            //                 : null;
+                            //           },
+                            //           child: Tooltip(
+                            //             triggerMode: TooltipTriggerMode.tap,
+                            //             message: 'Fully Packed',
+                            //             child: Image.asset(
+                            //               'assets/good.png',
+                            //             ),
+                            //           )),
+                            //       const SizedBox(width: 20),
+                            //       GestureDetector(
+                            //           onTap: () {
+                            //             context.watch<CheckedBloc>().state ==
+                            //                         'disaaprove' ||
+                            //                     context
+                            //                             .watch<CheckedBloc>()
+                            //                             .state ==
+                            //                         null
+                            //                 ? () {
+                            //                     context
+                            //                         .read<CheckedBloc>()
+                            //                         .emit('disapprove');
+                            //                   }
+                            //                 : null;
+                            //           },
+                            //           child: Tooltip(
+                            //               triggerMode: TooltipTriggerMode.tap,
+                            //               message: 'Not good/Damaged Products',
+                            //               child: Image.asset(
+                            //                   'assets/ungood.png'))),
+                            //       const SizedBox(width: 20),
+                            //       GestureDetector(
+                            //           onTap: () {
+                            //             context.watch<CheckedBloc>().state ==
+                            //                         'raise' ||
+                            //                     context
+                            //                             .watch<CheckedBloc>()
+                            //                             .state ==
+                            //                         null
+                            //                 ? () {
+                            //                     context
+                            //                         .read<CheckedBloc>()
+                            //                         .emit('raise');
+                            //                   }
+                            //                 : null;
+                            //           },
+                            //           child: Tooltip(
+                            //               triggerMode: TooltipTriggerMode.tap,
+                            //               message: 'Unavailable',
+                            //               child: Image.asset(
+                            //                   'assets/unavailable.png'))),
+                            //       const SizedBox(width: 20),
+                            //       GestureDetector(
+                            //           onTap: () {
+                            //             context.watch<CheckedBloc>().state ==
+                            //                         'record' ||
+                            //                     context
+                            //                             .watch<CheckedBloc>()
+                            //                             .state ==
+                            //                         null
+                            //                 ? () {
+                            //                     context
+                            //                         .read<CheckedBloc>()
+                            //                         .emit('record');
+                            //                   }
+                            //                 : null;
+                            //           },
+                            //           child: Tooltip(
+                            //               triggerMode: TooltipTriggerMode.tap,
+                            //               message: 'Record addtional infor',
+                            //               child:
+                            //                   Image.asset('assets/infor.png'))),
+                            //       // IconButton(
+                            //       //     color: Colors.blue,
+                            //       //     onPressed: () {
+                            //       //       context.watch<CheckedBloc>().state == 'record' ||
+                            //       //               context.watch<CheckedBloc>().state == null
+                            //       //           ? () {
+                            //       //               context.read<CheckedBloc>().emit('record');
+                            //       //             }
+                            //       //           : null;
+                            //       //     },
+                            //       //     icon: const Tooltip(
+                            //       //         triggerMode: TooltipTriggerMode.tap,
+                            //       //         message: 'Record addtional infor',
+                            //       //         child: Icon(Icons.done_all_outlined))),
+                            //       // IconButton(
+                            //       //     color: Colors.blue,
+                            //       //     onPressed: () {},
+                            //       //     icon: const Tooltip(
+                            //       //         triggerMode: TooltipTriggerMode.tap,
+                            //       //         message: 'Record addtional infor',
+                            //       //         child: Icon(Icons.delete))),
+                            //       // IconButton(
+                            //       //     onPressed: () {}, icon: const Icon(Icons.add_box)),
+                            //       // IconButton(
+                            //       //     onPressed: () {},
+                            //       //     icon: const Icon(Icons.edit_rounded)),
+                            //     ],
+                            //   ),
+                            // ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
                 },
+                childCount: 1000, // 1000 list items
               ),
-              const Text(
-                'Continue ',
-                style: TextStyle(
-                    fontSize: 20,
-                    color: Palette.greenColor,
-                    fontWeight: FontWeight.bold),
-              ),
-            ],
+            ),
           )
         ],
       ),
-    );
+    ]));
   }
+}
+
+class CheckedBloc extends Cubit<String?> {
+  CheckedBloc(String? initialState) : super(initialState);
 }
 
 // ignore: todo
@@ -799,21 +1362,37 @@ class _DispatchState extends State<Dispatch> {
         const Positioned(
           left: 480,
           right: 0,
-          bottom: 250,
+          bottom: 120,
           child: Text(
             'READY FOR DISPATCH',
             style: TextStyle(
                 fontSize: 35,
-                color: Palette.greenColor,
+                color: Palette.orangeColor,
                 fontWeight: FontWeight.bold),
           ),
         ),
-        // Positioned(
-        //   left: 80,
-        //   right: 0,
-        //   bottom: 250,
-        //   child:
-        // )
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              // primary: Colors.black,
+              minimumSize: const Size.fromHeight(50), // NEW
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ItemlistTile()),
+              );
+            },
+            child: const Text(
+              'Dispatch',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        )
       ],
     ));
   }

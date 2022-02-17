@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:delivery_app/configuration/configuration.dart';
+import 'package:delivery_app/configuration/palette/palette.dart';
 import 'package:delivery_app/cubits/my_orders_cubit.dart/my_orders_cubit.dart';
 import 'package:delivery_app/models/order/order.dart';
 import 'package:delivery_app/routes/router.gr.dart';
@@ -34,7 +35,7 @@ class _HomeIconPagePackingState extends State<HomeIconPagePacking> {
         iconTheme: IconThemeData(color: Colors.black),
         elevation: 0,
         backgroundColor: Palette.orangeBackgroundColor,
-        title: Text(
+        title: const Text(
           'My Orders',
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
         ),
@@ -42,7 +43,7 @@ class _HomeIconPagePackingState extends State<HomeIconPagePacking> {
       body: SingleChildScrollView(
         child: Column(
             // mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(13, (index) => CardWidget())),
+            children: List.generate(100, (index) => CardWidget())),
       ), // body: Padding(
       //   padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
       //   child: BlocConsumer<MyOrdersCubit, MyOrdersState>(
@@ -260,7 +261,7 @@ class CardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: const EdgeInsets.all(100.0),
+        margin: const EdgeInsets.all(30.0),
         decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
@@ -366,7 +367,7 @@ class CardWidget extends StatelessWidget {
               );
             },
             child: const Text(
-              'Submit',
+              'Start Processing ',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -388,36 +389,245 @@ class _ItemlistTileState extends State<ItemlistTile> {
     'Cauliflower 1kg',
     'Brocolli 2kg',
     'Apples 1 Crate',
-    'Bob',
-    'Charlie',
-    'Cook',
-    'Carline'
+    'Tomatoes 4kg',
+    'Cauliflower 1kg',
+    'Brocolli 2kg',
+    'Apples 1 Crate',
+    'Tomatoes 4kg',
+    'Cauliflower 1kg',
+    'Brocolli 2kg',
+    'Apples 1 Crate',
+    'Tomatoes 4kg',
+    'Cauliflower 1kg',
+    'Brocolli 2kg',
+    'Apples 1 Crate',
+    'Tomatoes 4kg',
+    'Cauliflower 1kg',
+    'Brocolli 2kg',
+    'Apples 1 Crate',
+    'Tomatoes 4kg',
+    'Cauliflower 1kg',
+    'Brocolli 2kg',
+    'Apples 1 Crate',
+    'Tomatoes 4kg',
+    'Cauliflower 1kg',
+    'Brocolli 2kg',
+    'Apples 1 Crate',
+    'Tomatoes 4kg',
+    'Cauliflower 1kg',
+    'Brocolli 2kg',
+    'Apples 1 Crate',
+    'Tomatoes 4kg',
+    'Cauliflower 1kg',
+    'Brocolli 2kg',
+    'Apples 1 Crate',
+    'Tomatoes 4kg',
+    'Cauliflower 1kg',
+    'Brocolli 2kg',
+    'Apples 1 Crate',
+    'Tomatoes 4kg',
+    'Cauliflower 1kg',
+    'Brocolli 2kg',
+    'Apples 1 Crate',
+    'Tomatoes 4kg',
+    'Cauliflower 1kg',
+    'Brocolli 2kg',
+    'Apples 1 Crate',
+    'Tomatoes 4kg',
+    'Cauliflower 1kg',
+    'Brocolli 2kg',
+    'Apples 1 Crate',
+    'Tomatoes 4kg',
+    'Cauliflower 1kg',
+    'Brocolli 2kg',
+    'Apples 1 Crate',
+    'Tomatoes 4kg',
+    'Cauliflower 1kg',
+    'Brocolli 2kg',
+    'Apples 1 Crate',
+    'Tomatoes 4kg',
+    'Cauliflower 1kg',
+    'Brocolli 2kg',
+    'Apples 1 Crate',
+    'Tomatoes 4kg',
+    'Cauliflower 1kg',
+    'Brocolli 2kg',
+    'Apples 1 Crate',
+    'Tomatoes 4kg',
+    'Cauliflower 1kg',
+    'Brocolli 2kg',
+    'Apples 1 Crate',
+    'Tomatoes 4kg',
+    'Cauliflower 1kg',
+    'Brocolli 2kg',
+    'Apples 1 Crate',
+    'Tomatoes 4kg',
+    'Cauliflower 1kg',
+    'Brocolli 2kg',
+    'Apples 1 Crate',
+    'Tomatoes 4kg',
+    'Cauliflower 1kg',
+    'Brocolli 2kg',
+    'Apples 1 Crate',
+    'Tomatoes 4kg',
+    'Cauliflower 1kg',
+    'Brocolli 2kg',
+    'Apples 1 Crate',
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Stack(children: <Widget>[
+      // Container(
+      //   padding: const EdgeInsets.only(left: 20, right: 8),
+      //   decoration: BoxDecoration(
+      //       color: Palette.greenColor, borderRadius: BorderRadius.circular(10)),
+      //   child: Row(
+      //     children: [
+      //       const Text(
+      //         'My Deliveries',
+      //         style: TextStyle(
+      //             fontSize: 20,
+      //             color: Colors.white,
+      //             fontWeight: FontWeight.bold),
+      //       ),
+      //       const Expanded(child: SizedBox()),
+      //       CupertinoButton(
+      //           padding: const EdgeInsets.all(0),
+      //           child: const Icon(
+      //             Icons.arrow_forward_ios,
+      //             size: 25,
+      //             color: Colors.white,
+      //           ),
+      //           onPressed: () {}),
+      //     ],
+      //   ),
+      // ),
       CustomScrollView(
         slivers: [
-          const SliverAppBar(
-            // backgroundColor: Colors.amber,
-            title: Text('KwikDelivery'),
-            expandedHeight: 30,
-            collapsedHeight: 150,
+          // const SliverPadding(
+          //   padding: EdgeInsets.only(bottom: 50.0),
+          //   sliver: SliverAppBar(
+          //     backgroundColor: Colors.white,
+          //     title:
+          //      Text.rich(TextSpan(
+          //         text: 'Kwik ',
+          //         style: TextStyle(
+          //             fontSize: 30,
+          //             fontWeight: FontWeight.w900,
+          //             color: Palette.orangeColor),
+          //         children: [
+          //           TextSpan(
+          //               text: 'Delivery',
+          //               style: TextStyle(color: Palette.greenColor))
+          //         ]),
+          //         ),
+          //     expandedHeight: 30,
+          //     // collapsedHeight: 150,
+          //   ),
+          // ),
+          SliverPadding(
+            padding: EdgeInsets.only(bottom: 10.0),
+            sliver: SliverAppBar(
+              leading: IconButton(
+                  icon: Icon(Icons.chevron_left),
+                  tooltip: 'Click to Home Screen',
+                  onPressed: () {
+                    //  handle the press
+                  }),
+              // Provide a standard title
+              title: const Text.rich(
+                TextSpan(
+                    text: 'Kwik ',
+                    style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w900,
+                        color: Palette.orangeColor),
+                    children: [
+                      TextSpan(
+                          text: 'Delivery',
+                          style: TextStyle(color: Palette.greenColor))
+                    ]),
+              ),
+              // actions: <Widget>[
+              //   IconButton(
+              //     icon: Icon(Icons.shopping_cart),
+              //     tooltip: 'Open shopping cart',
+              //     onPressed: () {
+              //       // handle the press
+              //     },
+              //   ),
+              // ],
+              // brightness: Brightness.light,
+              backgroundColor: Colors.transparent,
+              iconTheme: IconThemeData(
+                color: Palette.greyColor,
+              ),
+              // textTheme: TextTheme(
+              //   :
+              //   TextStyle(fontFamily: 'RobotoMono', color: Colors.deepOrange,
+              //       fontSize: 36.0),
+              // ),
+              forceElevated: true,
+              floating: true,
+              pinned: true,
+              // Make the initial height of the SliverAppBar larger than normal
+              expandedHeight: 100,
+            ),
           ),
-          const SliverAppBar(
-            backgroundColor: Colors.orangeAccent,
-            title: Text('Items in this order'), //IconButton
-            actions: <Widget>[],
-            floating: true,
+
+          SliverToBoxAdapter(
+            child: Container(
+              padding: const EdgeInsets.only(left: 20, right: 8),
+              decoration: BoxDecoration(
+                  color: Palette.greenColor,
+                  borderRadius: BorderRadius.circular(10)),
+              child: IntrinsicHeight(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const Text.rich(
+                      TextSpan(
+                          text: 'Order Id: ',
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w900,
+                              color: Colors.white),
+                          children: [
+                            TextSpan(
+                                text: '4477222',
+                                style: TextStyle(color: Colors.white))
+                          ]),
+                    ),
+                    const Expanded(child: SizedBox()),
+                    CupertinoButton(
+                        padding: const EdgeInsets.all(0),
+                        child: const Icon(
+                          Icons.arrow_forward_ios,
+                          size: 25,
+                          color: Colors.white,
+                        ),
+                        onPressed: () {}),
+                  ],
+                ),
+              ),
+            ),
           ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                return Card(
-                  margin: const EdgeInsets.all(15),
-                  child: Container(
+          // const SliverAppBar(
+          //   backgroundColor: Colors.orangeAccent,
+          //   title: Text('Items in this order'), //IconButton
+          //   actions: <Widget>[],
+          //   floating: true,
+          // ),
+          SliverPadding(
+            padding: const EdgeInsets.only(top: 40.0),
+            sliver: SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (BuildContext context, int index) {
+                  return Card(
+                    margin: const EdgeInsets.all(15),
+                    child: Container(
                       color: Colors.grey[100 * (index % 3 + 1)],
                       height: 80,
                       // alignment: Alignment.center,
@@ -426,17 +636,22 @@ class _ItemlistTileState extends State<ItemlistTile> {
                         margin: const EdgeInsets.all(2),
                         // color: msgCount[index]>=10? Colors.blue[400]:
                         //   msgCount[index]>3? Colors.blue[100]: Colors.grey,
-                        child: Center(
-                            child: Text(
-                          '${names[index]} ',
-                          style: TextStyle(fontSize: 18),
-                        )),
-                      )),
-                );
-              },
-              childCount: 1000, // 1000 list items
+                        child: Row(
+                          children: [
+                            Text(
+                              '${names[index]} ',
+                              style: TextStyle(fontSize: 18),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+                childCount: 1000, // 1000 list items
+              ),
             ),
-          ),
+          )
         ],
       ),
       Positioned(
@@ -455,9 +670,6 @@ class _ItemlistTileState extends State<ItemlistTile> {
     ]));
   }
 }
-
-
-
 
 // class HomePage extends StatelessWidget {
 //   // Generate some dummy data
@@ -500,3 +712,7 @@ class _ItemlistTileState extends State<ItemlistTile> {
 //         ));
 //   }
 // }
+
+class CheckedBloc extends Cubit<String?> {
+  CheckedBloc(String? initialState) : super(initialState);
+}

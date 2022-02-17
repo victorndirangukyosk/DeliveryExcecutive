@@ -203,32 +203,32 @@ class _OrderSummaryState extends State<OrderSummary> {
                               triggerMode: TooltipTriggerMode.tap,
                               message: 'Record addtional infor',
                               child: Image.asset('assets/infor.png'))),
-                      IconButton(
-                          color: Colors.blue,
-                          onPressed: () {
-                            context.watch<CheckedBloc>().state == 'record' ||
-                                    context.watch<CheckedBloc>().state == null
-                                ? () {
-                                    context.read<CheckedBloc>().emit('record');
-                                  }
-                                : null;
-                          },
-                          icon: const Tooltip(
-                              triggerMode: TooltipTriggerMode.tap,
-                              message: 'Record addtional infor',
-                              child: Icon(Icons.done_all_outlined))),
-                      IconButton(
-                          color: Colors.blue,
-                          onPressed: () {},
-                          icon: const Tooltip(
-                              triggerMode: TooltipTriggerMode.tap,
-                              message: 'Record addtional infor',
-                              child: Icon(Icons.delete))),
-                      IconButton(
-                          onPressed: () {}, icon: const Icon(Icons.add_box)),
-                      IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.edit_rounded)),
+                      // IconButton(
+                      //     color: Colors.blue,
+                      //     onPressed: () {
+                      //       context.watch<CheckedBloc>().state == 'record' ||
+                      //               context.watch<CheckedBloc>().state == null
+                      //           ? () {
+                      //               context.read<CheckedBloc>().emit('record');
+                      //             }
+                      //           : null;
+                      //     },
+                      //     icon: const Tooltip(
+                      //         triggerMode: TooltipTriggerMode.tap,
+                      //         message: 'Record addtional infor',
+                      //         child: Icon(Icons.done_all_outlined))),
+                      // IconButton(
+                      //     color: Colors.blue,
+                      //     onPressed: () {},
+                      //     icon: const Tooltip(
+                      //         triggerMode: TooltipTriggerMode.tap,
+                      //         message: 'Record addtional infor',
+                      //         child: Icon(Icons.delete))),
+                      // IconButton(
+                      //     onPressed: () {}, icon: const Icon(Icons.add_box)),
+                      // IconButton(
+                      //     onPressed: () {},
+                      //     icon: const Icon(Icons.edit_rounded)),
                     ],
                   ),
                 ),
