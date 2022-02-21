@@ -5,14 +5,13 @@ import 'package:delivery_app/cubits/my_orders_cubit.dart/my_orders_cubit.dart';
 import 'package:delivery_app/models/order/order.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 import 'package:delivery_app/user_interfaces/home/main_home_page.dart';
+import 'package:delivery_app/user_interfaces/packing/scanner/scanner.dart';
 import 'package:delivery_app/utilities/toast/toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-
-import '../../cubits/authentication/token_cubit.dart';
 
 class HomeIconPagePacking extends StatefulWidget {
   const HomeIconPagePacking({Key? key}) : super(key: key);

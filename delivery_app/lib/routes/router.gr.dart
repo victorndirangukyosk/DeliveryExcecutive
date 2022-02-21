@@ -20,7 +20,7 @@ import '../user_interfaces/delivery/directions_to_address/directions_to_address.
     as _i7;
 import '../user_interfaces/delivery/ready_for_delivery.dart' as _i5;
 import '../user_interfaces/home/main_home_page.dart' as _i3;
-import '../user_interfaces/my_orders_packing_person/single_order_page.dart'
+import '../user_interfaces/packing/my_orders_packing_person/single_order_page.dart'
     as _i4;
 import '../user_interfaces/splash_screen/splash_screen.dart' as _i1;
 import '../user_interfaces/user_interfaces.dart' as _i2;
