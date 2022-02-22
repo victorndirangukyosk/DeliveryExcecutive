@@ -10,7 +10,8 @@ class RestClient {
 
   Dio? get dio => _dio;
 
-  String baseURL = 'https://stage.apiadmin.kwikbasket.com/';
+  String baseURL =
+      'https://stage.apiadmin.kwikbasket.com/api/deliveryexecutive/';
 
   RestClient({BaseOptions? options}) {
     create(options);

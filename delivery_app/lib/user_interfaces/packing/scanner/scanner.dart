@@ -1,6 +1,9 @@
 import 'package:delivery_app/configuration/configuration.dart';
+import 'package:delivery_app/user_interfaces/packing/items_processing/order_list.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -59,6 +62,9 @@ class _ScannerState extends State<Scanner> {
                       ],
                     ),
                   ),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   const Expanded(
                     flex: 1,
                     child: Center(
@@ -69,7 +75,7 @@ class _ScannerState extends State<Scanner> {
                         keyboardType: TextInputType.multiline,
                         maxLines: 5,
                         decoration: InputDecoration(
-                            hintText: 'Notes',
+                            hintText: 'Selected Crates',
                             focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                               width: 5,
@@ -78,21 +84,49 @@ class _ScannerState extends State<Scanner> {
                       ),
                     ),
                   ),
-                  ElevatedButton(
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    children: const [
+                      // Expanded(
+                      //   flex: 1,
+                      //   child: TextField(
+                      //     // ignore: todo
+                      //     //TODO:CORRECT THIS CONTROLLER ERROR
+                      //     // controller: textarea,
+                      //     keyboardType: TextInputType.multiline,
+                      //     maxLines: 5,
+                      //     decoration: InputDecoration(
+                      //         hintText: 'Notes',
+                      //         focusedBorder: OutlineInputBorder(
+                      //             borderSide: BorderSide(
+                      //           width: 5,
+                      //           color: Palette.orangeColor,
+                      //         ))),
+                      //   ),
+                      // ),
+                      Expanded(
+                          flex: 2, child: Icon(FontAwesomeIcons.plusCircle)),
+                      Expanded(
+                          flex: 2, child: Icon(FontAwesomeIcons.minusCircle)),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  CupertinoButton(
+                      child: const Text('Continue'),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 4, horizontal: 8),
+                      color: Palette.orangeColor,
                       onPressed: () {
-                        print(textarea.text);
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        // ignore: prefer_const_literals_to_create_immutables
-                        children: <Widget>[
-                          const Text('CONTINUE'),
-                          const Icon(
-                            Icons.arrow_forward,
-                            color: Colors.white,
-                          )
-                        ],
-                      ))
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const OrderList()),
+                        );
+                      }),
                 ],
               ),
             ],

@@ -1,9 +1,9 @@
+import 'package:delivery_app/configuration/configuration.dart';
 import 'package:delivery_app/user_interfaces/home/main_home_page.dart';
 import 'package:delivery_app/user_interfaces/packing/items_processing/order_list.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OrderSummary extends StatefulWidget {
   const OrderSummary({Key? key}) : super(key: key);
@@ -13,25 +13,80 @@ class OrderSummary extends StatefulWidget {
 }
 
 class _OrderSummaryState extends State<OrderSummary> {
-  final List<Data> _data = [
-    Data(title: 'Order Id ', subTitle: '', isSelected: false),
-    Data(title: ' Order Id', subTitle: 'Description', isSelected: false),
-    Data(title: ' Order Id', subTitle: 'Description', isSelected: false),
-    Data(title: 'CRATE NO ', subTitle: 'Description', isSelected: false),
-    Data(title: 'CRATE NO ', subTitle: 'Description', isSelected: false),
-    Data(title: 'CRATE NO ', subTitle: 'Description', isSelected: false),
-    Data(title: 'CRATE NO ', subTitle: 'Description', isSelected: false),
-    Data(title: 'CRATE NO ', subTitle: 'Description', isSelected: false),
-    Data(title: 'CRATE NO ', subTitle: 'Description', isSelected: false),
-    Data(title: 'CRATE NO ', subTitle: 'Description', isSelected: false),
-    Data(title: 'CRATE NO ', subTitle: 'Description', isSelected: false),
-    Data(title: 'CRATE NO ', subTitle: 'Description', isSelected: false),
-    Data(title: 'CRATE NO ', subTitle: 'Description', isSelected: false),
-  ];
+  final List<Map<String, dynamic>> _items = List.generate(
+      100,
+      (index) =>
+          {"id": index, "title": "Item $index", "subtitle": "Subtitle $index"});
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Palette.orangeBackgroundColor,
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.black),
+        elevation: 0,
+        backgroundColor: Palette.orangeBackgroundColor,
+        title: const Text(
+          'Processed Orders',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+            // mainAxisAlignment: MainAxisAlignment.center,
+            children: List.generate(100, (index) => CardWidget())),
+      ), // body: Padding(
+      //   padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+      //   child: BlocConsumer<MyOrdersCubit, MyOrdersState>(
+      //     listener: (context, state) {
+      //       state.maybeWhen(
+      //           orElse: () {},
+      //           failed: (error) {
+      //             AppToast.showToast(message: error, isError: true);
+      //           });
+      //     },
+      //     builder: (context, state) {
+      //       return state.maybeWhen(
+      //           loading: () => const Center(
+      //                 child: SpinKitSpinningLines(
+      //                   color: Palette.greenColor,
+      //                 ),
+      //               ),
+      //           success: (orders) {
+      //             return CustomScrollView(
+      //               physics: const BouncingScrollPhysics(
+      //                   parent: AlwaysScrollableScrollPhysics()),
+      //               slivers: [
+      //                 CupertinoSliverRefreshControl(
+      //                   refreshTriggerPullDistance: 200,
+      //                   onRefresh: () {
+      //                     return context.read<MyOrdersCubit>().getMyOrders();
+      //                   },
+      //                 ),
+      //                 SliverList(
+      //                     delegate:
+      //                         SliverChildBuilderDelegate((context, index) {
+      //                   return SingleOrderWidget(order: orders[index]);
+      //                 }, childCount: orders.length)),
+      //               ],
+      //             );
+      //           },
+      //           orElse: () {
+      //             return Container();
+      //           });
+      //     },
+      //   ),
+      // ),
+    );
+  }
+}
+
+class CardWidget extends StatelessWidget {
+  const CardWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: const EdgeInsets.all(100.0),
+        margin: const EdgeInsets.all(30.0),
         decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
@@ -64,7 +119,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                     ),
                   ),
                   Text(
-                    'Order Processed',
+                    'Order pending approval',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -91,6 +146,24 @@ class _OrderSummaryState extends State<OrderSummary> {
                   ),
                   Spacer(),
                   Text(
+                    "Orders fully Packed",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.orange,
+                    ),
+                  ),
+                  Text(
+                    '9 Orders',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )
+                ]),
+                const SizedBox(width: 20),
+                Column(children: const [
+                  Text(
                     "Date of Delivery",
                     style: TextStyle(
                       fontSize: 16,
@@ -99,140 +172,29 @@ class _OrderSummaryState extends State<OrderSummary> {
                     ),
                   ),
                   Text(
-                    '13 Feb 2022',
+                    '12-2-2022',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
-                  )
-                ]),
-                const SizedBox(width: 20),
-                BlocProvider(
-                  create: (context) => CheckedBloc(null),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      // CupertinoButton(
-                      //     child: const Text('Approve'),
-                      //     color: Colors.blue,
-                      //     onPressed: context.watch<CheckedBloc>().state ==
-                      //                 'approve' ||
-                      //             context.watch<CheckedBloc>().state == null
-                      //         ? () {
-                      //             context.read<CheckedBloc>().emit('approve');
-                      //           }
-                      //         : null),
-                      // CupertinoButton(
-                      //     child: const Text('Reject'),
-                      //     color: Colors.blue,
-                      //     onPressed: context.watch<CheckedBloc>().state ==
-                      //                 'reject' ||
-                      //             context.watch<CheckedBloc>().state == null
-                      //         ? () {
-                      //             context.read<CheckedBloc>().emit('reject');
-                      //           }
-                      //         : null),
-                      // CupertinoButton(
-                      //     child: const Text('No'),
-                      //     color: Colors.blue,
-                      //     onPressed:
-                      //         context.watch<CheckedBloc>().state == 'no' ||
-                      //                 context.watch<CheckedBloc>().state == null
-                      //             ? () {
-                      //                 context.read<CheckedBloc>().emit('no');
-                      //               }
-                      //             : null),
-
-                      GestureDetector(
-                          onTap: () {
-                            context.watch<CheckedBloc>().state == 'approve' ||
-                                    context.watch<CheckedBloc>().state == null
-                                ? () {
-                                    context.read<CheckedBloc>().emit('approve');
-                                  }
-                                : null;
-                          },
-                          child: Tooltip(
-                            triggerMode: TooltipTriggerMode.tap,
-                            message: 'Fully Packed',
-                            child: Image.asset(
-                              'assets/good.png',
-                            ),
-                          )),
-                      const SizedBox(width: 20),
-                      GestureDetector(
-                          onTap: () {
-                            context.watch<CheckedBloc>().state ==
-                                        'disaaprove' ||
-                                    context.watch<CheckedBloc>().state == null
-                                ? () {
-                                    context
-                                        .read<CheckedBloc>()
-                                        .emit('disapprove');
-                                  }
-                                : null;
-                          },
-                          child: Tooltip(
-                              triggerMode: TooltipTriggerMode.tap,
-                              message: 'Not good/Damaged Products',
-                              child: Image.asset('assets/ungood.png'))),
-                      const SizedBox(width: 20),
-                      GestureDetector(
-                          onTap: () {
-                            context.watch<CheckedBloc>().state == 'raise' ||
-                                    context.watch<CheckedBloc>().state == null
-                                ? () {
-                                    context.read<CheckedBloc>().emit('raise');
-                                  }
-                                : null;
-                          },
-                          child: Tooltip(
-                              triggerMode: TooltipTriggerMode.tap,
-                              message: 'Unavailable',
-                              child: Image.asset('assets/unavailable.png'))),
-                      const SizedBox(width: 20),
-                      GestureDetector(
-                          onTap: () {
-                            context.watch<CheckedBloc>().state == 'record' ||
-                                    context.watch<CheckedBloc>().state == null
-                                ? () {
-                                    context.read<CheckedBloc>().emit('record');
-                                  }
-                                : null;
-                          },
-                          child: Tooltip(
-                              triggerMode: TooltipTriggerMode.tap,
-                              message: 'Record addtional infor',
-                              child: Image.asset('assets/infor.png'))),
-                      // IconButton(
-                      //     color: Colors.blue,
-                      //     onPressed: () {
-                      //       context.watch<CheckedBloc>().state == 'record' ||
-                      //               context.watch<CheckedBloc>().state == null
-                      //           ? () {
-                      //               context.read<CheckedBloc>().emit('record');
-                      //             }
-                      //           : null;
-                      //     },
-                      //     icon: const Tooltip(
-                      //         triggerMode: TooltipTriggerMode.tap,
-                      //         message: 'Record addtional infor',
-                      //         child: Icon(Icons.done_all_outlined))),
-                      // IconButton(
-                      //     color: Colors.blue,
-                      //     onPressed: () {},
-                      //     icon: const Tooltip(
-                      //         triggerMode: TooltipTriggerMode.tap,
-                      //         message: 'Record addtional infor',
-                      //         child: Icon(Icons.delete))),
-                      // IconButton(
-                      //     onPressed: () {}, icon: const Icon(Icons.add_box)),
-                      // IconButton(
-                      //     onPressed: () {},
-                      //     icon: const Icon(Icons.edit_rounded)),
-                    ],
                   ),
-                ),
+                  Spacer(),
+                  Text(
+                    "Time of Delivery",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.orange,
+                    ),
+                  ),
+                  Text(
+                    '06:00 am- 8:00 am',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ]),
               ])),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -246,7 +208,7 @@ class _OrderSummaryState extends State<OrderSummary> {
               );
             },
             child: const Text(
-              'Submit',
+              'Mark Unavailable',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -255,8 +217,4 @@ class _OrderSummaryState extends State<OrderSummary> {
           ),
         ]));
   }
-}
-
-class CheckedBloc extends Cubit<String?> {
-  CheckedBloc(String? initialState) : super(initialState);
 }

@@ -20,10 +20,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:qr_code_scanner/qr_code_scanner.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:hexcolor/hexcolor.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MainHomePage extends StatelessWidget {
   const MainHomePage({Key? key}) : super(key: key);
