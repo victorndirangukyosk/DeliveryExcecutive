@@ -78,7 +78,8 @@ class LoginCard extends StatelessWidget {
                   name: 'email',
                   validator: FormBuilderValidators.compose([
                     FormBuilderValidators.required(context),
-                    FormBuilderValidators.email(context),
+                    // FormBuilderValidators.email(context),
+                    // FormBuilderValidators.email(context),
                   ]),
                   decoration: InputDecoration(
                     hintText: 'Email',
