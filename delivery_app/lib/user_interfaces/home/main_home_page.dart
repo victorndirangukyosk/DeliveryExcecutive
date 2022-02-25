@@ -1,8 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:calendar_time/calendar_time.dart';
 import 'package:delivery_app/configuration/configuration.dart';
+import 'package:delivery_app/cubits/cubit/get_assigned_cubit.dart';
 import 'package:delivery_app/cubits/cubits.dart';
-import 'package:delivery_app/cubits/my_orders_cubit.dart/my_orders_cubit.dart';
+// import 'package:delivery_app/cubits/my_orders_cubit.dart/my_orders_cubit.dart';
 import 'package:delivery_app/models/order/order.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 import 'package:delivery_app/user_interfaces/packing/items_processing/order_list.dart';
@@ -392,106 +393,109 @@ class HomeIconPagedelivery extends StatefulWidget {
 class _HomeIconPageState extends State<HomeIconPagedelivery> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CupertinoButton(
-            onPressed: () {},
-            padding: const EdgeInsets.all(0),
-            child: Container(
-              padding: const EdgeInsets.only(left: 20, right: 8),
-              decoration: BoxDecoration(
-                  color: Palette.greenColor,
-                  borderRadius: BorderRadius.circular(10)),
-              child: Row(
-                children: [
-                  const Text(
-                    'My Deliveries',
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  const Expanded(child: SizedBox()),
-                  CupertinoButton(
-                      padding: const EdgeInsets.all(0),
-                      child: const Icon(
-                        Icons.arrow_forward_ios,
-                        size: 25,
-                        color: Colors.white,
-                      ),
-                      onPressed: () {}),
-                ],
+    context.read<GetAssignedCubit>().getAssignedOrders();
+    return Scaffold(
+      body: Container(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CupertinoButton(
+              onPressed: () {},
+              padding: const EdgeInsets.all(0),
+              child: Container(
+                padding: const EdgeInsets.only(left: 20, right: 8),
+                decoration: BoxDecoration(
+                    color: Palette.greenColor,
+                    borderRadius: BorderRadius.circular(10)),
+                child: Row(
+                  children: [
+                    const Text(
+                      'My Deliveries',
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    const Expanded(child: SizedBox()),
+                    CupertinoButton(
+                        padding: const EdgeInsets.all(0),
+                        child: const Icon(
+                          Icons.arrow_forward_ios,
+                          size: 25,
+                          color: Colors.white,
+                        ),
+                        onPressed: () {}),
+                  ],
+                ),
               ),
             ),
-          ),
-          Row(
-            children: [
-              const Text(
-                'My Orders',
-                style: TextStyle(
-                    fontSize: 16,
-                    color: Palette.greenColor,
-                    fontWeight: FontWeight.bold),
-              ),
-              const Expanded(child: SizedBox()),
-              TextButton(
-                  onPressed: () async {
-                    var x = await showDatePicker(
-                        context: context,
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime(1970),
-                        lastDate: DateTime.now());
-                    if (CalendarTime(x).isToday) {
-                      context.read<SelectDateCubit>().emit(DateTime.now());
-                    } else {
-                      context.read<SelectDateCubit>().emit(x!);
-                    }
-                  },
-                  child: Text(
-                      CalendarTime(context.watch<SelectDateCubit>().state)
-                          .toHuman
-                          .replaceFirst('at 12:00 AM', '')))
-            ],
-          ),
-          const Expanded(
-            child: MyOrdersList(),
-          ),
-          Positioned(
-              bottom: 100,
-              left: 0,
-              right: 0,
-              child: CupertinoButton(
-                onPressed: () {
-                  AutoRouter.of(context).push(const DirectionsToAddress());
-                },
-                child: Card(
-                  elevation: 10,
-                  shape: const CircleBorder(),
-                  child: CircleAvatar(
-                      radius: 60,
-                      backgroundColor: Palette.greenColor,
-                      child: Center(
-                          child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          SvgPicture.asset(
-                            'assets/gis_route.svg',
-                            height: 50,
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          const Text(
-                            'Start trip',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ],
-                      ))),
+            Row(
+              children: [
+                const Text(
+                  'My Orders',
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: Palette.greenColor,
+                      fontWeight: FontWeight.bold),
                 ),
-              ))
-        ],
+                const Expanded(child: SizedBox()),
+                TextButton(
+                    onPressed: () async {
+                      var x = await showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime(1970),
+                          lastDate: DateTime.now());
+                      if (CalendarTime(x).isToday) {
+                        context.read<SelectDateCubit>().emit(DateTime.now());
+                      } else {
+                        context.read<SelectDateCubit>().emit(x!);
+                      }
+                    },
+                    child: Text(
+                        CalendarTime(context.watch<SelectDateCubit>().state)
+                            .toHuman
+                            .replaceFirst('at 12:00 AM', '')))
+              ],
+            ),
+            const Expanded(
+              child: MyOrdersList(),
+            ),
+            Positioned(
+                bottom: 100,
+                left: 0,
+                right: 0,
+                child: CupertinoButton(
+                  onPressed: () {
+                    AutoRouter.of(context).push(const DirectionsToAddress());
+                  },
+                  child: Card(
+                    elevation: 10,
+                    shape: const CircleBorder(),
+                    child: CircleAvatar(
+                        radius: 60,
+                        backgroundColor: Palette.greenColor,
+                        child: Center(
+                            child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            SvgPicture.asset(
+                              'assets/gis_route.svg',
+                              height: 50,
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            const Text(
+                              'Start trip',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
+                        ))),
+                  ),
+                ))
+          ],
+        ),
       ),
     );
   }

@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:delivery_app/configuration/configuration.dart';
 import 'package:delivery_app/configuration/palette/palette.dart';
-import 'package:delivery_app/cubits/my_orders_cubit.dart/my_orders_cubit.dart';
+import 'package:delivery_app/cubits/cubit/get_assigned_cubit.dart';
+import 'package:delivery_app/models/assigned/assigned_order.dart';
+// import 'package:delivery_app/cubits/my_orders_cubit.dart/my_orders_cubit.dart';
 import 'package:delivery_app/models/order/order.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 import 'package:delivery_app/user_interfaces/home/main_home_page.dart';
@@ -28,64 +30,240 @@ class _HomeIconPagePackingState extends State<HomeIconPagePacking> {
 
   @override
   Widget build(BuildContext context) {
+    context.read<GetAssignedCubit>().getAssignedOrders();
     return Scaffold(
-      backgroundColor: Palette.orangeBackgroundColor,
-      appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.black),
-        elevation: 0,
-        backgroundColor: Palette.orangeBackgroundColor,
-        title: const Text(
-          'My Orders',
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.black),
+          elevation: 0,
+          backgroundColor: Palette.orangeBackgroundColor,
+          title: const Text(
+            'My Orders',
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 24,
+                fontFamily: 'Red Hat Display',
+                color: Colors.black),
+          ),
         ),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-            // mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(100, (index) => CardWidget())),
-      ), // body: Padding(
-      //   padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-      //   child: BlocConsumer<MyOrdersCubit, MyOrdersState>(
-      //     listener: (context, state) {
-      //       state.maybeWhen(
-      //           orElse: () {},
-      //           failed: (error) {
-      //             AppToast.showToast(message: error, isError: true);
-      //           });
-      //     },
-      //     builder: (context, state) {
-      //       return state.maybeWhen(
-      //           loading: () => const Center(
-      //                 child: SpinKitSpinningLines(
-      //                   color: Palette.greenColor,
-      //                 ),
-      //               ),
-      //           success: (orders) {
-      //             return CustomScrollView(
-      //               physics: const BouncingScrollPhysics(
-      //                   parent: AlwaysScrollableScrollPhysics()),
-      //               slivers: [
-      //                 CupertinoSliverRefreshControl(
-      //                   refreshTriggerPullDistance: 200,
-      //                   onRefresh: () {
-      //                     return context.read<MyOrdersCubit>().getMyOrders();
-      //                   },
-      //                 ),
-      //                 SliverList(
-      //                     delegate:
-      //                         SliverChildBuilderDelegate((context, index) {
-      //                   return SingleOrderWidget(order: orders[index]);
-      //                 }, childCount: orders.length)),
-      //               ],
-      //             );
-      //           },
-      //           orElse: () {
-      //             return Container();
-      //           });
-      //     },
-      //   ),
-      // ),
-    );
+        body: BlocConsumer<GetAssignedCubit, GetAssignedState>(
+          listener: (context, state) {
+            state.maybeWhen(
+                orElse: () {},
+                failed: (e) {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return CupertinoAlertDialog(
+                          title: Text('Error'),
+                          content: Text(e),
+                        );
+                      });
+                });
+          },
+          builder: (context, state) {
+            return state.maybeWhen(loading: () {
+              return const Center(
+                child: SpinKitDualRing(color: Colors.white),
+              );
+            }, success: (orders) {
+              return SingleChildScrollView(
+                child: Column(
+                    // mainAxisAlignment: MainAxisAlignment.center,
+                    // children: List.generate(100, (index) => CardWidget())),
+                    children: List.generate(
+                        orders.length,
+                        (index) => CardWidget(
+                              order: orders[index],
+                            ))),
+              );
+            }, orElse: () {
+              return Container();
+            });
+          },
+        )
+        //   padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+        //   child: BlocConsumer<MyOrdersCubit, MyOrdersState>(
+        //     listener: (context, state) {
+        //       state.maybeWhen(
+        //           orElse: () {},
+        //           failed: (error) {
+        //             AppToast.showToast(message: error, isError: true);
+        //           });
+        //     },
+        //     builder: (context, state) {
+        //       return state.maybeWhen(
+        //           loading: () => const Center(
+        //                 child: SpinKitSpinningLines(
+        //                   color: Palette.greenColor,
+        //                 ),
+        //               ),
+        //           success: (orders) {
+        //             return CustomScrollView(
+        //               physics: const BouncingScrollPhysics(
+        //                   parent: AlwaysScrollableScrollPhysics()),
+        //               slivers: [
+        //                 CupertinoSliverRefreshControl(
+        //                   refreshTriggerPullDistance: 200,
+        //                   onRefresh: () {
+        //                     return context.read<MyOrdersCubit>().getMyOrders();
+        //                   },
+        //                 ),
+        //                 SliverList(
+        //                     delegate:
+        //                         SliverChildBuilderDelegate((context, index) {
+        //                   return SingleOrderWidget(order: orders[index]);
+        //                 }, childCount: orders.length)),
+        //               ],
+        //             );
+        //           },
+        //           orElse: () {
+        //             return Container();
+        //           });
+        //     },
+        //   ),
+        // ),
+        );
+  }
+}
+
+class CardWidget extends StatelessWidget {
+  final AssignedOrder order;
+  const CardWidget({Key? key, required this.order}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        margin: const EdgeInsets.all(30.0),
+        decoration: const BoxDecoration(
+          color: Palette.orangeBackgroundColor,
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(30.0),
+            bottomLeft: Radius.circular(30.0),
+          ),
+        ),
+        height: 200,
+        child: Column(children: [
+          Expanded(
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                Column(children: [
+                  const Text(
+                    "Order Id",
+                    style: TextStyle(
+                      fontFamily: 'Red Hat Display',
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Palette.orangeColor,
+                    ),
+                  ),
+                  Text(
+                    order.order_id!.toString(),
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Palette.placeholderGrey,
+                      // color: Colors.orange,
+                    ),
+                  ),
+                  Spacer(),
+                  Text(
+                    "Order Status",
+                    style: TextStyle(
+                        fontFamily: 'Red Hat Display',
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Palette.orangeColor),
+                  ),
+                  Text(
+                    'Order being Processed',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Palette.placeholderGrey,
+                    ),
+                  )
+                ]),
+                const SizedBox(width: 20),
+                Column(children: const [
+                  Text(
+                    "Number of Products",
+                    style: TextStyle(
+                        fontFamily: 'Red Hat Display',
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Palette.orangeColor),
+                  ),
+                  Text(
+                    "13",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Palette.placeholderGrey,
+                      // color: Colors.orange,
+                    ),
+                  ),
+                  Spacer(),
+                  Text(
+                    "Date of Delivery",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Palette.orangeColor,
+                      fontFamily: 'Red Hat Display',
+                    ),
+                  ),
+                  Text(
+                    '13 Feb 2022',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Palette.placeholderGrey,
+                    ),
+                  )
+                ]),
+                const SizedBox(width: 20),
+                Column(children: const [
+                  Text(
+                    "Time of Delivery",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontFamily: 'Red Hat Display',
+                      fontWeight: FontWeight.bold,
+                      color: Palette.orangeColor,
+                    ),
+                  ),
+                  Text(
+                    '06:00 am- 8:00 am',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Palette.placeholderGrey,
+                    ),
+                  )
+                ]),
+              ])),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              // primary: Colors.black,
+              minimumSize: const Size.fromHeight(50), // NEW
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ItemlistTile()),
+              );
+            },
+            child: const Text(
+              'Start Processing ',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ]));
   }
 }
 
@@ -251,129 +429,6 @@ class SingleOrderWidget extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class CardWidget extends StatelessWidget {
-  const CardWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        margin: const EdgeInsets.all(30.0),
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topRight: Radius.circular(30.0),
-            bottomLeft: Radius.circular(30.0),
-          ),
-        ),
-        height: 200,
-        child: Column(children: [
-          Expanded(
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                Column(children: const [
-                  Text(
-                    "Order Id",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.orange,
-                    ),
-                  ),
-                  Spacer(),
-                  Text(
-                    "Order Status",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.orange,
-                    ),
-                  ),
-                  Text(
-                    'Order being Processed',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  )
-                ]),
-                const SizedBox(width: 20),
-                Column(children: const [
-                  Text(
-                    "Number of Products",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.orange,
-                    ),
-                  ),
-                  Text(
-                    "13",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      // color: Colors.orange,
-                    ),
-                  ),
-                  Spacer(),
-                  Text(
-                    "Date of Delivery",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.orange,
-                    ),
-                  ),
-                  Text(
-                    '13 Feb 2022',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  )
-                ]),
-                const SizedBox(width: 20),
-                Column(children: const [
-                  Text(
-                    "Time of Delivery",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.orange,
-                    ),
-                  ),
-                  Text(
-                    '06:00 am- 8:00 am',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  )
-                ]),
-              ])),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              // primary: Colors.black,
-              minimumSize: const Size.fromHeight(50), // NEW
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ItemlistTile()),
-              );
-            },
-            child: const Text(
-              'Start Processing ',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-        ]));
   }
 }
 

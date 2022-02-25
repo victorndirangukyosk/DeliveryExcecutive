@@ -7,9 +7,9 @@ part 'my_orders_state.dart';
 part 'my_orders_cubit.freezed.dart';
 
 class MyOrdersCubit extends Cubit<MyOrdersState> {
-  MyOrdersCubit() : super(MyOrdersState.initial());
+  MyOrdersCubit() : super(const MyOrdersState.initial());
   getMyOrders() async {
-    emit(MyOrdersState.loading());
+    emit(const MyOrdersState.loading());
     try {
       var response = await ApiService.getData(path: '/customer/order/orders');
       List data = response['data']['orders'];
