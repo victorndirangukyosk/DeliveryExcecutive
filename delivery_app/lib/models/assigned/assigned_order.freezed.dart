@@ -23,10 +23,18 @@ class _$AssignedOrderTearOff {
   const _$AssignedOrderTearOff();
 
   _AssignedOrder call(
-      {String? order_status, String? products_count, int? order_id}) {
+      {String? order_status,
+      String? products_count,
+      String? delivery_date,
+      String? delivery_timeslot,
+      String? comment,
+      int? order_id}) {
     return _AssignedOrder(
       order_status: order_status,
       products_count: products_count,
+      delivery_date: delivery_date,
+      delivery_timeslot: delivery_timeslot,
+      comment: comment,
       order_id: order_id,
     );
   }
@@ -43,6 +51,9 @@ const $AssignedOrder = _$AssignedOrderTearOff();
 mixin _$AssignedOrder {
   String? get order_status => throw _privateConstructorUsedError;
   String? get products_count => throw _privateConstructorUsedError;
+  String? get delivery_date => throw _privateConstructorUsedError;
+  String? get delivery_timeslot => throw _privateConstructorUsedError;
+  String? get comment => throw _privateConstructorUsedError;
   int? get order_id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -56,7 +67,13 @@ abstract class $AssignedOrderCopyWith<$Res> {
   factory $AssignedOrderCopyWith(
           AssignedOrder value, $Res Function(AssignedOrder) then) =
       _$AssignedOrderCopyWithImpl<$Res>;
-  $Res call({String? order_status, String? products_count, int? order_id});
+  $Res call(
+      {String? order_status,
+      String? products_count,
+      String? delivery_date,
+      String? delivery_timeslot,
+      String? comment,
+      int? order_id});
 }
 
 /// @nodoc
@@ -72,6 +89,9 @@ class _$AssignedOrderCopyWithImpl<$Res>
   $Res call({
     Object? order_status = freezed,
     Object? products_count = freezed,
+    Object? delivery_date = freezed,
+    Object? delivery_timeslot = freezed,
+    Object? comment = freezed,
     Object? order_id = freezed,
   }) {
     return _then(_value.copyWith(
@@ -82,6 +102,18 @@ class _$AssignedOrderCopyWithImpl<$Res>
       products_count: products_count == freezed
           ? _value.products_count
           : products_count // ignore: cast_nullable_to_non_nullable
+              as String?,
+      delivery_date: delivery_date == freezed
+          ? _value.delivery_date
+          : delivery_date // ignore: cast_nullable_to_non_nullable
+              as String?,
+      delivery_timeslot: delivery_timeslot == freezed
+          ? _value.delivery_timeslot
+          : delivery_timeslot // ignore: cast_nullable_to_non_nullable
+              as String?,
+      comment: comment == freezed
+          ? _value.comment
+          : comment // ignore: cast_nullable_to_non_nullable
               as String?,
       order_id: order_id == freezed
           ? _value.order_id
@@ -98,7 +130,13 @@ abstract class _$AssignedOrderCopyWith<$Res>
           _AssignedOrder value, $Res Function(_AssignedOrder) then) =
       __$AssignedOrderCopyWithImpl<$Res>;
   @override
-  $Res call({String? order_status, String? products_count, int? order_id});
+  $Res call(
+      {String? order_status,
+      String? products_count,
+      String? delivery_date,
+      String? delivery_timeslot,
+      String? comment,
+      int? order_id});
 }
 
 /// @nodoc
@@ -116,6 +154,9 @@ class __$AssignedOrderCopyWithImpl<$Res>
   $Res call({
     Object? order_status = freezed,
     Object? products_count = freezed,
+    Object? delivery_date = freezed,
+    Object? delivery_timeslot = freezed,
+    Object? comment = freezed,
     Object? order_id = freezed,
   }) {
     return _then(_AssignedOrder(
@@ -126,6 +167,18 @@ class __$AssignedOrderCopyWithImpl<$Res>
       products_count: products_count == freezed
           ? _value.products_count
           : products_count // ignore: cast_nullable_to_non_nullable
+              as String?,
+      delivery_date: delivery_date == freezed
+          ? _value.delivery_date
+          : delivery_date // ignore: cast_nullable_to_non_nullable
+              as String?,
+      delivery_timeslot: delivery_timeslot == freezed
+          ? _value.delivery_timeslot
+          : delivery_timeslot // ignore: cast_nullable_to_non_nullable
+              as String?,
+      comment: comment == freezed
+          ? _value.comment
+          : comment // ignore: cast_nullable_to_non_nullable
               as String?,
       order_id: order_id == freezed
           ? _value.order_id
@@ -138,7 +191,13 @@ class __$AssignedOrderCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_AssignedOrder implements _AssignedOrder {
-  _$_AssignedOrder({this.order_status, this.products_count, this.order_id});
+  _$_AssignedOrder(
+      {this.order_status,
+      this.products_count,
+      this.delivery_date,
+      this.delivery_timeslot,
+      this.comment,
+      this.order_id});
 
   factory _$_AssignedOrder.fromJson(Map<String, dynamic> json) =>
       _$$_AssignedOrderFromJson(json);
@@ -148,11 +207,17 @@ class _$_AssignedOrder implements _AssignedOrder {
   @override
   final String? products_count;
   @override
+  final String? delivery_date;
+  @override
+  final String? delivery_timeslot;
+  @override
+  final String? comment;
+  @override
   final int? order_id;
 
   @override
   String toString() {
-    return 'AssignedOrder(order_status: $order_status, products_count: $products_count, order_id: $order_id)';
+    return 'AssignedOrder(order_status: $order_status, products_count: $products_count, delivery_date: $delivery_date, delivery_timeslot: $delivery_timeslot, comment: $comment, order_id: $order_id)';
   }
 
   @override
@@ -164,6 +229,11 @@ class _$_AssignedOrder implements _AssignedOrder {
                 .equals(other.order_status, order_status) &&
             const DeepCollectionEquality()
                 .equals(other.products_count, products_count) &&
+            const DeepCollectionEquality()
+                .equals(other.delivery_date, delivery_date) &&
+            const DeepCollectionEquality()
+                .equals(other.delivery_timeslot, delivery_timeslot) &&
+            const DeepCollectionEquality().equals(other.comment, comment) &&
             const DeepCollectionEquality().equals(other.order_id, order_id));
   }
 
@@ -172,6 +242,9 @@ class _$_AssignedOrder implements _AssignedOrder {
       runtimeType,
       const DeepCollectionEquality().hash(order_status),
       const DeepCollectionEquality().hash(products_count),
+      const DeepCollectionEquality().hash(delivery_date),
+      const DeepCollectionEquality().hash(delivery_timeslot),
+      const DeepCollectionEquality().hash(comment),
       const DeepCollectionEquality().hash(order_id));
 
   @JsonKey(ignore: true)
@@ -189,6 +262,9 @@ abstract class _AssignedOrder implements AssignedOrder {
   factory _AssignedOrder(
       {String? order_status,
       String? products_count,
+      String? delivery_date,
+      String? delivery_timeslot,
+      String? comment,
       int? order_id}) = _$_AssignedOrder;
 
   factory _AssignedOrder.fromJson(Map<String, dynamic> json) =
@@ -198,6 +274,12 @@ abstract class _AssignedOrder implements AssignedOrder {
   String? get order_status;
   @override
   String? get products_count;
+  @override
+  String? get delivery_date;
+  @override
+  String? get delivery_timeslot;
+  @override
+  String? get comment;
   @override
   int? get order_id;
   @override
