@@ -10,11 +10,25 @@ part 'login_state.dart';
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(LoginInitial());
 
-  login({required Map<String, dynamic> data}) async {
+  loginDE({required Map<String, dynamic> data}) async {
     emit(LoginLoading());
     try {
       ApiResponse apiResponse = ApiResponse.fromJson(
-          await ApiService.post(data: data, path: '/login'));
+          await ApiService.post(data: data, path: 'deliveryexecutive/login'));
+      LoginResponse loginResponse = LoginResponse.fromJson(apiResponse.data!);
+      emit(LoginSuccess(loginResponse: loginResponse));
+    } on String catch (e) {
+      emit(LoginFailed(error: e));
+    } catch (e) {
+      emit(LoginFailed(error: 'An error has occured'));
+    }
+  }
+
+  loginOP({required Map<String, dynamic> data}) async {
+    emit(LoginLoading());
+    try {
+      ApiResponse apiResponse = ApiResponse.fromJson(
+          await ApiService.post(data: data, path: 'op/login'));
       LoginResponse loginResponse = LoginResponse.fromJson(apiResponse.data!);
       emit(LoginSuccess(loginResponse: loginResponse));
     } on String catch (e) {

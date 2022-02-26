@@ -22,8 +22,11 @@ AssignedOrder _$AssignedOrderFromJson(Map<String, dynamic> json) {
 class _$AssignedOrderTearOff {
   const _$AssignedOrderTearOff();
 
-  _AssignedOrder call({int? order_id}) {
+  _AssignedOrder call(
+      {String? order_status, String? products_count, int? order_id}) {
     return _AssignedOrder(
+      order_status: order_status,
+      products_count: products_count,
       order_id: order_id,
     );
   }
@@ -38,6 +41,8 @@ const $AssignedOrder = _$AssignedOrderTearOff();
 
 /// @nodoc
 mixin _$AssignedOrder {
+  String? get order_status => throw _privateConstructorUsedError;
+  String? get products_count => throw _privateConstructorUsedError;
   int? get order_id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -51,7 +56,7 @@ abstract class $AssignedOrderCopyWith<$Res> {
   factory $AssignedOrderCopyWith(
           AssignedOrder value, $Res Function(AssignedOrder) then) =
       _$AssignedOrderCopyWithImpl<$Res>;
-  $Res call({int? order_id});
+  $Res call({String? order_status, String? products_count, int? order_id});
 }
 
 /// @nodoc
@@ -65,9 +70,19 @@ class _$AssignedOrderCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? order_status = freezed,
+    Object? products_count = freezed,
     Object? order_id = freezed,
   }) {
     return _then(_value.copyWith(
+      order_status: order_status == freezed
+          ? _value.order_status
+          : order_status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      products_count: products_count == freezed
+          ? _value.products_count
+          : products_count // ignore: cast_nullable_to_non_nullable
+              as String?,
       order_id: order_id == freezed
           ? _value.order_id
           : order_id // ignore: cast_nullable_to_non_nullable
@@ -83,7 +98,7 @@ abstract class _$AssignedOrderCopyWith<$Res>
           _AssignedOrder value, $Res Function(_AssignedOrder) then) =
       __$AssignedOrderCopyWithImpl<$Res>;
   @override
-  $Res call({int? order_id});
+  $Res call({String? order_status, String? products_count, int? order_id});
 }
 
 /// @nodoc
@@ -99,9 +114,19 @@ class __$AssignedOrderCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? order_status = freezed,
+    Object? products_count = freezed,
     Object? order_id = freezed,
   }) {
     return _then(_AssignedOrder(
+      order_status: order_status == freezed
+          ? _value.order_status
+          : order_status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      products_count: products_count == freezed
+          ? _value.products_count
+          : products_count // ignore: cast_nullable_to_non_nullable
+              as String?,
       order_id: order_id == freezed
           ? _value.order_id
           : order_id // ignore: cast_nullable_to_non_nullable
@@ -113,17 +138,21 @@ class __$AssignedOrderCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_AssignedOrder implements _AssignedOrder {
-  _$_AssignedOrder({this.order_id});
+  _$_AssignedOrder({this.order_status, this.products_count, this.order_id});
 
   factory _$_AssignedOrder.fromJson(Map<String, dynamic> json) =>
       _$$_AssignedOrderFromJson(json);
 
   @override
+  final String? order_status;
+  @override
+  final String? products_count;
+  @override
   final int? order_id;
 
   @override
   String toString() {
-    return 'AssignedOrder(order_id: $order_id)';
+    return 'AssignedOrder(order_status: $order_status, products_count: $products_count, order_id: $order_id)';
   }
 
   @override
@@ -131,12 +160,19 @@ class _$_AssignedOrder implements _AssignedOrder {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _AssignedOrder &&
+            const DeepCollectionEquality()
+                .equals(other.order_status, order_status) &&
+            const DeepCollectionEquality()
+                .equals(other.products_count, products_count) &&
             const DeepCollectionEquality().equals(other.order_id, order_id));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(order_id));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(order_status),
+      const DeepCollectionEquality().hash(products_count),
+      const DeepCollectionEquality().hash(order_id));
 
   @JsonKey(ignore: true)
   @override
@@ -150,11 +186,18 @@ class _$_AssignedOrder implements _AssignedOrder {
 }
 
 abstract class _AssignedOrder implements AssignedOrder {
-  factory _AssignedOrder({int? order_id}) = _$_AssignedOrder;
+  factory _AssignedOrder(
+      {String? order_status,
+      String? products_count,
+      int? order_id}) = _$_AssignedOrder;
 
   factory _AssignedOrder.fromJson(Map<String, dynamic> json) =
       _$_AssignedOrder.fromJson;
 
+  @override
+  String? get order_status;
+  @override
+  String? get products_count;
   @override
   int? get order_id;
   @override

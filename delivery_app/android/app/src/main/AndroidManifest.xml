@@ -4,6 +4,7 @@
    <application
         android:label="Kwikbasket Delivery"
         android:allowBackup="false"
+        android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon"
         
         >

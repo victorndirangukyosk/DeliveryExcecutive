@@ -11,12 +11,12 @@ class GetAssignedCubit extends Cubit<GetAssignedState> {
   getAssignedOrders() async {
     emit(const GetAssignedState.loading());
     try {
-      var response = await Dio().get(
-          'https://stage.apiadmin.kwikbasket.com/api/deliveryexecutive/getOrders',
-          options: Options(headers: {
-            'Authorization':
-                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZWxpdmVyeV9leGVjdXRpdmVfaWQiOjM1LCJmaXJzdG5hbWUiOiJzcmkiLCJsYXN0bmFtZSI6ImRpdnlhIiwiZW1haWwiOiJzdGFsbHVyaUB0ZWNobm9icmFpbmdyb3VwLmNvbSIsInRlbGVwaG9uZSI6IjY1NDU2Nzg1NDQiLCJpYXQiOjE2NDU1NDc1MDUsImV4cCI6MTY0NTYzMzkwNX0.T8uatBj40Z9hbNfWJ4CjSNUCj0Y3fbiuobS0BujaNx0'
-          }));
+      var response = await Dio()
+          .get('https://stage.apiadmin.kwikbasket.com/api/op/getorders',
+              options: Options(headers: {
+                'Authorization':
+                    'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmRlcl9wcm9jZXNzb3JfaWQiOjEsImZpcnN0bmFtZSI6InNyaSIsImxhc3RuYW1lIjoidGFsbHVyaSIsInVzZXJuYW1lIjoic3RhbGx1cmkiLCJpYXQiOjE2NDU4Njg4NjMsImV4cCI6MTY0NTk1NTI2M30.8TIC1Re32lf-m6CDgpM1EuGQ-D_tvi3f_-UeQCC8p2U'
+              }));
       List ordersinJson = response.data['data'];
       List<AssignedOrder> orders = List.generate(ordersinJson.length,
           ((index) => AssignedOrder.fromJson(ordersinJson[index])));

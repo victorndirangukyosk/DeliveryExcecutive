@@ -5,6 +5,8 @@ part 'assigned_order.g.dart';
 @freezed
 class AssignedOrder with _$AssignedOrder {
   factory AssignedOrder({
+    String? order_status,
+    String? products_count,
     int? order_id,
   }) = _AssignedOrder;
 
