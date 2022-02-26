@@ -64,7 +64,7 @@ class _HomeIconPagePackingState extends State<HomeIconPagePacking> {
           builder: (context, state) {
             return state.maybeWhen(loading: () {
               return const Center(
-                child: SpinKitDualRing(color: Colors.white),
+                child: SpinKitDualRing(color: Palette.greenColor),
               );
             }, success: (orders) {
               return SingleChildScrollView(
@@ -160,7 +160,7 @@ class CardWidget extends StatelessWidget {
                   ),
                   Text(
                     order.order_id!.toString(),
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                       color: Palette.placeholderGrey,
@@ -168,7 +168,7 @@ class CardWidget extends StatelessWidget {
                     ),
                   ),
                   Spacer(),
-                  Text(
+                  const Text(
                     "Order Status",
                     style: TextStyle(
                         fontFamily: 'Red Hat Display',
@@ -177,7 +177,8 @@ class CardWidget extends StatelessWidget {
                         color: Palette.orangeColor),
                   ),
                   Text(
-                    'Order being Processed',
+                    // order.order_status!.toString(),
+                    "",
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
