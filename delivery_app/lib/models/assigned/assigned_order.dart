@@ -7,6 +7,9 @@ class AssignedOrder with _$AssignedOrder {
   factory AssignedOrder({
     String? order_status,
     String? products_count,
+    String? delivery_date,
+    String? delivery_timeslot,
+    String? comment,
     int? order_id,
   }) = _AssignedOrder;
 
