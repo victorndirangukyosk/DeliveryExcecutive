@@ -24,7 +24,7 @@ class _$AssignedOrderTearOff {
 
   _AssignedOrder call(
       {String? order_status,
-      String? products_count,
+      num? products_count,
       String? delivery_date,
       String? delivery_timeslot,
       String? comment,
@@ -50,7 +50,7 @@ const $AssignedOrder = _$AssignedOrderTearOff();
 /// @nodoc
 mixin _$AssignedOrder {
   String? get order_status => throw _privateConstructorUsedError;
-  String? get products_count => throw _privateConstructorUsedError;
+  num? get products_count => throw _privateConstructorUsedError;
   String? get delivery_date => throw _privateConstructorUsedError;
   String? get delivery_timeslot => throw _privateConstructorUsedError;
   String? get comment => throw _privateConstructorUsedError;
@@ -69,7 +69,7 @@ abstract class $AssignedOrderCopyWith<$Res> {
       _$AssignedOrderCopyWithImpl<$Res>;
   $Res call(
       {String? order_status,
-      String? products_count,
+      num? products_count,
       String? delivery_date,
       String? delivery_timeslot,
       String? comment,
@@ -102,7 +102,7 @@ class _$AssignedOrderCopyWithImpl<$Res>
       products_count: products_count == freezed
           ? _value.products_count
           : products_count // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as num?,
       delivery_date: delivery_date == freezed
           ? _value.delivery_date
           : delivery_date // ignore: cast_nullable_to_non_nullable
@@ -132,7 +132,7 @@ abstract class _$AssignedOrderCopyWith<$Res>
   @override
   $Res call(
       {String? order_status,
-      String? products_count,
+      num? products_count,
       String? delivery_date,
       String? delivery_timeslot,
       String? comment,
@@ -167,7 +167,7 @@ class __$AssignedOrderCopyWithImpl<$Res>
       products_count: products_count == freezed
           ? _value.products_count
           : products_count // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as num?,
       delivery_date: delivery_date == freezed
           ? _value.delivery_date
           : delivery_date // ignore: cast_nullable_to_non_nullable
@@ -205,7 +205,7 @@ class _$_AssignedOrder implements _AssignedOrder {
   @override
   final String? order_status;
   @override
-  final String? products_count;
+  final num? products_count;
   @override
   final String? delivery_date;
   @override
@@ -261,7 +261,7 @@ class _$_AssignedOrder implements _AssignedOrder {
 abstract class _AssignedOrder implements AssignedOrder {
   factory _AssignedOrder(
       {String? order_status,
-      String? products_count,
+      num? products_count,
       String? delivery_date,
       String? delivery_timeslot,
       String? comment,
@@ -273,7 +273,7 @@ abstract class _AssignedOrder implements AssignedOrder {
   @override
   String? get order_status;
   @override
-  String? get products_count;
+  num? get products_count;
   @override
   String? get delivery_date;
   @override

@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:calendar_time/calendar_time.dart';
 import 'package:delivery_app/configuration/configuration.dart';
-import 'package:delivery_app/cubits/cubit/get_assigned_cubit.dart';
+import 'package:delivery_app/cubits/get_assigned_cubit/get_assigned_cubit.dart';
 import 'package:delivery_app/cubits/cubits.dart';
 // import 'package:delivery_app/cubits/my_orders_cubit.dart/my_orders_cubit.dart';
 import 'package:delivery_app/models/order/order.dart';
@@ -9,6 +9,7 @@ import 'package:delivery_app/routes/router.gr.dart';
 import 'package:delivery_app/user_interfaces/packing/items_processing/order_list.dart';
 import 'package:delivery_app/user_interfaces/packing/my_orders_packing_person/my_orders_list.dart';
 import 'package:delivery_app/user_interfaces/packing/my_orders_packing_person/my_orders_page.dart';
+import 'package:delivery_app/user_interfaces/packing/my_orders_packing_person/product_list.dart';
 
 import 'package:delivery_app/user_interfaces/packing/order_summary/order_summary.dart';
 import 'package:delivery_app/user_interfaces/packing/scanner/scanner.dart';
@@ -572,7 +573,7 @@ class _DispatchState extends State<Dispatch> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ItemlistTile()),
+                MaterialPageRoute(builder: (context) => ProductList()),
               );
             },
             child: const Text(

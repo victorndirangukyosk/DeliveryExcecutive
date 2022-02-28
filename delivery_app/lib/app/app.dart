@@ -2,10 +2,11 @@ import 'dart:io';
 
 import 'package:delivery_app/configuration/configuration.dart';
 import 'package:delivery_app/cubits/api/reset_password_cubit/reset_password_cubit.dart';
-import 'package:delivery_app/cubits/cubit/get_assigned_cubit.dart';
+import 'package:delivery_app/cubits/get_assigned_cubit/get_assigned_cubit.dart';
 // import 'package:delivery_app/cubits/authentication/token_cubit.dart';
 import 'package:delivery_app/cubits/cubits.dart';
 import 'package:delivery_app/cubits/op_selection_cubit/op_selection_cubit.dart';
+import 'package:delivery_app/cubits/order_details_cubit/order_details_cubit.dart';
 // import 'package:delivery_app/cubits/select_date_cubit/select_date_cubit.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 import 'package:flutter/material.dart';
@@ -27,14 +28,15 @@ class KwikBasketDeliveryApp extends StatelessWidget {
           BlocProvider(create: (context) => HomeBottomNavigationIndexCubit(0)),
           BlocProvider(create: (context) => SelectDateCubit(DateTime.now())),
           BlocProvider(create: (context) => PickImageCubit(File(''))),
-          BlocProvider(create: (context) => GetAssignedCubit()),
-          BlocProvider(create: (context) => OPSelectionCubit(false)),
 
           /// This blocprovider persists the token state
           BlocProvider(create: (context) => TokenCubit('')),
 
           BlocProvider(create: (context) => LoginCubit()),
           BlocProvider(create: (context) => ResetPasswordCubit()),
+          BlocProvider(create: (context) => GetAssignedCubit()),
+          BlocProvider(create: (context) => OPSelectionCubit(false)),
+          BlocProvider(create: (context) => OrderDetailsCubit()),
         ],
         child: OverlaySupport.global(
           child: MaterialApp.router(

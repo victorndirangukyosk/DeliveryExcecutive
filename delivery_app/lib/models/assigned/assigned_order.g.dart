@@ -9,7 +9,7 @@ part of 'assigned_order.dart';
 _$_AssignedOrder _$$_AssignedOrderFromJson(Map<String, dynamic> json) =>
     _$_AssignedOrder(
       order_status: json['order_status'] as String?,
-      products_count: json['products_count'] as String?,
+      products_count: json['products_count'] as num?,
       delivery_date: json['delivery_date'] as String?,
       delivery_timeslot: json['delivery_timeslot'] as String?,
       comment: json['comment'] as String?,

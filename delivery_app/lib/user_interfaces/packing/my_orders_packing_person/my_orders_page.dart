@@ -1,12 +1,15 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:calendar_time/calendar_time.dart';
 import 'package:delivery_app/configuration/configuration.dart';
 import 'package:delivery_app/configuration/palette/palette.dart';
-import 'package:delivery_app/cubits/cubit/get_assigned_cubit.dart';
+import 'package:delivery_app/cubits/get_assigned_cubit/get_assigned_cubit.dart';
 import 'package:delivery_app/models/assigned/assigned_order.dart';
 // import 'package:delivery_app/cubits/my_orders_cubit.dart/my_orders_cubit.dart';
 import 'package:delivery_app/models/order/order.dart';
+import 'package:delivery_app/models/order/order_details.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 import 'package:delivery_app/user_interfaces/home/main_home_page.dart';
+import 'package:delivery_app/user_interfaces/packing/my_orders_packing_person/order_details_page.dart';
 import 'package:delivery_app/user_interfaces/packing/scanner/scanner.dart';
 import 'package:delivery_app/utilities/toast/toast.dart';
 import 'package:flutter/cupertino.dart';
@@ -177,8 +180,7 @@ class CardWidget extends StatelessWidget {
                         color: Palette.orangeColor),
                   ),
                   Text(
-                    // order.order_status!.toString(),
-                    "",
+                    order.order_status!.toString(),
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -187,9 +189,9 @@ class CardWidget extends StatelessWidget {
                   )
                 ]),
                 const SizedBox(width: 20),
-                Column(children: const [
-                  Text(
-                    "Number of Products",
+                Column(children: [
+                  const Text(
+                    'Number of Products',
                     style: TextStyle(
                         fontFamily: 'Red Hat Display',
                         fontSize: 20,
@@ -197,12 +199,11 @@ class CardWidget extends StatelessWidget {
                         color: Palette.orangeColor),
                   ),
                   Text(
-                    "13",
-                    style: TextStyle(
+                    order.products_count!.toString(),
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                       color: Palette.placeholderGrey,
-                      // color: Colors.orange,
                     ),
                   ),
                   Spacer(),
@@ -216,7 +217,7 @@ class CardWidget extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '13 Feb 2022',
+                    order.delivery_date!.toString(),
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -225,7 +226,7 @@ class CardWidget extends StatelessWidget {
                   )
                 ]),
                 const SizedBox(width: 20),
-                Column(children: const [
+                Column(children: [
                   Text(
                     "Time of Delivery",
                     style: TextStyle(
@@ -236,8 +237,10 @@ class CardWidget extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '06:00 am- 8:00 am',
-                    style: TextStyle(
+                    (order.delivery_timeslot!),
+                    // CalendarTime(DateTime.parse(order.delivery_timeslot!))
+                    //     .toHuman,
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                       color: Palette.placeholderGrey,
@@ -253,7 +256,7 @@ class CardWidget extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ItemlistTile()),
+                MaterialPageRoute(builder: (context) => OrderDetailsPage()),
               );
             },
             child: const Text(
