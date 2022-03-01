@@ -3,10 +3,11 @@ import 'package:calendar_time/calendar_time.dart';
 import 'package:delivery_app/configuration/configuration.dart';
 import 'package:delivery_app/configuration/palette/palette.dart';
 import 'package:delivery_app/cubits/get_assigned_cubit/get_assigned_cubit.dart';
+import 'package:delivery_app/cubits/order_details_cubit/order_details_cubit.dart';
 import 'package:delivery_app/models/assigned/assigned_order.dart';
 // import 'package:delivery_app/cubits/my_orders_cubit.dart/my_orders_cubit.dart';
-import 'package:delivery_app/models/order/order.dart';
-import 'package:delivery_app/models/order/order_details.dart';
+import 'package:delivery_app/models/order_details/order.dart';
+import 'package:delivery_app/models/order_details/order_details.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 import 'package:delivery_app/user_interfaces/home/main_home_page.dart';
 import 'package:delivery_app/user_interfaces/packing/my_orders_packing_person/order_details_page.dart';
@@ -254,6 +255,9 @@ class CardWidget extends StatelessWidget {
               minimumSize: const Size.fromHeight(50), // NEW
             ),
             onPressed: () {
+              context
+                  .read<OrderDetailsCubit>()
+                  .getOrderDetails(orderId: order.order_id!);
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => OrderDetailsPage()),

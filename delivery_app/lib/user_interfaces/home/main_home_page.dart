@@ -4,7 +4,7 @@ import 'package:delivery_app/configuration/configuration.dart';
 import 'package:delivery_app/cubits/get_assigned_cubit/get_assigned_cubit.dart';
 import 'package:delivery_app/cubits/cubits.dart';
 // import 'package:delivery_app/cubits/my_orders_cubit.dart/my_orders_cubit.dart';
-import 'package:delivery_app/models/order/order.dart';
+import 'package:delivery_app/models/order_details/order.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 import 'package:delivery_app/user_interfaces/packing/items_processing/order_list.dart';
 import 'package:delivery_app/user_interfaces/packing/my_orders_packing_person/my_orders_list.dart';
@@ -13,7 +13,6 @@ import 'package:delivery_app/user_interfaces/packing/my_orders_packing_person/pr
 
 import 'package:delivery_app/user_interfaces/packing/order_summary/order_summary.dart';
 import 'package:delivery_app/user_interfaces/packing/scanner/scanner.dart';
-import 'package:delivery_app/utilities/toast/toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -31,8 +30,8 @@ class MainHomePage extends StatelessWidget {
     List<Widget> pages = [
       const HomeIconPagePacking(),
       // const HomeIconPagedelivery(),
-      const Scanner(),
       const OrderList(),
+      const Scanner(),
       const OrderSummary(),
       const Dispatch(),
     ];
@@ -46,9 +45,9 @@ class MainHomePage extends StatelessWidget {
             },
             items: const [
               BottomNavigationBarItem(icon: Icon(Icons.home)),
-              BottomNavigationBarItem(icon: Icon(Icons.qr_code_scanner_sharp)),
               BottomNavigationBarItem(
                   icon: Icon(Icons.check_box_outline_blank)),
+              BottomNavigationBarItem(icon: Icon(Icons.qr_code_scanner_sharp)),
               // ignore: todo
               //TODO: get corresponding icons for each of these
               BottomNavigationBarItem(icon: Icon(Icons.check_box_rounded)),

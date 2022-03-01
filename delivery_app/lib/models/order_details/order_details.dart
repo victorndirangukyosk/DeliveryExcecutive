@@ -5,6 +5,7 @@ part 'order_details.g.dart';
 
 @freezed
 class OrderDetails with _$OrderDetails {
+  // ignore: non_constant_identifier_names
   factory OrderDetails({int? order_id}) = _OrderDetails;
 
   factory OrderDetails.fromJson(Map<String, dynamic> json) =>
