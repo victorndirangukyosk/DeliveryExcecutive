@@ -27,11 +27,6 @@ class HomeIconPagePacking extends StatefulWidget {
 }
 
 class _HomeIconPagePackingState extends State<HomeIconPagePacking> {
-  final List<Map<String, dynamic>> _items = List.generate(
-      100,
-      (index) =>
-          {"id": index, "title": "Item $index", "subtitle": "Subtitle $index"});
-
   @override
   Widget build(BuildContext context) {
     context.read<GetAssignedCubit>().getAssignedOrders();
@@ -218,7 +213,8 @@ class CardWidget extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    order.delivery_date!.toString(),
+                    // order.delivery_date!,
+                    CalendarTime(DateTime.parse(order.delivery_date!)).toHuman,
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -238,7 +234,7 @@ class CardWidget extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    (order.delivery_timeslot!),
+                    order.delivery_timeslot!,
                     // CalendarTime(DateTime.parse(order.delivery_timeslot!))
                     //     .toHuman,
                     style: const TextStyle(

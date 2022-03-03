@@ -22,9 +22,18 @@ OrderDetails _$OrderDetailsFromJson(Map<String, dynamic> json) {
 class _$OrderDetailsTearOff {
   const _$OrderDetailsTearOff();
 
-  _OrderDetails call({int? order_id}) {
+  _OrderDetails call(
+      {int? order_id,
+      num? products_count,
+      String? delivery_date,
+      String? delivery_timeslot,
+      String? comment}) {
     return _OrderDetails(
       order_id: order_id,
+      products_count: products_count,
+      delivery_date: delivery_date,
+      delivery_timeslot: delivery_timeslot,
+      comment: comment,
     );
   }
 
@@ -38,7 +47,12 @@ const $OrderDetails = _$OrderDetailsTearOff();
 
 /// @nodoc
 mixin _$OrderDetails {
+// dynamic? data,
   int? get order_id => throw _privateConstructorUsedError;
+  num? get products_count => throw _privateConstructorUsedError;
+  String? get delivery_date => throw _privateConstructorUsedError;
+  String? get delivery_timeslot => throw _privateConstructorUsedError;
+  String? get comment => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -51,7 +65,12 @@ abstract class $OrderDetailsCopyWith<$Res> {
   factory $OrderDetailsCopyWith(
           OrderDetails value, $Res Function(OrderDetails) then) =
       _$OrderDetailsCopyWithImpl<$Res>;
-  $Res call({int? order_id});
+  $Res call(
+      {int? order_id,
+      num? products_count,
+      String? delivery_date,
+      String? delivery_timeslot,
+      String? comment});
 }
 
 /// @nodoc
@@ -65,12 +84,32 @@ class _$OrderDetailsCopyWithImpl<$Res> implements $OrderDetailsCopyWith<$Res> {
   @override
   $Res call({
     Object? order_id = freezed,
+    Object? products_count = freezed,
+    Object? delivery_date = freezed,
+    Object? delivery_timeslot = freezed,
+    Object? comment = freezed,
   }) {
     return _then(_value.copyWith(
       order_id: order_id == freezed
           ? _value.order_id
           : order_id // ignore: cast_nullable_to_non_nullable
               as int?,
+      products_count: products_count == freezed
+          ? _value.products_count
+          : products_count // ignore: cast_nullable_to_non_nullable
+              as num?,
+      delivery_date: delivery_date == freezed
+          ? _value.delivery_date
+          : delivery_date // ignore: cast_nullable_to_non_nullable
+              as String?,
+      delivery_timeslot: delivery_timeslot == freezed
+          ? _value.delivery_timeslot
+          : delivery_timeslot // ignore: cast_nullable_to_non_nullable
+              as String?,
+      comment: comment == freezed
+          ? _value.comment
+          : comment // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -82,7 +121,12 @@ abstract class _$OrderDetailsCopyWith<$Res>
           _OrderDetails value, $Res Function(_OrderDetails) then) =
       __$OrderDetailsCopyWithImpl<$Res>;
   @override
-  $Res call({int? order_id});
+  $Res call(
+      {int? order_id,
+      num? products_count,
+      String? delivery_date,
+      String? delivery_timeslot,
+      String? comment});
 }
 
 /// @nodoc
@@ -98,12 +142,32 @@ class __$OrderDetailsCopyWithImpl<$Res> extends _$OrderDetailsCopyWithImpl<$Res>
   @override
   $Res call({
     Object? order_id = freezed,
+    Object? products_count = freezed,
+    Object? delivery_date = freezed,
+    Object? delivery_timeslot = freezed,
+    Object? comment = freezed,
   }) {
     return _then(_OrderDetails(
       order_id: order_id == freezed
           ? _value.order_id
           : order_id // ignore: cast_nullable_to_non_nullable
               as int?,
+      products_count: products_count == freezed
+          ? _value.products_count
+          : products_count // ignore: cast_nullable_to_non_nullable
+              as num?,
+      delivery_date: delivery_date == freezed
+          ? _value.delivery_date
+          : delivery_date // ignore: cast_nullable_to_non_nullable
+              as String?,
+      delivery_timeslot: delivery_timeslot == freezed
+          ? _value.delivery_timeslot
+          : delivery_timeslot // ignore: cast_nullable_to_non_nullable
+              as String?,
+      comment: comment == freezed
+          ? _value.comment
+          : comment // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -111,17 +175,30 @@ class __$OrderDetailsCopyWithImpl<$Res> extends _$OrderDetailsCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_OrderDetails implements _OrderDetails {
-  _$_OrderDetails({this.order_id});
+  _$_OrderDetails(
+      {this.order_id,
+      this.products_count,
+      this.delivery_date,
+      this.delivery_timeslot,
+      this.comment});
 
   factory _$_OrderDetails.fromJson(Map<String, dynamic> json) =>
       _$$_OrderDetailsFromJson(json);
 
-  @override
+  @override // dynamic? data,
   final int? order_id;
+  @override
+  final num? products_count;
+  @override
+  final String? delivery_date;
+  @override
+  final String? delivery_timeslot;
+  @override
+  final String? comment;
 
   @override
   String toString() {
-    return 'OrderDetails(order_id: $order_id)';
+    return 'OrderDetails(order_id: $order_id, products_count: $products_count, delivery_date: $delivery_date, delivery_timeslot: $delivery_timeslot, comment: $comment)';
   }
 
   @override
@@ -129,12 +206,24 @@ class _$_OrderDetails implements _OrderDetails {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _OrderDetails &&
-            const DeepCollectionEquality().equals(other.order_id, order_id));
+            const DeepCollectionEquality().equals(other.order_id, order_id) &&
+            const DeepCollectionEquality()
+                .equals(other.products_count, products_count) &&
+            const DeepCollectionEquality()
+                .equals(other.delivery_date, delivery_date) &&
+            const DeepCollectionEquality()
+                .equals(other.delivery_timeslot, delivery_timeslot) &&
+            const DeepCollectionEquality().equals(other.comment, comment));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(order_id));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(order_id),
+      const DeepCollectionEquality().hash(products_count),
+      const DeepCollectionEquality().hash(delivery_date),
+      const DeepCollectionEquality().hash(delivery_timeslot),
+      const DeepCollectionEquality().hash(comment));
 
   @JsonKey(ignore: true)
   @override
@@ -148,13 +237,26 @@ class _$_OrderDetails implements _OrderDetails {
 }
 
 abstract class _OrderDetails implements OrderDetails {
-  factory _OrderDetails({int? order_id}) = _$_OrderDetails;
+  factory _OrderDetails(
+      {int? order_id,
+      num? products_count,
+      String? delivery_date,
+      String? delivery_timeslot,
+      String? comment}) = _$_OrderDetails;
 
   factory _OrderDetails.fromJson(Map<String, dynamic> json) =
       _$_OrderDetails.fromJson;
 
-  @override
+  @override // dynamic? data,
   int? get order_id;
+  @override
+  num? get products_count;
+  @override
+  String? get delivery_date;
+  @override
+  String? get delivery_timeslot;
+  @override
+  String? get comment;
   @override
   @JsonKey(ignore: true)
   _$OrderDetailsCopyWith<_OrderDetails> get copyWith =>
