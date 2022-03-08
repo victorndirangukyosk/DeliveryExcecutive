@@ -31,7 +31,7 @@ class MainHomePage extends StatelessWidget {
       const HomeIconPagePacking(),
       // const HomeIconPagedelivery(),
       const OrderList(),
-      const Scanner(),
+      Scanner(),
       const OrderSummary(),
       const Dispatch(),
     ];

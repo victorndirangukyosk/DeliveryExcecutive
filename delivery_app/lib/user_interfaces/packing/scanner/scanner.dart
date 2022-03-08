@@ -1,32 +1,27 @@
 import 'package:delivery_app/configuration/configuration.dart';
+// import 'package:delivery_app/cubits/qr_scanner_cubit/qr_scanner_cubit.dart';
 import 'package:delivery_app/user_interfaces/packing/items_processing/order_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Scanner extends StatefulWidget {
-  const Scanner({Key? key}) : super(key: key);
+class Scanner extends StatelessWidget {
+  final TextEditingController textarea = TextEditingController();
 
-  @override
-  _ScannerState createState() => _ScannerState();
-}
-
-class _ScannerState extends State<Scanner> {
-  final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-  late QRViewController controller;
-  TextEditingController textarea = TextEditingController();
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
+  Scanner({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    void _onQRViewCreated(QRViewController controller) {
+      controller.scannedDataStream.listen((scanData) async {
+        // context.read<QRScannerCubit>().addQR(scanData);
+      });
+    }
+
     return Scaffold(
         // appBar: AppBar(
         //   title: Text("Scanner"),
@@ -43,7 +38,7 @@ class _ScannerState extends State<Scanner> {
                     child: Stack(
                       children: [
                         QRView(
-                          key: qrKey,
+                          key: GlobalKey(debugLabel: 'QR'),
                           onQRViewCreated: _onQRViewCreated,
                         ),
                         Center(
@@ -65,53 +60,19 @@ class _ScannerState extends State<Scanner> {
                   const SizedBox(
                     height: 20,
                   ),
-                  const Expanded(
-                    flex: 1,
-                    child: Center(
-                      child: TextField(
-                        // ignore: todo
-                        //TODO:CORRECT THIS CONTROLLER ERROR
-                        // controller: textarea,
-                        keyboardType: TextInputType.multiline,
-                        maxLines: 5,
-                        decoration: InputDecoration(
-                            hintText: 'Selected Crates',
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                              width: 5,
-                              color: Palette.orangeColor,
-                            ))),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    children: const [
-                      // Expanded(
-                      //   flex: 1,
-                      //   child: TextField(
-                      //     // ignore: todo
-                      //     //TODO:CORRECT THIS CONTROLLER ERROR
-                      //     // controller: textarea,
-                      //     keyboardType: TextInputType.multiline,
-                      //     maxLines: 5,
-                      //     decoration: InputDecoration(
-                      //         hintText: 'Notes',
-                      //         focusedBorder: OutlineInputBorder(
-                      //             borderSide: BorderSide(
-                      //           width: 5,
-                      //           color: Palette.orangeColor,
-                      //         ))),
-                      //   ),
-                      // ),
-                      Expanded(
-                          flex: 2, child: Icon(FontAwesomeIcons.plusCircle)),
-                      Expanded(
-                          flex: 2, child: Icon(FontAwesomeIcons.minusCircle)),
-                    ],
-                  ),
+                  // ...List.generate(context.read<QRScannerCubit>().state.length,
+                  //     (index) {
+                  //   Barcode barcode =
+                  //       context.read<QRScannerCubit>().state[index];
+                  //   return ListTile(
+                  //     title: Text(barcode.code!),
+                  //     trailing: IconButton(
+                  //         onPressed: () {
+                  //           context.read<QRScannerCubit>().removeQR(barcode);
+                  //         },
+                  //         icon: const Icon(Icons.remove)),
+                  //   );
+                  // }),
                   const SizedBox(
                     height: 30,
                   ),
@@ -132,41 +93,5 @@ class _ScannerState extends State<Scanner> {
             ],
           ),
         )));
-  }
-
-  void _onQRViewCreated(QRViewController controller) {
-    this.controller = controller;
-    controller.scannedDataStream.listen((scanData) async {
-      controller.pauseCamera();
-      if (await canLaunch(scanData.code!)) {
-        await launch(scanData.code!);
-        controller.resumeCamera();
-      } else {
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: const Text('Could not find viable url'),
-              content: SingleChildScrollView(
-                child: ListBody(
-                  children: <Widget>[
-                    Text('Barcode Type: ${describeEnum(scanData.format)}'),
-                    Text('Data: ${scanData.code}'),
-                  ],
-                ),
-              ),
-              actions: <Widget>[
-                TextButton(
-                  child: Text('Ok'),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ],
-            );
-          },
-        ).then((value) => controller.resumeCamera());
-      }
-    });
   }
 }
