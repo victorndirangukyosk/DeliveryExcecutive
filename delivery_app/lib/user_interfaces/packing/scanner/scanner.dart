@@ -1,13 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:delivery_app/configuration/configuration.dart';
+import 'package:delivery_app/cubits/crates_qr_cubit/crates_qr_cubit.dart';
+import 'package:delivery_app/routes/router.gr.dart';
 // import 'package:delivery_app/cubits/qr_scanner_cubit/qr_scanner_cubit.dart';
 import 'package:delivery_app/user_interfaces/packing/items_processing/order_list.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class Scanner extends StatelessWidget {
   final TextEditingController textarea = TextEditingController();
@@ -18,14 +18,21 @@ class Scanner extends StatelessWidget {
   Widget build(BuildContext context) {
     void _onQRViewCreated(QRViewController controller) {
       controller.scannedDataStream.listen((scanData) async {
-        // context.read<QRScannerCubit>().addQR(scanData);
+        context.read<CratesQRCubit>().addQR(scanData);
       });
     }
 
     return Scaffold(
-        // appBar: AppBar(
-        //   title: Text("Scanner"),
-        // ),
+        appBar: AppBar(
+          title: const Text('Scanner'),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  AutoRouter.of(context).push(CratesRoute());
+                },
+                icon: const Icon(Icons.check))
+          ],
+        ),
         resizeToAvoidBottomInset: false,
         body: SafeArea(
             child: Center(

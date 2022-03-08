@@ -10,8 +10,8 @@
 //
 // ignore_for_file: type=lint
 
-import 'package:auto_route/auto_route.dart' as _i10;
-import 'package:flutter/material.dart' as _i11;
+import 'package:auto_route/auto_route.dart' as _i11;
+import 'package:flutter/material.dart' as _i12;
 
 import '../user_interfaces/authentication_screens/reset_password_page.dart'
     as _i8;
@@ -24,77 +24,83 @@ import '../user_interfaces/packing/my_orders_packing_person/order_details_page.d
     as _i9;
 import '../user_interfaces/packing/my_orders_packing_person/single_order_page.dart'
     as _i4;
+import '../user_interfaces/packing/scanner/crates_page.dart' as _i10;
 import '../user_interfaces/splash_screen/splash_screen.dart' as _i1;
 import '../user_interfaces/user_interfaces.dart' as _i2;
 
-class AppRouter extends _i10.RootStackRouter {
-  AppRouter([_i11.GlobalKey<_i11.NavigatorState>? navigatorKey])
+class AppRouter extends _i11.RootStackRouter {
+  AppRouter([_i12.GlobalKey<_i12.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i10.PageFactory> pagesMap = {
+  final Map<String, _i11.PageFactory> pagesMap = {
     SplashScreen.name: (routeData) {
-      return _i10.MaterialPageX<dynamic>(
+      return _i11.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i1.SplashScreen());
     },
     LoginRoute.name: (routeData) {
-      return _i10.MaterialPageX<dynamic>(
+      return _i11.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i2.LoginPage());
     },
     RegisterRoute.name: (routeData) {
-      return _i10.MaterialPageX<dynamic>(
+      return _i11.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i2.RegisterPage());
     },
     MainHomeRoute.name: (routeData) {
-      return _i10.MaterialPageX<dynamic>(
+      return _i11.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i3.MainHomePage());
     },
     SingleOrderRoute.name: (routeData) {
-      return _i10.MaterialPageX<dynamic>(
+      return _i11.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i4.SingleOrderPage());
     },
     ReadyForDelivery.name: (routeData) {
-      return _i10.MaterialPageX<dynamic>(
+      return _i11.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i5.ReadyForDelivery());
     },
     CustomerVerification.name: (routeData) {
-      return _i10.MaterialPageX<dynamic>(
+      return _i11.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i6.CustomerVerification());
     },
     DirectionsToAddress.name: (routeData) {
-      return _i10.MaterialPageX<dynamic>(
+      return _i11.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i7.DirectionsToAddress());
     },
     ResetPasswordRoute.name: (routeData) {
-      return _i10.MaterialPageX<dynamic>(
+      return _i11.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i8.ResetPasswordPage());
     },
     OrderDetailsRoute.name: (routeData) {
-      return _i10.MaterialPageX<dynamic>(
+      return _i11.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i9.OrderDetailsPage());
+    },
+    CratesRoute.name: (routeData) {
+      return _i11.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i10.CratesPage());
     }
   };
 
   @override
-  List<_i10.RouteConfig> get routes => [
-        _i10.RouteConfig(SplashScreen.name, path: '/'),
-        _i10.RouteConfig(LoginRoute.name, path: '/login-page'),
-        _i10.RouteConfig(RegisterRoute.name, path: '/register-page'),
-        _i10.RouteConfig(MainHomeRoute.name, path: '/main-home-page'),
-        _i10.RouteConfig(SingleOrderRoute.name, path: '/single-order-page'),
-        _i10.RouteConfig(ReadyForDelivery.name, path: '/ready-for-delivery'),
-        _i10.RouteConfig(CustomerVerification.name,
+  List<_i11.RouteConfig> get routes => [
+        _i11.RouteConfig(SplashScreen.name, path: '/'),
+        _i11.RouteConfig(LoginRoute.name, path: '/login-page'),
+        _i11.RouteConfig(RegisterRoute.name, path: '/register-page'),
+        _i11.RouteConfig(MainHomeRoute.name, path: '/main-home-page'),
+        _i11.RouteConfig(SingleOrderRoute.name, path: '/single-order-page'),
+        _i11.RouteConfig(ReadyForDelivery.name, path: '/ready-for-delivery'),
+        _i11.RouteConfig(CustomerVerification.name,
             path: '/customer-verification'),
-        _i10.RouteConfig(DirectionsToAddress.name,
+        _i11.RouteConfig(DirectionsToAddress.name,
             path: '/directions-to-address'),
-        _i10.RouteConfig(ResetPasswordRoute.name, path: '/reset-password-page'),
-        _i10.RouteConfig(OrderDetailsRoute.name, path: '/order-details-page')
+        _i11.RouteConfig(ResetPasswordRoute.name, path: '/reset-password-page'),
+        _i11.RouteConfig(OrderDetailsRoute.name, path: '/order-details-page'),
+        _i11.RouteConfig(CratesRoute.name, path: '/crates-page')
       ];
 }
 
 /// generated route for
 /// [_i1.SplashScreen]
-class SplashScreen extends _i10.PageRouteInfo<void> {
+class SplashScreen extends _i11.PageRouteInfo<void> {
   const SplashScreen() : super(SplashScreen.name, path: '/');
 
   static const String name = 'SplashScreen';
@@ -102,7 +108,7 @@ class SplashScreen extends _i10.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.LoginPage]
-class LoginRoute extends _i10.PageRouteInfo<void> {
+class LoginRoute extends _i11.PageRouteInfo<void> {
   const LoginRoute() : super(LoginRoute.name, path: '/login-page');
 
   static const String name = 'LoginRoute';
@@ -110,7 +116,7 @@ class LoginRoute extends _i10.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.RegisterPage]
-class RegisterRoute extends _i10.PageRouteInfo<void> {
+class RegisterRoute extends _i11.PageRouteInfo<void> {
   const RegisterRoute() : super(RegisterRoute.name, path: '/register-page');
 
   static const String name = 'RegisterRoute';
@@ -118,7 +124,7 @@ class RegisterRoute extends _i10.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.MainHomePage]
-class MainHomeRoute extends _i10.PageRouteInfo<void> {
+class MainHomeRoute extends _i11.PageRouteInfo<void> {
   const MainHomeRoute() : super(MainHomeRoute.name, path: '/main-home-page');
 
   static const String name = 'MainHomeRoute';
@@ -126,7 +132,7 @@ class MainHomeRoute extends _i10.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.SingleOrderPage]
-class SingleOrderRoute extends _i10.PageRouteInfo<void> {
+class SingleOrderRoute extends _i11.PageRouteInfo<void> {
   const SingleOrderRoute()
       : super(SingleOrderRoute.name, path: '/single-order-page');
 
@@ -135,7 +141,7 @@ class SingleOrderRoute extends _i10.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i5.ReadyForDelivery]
-class ReadyForDelivery extends _i10.PageRouteInfo<void> {
+class ReadyForDelivery extends _i11.PageRouteInfo<void> {
   const ReadyForDelivery()
       : super(ReadyForDelivery.name, path: '/ready-for-delivery');
 
@@ -144,7 +150,7 @@ class ReadyForDelivery extends _i10.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i6.CustomerVerification]
-class CustomerVerification extends _i10.PageRouteInfo<void> {
+class CustomerVerification extends _i11.PageRouteInfo<void> {
   const CustomerVerification()
       : super(CustomerVerification.name, path: '/customer-verification');
 
@@ -153,7 +159,7 @@ class CustomerVerification extends _i10.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i7.DirectionsToAddress]
-class DirectionsToAddress extends _i10.PageRouteInfo<void> {
+class DirectionsToAddress extends _i11.PageRouteInfo<void> {
   const DirectionsToAddress()
       : super(DirectionsToAddress.name, path: '/directions-to-address');
 
@@ -162,7 +168,7 @@ class DirectionsToAddress extends _i10.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i8.ResetPasswordPage]
-class ResetPasswordRoute extends _i10.PageRouteInfo<void> {
+class ResetPasswordRoute extends _i11.PageRouteInfo<void> {
   const ResetPasswordRoute()
       : super(ResetPasswordRoute.name, path: '/reset-password-page');
 
@@ -171,9 +177,17 @@ class ResetPasswordRoute extends _i10.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i9.OrderDetailsPage]
-class OrderDetailsRoute extends _i10.PageRouteInfo<void> {
+class OrderDetailsRoute extends _i11.PageRouteInfo<void> {
   const OrderDetailsRoute()
       : super(OrderDetailsRoute.name, path: '/order-details-page');
 
   static const String name = 'OrderDetailsRoute';
+}
+
+/// generated route for
+/// [_i10.CratesPage]
+class CratesRoute extends _i11.PageRouteInfo<void> {
+  const CratesRoute() : super(CratesRoute.name, path: '/crates-page');
+
+  static const String name = 'CratesRoute';
 }
