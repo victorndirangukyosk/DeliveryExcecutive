@@ -71,8 +71,10 @@ class AppRouter extends _i11.RootStackRouter {
           routeData: routeData, child: const _i8.ResetPasswordPage());
     },
     OrderDetailsRoute.name: (routeData) {
+      final args = routeData.argsAs<OrderDetailsRouteArgs>();
       return _i11.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i9.OrderDetailsPage());
+          routeData: routeData,
+          child: _i9.OrderDetailsPage(key: args.key, orderId: args.orderId));
     },
     CratesRoute.name: (routeData) {
       return _i11.MaterialPageX<dynamic>(
@@ -177,11 +179,26 @@ class ResetPasswordRoute extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i9.OrderDetailsPage]
-class OrderDetailsRoute extends _i11.PageRouteInfo<void> {
-  const OrderDetailsRoute()
-      : super(OrderDetailsRoute.name, path: '/order-details-page');
+class OrderDetailsRoute extends _i11.PageRouteInfo<OrderDetailsRouteArgs> {
+  OrderDetailsRoute({_i12.Key? key, required int orderId})
+      : super(OrderDetailsRoute.name,
+            path: '/order-details-page',
+            args: OrderDetailsRouteArgs(key: key, orderId: orderId));
 
   static const String name = 'OrderDetailsRoute';
+}
+
+class OrderDetailsRouteArgs {
+  const OrderDetailsRouteArgs({this.key, required this.orderId});
+
+  final _i12.Key? key;
+
+  final int orderId;
+
+  @override
+  String toString() {
+    return 'OrderDetailsRouteArgs{key: $key, orderId: $orderId}';
+  }
 }
 
 /// generated route for

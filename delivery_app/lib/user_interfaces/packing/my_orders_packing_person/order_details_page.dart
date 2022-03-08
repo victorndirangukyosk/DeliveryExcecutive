@@ -17,7 +17,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class OrderDetailsPage extends StatefulWidget {
-  const OrderDetailsPage({Key? key}) : super(key: key);
+  final int orderId;
+  const OrderDetailsPage({Key? key, required this.orderId}) : super(key: key);
 
   @override
   State<OrderDetailsPage> createState() => _OrderDetailsPageState();
@@ -43,6 +44,8 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
+    context.read<OrderDetailsCubit>().getOrderDetails(orderId: widget.orderId);
+    context.read<OdetailsListCubit>().getOdetails(orderId: widget.orderId);
     return Scaffold(
       body: BlocConsumer<OrderDetailsCubit, OrderDetailsState>(
         listener: (context, state) {
@@ -378,8 +381,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) =>
-                                                  Scanner()),
+                                              builder: (context) => Scanner()),
                                         );
                                       }),
                                 ),
