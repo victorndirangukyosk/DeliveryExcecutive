@@ -6,7 +6,6 @@
         android:allowBackup="false"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon"
-        
         >
         <activity android:name="io.flutter.plugins.urllauncher.WebViewActivity"
            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"

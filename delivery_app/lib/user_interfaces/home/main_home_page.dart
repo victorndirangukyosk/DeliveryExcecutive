@@ -14,7 +14,6 @@ import 'package:delivery_app/user_interfaces/packing/my_orders_packing_person/pr
 import 'package:delivery_app/user_interfaces/packing/order_summary/order_summary.dart';
 import 'package:delivery_app/user_interfaces/packing/scanner/scanner.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -31,7 +30,7 @@ class MainHomePage extends StatelessWidget {
       const HomeIconPagePacking(),
       // const HomeIconPagedelivery(),
       const OrderList(),
-      const Scanner(),
+      Scanner(),
       const OrderSummary(),
       const Dispatch(),
     ];
