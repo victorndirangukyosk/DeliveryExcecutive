@@ -19,8 +19,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-import '../../../cubits/order_details_list/odetails_list_cubit.dart';
-
 class HomeIconPagePacking extends StatefulWidget {
   const HomeIconPagePacking({Key? key}) : super(key: key);
 
@@ -253,10 +251,12 @@ class CardWidget extends StatelessWidget {
               minimumSize: const Size.fromHeight(50), // NEW
             ),
             onPressed: () {
-             
+              context
+                  .read<OrderDetailsCubit>()
+                  .getOrderDetails(orderId: order.order_id!);
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => OrderDetailsPage(orderId: order.order_id!,)),
+                MaterialPageRoute(builder: (context) => OrderDetailsPage()),
               );
             },
             child: const Text(

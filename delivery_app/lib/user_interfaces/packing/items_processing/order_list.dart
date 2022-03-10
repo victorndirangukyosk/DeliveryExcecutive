@@ -399,7 +399,7 @@ class _OrderListState extends State<OrderList> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Scanner()),
+                                    builder: (context) => const Scanner()),
                               );
                             }),
                       ),
@@ -1124,7 +1124,7 @@ class _OrderListState extends State<OrderList> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>  Scanner()),
+                                    builder: (context) => const Scanner()),
                               );
                             }),
                       ),
@@ -1448,7 +1448,7 @@ class _OrderListState extends State<OrderList> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>  Scanner()),
+                            builder: (context) => const Scanner()),
                       );
                     }),
                 // Container(

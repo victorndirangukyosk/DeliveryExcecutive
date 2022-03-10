@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:calendar_time/calendar_time.dart';
 import 'package:delivery_app/configuration/configuration.dart';
 import 'package:delivery_app/cubits/authentication/token_cubit.dart';
 import 'package:delivery_app/cubits/order_details_cubit/order_details_cubit.dart';
@@ -17,8 +16,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class OrderDetailsPage extends StatefulWidget {
-  final int orderId;
-  const OrderDetailsPage({Key? key, required this.orderId}) : super(key: key);
+  const OrderDetailsPage({Key? key}) : super(key: key);
 
   @override
   State<OrderDetailsPage> createState() => _OrderDetailsPageState();
@@ -44,8 +42,6 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    context.read<OrderDetailsCubit>().getOrderDetails(orderId: widget.orderId);
-    context.read<OdetailsListCubit>().getOdetails(orderId: widget.orderId);
     return Scaffold(
       body: BlocConsumer<OrderDetailsCubit, OrderDetailsState>(
         listener: (context, state) {
@@ -357,10 +353,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                     ),
                                     SizedBox(width: 20),
                                     Text(
-                                      // orderDetails.delivery_date.toString(),
-                                      CalendarTime(DateTime.parse(
-                                              orderDetails.delivery_date!))
-                                          .toHuman,
+                                      orderDetails.delivery_date.toString(),
                                       style: const TextStyle(
                                           color: Palette.placeholderGrey,
                                           fontSize: 16),
@@ -381,7 +374,8 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) => Scanner()),
+                                              builder: (context) =>
+                                                  const Scanner()),
                                         );
                                       }),
                                 ),
@@ -521,6 +515,197 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                                 ],
                                               ),
                                             ),
+                                            const VerticalDivider(),
+                                            Expanded(
+                                              child:
+                                                  DropdownButtonHideUnderline(
+                                                child: ButtonTheme(
+                                                  alignedDropdown: true,
+                                                  child: DropdownButton(
+                                                      isExpanded: true,
+                                                      items: List.generate(
+                                                          users.length,
+                                                          (index) =>
+                                                              DropdownMenuItem(
+                                                                value: users[
+                                                                    index],
+                                                                child: Row(
+                                                                  children: [
+                                                                    users[index]
+                                                                        .icon,
+                                                                    const SizedBox(
+                                                                      width: 10,
+                                                                    ),
+                                                                    Text(
+                                                                      users[index]
+                                                                          .name,
+                                                                      style: const TextStyle(
+                                                                          color:
+                                                                              Colors.red),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              )),
+                                                      onChanged: (value) {
+                                                        setState(() {
+                                                          value;
+                                                        });
+                                                      },
+                                                      hint:
+                                                          const Text("Status")),
+                                                ),
+                                              ),
+                                            ),
+                                            // BlocProvider(
+                                            //   create: (context) => CheckedBloc(null),
+                                            //   child: Row(
+                                            //     mainAxisSize: MainAxisSize.min,
+                                            //     children: <Widget>[
+                                            //       // CupertinoButton(
+                                            //       //     child: const Text('Approve'),
+                                            //       //     color: Colors.blue,
+                                            //       //     onPressed: context.watch<CheckedBloc>().state ==
+                                            //       //                 'approve' ||
+                                            //       //             context.watch<CheckedBloc>().state == null
+                                            //       //         ? () {
+                                            //       //             context.read<CheckedBloc>().emit('approve');
+                                            //       //           }
+                                            //       //         : null),
+                                            //       // CupertinoButton(
+                                            //       //     child: const Text('Reject'),
+                                            //       //     color: Colors.blue,
+                                            //       //     onPressed: context.watch<CheckedBloc>().state ==
+                                            //       //                 'reject' ||
+                                            //       //             context.watch<CheckedBloc>().state == null
+                                            //       //         ? () {
+                                            //       //             context.read<CheckedBloc>().emit('reject');
+                                            //       //           }
+                                            //       //         : null),
+                                            //       // CupertinoButton(
+                                            //       //     child: const Text('No'),
+                                            //       //     color: Colors.blue,
+                                            //       //     onPressed:
+                                            //       //         context.watch<CheckedBloc>().state == 'no' ||
+                                            //       //                 context.watch<CheckedBloc>().state == null
+                                            //       //             ? () {
+                                            //       //                 context.read<CheckedBloc>().emit('no');
+                                            //       //               }
+                                            //       //             : null),
+
+                                            //       GestureDetector(
+                                            //           onTap: () {
+                                            //             context.watch<CheckedBloc>().state ==
+                                            //                         'approve' ||
+                                            //                     context
+                                            //                             .watch<CheckedBloc>()
+                                            //                             .state ==
+                                            //                         null
+                                            //                 ? () {
+                                            //                     context
+                                            //                         .read<CheckedBloc>()
+                                            //                         .emit('approve');
+                                            //                   }
+                                            //                 : null;
+                                            //           },
+                                            //           child: Tooltip(
+                                            //             triggerMode: TooltipTriggerMode.tap,
+                                            //             message: 'Fully Packed',
+                                            //             child: Image.asset(
+                                            //               'assets/good.png',
+                                            //             ),
+                                            //           )),
+                                            //       const SizedBox(width: 20),
+                                            //       GestureDetector(
+                                            //           onTap: () {
+                                            //             context.watch<CheckedBloc>().state ==
+                                            //                         'disaaprove' ||
+                                            //                     context
+                                            //                             .watch<CheckedBloc>()
+                                            //                             .state ==
+                                            //                         null
+                                            //                 ? () {
+                                            //                     context
+                                            //                         .read<CheckedBloc>()
+                                            //                         .emit('disapprove');
+                                            //                   }
+                                            //                 : null;
+                                            //           },
+                                            //           child: Tooltip(
+                                            //               triggerMode: TooltipTriggerMode.tap,
+                                            //               message: 'Not good/Damaged Products',
+                                            //               child: Image.asset(
+                                            //                   'assets/ungood.png'))),
+                                            //       const SizedBox(width: 20),
+                                            //       GestureDetector(
+                                            //           onTap: () {
+                                            //             context.watch<CheckedBloc>().state ==
+                                            //                         'raise' ||
+                                            //                     context
+                                            //                             .watch<CheckedBloc>()
+                                            //                             .state ==
+                                            //                         null
+                                            //                 ? () {
+                                            //                     context
+                                            //                         .read<CheckedBloc>()
+                                            //                         .emit('raise');
+                                            //                   }
+                                            //                 : null;
+                                            //           },
+                                            //           child: Tooltip(
+                                            //               triggerMode: TooltipTriggerMode.tap,
+                                            //               message: 'Unavailable',
+                                            //               child: Image.asset(
+                                            //                   'assets/unavailable.png'))),
+                                            //       const SizedBox(width: 20),
+                                            //       GestureDetector(
+                                            //           onTap: () {
+                                            //             context.watch<CheckedBloc>().state ==
+                                            //                         'record' ||
+                                            //                     context
+                                            //                             .watch<CheckedBloc>()
+                                            //                             .state ==
+                                            //                         null
+                                            //                 ? () {
+                                            //                     context
+                                            //                         .read<CheckedBloc>()
+                                            //                         .emit('record');
+                                            //                   }
+                                            //                 : null;
+                                            //           },
+                                            //           child: Tooltip(
+                                            //               triggerMode: TooltipTriggerMode.tap,
+                                            //               message: 'Record addtional infor',
+                                            //               child:
+                                            //                   Image.asset('assets/infor.png'))),
+                                            //       // IconButton(
+                                            //       //     color: Colors.blue,
+                                            //       //     onPressed: () {
+                                            //       //       context.watch<CheckedBloc>().state == 'record' ||
+                                            //       //               context.watch<CheckedBloc>().state == null
+                                            //       //           ? () {
+                                            //       //               context.read<CheckedBloc>().emit('record');
+                                            //       //             }
+                                            //       //           : null;
+                                            //       //     },
+                                            //       //     icon: const Tooltip(
+                                            //       //         triggerMode: TooltipTriggerMode.tap,
+                                            //       //         message: 'Record addtional infor',
+                                            //       //         child: Icon(Icons.done_all_outlined))),
+                                            //       // IconButton(
+                                            //       //     color: Colors.blue,
+                                            //       //     onPressed: () {},
+                                            //       //     icon: const Tooltip(
+                                            //       //         triggerMode: TooltipTriggerMode.tap,
+                                            //       //         message: 'Record addtional infor',
+                                            //       //         child: Icon(Icons.delete))),
+                                            //       // IconButton(
+                                            //       //     onPressed: () {}, icon: const Icon(Icons.add_box)),
+                                            //       // IconButton(
+                                            //       //     onPressed: () {},
+                                            //       //     icon: const Icon(Icons.edit_rounded)),
+                                            //     ],
+                                            //   ),
+                                            // ),
                                           ],
                                         ),
                                       ),
