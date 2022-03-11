@@ -11,6 +11,7 @@
 // ignore_for_file: type=lint
 
 import 'package:auto_route/auto_route.dart' as _i11;
+import 'package:flutter/cupertino.dart' as _i13;
 import 'package:flutter/material.dart' as _i12;
 
 import '../user_interfaces/authentication_screens/reset_password_page.dart'
@@ -77,8 +78,10 @@ class AppRouter extends _i11.RootStackRouter {
           child: _i9.OrderDetailsPage(key: args.key, orderId: args.orderId));
     },
     CratesRoute.name: (routeData) {
+      final args = routeData.argsAs<CratesRouteArgs>();
       return _i11.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i10.CratesPage());
+          routeData: routeData,
+          child: _i10.CratesPage(key: args.key, orderId: args.orderId));
     }
   };
 
@@ -180,7 +183,7 @@ class ResetPasswordRoute extends _i11.PageRouteInfo<void> {
 /// generated route for
 /// [_i9.OrderDetailsPage]
 class OrderDetailsRoute extends _i11.PageRouteInfo<OrderDetailsRouteArgs> {
-  OrderDetailsRoute({_i12.Key? key, required int orderId})
+  OrderDetailsRoute({_i13.Key? key, required int orderId})
       : super(OrderDetailsRoute.name,
             path: '/order-details-page',
             args: OrderDetailsRouteArgs(key: key, orderId: orderId));
@@ -191,7 +194,7 @@ class OrderDetailsRoute extends _i11.PageRouteInfo<OrderDetailsRouteArgs> {
 class OrderDetailsRouteArgs {
   const OrderDetailsRouteArgs({this.key, required this.orderId});
 
-  final _i12.Key? key;
+  final _i13.Key? key;
 
   final int orderId;
 
@@ -203,8 +206,24 @@ class OrderDetailsRouteArgs {
 
 /// generated route for
 /// [_i10.CratesPage]
-class CratesRoute extends _i11.PageRouteInfo<void> {
-  const CratesRoute() : super(CratesRoute.name, path: '/crates-page');
+class CratesRoute extends _i11.PageRouteInfo<CratesRouteArgs> {
+  CratesRoute({_i13.Key? key, required int orderId})
+      : super(CratesRoute.name,
+            path: '/crates-page',
+            args: CratesRouteArgs(key: key, orderId: orderId));
 
   static const String name = 'CratesRoute';
+}
+
+class CratesRouteArgs {
+  const CratesRouteArgs({this.key, required this.orderId});
+
+  final _i13.Key? key;
+
+  final int orderId;
+
+  @override
+  String toString() {
+    return 'CratesRouteArgs{key: $key, orderId: $orderId}';
+  }
 }

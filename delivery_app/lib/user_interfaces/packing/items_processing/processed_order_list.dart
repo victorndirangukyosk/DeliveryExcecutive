@@ -1,27 +1,26 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:calendar_time/calendar_time.dart';
-import 'package:delivery_app/configuration/configuration.dart';
 import 'package:delivery_app/cubits/authentication/token_cubit.dart';
 import 'package:delivery_app/cubits/order_details_cubit/order_details_cubit.dart';
 import 'package:delivery_app/cubits/order_details_list/odetails_list_cubit.dart';
-import 'package:delivery_app/models/odetails_list/odetails_list.dart';
-import 'package:delivery_app/models/order_details/order_details.dart';
-import 'package:delivery_app/routes/router.gr.dart';
 import 'package:delivery_app/theme/box_icons.dart';
-import 'package:delivery_app/user_interfaces/packing/my_orders_packing_person/my_orders_page.dart';
+import 'package:delivery_app/user_interfaces/home/main_home_page.dart';
 import 'package:delivery_app/user_interfaces/packing/scanner/scanner.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:delivery_app/configuration/configuration.dart';
+import 'package:delivery_app/routes/router.gr.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 
-class OrderDetailsPage extends StatefulWidget {
+class OrderList extends StatefulWidget {
   final int orderId;
-  const OrderDetailsPage({Key? key, required this.orderId}) : super(key: key);
+  const OrderList({Key? key, required this.orderId}) : super(key: key);
 
   @override
-  State<OrderDetailsPage> createState() => _OrderDetailsPageState();
+  _OrderListState createState() => _OrderListState();
 }
 
 class Item {
@@ -30,7 +29,7 @@ class Item {
   final Icon icon;
 }
 
-class _OrderDetailsPageState extends State<OrderDetailsPage> {
+class _OrderListState extends State<OrderList> {
   TextEditingController textarea = TextEditingController();
   final PageController _controller = PageController(initialPage: 0);
   List<Item> users = [
@@ -370,24 +369,6 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                 const SizedBox(
                                   height: 12,
                                 ),
-                                Align(
-                                  alignment: Alignment.bottomRight,
-                                  child: CupertinoButton(
-                                      child: const Text('Add Crates'),
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 4, horizontal: 8),
-                                      color: Palette.orangeColor,
-                                      onPressed: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => Scanner( order: orderDetails,)),
-                                        );
-                                      }),
-                                ),
-                                const SizedBox(
-                                  height: 20,
-                                )
                               ],
                             ),
                           ],
@@ -420,6 +401,13 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                               ),
                               Text(
                                 'Specifications',
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                'Action area',
                                 style: TextStyle(
                                     fontSize: 20,
                                     color: Colors.white,
@@ -521,6 +509,47 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                                 ],
                                               ),
                                             ),
+                                            const VerticalDivider(),
+                                            Expanded(
+                                              child:
+                                                  DropdownButtonHideUnderline(
+                                                child: ButtonTheme(
+                                                  alignedDropdown: true,
+                                                  child: DropdownButton(
+                                                      isExpanded: true,
+                                                      items: List.generate(
+                                                          users.length,
+                                                          (index) =>
+                                                              DropdownMenuItem(
+                                                                value: users[
+                                                                    index],
+                                                                child: Row(
+                                                                  children: [
+                                                                    users[index]
+                                                                        .icon,
+                                                                    const SizedBox(
+                                                                      width: 10,
+                                                                    ),
+                                                                    Text(
+                                                                      users[index]
+                                                                          .name,
+                                                                      style: const TextStyle(
+                                                                          color:
+                                                                              Colors.red),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              )),
+                                                      onChanged: (value) {
+                                                        setState(() {
+                                                          value;
+                                                        });
+                                                      },
+                                                      hint:
+                                                          const Text("Status")),
+                                                ),
+                                              ),
+                                            ),
                                           ],
                                         ),
                                       ),
@@ -546,4 +575,18 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
       ),
     );
   }
+}
+
+class CheckedBloc extends Cubit<String?> {
+  CheckedBloc(String? initialState) : super(initialState);
+}
+
+// ignore: todo
+//TODO:move these lines to models folder
+//data class for the list tile
+class Data {
+  final String title, subTitle;
+  bool isSelected;
+
+  Data({required this.isSelected, required this.title, required this.subTitle});
 }
