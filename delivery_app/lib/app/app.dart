@@ -4,6 +4,7 @@ import 'package:delivery_app/configuration/configuration.dart';
 import 'package:delivery_app/cubits/add_crates_cubit/add_crates_cubit.dart';
 import 'package:delivery_app/cubits/api/reset_password_cubit/reset_password_cubit.dart';
 import 'package:delivery_app/cubits/crates_qr_cubit/crates_qr_cubit.dart';
+import 'package:delivery_app/cubits/fetch_order_status_cubit/fetch_order_status_cubit.dart';
 import 'package:delivery_app/cubits/get_assigned_cubit/get_assigned_cubit.dart';
 // import 'package:delivery_app/cubits/authentication/token_cubit.dart';
 import 'package:delivery_app/cubits/cubits.dart';
@@ -45,6 +46,9 @@ class KwikBasketDeliveryApp extends StatelessWidget {
         // an empty list wrappped with one
         BlocProvider(create: (context) => CratesQRCubit([])),
         BlocProvider(create: (context) => AddCratesCubit()),
+
+        BlocProvider(
+            create: (context) => FetchOrderStatusCubit()..fetchOrderStatuses()),
       ],
       child: OverlaySupport.global(
         child: MaterialApp.router(

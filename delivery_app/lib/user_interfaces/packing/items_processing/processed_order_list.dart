@@ -1,7 +1,9 @@
 import 'package:calendar_time/calendar_time.dart';
 import 'package:delivery_app/cubits/authentication/token_cubit.dart';
+import 'package:delivery_app/cubits/fetch_order_status_cubit/fetch_order_status_cubit.dart';
 import 'package:delivery_app/cubits/order_details_cubit/order_details_cubit.dart';
 import 'package:delivery_app/cubits/order_details_list/odetails_list_cubit.dart';
+import 'package:delivery_app/services/api_service/api_service.dart';
 import 'package:delivery_app/theme/box_icons.dart';
 import 'package:delivery_app/user_interfaces/home/main_home_page.dart';
 import 'package:delivery_app/user_interfaces/packing/scanner/scanner.dart';
@@ -9,42 +11,28 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:delivery_app/configuration/configuration.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
-class OrderList extends StatefulWidget {
+class OrderList extends StatelessWidget {
   final int orderId;
-  const OrderList({Key? key, required this.orderId}) : super(key: key);
 
-  @override
-  _OrderListState createState() => _OrderListState();
-}
-
-class Item {
-  const Item(this.name, this.icon);
-  final String name;
-  final Icon icon;
-}
-
-class _OrderListState extends State<OrderList> {
   TextEditingController textarea = TextEditingController();
   final PageController _controller = PageController(initialPage: 0);
-  List<Item> users = [
-    const Item('Fully Packed', Icon(FontAwesomeIcons.dolly)),
-    const Item('Not Good/Damaged', Icon(FontAwesomeIcons.question)),
-    const Item('Not Available', Icon(FontAwesomeIcons.minusCircle)),
-    const Item('Information Recording', Icon(FontAwesomeIcons.edit)),
-  ];
+
   bool isPerformingRequest = false;
   ScrollController _scrollController = ScrollController();
 
+  OrderList({Key? key, required this.orderId}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    context.read<OrderDetailsCubit>().getOrderDetails(orderId: widget.orderId);
-    context.read<OdetailsListCubit>().getOdetails(orderId: widget.orderId);
+    context.read<OrderDetailsCubit>().getOrderDetails(orderId: orderId);
+    context.read<OdetailsListCubit>().getOdetails(orderId: orderId);
     return Scaffold(
       body: BlocConsumer<OrderDetailsCubit, OrderDetailsState>(
         listener: (context, state) {
@@ -515,38 +503,62 @@ class _OrderListState extends State<OrderList> {
                                                   DropdownButtonHideUnderline(
                                                 child: ButtonTheme(
                                                   alignedDropdown: true,
-                                                  child: DropdownButton(
-                                                      isExpanded: true,
-                                                      items: List.generate(
-                                                          users.length,
-                                                          (index) =>
-                                                              DropdownMenuItem(
-                                                                value: users[
-                                                                    index],
-                                                                child: Row(
-                                                                  children: [
-                                                                    users[index]
-                                                                        .icon,
-                                                                    const SizedBox(
-                                                                      width: 10,
-                                                                    ),
-                                                                    Text(
-                                                                      users[index]
-                                                                          .name,
-                                                                      style: const TextStyle(
-                                                                          color:
-                                                                              Colors.red),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              )),
-                                                      onChanged: (value) {
-                                                        setState(() {
-                                                          value;
-                                                        });
-                                                      },
-                                                      hint:
-                                                          const Text("Status")),
+                                                  child: BlocBuilder<
+                                                      FetchOrderStatusCubit,
+                                                      FetchOrderStatusState>(
+                                                    builder: (context, state) {
+                                                      return state.maybeWhen(
+                                                          orElse: () {
+                                                        return Container();
+                                                      }, loading: () {
+                                                        return CupertinoActivityIndicator();
+                                                      }, success: (statuses) {
+                                                        return FormBuilderDropdown<
+                                                                int>(
+                                                            name: 'status',
+                                                            isExpanded: true,
+                                                            items:
+                                                                List.generate(
+                                                                    statuses
+                                                                        .length,
+                                                                    (index) =>
+                                                                        DropdownMenuItem(
+                                                                          value: int.parse(statuses[index]
+                                                                              .order_status_id
+                                                                              .toString()),
+                                                                          child:
+                                                                              Row(
+                                                                            children: [
+                                                                              CircleAvatar(
+                                                                                backgroundColor: Color(int.parse('0xFF${statuses[index].color}')),
+                                                                              ),
+                                                                              const SizedBox(
+                                                                                width: 10,
+                                                                              ),
+                                                                              Text(
+                                                                                statuses[index].name!,
+                                                                                style: const TextStyle(color: Colors.red),
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        )),
+                                                            onChanged:
+                                                                (value) async {
+                                                              ApiService.post(
+                                                                  data: {
+                                                                    'order_status_id':
+                                                                        value!,
+                                                                    'order_id':
+                                                                        orderId
+                                                                  },
+                                                                  path:
+                                                                      'op/orderStatus');
+                                                            },
+                                                            hint: const Text(
+                                                                "Status"));
+                                                      });
+                                                    },
+                                                  ),
                                                 ),
                                               ),
                                             ),
