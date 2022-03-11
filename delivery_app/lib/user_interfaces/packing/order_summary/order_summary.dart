@@ -1,9 +1,13 @@
 import 'package:delivery_app/configuration/configuration.dart';
+import 'package:delivery_app/cubits/fetch_order_status_cubit/fetch_order_status_cubit.dart';
+import 'package:delivery_app/cubits/get_order_statuses/get_order_statuses_cubit.dart';
 import 'package:delivery_app/user_interfaces/home/main_home_page.dart';
 import 'package:delivery_app/user_interfaces/packing/items_processing/processed_order_list.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class OrderSummary extends StatefulWidget {
   const OrderSummary({Key? key}) : super(key: key);
@@ -13,12 +17,11 @@ class OrderSummary extends StatefulWidget {
 }
 
 class _OrderSummaryState extends State<OrderSummary> {
-  final List<Map<String, dynamic>> _items = List.generate(
-      100,
-      (index) =>
-          {"id": index, "title": "Item $index", "subtitle": "Subtitle $index"});
+  
   @override
   Widget build(BuildContext context) {
+    // context.read<GetOrderStatusesCubit>().getOrdersState();
+    // context.read<FetchOrderStatusCubit>().getOrderStatusState();
     return Scaffold(
       backgroundColor: Palette.orangeBackgroundColor,
       appBar: AppBar(
@@ -27,13 +30,49 @@ class _OrderSummaryState extends State<OrderSummary> {
         backgroundColor: Palette.orangeBackgroundColor,
         title: const Text(
           'Processed Orders',
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 24,
+              fontFamily: 'Red Hat Display',
+              color: Colors.black),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-            // mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(100, (index) => CardWidget())),
+      body: BlocConsumer<FetchOrderStatusCubit, FetchOrderStatusState>(
+        listener: (context, state) {
+          // TODO: implement listener
+          state.maybeWhen(
+              orElse: () {},
+              failed: (e) {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return CupertinoAlertDialog(
+                        title: Text('Error'),
+                        content: Text(e),
+                      );
+                    });
+              });
+        },
+        builder: (context, state) {
+          return state.maybeWhen(
+            loading: () {
+              return const Center(
+                child: SpinKitDualRing(color: Palette.greenColor),
+              );
+            },
+            success: (status) {
+              return SingleChildScrollView(
+                child: Column(
+                    // mainAxisAlignment: MainAxisAlignment.center,
+                    children:
+                        List.generate(status.length, (index) => CardWidget())),
+              );
+            },
+            orElse: () {
+              return Container();
+            },
+          );
+        },
       ), // body: Padding(
       //   padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
       //   child: BlocConsumer<MyOrdersCubit, MyOrdersState>(
