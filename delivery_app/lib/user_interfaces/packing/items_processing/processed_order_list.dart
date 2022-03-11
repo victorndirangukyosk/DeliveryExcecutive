@@ -7,6 +7,7 @@ import 'package:delivery_app/services/api_service/api_service.dart';
 import 'package:delivery_app/theme/box_icons.dart';
 import 'package:delivery_app/user_interfaces/home/main_home_page.dart';
 import 'package:delivery_app/user_interfaces/packing/scanner/scanner.dart';
+import 'package:delivery_app/utilities/toast/toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -17,6 +18,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:delivery_app/configuration/configuration.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:overlay_support/overlay_support.dart';
 
 class OrderList extends StatelessWidget {
   final int orderId;
@@ -544,15 +546,18 @@ class OrderList extends StatelessWidget {
                                                                         )),
                                                             onChanged:
                                                                 (value) async {
-                                                              ApiService.post(
-                                                                  data: {
-                                                                    'order_status_id':
-                                                                        value!,
-                                                                    'order_id':
-                                                                        orderId
-                                                                  },
-                                                                  path:
-                                                                      'op/orderStatus');
+                                                              await ApiService
+                                                                  .post(data: {
+                                                                'order_status_id':
+                                                                    value!,
+                                                                'order_id':
+                                                                    orderId
+                                                              }, path: 'op/orderStatus');
+                                                              AppToast.showToast(
+                                                                  message:
+                                                                      'Success',
+                                                                  isError:
+                                                                      false);
                                                             },
                                                             hint: const Text(
                                                                 "Status"));
