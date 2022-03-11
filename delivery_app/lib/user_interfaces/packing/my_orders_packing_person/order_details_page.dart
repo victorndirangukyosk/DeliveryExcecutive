@@ -440,7 +440,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                   context: context,
                                   builder: (context) {
                                     return CupertinoAlertDialog(
-                                      title: Text('Error'),
+                                      title: const Text('Error'),
                                       content: Text(e),
                                     );
                                   });
