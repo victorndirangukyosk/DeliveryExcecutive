@@ -1,18 +1,21 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:delivery_app/configuration/configuration.dart';
 import 'package:delivery_app/cubits/crates_qr_cubit/crates_qr_cubit.dart';
+import 'package:delivery_app/models/assigned/assigned_order.dart';
+import 'package:delivery_app/models/order_details/order_details.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 // import 'package:delivery_app/cubits/qr_scanner_cubit/qr_scanner_cubit.dart';
-import 'package:delivery_app/user_interfaces/packing/items_processing/order_list.dart';
+import 'package:delivery_app/user_interfaces/packing/items_processing/processed_order_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class Scanner extends StatelessWidget {
+  final OrderDetails order;
   final TextEditingController textarea = TextEditingController();
 
-  Scanner({Key? key}) : super(key: key);
+  Scanner({Key? key, required this.order}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +31,8 @@ class Scanner extends StatelessWidget {
           actions: [
             IconButton(
                 onPressed: () {
-                  AutoRouter.of(context).push(CratesRoute());
+                  AutoRouter.of(context)
+                      .push(CratesRoute(orderId: order.order_id!));
                 },
                 icon: const Icon(Icons.check))
           ],
@@ -83,18 +87,19 @@ class Scanner extends StatelessWidget {
                   const SizedBox(
                     height: 30,
                   ),
-                  CupertinoButton(
-                      child: const Text('Continue'),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 4, horizontal: 8),
-                      color: Palette.orangeColor,
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const OrderList()),
-                        );
-                      }),
+                  // CupertinoButton(
+                  //     child: const Text('Continue'),
+                  //     padding: const EdgeInsets.symmetric(
+                  //         vertical: 4, horizontal: 8),
+                  //     color: Palette.orangeColor,
+                  //     onPressed: () {
+                  //       Navigator.push(
+                  //         context,
+                  //         MaterialPageRoute(
+                  //             builder: (context) =>
+                  //                  OrderList(orderId: order.order_id!)),
+                  //       );
+                  //     }),
                 ],
               ),
             ],

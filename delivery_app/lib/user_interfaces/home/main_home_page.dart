@@ -6,7 +6,7 @@ import 'package:delivery_app/cubits/cubits.dart';
 // import 'package:delivery_app/cubits/my_orders_cubit.dart/my_orders_cubit.dart';
 import 'package:delivery_app/models/order_details/order.dart';
 import 'package:delivery_app/routes/router.gr.dart';
-import 'package:delivery_app/user_interfaces/packing/items_processing/order_list.dart';
+import 'package:delivery_app/user_interfaces/packing/items_processing/processed_order_list.dart';
 import 'package:delivery_app/user_interfaces/packing/my_orders_packing_person/my_orders_list.dart';
 import 'package:delivery_app/user_interfaces/packing/my_orders_packing_person/my_orders_page.dart';
 import 'package:delivery_app/user_interfaces/packing/my_orders_packing_person/product_list.dart';
@@ -29,8 +29,8 @@ class MainHomePage extends StatelessWidget {
     List<Widget> pages = [
       const HomeIconPagePacking(),
       // const HomeIconPagedelivery(),
-      const OrderList(),
-      Scanner(),
+      // const OrderList(),
+      // Scanner(),
       const OrderSummary(),
       const Dispatch(),
     ];
@@ -44,9 +44,9 @@ class MainHomePage extends StatelessWidget {
             },
             items: const [
               BottomNavigationBarItem(icon: Icon(Icons.home)),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.check_box_outline_blank)),
-              BottomNavigationBarItem(icon: Icon(Icons.qr_code_scanner_sharp)),
+              // BottomNavigationBarItem(
+              // icon: Icon(Icons.check_box_outline_blank)),
+              // BottomNavigationBarItem(icon: Icon(Icons.qr_code_scanner_sharp)),
               // ignore: todo
               //TODO: get corresponding icons for each of these
               BottomNavigationBarItem(icon: Icon(Icons.check_box_rounded)),
