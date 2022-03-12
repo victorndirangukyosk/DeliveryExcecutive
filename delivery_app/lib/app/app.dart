@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:delivery_app/configuration/configuration.dart';
 import 'package:delivery_app/cubits/add_crates_cubit/add_crates_cubit.dart';
+import 'package:delivery_app/cubits/add_missing_products/add_missing_products_cubit_cubit.dart';
 import 'package:delivery_app/cubits/api/reset_password_cubit/reset_password_cubit.dart';
 import 'package:delivery_app/cubits/crates_qr_cubit/crates_qr_cubit.dart';
 import 'package:delivery_app/cubits/fetch_order_status_cubit/fetch_order_status_cubit.dart';
@@ -14,6 +15,7 @@ import 'package:delivery_app/cubits/order_details_list/odetails_list_cubit.dart'
 // import 'package:delivery_app/cubits/qr_scanner_cubit/qr_scanner_cubit.dart';
 // import 'package:delivery_app/cubits/select_date_cubit/select_date_cubit.dart';
 import 'package:delivery_app/routes/router.gr.dart';
+import 'package:delivery_app/user_interfaces/packing/items_processing/processed_order_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -46,6 +48,8 @@ class KwikBasketDeliveryApp extends StatelessWidget {
         // an empty list wrappped with one
         BlocProvider(create: (context) => CratesQRCubit([])),
         BlocProvider(create: (context) => AddCratesCubit()),
+        BlocProvider(create: (context) => AddMissingProductsCubitCubit()),
+        BlocProvider(create: (context) => MissingCubit([])),
 
         BlocProvider(
             create: (context) => FetchOrderStatusCubit()..fetchOrderStatuses()),

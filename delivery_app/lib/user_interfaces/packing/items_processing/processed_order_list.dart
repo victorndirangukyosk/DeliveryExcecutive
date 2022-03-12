@@ -1,8 +1,10 @@
 import 'package:calendar_time/calendar_time.dart';
+import 'package:delivery_app/cubits/add_missing_products/add_missing_products_cubit_cubit.dart';
 import 'package:delivery_app/cubits/authentication/token_cubit.dart';
 import 'package:delivery_app/cubits/fetch_order_status_cubit/fetch_order_status_cubit.dart';
 import 'package:delivery_app/cubits/order_details_cubit/order_details_cubit.dart';
 import 'package:delivery_app/cubits/order_details_list/odetails_list_cubit.dart';
+import 'package:delivery_app/models/missing/missing.dart';
 import 'package:delivery_app/services/api_service/api_service.dart';
 import 'package:delivery_app/theme/box_icons.dart';
 import 'package:delivery_app/user_interfaces/home/main_home_page.dart';
@@ -21,6 +23,71 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:overlay_support/overlay_support.dart';
 
 class OrderList extends StatelessWidget {
+  TextEditingController _textFieldController1 = TextEditingController();
+  TextEditingController _textFieldController2 = TextEditingController();
+  final _formKey = GlobalKey<FormBuilderState>();
+
+  _displayDialog(BuildContext context) async {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return FormBuilder(
+            key: _formKey,
+            child: AlertDialog(
+              title: Text('Add Packing Notes'),
+              content: SizedBox(
+                height: 200,
+                child: Column(
+                  children: [
+                    FormBuilderTextField(
+                      name: 'quantity',
+                      textInputAction: TextInputAction.go,
+                      decoration: InputDecoration(hintText: "quantity"),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    FormBuilderTextField(
+                      name: 'quantity_required',
+                      controller: _textFieldController1,
+                      textInputAction: TextInputAction.go,
+                      decoration:
+                          InputDecoration(hintText: "quantity required"),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    FormBuilderTextField(
+                      name: 'comment',
+                      controller: _textFieldController2,
+                      textInputAction: TextInputAction.go,
+                      decoration:
+                          InputDecoration(hintText: "additional comments"),
+                    ),
+                  ],
+                ),
+              ),
+              actions: <Widget>[
+                CupertinoButton(
+                  child: Text(
+                    'Submit',
+                  ),
+                  onPressed: () {
+                    if (_formKey.currentState!.saveAndValidate()) {
+                      context
+                          .read<MissingCubit>()
+                          .state
+                          .add(Missing.fromJson(_formKey.currentState!.value));
+                      Navigator.of(context).pop();
+                    }
+                  },
+                )
+              ],
+            ),
+          );
+        });
+  }
+
   final int orderId;
 
   TextEditingController textarea = TextEditingController();
@@ -500,73 +567,23 @@ class OrderList extends StatelessWidget {
                                               ),
                                             ),
                                             const VerticalDivider(),
-                                            Expanded(
-                                              child:
-                                                  DropdownButtonHideUnderline(
-                                                child: ButtonTheme(
-                                                  alignedDropdown: true,
-                                                  child: BlocBuilder<
-                                                      FetchOrderStatusCubit,
-                                                      FetchOrderStatusState>(
-                                                    builder: (context, state) {
-                                                      return state.maybeWhen(
-                                                          orElse: () {
-                                                        return Container();
-                                                      }, loading: () {
-                                                        return CupertinoActivityIndicator();
-                                                      }, success: (statuses) {
-                                                        return FormBuilderDropdown<
-                                                                int>(
-                                                            name: 'status',
-                                                            isExpanded: true,
-                                                            items:
-                                                                List.generate(
-                                                                    statuses
-                                                                        .length,
-                                                                    (index) =>
-                                                                        DropdownMenuItem(
-                                                                          value: int.parse(statuses[index]
-                                                                              .order_status_id
-                                                                              .toString()),
-                                                                          child:
-                                                                              Row(
-                                                                            children: [
-                                                                              CircleAvatar(
-                                                                                backgroundColor: Color(int.parse('0xFF${statuses[index].color}')),
-                                                                              ),
-                                                                              const SizedBox(
-                                                                                width: 10,
-                                                                              ),
-                                                                              Text(
-                                                                                statuses[index].name!,
-                                                                                style: const TextStyle(color: Colors.red),
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                        )),
-                                                            onChanged:
-                                                                (value) async {
-                                                              await ApiService
-                                                                  .post(data: {
-                                                                'order_status_id':
-                                                                    value!,
-                                                                'order_id':
-                                                                    orderId
-                                                              }, path: 'op/orderStatus');
-                                                              AppToast.showToast(
-                                                                  message:
-                                                                      'Success',
-                                                                  isError:
-                                                                      false);
-                                                            },
-                                                            hint: const Text(
-                                                                "Status"));
-                                                      });
-                                                    },
+                                            CupertinoButton(
+                                              child: Row(
+                                                children: const [
+                                                  Icon(BoxIcons.bx_note),
+                                                  Text(
+                                                    '...Add Packing Notes',
+                                                    style: TextStyle(
+                                                      color:
+                                                          Palette.orangeColor,
+                                                    ),
                                                   ),
-                                                ),
+                                                ],
                                               ),
-                                            ),
+                                              onPressed: () {
+                                                _displayDialog(context);
+                                              },
+                                            )
                                           ],
                                         ),
                                       ),
@@ -581,6 +598,81 @@ class OrderList extends StatelessWidget {
                           },
                         );
                       }),
+                      Column(
+                        children: [
+                          CupertinoButton(
+                            child: Text('Proceed'),
+                            onPressed: () {
+                              context
+                                  .read<AddMissingProductsCubitCubit>()
+                                  .addMissing(
+                                      products:
+                                          context.read<MissingCubit>().state,
+                                      orderId: orderId);
+
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          const Dispatch()));
+                            },
+                          ),
+                          DropdownButtonHideUnderline(
+                            child: ButtonTheme(
+                              alignedDropdown: true,
+                              child: BlocBuilder<FetchOrderStatusCubit,
+                                  FetchOrderStatusState>(
+                                builder: (context, state) {
+                                  return state.maybeWhen(orElse: () {
+                                    return Container();
+                                  }, loading: () {
+                                    return CupertinoActivityIndicator();
+                                  }, success: (statuses) {
+                                    return FormBuilderDropdown<int>(
+                                        name: 'status',
+                                        isExpanded: true,
+                                        items: List.generate(
+                                            statuses.length,
+                                            (index) => DropdownMenuItem(
+                                                  value: int.parse(
+                                                      statuses[index]
+                                                          .order_status_id
+                                                          .toString()),
+                                                  child: Row(
+                                                    children: [
+                                                      CircleAvatar(
+                                                        backgroundColor: Color(
+                                                            int.parse(
+                                                                '0xFF${statuses[index].color}')),
+                                                      ),
+                                                      const SizedBox(
+                                                        width: 10,
+                                                      ),
+                                                      Text(
+                                                        statuses[index].name!,
+                                                        style: const TextStyle(
+                                                            color: Colors.red),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                )),
+                                        onChanged: (value) async {
+                                          await ApiService.post(data: {
+                                            'order_status_id': value!,
+                                            'order_id': orderId
+                                          }, path: 'op/orderStatus');
+                                          AppToast.showToast(
+                                              message: 'Success',
+                                              isError: false);
+                                        },
+                                        hint: const Text("Status"));
+                                  });
+                                },
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ));
@@ -606,4 +698,8 @@ class Data {
   bool isSelected;
 
   Data({required this.isSelected, required this.title, required this.subTitle});
+}
+
+class MissingCubit extends Cubit<List<Missing>> {
+  MissingCubit(List<Missing> initialState) : super(initialState);
 }

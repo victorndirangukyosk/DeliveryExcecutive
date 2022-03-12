@@ -569,10 +569,10 @@ class _DispatchState extends State<Dispatch> {
               minimumSize: const Size.fromHeight(50), // NEW
             ),
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ProductList()),
-              );
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (BuildContext context) {
+                return HomeIconPagePacking();
+              }));
             },
             child: const Text(
               'Dispatch',
