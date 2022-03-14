@@ -31,7 +31,7 @@ class MainHomePage extends StatelessWidget {
       // const HomeIconPagedelivery(),
       // const OrderList(),
       // Scanner(),
-      const OrderSummary(),
+      // const OrderSummary(),
       const Dispatch(),
     ];
 
@@ -49,7 +49,7 @@ class MainHomePage extends StatelessWidget {
               // BottomNavigationBarItem(icon: Icon(Icons.qr_code_scanner_sharp)),
               // ignore: todo
               //TODO: get corresponding icons for each of these
-              BottomNavigationBarItem(icon: Icon(Icons.check_box_rounded)),
+              // BottomNavigationBarItem(icon: Icon(Icons.check_box_rounded)),
               BottomNavigationBarItem(
                   icon: Icon(Icons.delivery_dining_rounded)),
             ]),
@@ -569,10 +569,7 @@ class _DispatchState extends State<Dispatch> {
               minimumSize: const Size.fromHeight(50), // NEW
             ),
             onPressed: () {
-              Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (BuildContext context) {
-                return HomeIconPagePacking();
-              }));
+              AutoRouter.of(context).replace(const MainHomeRoute());
             },
             child: const Text(
               'Dispatch',

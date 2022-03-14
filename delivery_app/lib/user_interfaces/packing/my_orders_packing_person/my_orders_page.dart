@@ -145,108 +145,111 @@ class CardWidget extends StatelessWidget {
         ),
         height: 200,
         child: Column(children: [
-          Expanded(
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                Column(children: [
-                  const Text(
-                    "Order Id",
-                    style: TextStyle(
-                      fontFamily: 'Red Hat Display',
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Palette.orangeColor,
-                    ),
-                  ),
-                  Text(
-                    order.order_id!.toString(),
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Palette.placeholderGrey,
-                      // color: Colors.orange,
-                    ),
-                  ),
-                  Spacer(),
-                  const Text(
-                    "Order Status",
-                    style: TextStyle(
+          Container(
+            height: 120,
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Column(mainAxisSize: MainAxisSize.min, children: [
+                    const Text(
+                      "Order Id",
+                      style: TextStyle(
                         fontFamily: 'Red Hat Display',
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: Palette.orangeColor),
-                  ),
-                  Text(
-                    order.order_status!.toString(),
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Palette.placeholderGrey,
+                        color: Palette.orangeColor,
+                      ),
                     ),
-                  )
-                ]),
-                const SizedBox(width: 20),
-                Column(children: [
-                  const Text(
-                    'Number of Products',
-                    style: TextStyle(
-                        fontFamily: 'Red Hat Display',
+                    Text(
+                      order.order_id!.toString(),
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Palette.placeholderGrey,
+                        // color: Colors.orange,
+                      ),
+                    ),
+                    Spacer(),
+                    const Text(
+                      "Order Status",
+                      style: TextStyle(
+                          fontFamily: 'Red Hat Display',
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Palette.orangeColor),
+                    ),
+                    Text(
+                      order.order_status!.toString(),
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Palette.placeholderGrey,
+                      ),
+                    )
+                  ]),
+                  const SizedBox(width: 20),
+                  Column(children: [
+                    const Text(
+                      'Number of Products',
+                      style: TextStyle(
+                          fontFamily: 'Red Hat Display',
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Palette.orangeColor),
+                    ),
+                    Text(
+                      order.products_count!.toString(),
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Palette.placeholderGrey,
+                      ),
+                    ),
+                    Spacer(),
+                    Text(
+                      "Date of Delivery",
+                      style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: Palette.orangeColor),
-                  ),
-                  Text(
-                    order.products_count!.toString(),
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Palette.placeholderGrey,
+                        color: Palette.orangeColor,
+                        fontFamily: 'Red Hat Display',
+                      ),
                     ),
-                  ),
-                  Spacer(),
-                  Text(
-                    "Date of Delivery",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Palette.orangeColor,
-                      fontFamily: 'Red Hat Display',
+                    Text(
+                      // order.delivery_date!,
+                      CalendarTime(DateTime.parse(order.delivery_date!))
+                          .toHuman,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Palette.placeholderGrey,
+                      ),
+                    )
+                  ]),
+                  const SizedBox(width: 20),
+                  Column(children: [
+                    Text(
+                      "Time of Delivery",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontFamily: 'Red Hat Display',
+                        fontWeight: FontWeight.bold,
+                        color: Palette.orangeColor,
+                      ),
                     ),
-                  ),
-                  Text(
-                    // order.delivery_date!,
-                    CalendarTime(DateTime.parse(order.delivery_date!)).toHuman,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Palette.placeholderGrey,
-                    ),
-                  )
+                    Text(
+                      order.delivery_timeslot!,
+                      // CalendarTime(DateTime.parse(order.delivery_timeslot!))
+                      //     .toHuman,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Palette.placeholderGrey,
+                      ),
+                    )
+                  ]),
                 ]),
-                const SizedBox(width: 20),
-                Column(children: [
-                  Text(
-                    "Time of Delivery",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontFamily: 'Red Hat Display',
-                      fontWeight: FontWeight.bold,
-                      color: Palette.orangeColor,
-                    ),
-                  ),
-                  Text(
-                    order.delivery_timeslot!,
-                    // CalendarTime(DateTime.parse(order.delivery_timeslot!))
-                    //     .toHuman,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Palette.placeholderGrey,
-                    ),
-                  )
-                ]),
-              ])),
+          ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               // primary: Colors.black,
@@ -272,4 +275,3 @@ class CardWidget extends StatelessWidget {
         ]));
   }
 }
-
