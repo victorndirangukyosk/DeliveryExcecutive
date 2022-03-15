@@ -95,40 +95,32 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                       MainAxisAlignment.spaceBetween,
                                   //implement here
                                   children: [
-                                    Positioned(
-                                      top: 30,
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: const Icon(
-                                          BoxIcons.bxs_left_arrow,
-                                          color: Palette.orangeColor,
-                                        ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Icon(
+                                        BoxIcons.bxs_left_arrow,
+                                        color: Palette.orangeColor,
                                       ),
                                     ),
                                     Column(
                                       children: [
                                         Column(
                                           children: const [
-                                            Positioned(
-                                                top: 30,
-                                                child: Text.rich(TextSpan(
-                                                    text: 'Kwik ',
-                                                    style: TextStyle(
-                                                        fontSize: 30,
-                                                        fontWeight:
-                                                            FontWeight.w900,
-                                                        color: Palette
-                                                            .orangeColor),
-                                                    children: [
-                                                      TextSpan(
-                                                          text: 'Delivery',
-                                                          style: TextStyle(
-                                                              color: Palette
-                                                                  .greenColor))
-                                                    ])),
-                                                left: 0),
+                                            Text.rich(TextSpan(
+                                                text: 'Kwik ',
+                                                style: TextStyle(
+                                                    fontSize: 30,
+                                                    fontWeight: FontWeight.w900,
+                                                    color: Palette.orangeColor),
+                                                children: [
+                                                  TextSpan(
+                                                      text: 'Delivery',
+                                                      style: TextStyle(
+                                                          color: Palette
+                                                              .greenColor))
+                                                ])),
                                           ],
                                         ),
                                         const Text(
@@ -149,179 +141,179 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                         ),
                                       ],
                                     ),
-                                    Positioned(
-                                        top: 20,
-                                        right: 20,
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            HapticFeedback.heavyImpact();
-                                          },
-                                          child: Material(
-                                            color: Colors.transparent,
-                                            child: CupertinoButton(
-                                                onPressed: () {
-                                                  showCupertinoModalPopup(
-                                                      context: context,
-                                                      builder:
-                                                          (context) => Center(
+                                    GestureDetector(
+                                      onTap: () {
+                                        HapticFeedback.heavyImpact();
+                                      },
+                                      child: Material(
+                                        color: Colors.transparent,
+                                        child: CupertinoButton(
+                                            onPressed: () {
+                                              showCupertinoModalPopup(
+                                                  context: context,
+                                                  builder: (context) => Center(
+                                                          child: SizedBox(
+                                                        // height: 100/,
+                                                        width: 300,
+                                                        child: Card(
+                                                          elevation: 0,
+                                                          child: Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .min,
+                                                            children: [
+                                                              const SizedBox(
+                                                                height: 20,
+                                                              ),
+                                                              const CircleAvatar(
+                                                                radius: 58,
+                                                                backgroundColor:
+                                                                    Palette
+                                                                        .orangeColor,
+                                                                child:
+                                                                    CircleAvatar(
+                                                                  radius: 54,
+                                                                  backgroundColor:
+                                                                      Colors
+                                                                          .white,
                                                                   child:
-                                                                      SizedBox(
-                                                                // height: 100/,
-                                                                width: 300,
-                                                                child: Card(
-                                                                  elevation: 0,
-                                                                  child: Column(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .min,
-                                                                    children: [
-                                                                      const SizedBox(
-                                                                        height:
-                                                                            20,
-                                                                      ),
-                                                                      const CircleAvatar(
-                                                                        radius:
-                                                                            58,
-                                                                        backgroundColor:
-                                                                            Palette.orangeColor,
-                                                                        child:
-                                                                            CircleAvatar(
-                                                                          radius:
-                                                                              54,
-                                                                          backgroundColor:
-                                                                              Colors.white,
-                                                                          child:
-                                                                              CircleAvatar(
-                                                                            radius:
-                                                                                50,
-                                                                            backgroundImage:
-                                                                                NetworkImage('https://th.bing.com/th/id/R.a5758d6fb64904904ec75fd1f083e3fb?rik=QVwaYy2Fd7Xi%2fA&pid=ImgRaw&r=0'),
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                      const SizedBox(
-                                                                        height:
-                                                                            20,
-                                                                      ),
-                                                                      const Text(
-                                                                          'Samuel Baraka'),
-                                                                      const Text(
-                                                                          'sababuvercetti@gmail.com'),
-                                                                      const SizedBox(
-                                                                        height:
-                                                                            20,
-                                                                      ),
-                                                                      ListTile(
-                                                                        onTap:
-                                                                            () {},
-                                                                        leading:
-                                                                            const Icon(Icons.history),
-                                                                        title: const Text(
-                                                                            'Order history'),
-                                                                        trailing:
-                                                                            const Icon(CupertinoIcons.forward),
-                                                                        subtitle:
-                                                                            const Text('View order history'),
-                                                                      ),
-                                                                      ListTile(
-                                                                        onTap:
-                                                                            () {},
-                                                                        leading:
-                                                                            const Icon(CupertinoIcons.settings),
-                                                                        title: const Text(
-                                                                            'Settings'),
-                                                                        trailing:
-                                                                            const Icon(CupertinoIcons.forward),
-                                                                        subtitle:
-                                                                            const Text('Application settings'),
-                                                                      ),
-                                                                      ListTile(
-                                                                        onTap:
-                                                                            () {
-                                                                          // Clear the token
-                                                                          context
-                                                                              .read<TokenCubit>()
-                                                                              .clear();
-                                                                          AutoRouter.of(context)
-                                                                              .replace(const SplashScreen());
-                                                                        },
-                                                                        leading:
-                                                                            const Icon(
-                                                                          Icons
-                                                                              .logout_outlined,
-                                                                          color:
-                                                                              Palette.greenColor,
-                                                                        ),
-                                                                        title:
-                                                                            const Text(
-                                                                          'Logout',
-                                                                          style:
-                                                                              TextStyle(color: Colors.red),
-                                                                        ),
-                                                                        trailing:
-                                                                            const Icon(
-                                                                          CupertinoIcons
-                                                                              .forward,
-                                                                          color:
-                                                                              Palette.greenColor,
-                                                                        ),
-                                                                        subtitle:
-                                                                            const Text(
-                                                                          'Logout of this application',
-                                                                        ),
-                                                                      ),
-                                                                      ListTile(
-                                                                        onTap:
-                                                                            () {
-                                                                          showAboutDialog(
-                                                                            context:
-                                                                                context,
-                                                                            applicationIcon:
-                                                                                Image.asset('assets/logo.png', height: 30),
-                                                                          );
-                                                                        },
-                                                                        leading:
-                                                                            const Icon(
-                                                                          CupertinoIcons
-                                                                              .info,
-                                                                          color:
-                                                                              Palette.greenColor,
-                                                                        ),
-                                                                        title:
-                                                                            const Text(
-                                                                          "About",
-                                                                          style:
-                                                                              TextStyle(color: Palette.greenColor),
-                                                                        ),
-                                                                        trailing:
-                                                                            const Icon(
-                                                                          CupertinoIcons
-                                                                              .forward,
-                                                                          color:
-                                                                              Palette.greenColor,
-                                                                        ),
-                                                                        subtitle:
-                                                                            const Text(
-                                                                          'About this application',
-                                                                        ),
-                                                                      ),
-                                                                      const SizedBox(
-                                                                        height:
-                                                                            20,
-                                                                      )
-                                                                    ],
+                                                                      CircleAvatar(
+                                                                    radius: 50,
+                                                                    backgroundImage:
+                                                                        NetworkImage(
+                                                                            'https://th.bing.com/th/id/R.a5758d6fb64904904ec75fd1f083e3fb?rik=QVwaYy2Fd7Xi%2fA&pid=ImgRaw&r=0'),
                                                                   ),
                                                                 ),
-                                                              )));
-                                                },
-                                                child: const Center(
-                                                    child: Icon(
-                                                  Icons.dehaze,
-                                                  size: 40,
-                                                  color: Palette.orangeColor,
-                                                ))),
-                                          ),
-                                        )),
+                                                              ),
+                                                              const SizedBox(
+                                                                height: 20,
+                                                              ),
+                                                              const Text(
+                                                                  'Samuel Baraka'),
+                                                              const Text(
+                                                                  'sababuvercetti@gmail.com'),
+                                                              const SizedBox(
+                                                                height: 20,
+                                                              ),
+                                                              ListTile(
+                                                                onTap: () {},
+                                                                leading: const Icon(
+                                                                    Icons
+                                                                        .history),
+                                                                title: const Text(
+                                                                    'Order history'),
+                                                                trailing: const Icon(
+                                                                    CupertinoIcons
+                                                                        .forward),
+                                                                subtitle:
+                                                                    const Text(
+                                                                        'View order history'),
+                                                              ),
+                                                              ListTile(
+                                                                onTap: () {},
+                                                                leading: const Icon(
+                                                                    CupertinoIcons
+                                                                        .settings),
+                                                                title: const Text(
+                                                                    'Settings'),
+                                                                trailing: const Icon(
+                                                                    CupertinoIcons
+                                                                        .forward),
+                                                                subtitle:
+                                                                    const Text(
+                                                                        'Application settings'),
+                                                              ),
+                                                              ListTile(
+                                                                onTap: () {
+                                                                  // Clear the token
+                                                                  context
+                                                                      .read<
+                                                                          TokenCubit>()
+                                                                      .clear();
+                                                                  AutoRouter.of(
+                                                                          context)
+                                                                      .replace(
+                                                                          const SplashScreen());
+                                                                },
+                                                                leading:
+                                                                    const Icon(
+                                                                  Icons
+                                                                      .logout_outlined,
+                                                                  color: Palette
+                                                                      .greenColor,
+                                                                ),
+                                                                title:
+                                                                    const Text(
+                                                                  'Logout',
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .red),
+                                                                ),
+                                                                trailing:
+                                                                    const Icon(
+                                                                  CupertinoIcons
+                                                                      .forward,
+                                                                  color: Palette
+                                                                      .greenColor,
+                                                                ),
+                                                                subtitle:
+                                                                    const Text(
+                                                                  'Logout of this application',
+                                                                ),
+                                                              ),
+                                                              ListTile(
+                                                                onTap: () {
+                                                                  showAboutDialog(
+                                                                    context:
+                                                                        context,
+                                                                    applicationIcon: Image.asset(
+                                                                        'assets/logo.png',
+                                                                        height:
+                                                                            30),
+                                                                  );
+                                                                },
+                                                                leading:
+                                                                    const Icon(
+                                                                  CupertinoIcons
+                                                                      .info,
+                                                                  color: Palette
+                                                                      .greenColor,
+                                                                ),
+                                                                title:
+                                                                    const Text(
+                                                                  "About",
+                                                                  style: TextStyle(
+                                                                      color: Palette
+                                                                          .greenColor),
+                                                                ),
+                                                                trailing:
+                                                                    const Icon(
+                                                                  CupertinoIcons
+                                                                      .forward,
+                                                                  color: Palette
+                                                                      .greenColor,
+                                                                ),
+                                                                subtitle:
+                                                                    const Text(
+                                                                  'About this application',
+                                                                ),
+                                                              ),
+                                                              const SizedBox(
+                                                                height: 20,
+                                                              )
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      )));
+                                            },
+                                            child: const Center(
+                                                child: Icon(
+                                              Icons.dehaze,
+                                              size: 40,
+                                              color: Palette.orangeColor,
+                                            ))),
+                                      ),
+                                    ),
                                   ],
                                 ),
                                 const SizedBox(
@@ -381,7 +373,9 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) => Scanner( order: orderDetails,)),
+                                              builder: (context) => Scanner(
+                                                    order: orderDetails,
+                                                  )),
                                         );
                                       }),
                                 ),
