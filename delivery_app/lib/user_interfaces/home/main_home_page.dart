@@ -111,9 +111,9 @@ class MainHomePage extends StatelessWidget {
                                           const SizedBox(
                                             height: 20,
                                           ),
-                                          const Text('Samuel Baraka'),
+                                          const Text('Stalluri'),
                                           const Text(
-                                              'sababuvercetti@gmail.com'),
+                                              'stalluri@gmail.com'),
                                           const SizedBox(
                                             height: 20,
                                           ),

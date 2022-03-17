@@ -189,9 +189,9 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                                                 height: 20,
                                                               ),
                                                               const Text(
-                                                                  'Samuel Baraka'),
+                                                                  'Stalluri'),
                                                               const Text(
-                                                                  'sababuvercetti@gmail.com'),
+                                                                  'stalluri@gmail.com'),
                                                               const SizedBox(
                                                                 height: 20,
                                                               ),

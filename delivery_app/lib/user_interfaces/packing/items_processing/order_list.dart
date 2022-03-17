@@ -203,9 +203,9 @@ class _OrderListState extends State<OrderList> {
                                                                             20,
                                                                       ),
                                                                       const Text(
-                                                                          'Samuel Baraka'),
+                                                                          'stalluri'),
                                                                       const Text(
-                                                                          'sababuvercetti@gmail.com'),
+                                                                          'stalluri'),
                                                                       const SizedBox(
                                                                         height:
                                                                             20,

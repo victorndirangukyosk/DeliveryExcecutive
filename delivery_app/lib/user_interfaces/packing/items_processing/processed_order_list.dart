@@ -260,9 +260,9 @@ class OrderList extends StatelessWidget {
                                                                             20,
                                                                       ),
                                                                       const Text(
-                                                                          'Samuel Baraka'),
+                                                                          'stalluri'),
                                                                       const Text(
-                                                                          'sababuvercetti@gmail.com'),
+                                                                          'stalluri@gmail.com'),
                                                                       const SizedBox(
                                                                         height:
                                                                             20,

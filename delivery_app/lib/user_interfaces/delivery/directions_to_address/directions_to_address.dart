@@ -74,8 +74,8 @@ class DirectionsToAddress extends StatelessWidget {
                                         const SizedBox(
                                           height: 20,
                                         ),
-                                        const Text('Samuel Baraka'),
-                                        const Text('sababuvercetti@gmail.com'),
+                                        const Text('stalluri'),
+                                        const Text('stalluri@gmail.com'),
                                         const SizedBox(
                                           height: 20,
                                         ),
