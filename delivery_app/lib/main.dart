@@ -5,13 +5,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
+import 'package:flutter_services_binding/flutter_services_binding.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'app/app.dart';
 
 ///This is the starting point for the application
 main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  FlutterServicesBinding.ensureInitialized();
   //Set the license font the poppins google font
   LicenseRegistry.addLicense(() async* {
     final license = await rootBundle.loadString('google_fonts/OFL.txt');

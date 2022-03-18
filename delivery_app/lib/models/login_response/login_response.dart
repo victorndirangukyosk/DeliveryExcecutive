@@ -8,13 +8,16 @@ part 'login_response.g.dart';
 @freezed
 class LoginResponse with _$LoginResponse {
   factory LoginResponse(
-      {int? delivery_executive_id,
+      {num? delivery_executive_id,
+      num? order_processor_id,
       String? firstname,
+      num? status,
+      String? date_added,
+      String? username,
+      String? telephone,
+      num? order_processing_group_id,
       String? lastname,
       String? email,
-      String? telephone,
-      int? status,
-      String? date_added,
       String? token}) = _LoginResponse;
 
   factory LoginResponse.fromJson(Map<String, dynamic> json) =>

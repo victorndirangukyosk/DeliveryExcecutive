@@ -75,38 +75,21 @@ class LoginCard extends StatelessWidget {
                 const SizedBox(
                   height: 40,
                 ),
-                context.watch<OPSelectionCubit>().state
-                    ? FormBuilderTextField(
-                        name: 'user_name',
-                        validator: FormBuilderValidators.compose([
-                          FormBuilderValidators.required(context),
-                        ]),
-                        decoration: InputDecoration(
-                          hintText: 'Username',
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: const BorderSide(width: 2)),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: const BorderSide(width: 2)),
-                        ),
-                      )
-                    : FormBuilderTextField(
-                        name: 'email',
-                        validator: FormBuilderValidators.compose([
-                          FormBuilderValidators.required(context),
-                          FormBuilderValidators.email(context),
-                        ]),
-                        decoration: InputDecoration(
-                          hintText: 'Email',
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: const BorderSide(width: 2)),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: const BorderSide(width: 2)),
-                        ),
-                      ),
+                FormBuilderTextField(
+                  name: 'user_name',
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(context),
+                  ]),
+                  decoration: InputDecoration(
+                    hintText: 'Username',
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(width: 2)),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(width: 2)),
+                  ),
+                ),
                 const SizedBox(
                   height: 20,
                 ),
@@ -137,39 +120,50 @@ class LoginCard extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                ListTile(
-                  title: const Text('Order processing'),
-                  onTap: () {
-                    context.read<OPSelectionCubit>().save(true);
-                  },
-                  leading: CupertinoSwitch(
-                    value: context.watch<OPSelectionCubit>().state,
-                    onChanged: (val) {
-                      context.read<OPSelectionCubit>().toggle();
-                    },
-                  ),
-                ),
-                ListTile(
-                  title: const Text('Delivery executive'),
-                  onTap: () {
-                    context.read<OPSelectionCubit>().save(false);
-                  },
-                  leading: CupertinoSwitch(
-                    value: !context.watch<OPSelectionCubit>().state,
-                    onChanged: (val) {
-                      context.read<OPSelectionCubit>().toggle();
-                    },
-                  ),
-                ),
+                // ListTile(
+                //   title: const Text('Order processing'),
+                //   onTap: () {
+                //     context.read<OPSelectionCubit>().save(true);
+                //   },
+                //   leading: CupertinoSwitch(
+                //     value: context.watch<OPSelectionCubit>().state,
+                //     onChanged: (val) {
+                //       context.read<OPSelectionCubit>().toggle();
+                //     },
+                //   ),
+                // ),
+                // ListTile(
+                //   title: const Text('Delivery executive'),
+                //   onTap: () {
+                //     context.read<OPSelectionCubit>().save(false);
+                //   },
+                //   leading: CupertinoSwitch(
+                //     value: !context.watch<OPSelectionCubit>().state,
+                //     onChanged: (val) {
+                //       context.read<OPSelectionCubit>().toggle();
+                //     },
+                //   ),
+                // ),
                 BlocConsumer<LoginCubit, LoginState>(
                   listener: (context, state) async {
                     if (state is LoginSuccess) {
+                      bool isDe =
+                          state.loginResponse.delivery_executive_id != null;
+                      bool isOp =
+                          state.loginResponse.order_processor_id != null;
                       await AppToast.showToast(
                           message: 'Login successful', isError: false);
                       context
                           .read<TokenCubit>()
                           .saveToken(state.loginResponse.token!);
-                      AutoRouter.of(context).replace(const MainHomeRoute());
+
+                      isOp
+                          ? AutoRouter.of(context)
+                              .replace(const MainHomeRoute())
+                          : isDe
+                              ? AutoRouter.of(context).replace(
+                                  const MainHomeDeliveryExecutiveRoute())
+                              : print('Error');
                     }
                     if (state is LoginFailed) {
                       AppToast.showToast(message: state.error, isError: true);
@@ -184,12 +178,9 @@ class LoginCard extends StatelessWidget {
                         color: Palette.greenColor,
                         onPressed: () {
                           if (_formKey.currentState!.saveAndValidate()) {
-                            context.read<OPSelectionCubit>().state
-                                ? context
-                                    .read<LoginCubit>()
-                                    .loginOP(data: _formKey.currentState!.value)
-                                : context.read<LoginCubit>().loginDE(
-                                    data: _formKey.currentState!.value);
+                            context
+                                .read<LoginCubit>()
+                                .login(data: _formKey.currentState!.value);
                           }
                         });
                   },
