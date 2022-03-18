@@ -8,7 +8,7 @@ part of 'order_details.dart';
 
 _$_OrderDetails _$$_OrderDetailsFromJson(Map<String, dynamic> json) =>
     _$_OrderDetails(
-      order_id: json['order_id'] as int?,
+      order_id: json['order_id'] as String?,
       products_count: json['products_count'] as num?,
       delivery_date: json['delivery_date'] as String?,
       delivery_timeslot: json['delivery_timeslot'] as String?,

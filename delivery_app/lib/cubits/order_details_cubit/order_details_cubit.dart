@@ -13,8 +13,7 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
     try {
       var response = await RestClient().dio!.get(
           'https://stage.apiadmin.kwikbasket.com/api/op/getorder/${orderId}');
-      OrderDetails orderDetails =
-          OrderDetails.fromJson(response.data['data'][0]);
+      OrderDetails orderDetails = OrderDetails.fromJson(response.data['data']);
       emit(OrderDetailsState.success(orderDetails));
     } catch (e) {
       emit(OrderDetailsState.failed(e.toString()));

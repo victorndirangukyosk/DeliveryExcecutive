@@ -32,7 +32,7 @@ class Scanner extends StatelessWidget {
             IconButton(
                 onPressed: () {
                   AutoRouter.of(context)
-                      .push(CratesRoute(orderId: order.order_id!));
+                      .push(CratesRoute(orderId: int.parse(order.order_id!)));
                 },
                 icon: const Icon(Icons.check))
           ],

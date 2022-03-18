@@ -8,7 +8,7 @@ class OrderDetails with _$OrderDetails {
   // ignore: non_constant_identifier_names
   factory OrderDetails({
     // dynamic? data,
-    int? order_id,
+    String? order_id,
     num? products_count,
     String? delivery_date,
     String? delivery_timeslot,

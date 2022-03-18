@@ -23,7 +23,7 @@ class _$OrderDetailsTearOff {
   const _$OrderDetailsTearOff();
 
   _OrderDetails call(
-      {int? order_id,
+      {String? order_id,
       num? products_count,
       String? delivery_date,
       String? delivery_timeslot,
@@ -48,7 +48,7 @@ const $OrderDetails = _$OrderDetailsTearOff();
 /// @nodoc
 mixin _$OrderDetails {
 // dynamic? data,
-  int? get order_id => throw _privateConstructorUsedError;
+  String? get order_id => throw _privateConstructorUsedError;
   num? get products_count => throw _privateConstructorUsedError;
   String? get delivery_date => throw _privateConstructorUsedError;
   String? get delivery_timeslot => throw _privateConstructorUsedError;
@@ -66,7 +66,7 @@ abstract class $OrderDetailsCopyWith<$Res> {
           OrderDetails value, $Res Function(OrderDetails) then) =
       _$OrderDetailsCopyWithImpl<$Res>;
   $Res call(
-      {int? order_id,
+      {String? order_id,
       num? products_count,
       String? delivery_date,
       String? delivery_timeslot,
@@ -93,7 +93,7 @@ class _$OrderDetailsCopyWithImpl<$Res> implements $OrderDetailsCopyWith<$Res> {
       order_id: order_id == freezed
           ? _value.order_id
           : order_id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       products_count: products_count == freezed
           ? _value.products_count
           : products_count // ignore: cast_nullable_to_non_nullable
@@ -122,7 +122,7 @@ abstract class _$OrderDetailsCopyWith<$Res>
       __$OrderDetailsCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int? order_id,
+      {String? order_id,
       num? products_count,
       String? delivery_date,
       String? delivery_timeslot,
@@ -151,7 +151,7 @@ class __$OrderDetailsCopyWithImpl<$Res> extends _$OrderDetailsCopyWithImpl<$Res>
       order_id: order_id == freezed
           ? _value.order_id
           : order_id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       products_count: products_count == freezed
           ? _value.products_count
           : products_count // ignore: cast_nullable_to_non_nullable
@@ -186,7 +186,7 @@ class _$_OrderDetails implements _OrderDetails {
       _$$_OrderDetailsFromJson(json);
 
   @override // dynamic? data,
-  final int? order_id;
+  final String? order_id;
   @override
   final num? products_count;
   @override
@@ -238,7 +238,7 @@ class _$_OrderDetails implements _OrderDetails {
 
 abstract class _OrderDetails implements OrderDetails {
   factory _OrderDetails(
-      {int? order_id,
+      {String? order_id,
       num? products_count,
       String? delivery_date,
       String? delivery_timeslot,
@@ -248,7 +248,7 @@ abstract class _OrderDetails implements OrderDetails {
       _$_OrderDetails.fromJson;
 
   @override // dynamic? data,
-  int? get order_id;
+  String? get order_id;
   @override
   num? get products_count;
   @override

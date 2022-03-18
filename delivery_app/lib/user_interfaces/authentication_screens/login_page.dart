@@ -34,9 +34,14 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-class LoginCard extends StatelessWidget {
+class LoginCard extends StatefulWidget {
   const LoginCard({Key? key}) : super(key: key);
 
+  @override
+  State<LoginCard> createState() => _LoginCardState();
+}
+
+class _LoginCardState extends State<LoginCard> {
   @override
   Widget build(BuildContext context) {
     var _formKey = GlobalKey<FormBuilderState>();
