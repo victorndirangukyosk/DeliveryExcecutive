@@ -295,7 +295,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                                                 ),
                                                                 subtitle:
                                                                     const Text(
-                                                                  'About this application',
+                                                                  'is application',
                                                                 ),
                                                               ),
                                                               const SizedBox(
