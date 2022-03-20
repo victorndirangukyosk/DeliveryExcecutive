@@ -342,7 +342,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                 Row(
                                   children: [
                                     const Text(
-                                      'Order Quantity:',
+                                      'Delivery Date:',
                                       style: TextStyle(
                                           color: Palette.placeholderGrey,
                                           fontSize: 14),
@@ -389,37 +389,67 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                       ),
                       //we can have the following o throjjjicf
                       Container(
-                        padding: const EdgeInsets.only(left: 20, right: 8),
+                        // padding: const EdgeInsets.only(left: 20, right: 8),
                         decoration: BoxDecoration(
                             color: Palette.greenColor,
                             borderRadius: BorderRadius.circular(10)),
                         child: IntrinsicHeight(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: const [
-                              Text(
-                                'Product Name',
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                'Quantity',
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                'Specifications',
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
+                          child: Flexible(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Expanded(
+                                  child: Column(
+                                    children: const [
+                                      Text(
+                                        'Product Name',
+                                        overflow: TextOverflow.fade,
+                                        maxLines: 2,
+                                        softWrap: false,
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const VerticalDivider(),
+                                Expanded(
+                                  child: Column(
+                                    children: const [
+                                      Text(
+                                        'Quantity',
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const VerticalDivider(),
+                                Expanded(
+                                  child: Column(
+                                    children: const [
+                                      Flexible(
+                                        child: Text(
+                                          'Specifications',
+                                          overflow: TextOverflow.fade,
+                                          maxLines: 1,
+                                          softWrap: false,
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -475,8 +505,9 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                                   Text(
                                                     odetailsList[index].name!,
                                                     style: const TextStyle(
-                                                        // color: Palette.placeholderGrey,
-                                                        fontSize: 18),
+                                                        color: Palette
+                                                            .placeholderGrey,
+                                                        fontSize: 16),
                                                   ),
                                                 ],
                                               ),

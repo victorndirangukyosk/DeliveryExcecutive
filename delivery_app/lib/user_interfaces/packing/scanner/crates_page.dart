@@ -22,8 +22,19 @@ class _CratesPageState extends State<CratesPage> {
   Widget build(BuildContext maincontext) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-            '${context.watch<CratesQRCubit>().state.length} Scanned crates'),
+        title: Center(
+          child: Text(
+              '${context.watch<CratesQRCubit>().state.length} Scanned crates'),
+        ),
+        actions: const [
+             Tooltip(
+               message: "Having Trouble?",
+               child: Icon(
+                         Icons.info_outline_rounded,
+                         color: Colors.white,
+                       ),
+             ),
+        ],
       ),
       body: ListView.builder(
         itemBuilder: (context, index) {

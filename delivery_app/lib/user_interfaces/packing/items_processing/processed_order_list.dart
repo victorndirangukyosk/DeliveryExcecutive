@@ -22,9 +22,23 @@ import 'package:delivery_app/routes/router.gr.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:overlay_support/overlay_support.dart';
 
-class OrderList extends StatelessWidget {
+class OrderList extends StatefulWidget {
+  final int orderId;
+
+
+  OrderList({Key? key, required this.orderId}) : super(key: key);
+
+  @override
+  State<OrderList> createState() => _OrderListState();
+}
+
+class _OrderListState extends State<OrderList> {
+  var size,height,width;
+
   TextEditingController _textFieldController1 = TextEditingController();
+
   TextEditingController _textFieldController2 = TextEditingController();
+
   final _formKey = GlobalKey<FormBuilderState>();
 
   _displayDialog(BuildContext context) async {
@@ -88,20 +102,21 @@ class OrderList extends StatelessWidget {
         });
   }
 
-  final int orderId;
-
   TextEditingController textarea = TextEditingController();
+
   final PageController _controller = PageController(initialPage: 0);
 
   bool isPerformingRequest = false;
-  ScrollController _scrollController = ScrollController();
 
-  OrderList({Key? key, required this.orderId}) : super(key: key);
+  ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
-    context.read<OrderDetailsCubit>().getOrderDetails(orderId: orderId);
-    context.read<OdetailsListCubit>().getOdetails(orderId: orderId);
+    size = MediaQuery.of(context).size;
+    height = size.height;
+    width = size.width;
+    context.read<OrderDetailsCubit>().getOrderDetails(orderId: widget.orderId);
+    context.read<OdetailsListCubit>().getOdetails(orderId: widget.orderId);
     return Scaffold(
       body: BlocConsumer<OrderDetailsCubit, OrderDetailsState>(
         listener: (context, state) {
@@ -199,7 +214,8 @@ class OrderList extends StatelessWidget {
                                         Text(
                                           orderDetails.order_id.toString(),
                                           style: const TextStyle(
-                                              color: Palette.placeholderGrey,
+                                              color: Palette.orangeColor,
+                                              fontWeight:FontWeight.bold,
                                               fontFamily: 'Red Hat Display',
                                               fontSize: 21),
                                         ),
@@ -383,6 +399,16 @@ class OrderList extends StatelessWidget {
                                 const SizedBox(
                                   height: 12,
                                 ),
+                                // Column(
+                                //   children: [
+                                //     const Text(
+                                //       'Order Quantity:',
+                                //       style: TextStyle(
+                                //           color: Palette.placeholderGrey,
+                                //           fontSize: 14),
+                                //     ),
+                                //   ],
+                                // ),
                                 Row(
                                   children: [
                                     const Text(
@@ -406,7 +432,7 @@ class OrderList extends StatelessWidget {
                                 Row(
                                   children: [
                                     const Text(
-                                      'Order Quantity:',
+                                      'Delivery Date:',
                                       style: TextStyle(
                                           color: Palette.placeholderGrey,
                                           fontSize: 14),
@@ -433,47 +459,76 @@ class OrderList extends StatelessWidget {
                       ),
                       //we can have the following o throjjjicf
                       Container(
-                        padding: const EdgeInsets.only(left: 20, right: 8),
-                        decoration: BoxDecoration(
-                            color: Palette.greenColor,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: IntrinsicHeight(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: const [
-                              Text(
-                                'Product Name',
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                'Quantity',
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                'Specifications',
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                'Action area',
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
+                          padding: const EdgeInsets.only(left: 20, right: 8),
+                          decoration: BoxDecoration(
+                              color: Palette.greenColor,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: IntrinsicHeight(
+                            child: Row(
+                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                       crossAxisAlignment: CrossAxisAlignment.stretch,
+                       children:  [
+                         Expanded(
+                           child: Column(
+                             children: const[
+                               Text(
+                                 'Product Name',
+                                 style: TextStyle(
+                                   fontSize: 18,
+                                   color: Colors.white,
+                                   fontWeight: FontWeight.bold),
+                               ),
+                             ],
+                           ),
+                         ),
+                          const VerticalDivider(),
+                         Expanded(
+                           child: Column(
+                             children: [
+                               Text(
+                                 'Quantity',
+                                 style: TextStyle(
+                                   fontSize: 18,
+                                   color: Colors.white,
+                                   fontWeight: FontWeight.bold),
+                               ),
+                             ],
+                           ),
+                         ),
+                          const VerticalDivider(),
+                         Expanded(
+                           child: Column(
+                             children: [
+                               Flexible(
+                                 child: Text(
+                                   'Specifications',
+                                   style: TextStyle(
+                                     fontSize: 18,
+                                     color: Colors.white,
+                                     fontWeight: FontWeight.bold),
+                                 ),
+                               ),
+                             ],
+                           ),
+                         ),
+                          const VerticalDivider(),
+                         Expanded(
+                           child: Column(
+                             children: [
+                               Text(
+                                 'Action area',
+                                 style: TextStyle(
+                                   fontSize: 18,
+                                   color: Colors.white,
+                                   fontWeight: FontWeight.bold),
+                               ),
+                             ],
+                           ),
+                         ),
+                       ],
+                            ),
                           ),
                         ),
-                      ),
                       //TODO: IMPLEMENT REAL PRODUCT LIST Used a model frezzed clas in order details cubit
                       BlocConsumer<OdetailsListCubit, OdetailsListState>(
                           listener: (context, state) {
@@ -510,82 +565,98 @@ class OrderList extends StatelessWidget {
                                       color: Colors.grey[100 * (index % 3 + 1)],
                                       height: 80,
                                       // alignment: Alignment.center,
-                                      child: Container(
-                                        height: 50,
-                                        margin: const EdgeInsets.all(2),
-                                        // color: msgCount[index]>=10? Colors.blue[400]:
-                                        //   msgCount[index]>3? Colors.blue[100]: Colors.grey,
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          // crossAxisAlignment: CrossAxisAlignment.stretch,
-                                          children: [
-                                            Expanded(
-                                              child: Column(
-                                                children: [
-                                                  Text(
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        // crossAxisAlignment: CrossAxisAlignment.stretch,
+                                        children: [
+                                          Expanded(
+                                            child: Column(
+                                              children: [
+                                                Wrap(
+                                                  children: [
+                                                    Text(
                                                     odetailsList[index].name!,
                                                     style: const TextStyle(
-                                                        // color: Palette.placeholderGrey,
-                                                        fontSize: 18),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            const VerticalDivider(),
-                                            Expanded(
-                                              child: Column(
-                                                children: const [
-                                                  Text(
-                                                    '12kg ',
-                                                    style: TextStyle(
                                                         color: Palette
                                                             .placeholderGrey,
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                            FontWeight.w200),
+                                                        fontSize: 16),
                                                   ),
-                                                ],
-                                              ),
+                                                  ]
+                                                ),
+                                              ],
                                             ),
-                                            const VerticalDivider(),
-                                            Expanded(
+                                          ),
+                                          const VerticalDivider(),
+                                          Expanded(
+                                            child: Column(
+                                              children: const [
+                                                Text(
+                                                  '12kg ',
+                                                  style: TextStyle(
+                                                      color: Palette
+                                                          .placeholderGrey,
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.w200),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          const VerticalDivider(),
+                                          Expanded(
+                                            child: Column(
+                                              children: [
+                                                Flexible(
+                                                  child: Text(
+                                                    odetailsList[index]
+                                                        .product_note!,
+                                                    softWrap: true,
+                                                    style: const TextStyle(
+                                                        color: Palette
+                                                            .placeholderGrey,
+                                                        fontSize: 16),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          const VerticalDivider(),
+                                          Expanded(
+                                            child: CupertinoButton(
                                               child: Column(
                                                 children: [
-                                                  Flexible(
-                                                    child: Text(
-                                                      odetailsList[index]
-                                                          .product_note!,
-                                                      softWrap: true,
-                                                      style: const TextStyle(
-                                                          color: Palette
-                                                              .placeholderGrey,
-                                                          fontSize: 16),
-                                                    ),
+                                                  Row(
+                                                    children: const [
+                                                      Icon(BoxIcons.bx_note),
+                                                    ],
                                                   ),
-                                                ],
-                                              ),
-                                            ),
-                                            const VerticalDivider(),
-                                            CupertinoButton(
-                                              child: Row(
-                                                children: const [
-                                                  Icon(BoxIcons.bx_note),
-                                                  Text(
-                                                    '...Add Packing Notes',
-                                                    style: TextStyle(
-                                                      color:
-                                                          Palette.orangeColor,
-                                                    ),
-                                                  ),
+                                                  Row(
+                                                    children: const [
+                                                        Flexible(
+                                                        child: Text(
+                                                          'Add Packing Notes',
+                                                          overflow:
+                                                              TextOverflow.fade,
+                                                          maxLines: 1,
+                                                          softWrap: false,
+                                                          style: TextStyle(
+                                                            color: Palette
+                                                                .orangeColor,
+                                                                fontSize: 13,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  )
                                                 ],
                                               ),
                                               onPressed: () {
                                                 _displayDialog(context);
                                               },
-                                            )
-                                          ],
-                                        ),
+                                            ),
+                                          )
+                                        ],
                                       ),
                                     ),
                                   );
@@ -608,7 +679,7 @@ class OrderList extends StatelessWidget {
                                   .addMissing(
                                       products:
                                           context.read<MissingCubit>().state,
-                                      orderId: orderId);
+                                      orderId: widget.orderId);
 
                               Navigator.push(
                                   context,
@@ -659,7 +730,7 @@ class OrderList extends StatelessWidget {
                                         onChanged: (value) async {
                                           await ApiService.post(data: {
                                             'order_status_id': value!,
-                                            'order_id': orderId
+                                            'order_id': widget.orderId
                                           }, path: 'op/orderStatus');
                                           AppToast.showToast(
                                               message: 'Success',
