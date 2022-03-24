@@ -66,7 +66,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
         builder: (context, state) {
           return state.maybeWhen(
               loading: () => const Center(
-                    child: CircularProgressIndicator(
+                    child: CupertinoActivityIndicator(
                       color: Palette.greenColor,
                     ),
                   ),

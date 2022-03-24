@@ -6,17 +6,20 @@ import 'package:delivery_app/cubits/add_missing_products/add_missing_products_cu
 import 'package:delivery_app/cubits/api/reset_password_cubit/reset_password_cubit.dart';
 import 'package:delivery_app/cubits/crates_qr_cubit/crates_qr_cubit.dart';
 import 'package:delivery_app/cubits/fetch_order_status_cubit/fetch_order_status_cubit.dart';
-import 'package:delivery_app/cubits/get_assigned_cubit/get_assigned_cubit.dart';
+import 'package:delivery_app/cubits/get_assigned_cubit/de/cubit/assigned_de_cubit.dart';
+import 'package:delivery_app/cubits/get_assigned_cubit/op/get_assigned_cubit.dart';
 // import 'package:delivery_app/cubits/authentication/token_cubit.dart';
 import 'package:delivery_app/cubits/cubits.dart';
 import 'package:delivery_app/cubits/op_selection_cubit/op_selection_cubit.dart';
 import 'package:delivery_app/cubits/order_details_cubit/order_details_cubit.dart';
 import 'package:delivery_app/cubits/order_details_list/odetails_list_cubit.dart';
+import 'package:delivery_app/models/assigned/de/assigned_de.dart';
 // import 'package:delivery_app/cubits/qr_scanner_cubit/qr_scanner_cubit.dart';
 // import 'package:delivery_app/cubits/select_date_cubit/select_date_cubit.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 import 'package:delivery_app/user_interfaces/packing/items_processing/processed_order_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -29,6 +32,12 @@ class KwikBasketDeliveryApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => ObscurePasswordCubit(true)),
@@ -38,7 +47,7 @@ class KwikBasketDeliveryApp extends StatelessWidget {
 
         /// This blocprovider persists the token state
         BlocProvider(create: (context) => TokenCubit('')),
-
+        BlocProvider(create: (context) => AssignedDeCubit()),
         BlocProvider(create: (context) => LoginCubit()),
         BlocProvider(create: (context) => ResetPasswordCubit()),
         BlocProvider(create: (context) => GetAssignedCubit()),

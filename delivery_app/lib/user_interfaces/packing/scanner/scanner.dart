@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:delivery_app/configuration/configuration.dart';
 import 'package:delivery_app/cubits/crates_qr_cubit/crates_qr_cubit.dart';
-import 'package:delivery_app/models/assigned/assigned_order.dart';
+import 'package:delivery_app/models/assigned/op/assigned_order.dart';
 import 'package:delivery_app/models/order_details/order_details.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 // import 'package:delivery_app/cubits/qr_scanner_cubit/qr_scanner_cubit.dart';

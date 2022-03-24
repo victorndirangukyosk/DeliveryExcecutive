@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:calendar_time/calendar_time.dart';
 import 'package:delivery_app/configuration/configuration.dart';
-import 'package:delivery_app/cubits/get_assigned_cubit/get_assigned_cubit.dart';
+import 'package:delivery_app/cubits/get_assigned_cubit/op/get_assigned_cubit.dart';
 import 'package:delivery_app/cubits/cubits.dart';
 // import 'package:delivery_app/cubits/my_orders_cubit.dart/my_orders_cubit.dart';
 import 'package:delivery_app/models/order_details/order.dart';

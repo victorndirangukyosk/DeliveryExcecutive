@@ -2,9 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:calendar_time/calendar_time.dart';
 import 'package:delivery_app/configuration/configuration.dart';
 import 'package:delivery_app/configuration/palette/palette.dart';
-import 'package:delivery_app/cubits/get_assigned_cubit/get_assigned_cubit.dart';
+import 'package:delivery_app/cubits/get_assigned_cubit/op/get_assigned_cubit.dart';
 import 'package:delivery_app/cubits/order_details_cubit/order_details_cubit.dart';
-import 'package:delivery_app/models/assigned/assigned_order.dart';
+import 'package:delivery_app/models/assigned/op/assigned_order.dart';
 // import 'package:delivery_app/cubits/my_orders_cubit.dart/my_orders_cubit.dart';
 import 'package:delivery_app/models/order_details/order.dart';
 import 'package:delivery_app/models/order_details/order_details.dart';
@@ -37,14 +37,14 @@ class _HomeIconPagePackingState extends State<HomeIconPagePacking> {
         appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.black),
           elevation: 0,
-          backgroundColor:Colors.white,
+          backgroundColor: Palette.orangeColor,
           title: const Text(
             'My Orders',
             style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 24,
                 fontFamily: 'Red Hat Display',
-                color: Colors.black),
+                color: Colors.white),
           ),
         ),
         body: BlocConsumer<GetAssignedCubit, GetAssignedState>(
@@ -124,7 +124,7 @@ class _HomeIconPagePackingState extends State<HomeIconPagePacking> {
         //     },
         //   ),
         // ),
-       
+
         );
   }
 }
@@ -135,152 +135,331 @@ class CardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        margin: const EdgeInsets.all(30.0),
-        decoration: const BoxDecoration(
-          color: Palette.orangeBackgroundColor,
-          borderRadius: BorderRadius.only(
-            topRight: Radius.circular(30.0),
-            bottomLeft: Radius.circular(30.0),
-          ),
-        ),
-     constraints: const BoxConstraints(
-    maxHeight: double.infinity,
-),
-        child: Column(children: [
-          FittedBox(
-            child: Container(
-              height: 120,
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Column(mainAxisSize: MainAxisSize.max, children: [
-                      const Text(
-                        "Order Id",
-                        style: TextStyle(
-                          fontFamily: 'Red Hat Display',
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Palette.orangeColor,
-                        ),
-                      ),
-                      Text(
-                        order.order_id!.toString(),
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Palette.placeholderGrey,
-                          // color: Colors.orange,
-                        ),
-                      ),
-                      Spacer(),
-                      const Text(
-                        "Order Status",
-                        style: TextStyle(
-                            fontFamily: 'Red Hat Display',
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Palette.orangeColor),
-                      ),
-                      Text(
-                        order.order_status!.toString(),
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Palette.placeholderGrey,
-                        ),
-                      ),
-                      
-                    ]),
-                    const SizedBox(width: 20),
-                    Column(children: [
-                      const Text(
-                        'Number of Products',
-                        style: TextStyle(
-                            fontFamily: 'Red Hat Display',
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Palette.orangeColor),
-                      ),
-                      Text(
-                        order.products_count!.toString(),
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Palette.placeholderGrey,
-                        ),
-                      ),
-                      Spacer(),
-                      Text(
-                        "Date of Delivery",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Palette.orangeColor,
-                          fontFamily: 'Red Hat Display',
-                        ),
-                      ),
-                      Text(
-                        // order.delivery_date!,
-                        CalendarTime(DateTime.parse(order.delivery_date!))
-                            .toHuman,
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Palette.placeholderGrey,
-                        ),
-                      )
-                    ]),
-                    const SizedBox(width: 20),
-                    Column(children: [
-                      Text(
-                        "Time of Delivery",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontFamily: 'Red Hat Display',
-                          fontWeight: FontWeight.bold,
-                          color: Palette.orangeColor,
-                        ),
-                      ),
-                      Text(
-                        order.delivery_timeslot!,
-                        // CalendarTime(DateTime.parse(order.delivery_timeslot!))
-                        //     .toHuman,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Palette.placeholderGrey,
-                        ),
-                      )
-                    ]),
-                    
-                  ]),
-                  
+    Size size = MediaQuery.of(context).size;
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    return ClipRRect(
+      borderRadius: const BorderRadius.all(Radius.circular(16.0)),
+      child: FittedBox(
+        child: Container(
+            margin: const EdgeInsets.all(30.0),
+            decoration: const BoxDecoration(
+              // color: Palette.orangeBackgroundColor,
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(30.0),
+                bottomLeft: Radius.circular(30.0),
+              ),
             ),
-            
-          ),
-          CupertinoButton(
-                      // style: ElevatedButton.styleFrom(
-                      //   // primary: Colors.black,
-                      //   minimumSize: const Size.fromHeight(50), // NEW
-                      // ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => OrderDetailsPage(
-                                    orderId: order.order_id!,
-                                  )),
-                        );
-                      },
-                      child: const Text(
-                        'Start Processing ',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
+            constraints: const BoxConstraints(
+              maxHeight: double.infinity,
+            ),
+            child: Column(children: [
+              Container(
+                height: height / 4,
+                width: width,
+                child: IntrinsicHeight(
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            // mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Column(
+                                children: [
+                                  const Text(
+                                    "Order Id",
+                                    style: TextStyle(
+                                      fontFamily: 'Red Hat Display',
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Palette.orangeColor,
+                                    ),
+                                  ),
+                                  Text(
+                                    order.order_id!.toString(),
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Palette.placeholderGrey,
+                                      // color: Colors.orange,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              // Spacer(),
+                              Column(
+                                children: <Widget>[
+                                  const Text(
+                                    "Order Status",
+                                    style: TextStyle(
+                                        fontFamily: 'Red Hat Display',
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: Palette.orangeColor),
+                                  ),
+                                  Text(
+                                    order.order_status!.toString(),
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Palette.placeholderGrey,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  const Text(
+                                    'Number of Products',
+                                    style: TextStyle(
+                                        fontFamily: 'Red Hat Display',
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: Palette.orangeColor),
+                                  ),
+                                  Text(
+                                    order.products_count!.toString(),
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Palette.placeholderGrey,
+                                    ),
+                                  ),
+                                ],
+                              )
+                            ]),
+                        SizedBox(),
+                        Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            // mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Column(
+                                children: [
+                                  const Text(
+                                    'Group ID',
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Palette.orangeColor,
+                                      fontFamily: 'Red Hat Display',
+                                    ),
+                                  ),
+                                  Text(
+                                    order.order_processing_group_id!.toString(),
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Palette.placeholderGrey,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Text(
+                                    'My ID',
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Palette.orangeColor,
+                                      fontFamily: 'Red Hat Display',
+                                    ),
+                                  ),
+                                  Text(
+                                    order.order_processor_id!.toString(),
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Palette.placeholderGrey,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  const Text(
+                                    'Number of Products',
+                                    style: TextStyle(
+                                        fontFamily: 'Red Hat Display',
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: Palette.orangeColor),
+                                  ),
+                                  Text(
+                                    order.products_count!.toString(),
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Palette.placeholderGrey,
+                                    ),
+                                  ),
+                                ],
+                              )
+                            ]),
+                        SizedBox(),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          // mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Column(
+                              children: [
+                                const Text(
+                                  'Date of Delivery',
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Palette.orangeColor,
+                                    fontFamily: 'Red Hat Display',
+                                  ),
+                                ),
+                                Text(
+                                  // order.delivery_date!,
+                                  CalendarTime(
+                                          DateTime.parse(order.delivery_date!))
+                                      .toHuman,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Palette.placeholderGrey,
+                                  ),
+                                )
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Text(
+                                  "Time of Delivery",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontFamily: 'Red Hat Display',
+                                    fontWeight: FontWeight.bold,
+                                    color: Palette.orangeColor,
+                                  ),
+                                ),
+                                Text(
+                                  order.delivery_timeslot!,
+                                  // CalendarTime(DateTime.parse(order.delivery_timeslot!))
+                                  //     .toHuman,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Palette.placeholderGrey,
+                                  ),
+                                )
+                              ],
+                            ),
+                            SizedBox(),
+                            Column(),
+                          ],
                         ),
-                      ),
-                    ),
-        ]));
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          // mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Column(
+                              children: [
+                                Align(
+                                  alignment: Alignment.bottomRight,
+                                  child: CupertinoButton.filled(
+                                    // style: ElevatedButton.styleFrom(
+                                    //   // primary: Colors.black,
+                                    //   minimumSize: const Size.fromHeight(50), // NEW
+                                    // ),
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                OrderDetailsPage(
+                                                  orderId: order.order_id!,
+                                                )),
+                                      );
+                                    },
+                                    child: const Text(
+                                      'Start Processing ',
+                                      style: TextStyle(
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        // const SizedBox(width: 20),
+                        // Column(children: [
+                        //   const Text(
+                        //     'Number of Products',
+                        //     style: TextStyle(
+                        //         fontFamily: 'Red Hat Display',
+                        //         fontSize: 20,
+                        //         fontWeight: FontWeight.bold,
+                        //         color: Palette.orangeColor),
+                        //   ),
+                        //   Text(
+                        //     order.products_count!.toString(),
+                        //     style: const TextStyle(
+                        //       fontSize: 16,
+                        //       fontWeight: FontWeight.bold,
+                        //       color: Palette.placeholderGrey,
+                        //     ),
+                        //   ),
+                        //   Spacer(),
+                        //   Text(
+                        //     "Date of Delivery",
+                        //     style: TextStyle(
+                        //       fontSize: 20,
+                        //       fontWeight: FontWeight.bold,
+                        //       color: Palette.orangeColor,
+                        //       fontFamily: 'Red Hat Display',
+                        //     ),
+                        //   ),
+                        //   Text(
+                        //     // order.delivery_date!,
+                        //     CalendarTime(DateTime.parse(order.delivery_date!))
+                        //         .toHuman,
+                        //     style: TextStyle(
+                        //       fontSize: 16,
+                        //       fontWeight: FontWeight.bold,
+                        //       color: Palette.placeholderGrey,
+                        //     ),
+                        //   )
+                        // ]),
+                        // const SizedBox(width: 20),
+                        // Column(children: [
+                        //   Text(
+                        //     "Time of Delivery",
+                        //     style: TextStyle(
+                        //       fontSize: 20,
+                        //       fontFamily: 'Red Hat Display',
+                        //       fontWeight: FontWeight.bold,
+                        //       color: Palette.orangeColor,
+                        //     ),
+                        //   ),
+                        //   Text(
+                        //     order.delivery_timeslot!,
+                        //     // CalendarTime(DateTime.parse(order.delivery_timeslot!))
+                        //     //     .toHuman,
+                        //     style: const TextStyle(
+                        //       fontSize: 16,
+                        //       fontWeight: FontWeight.bold,
+                        //       color: Palette.placeholderGrey,
+                        //     ),
+                        //   )
+                        // ]),
+                      ]),
+                ),
+              ),
+            ])),
+      ),
+    );
   }
 }
