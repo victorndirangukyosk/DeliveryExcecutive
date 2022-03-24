@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/build/qr_code_scanner/intermediates/merged_res/release/layout-watch-v20/abc_alert_dialog_button_bar_material.xml",
+        "source": "/Users/victortechnobrain/.gradle/caches/transforms-3/24af59aeff6885e6d7487bbb4d039a6b/transformed/appcompat-1.3.0/res/layout-watch-v20/abc_alert_dialog_button_bar_material.xml"
+    },
+    {
+        "merged": "/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/build/qr_code_scanner/intermediates/merged_res/release/layout-watch-v20/abc_alert_dialog_title_material.xml",
+        "source": "/Users/victortechnobrain/.gradle/caches/transforms-3/24af59aeff6885e6d7487bbb4d039a6b/transformed/appcompat-1.3.0/res/layout-watch-v20/abc_alert_dialog_title_material.xml"
+    }
+]
