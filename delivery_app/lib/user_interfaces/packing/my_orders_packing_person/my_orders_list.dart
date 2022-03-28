@@ -1,7 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:delivery_app/configuration/configuration.dart';
+import 'package:delivery_app/cubits/get_assigned_cubit/de/cubit/assigned_de_cubit.dart';
+import 'package:delivery_app/models/assigned/de/assigned_de.dart';
 import 'package:delivery_app/routes/router.gr.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MyOrdersList extends StatelessWidget {
@@ -9,20 +13,54 @@ class MyOrdersList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      physics: const BouncingScrollPhysics(),
-      children: List.generate(
-          20,
-          (index) => SingleOrder(
-                index: index,
-              )),
+    return BlocConsumer<AssignedDeCubit, AssignedDeState>(
+      listener: (context, state) {
+        // TODO: implement listener
+        state.maybeWhen(
+            orElse: () {},
+            failed: (e) {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return CupertinoAlertDialog(
+                      title: Text('Error'),
+                      content: Text(e),
+                    );
+                  });
+            });
+      },
+      builder: (context, state) {
+        return state.maybeWhen(
+          loading: () {
+            return const Center(
+              child: CupertinoActivityIndicator(color: Palette.greenColor),
+            );
+          },
+          success: (ordersde) {
+            return ListView(
+              physics: const BouncingScrollPhysics(),
+              children: List.generate(
+                  20,
+                  (index) => SingleOrder(
+                        index: index,
+                        orderde: ordersde[index],
+                      )),
+            );
+          },
+          orElse: () {
+            return Container();
+          },
+        );
+      },
     );
   }
 }
 
 class SingleOrder extends StatelessWidget {
+  final AssignedDe orderde;
   final int index;
-  const SingleOrder({Key? key, required this.index}) : super(key: key);
+  const SingleOrder({Key? key, required this.index, required this.orderde})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +100,7 @@ class SingleOrder extends StatelessWidget {
             ),
             value: 'directions',
             onTap: () {
-              AutoRouter.of(context).push(const DirectionsToAddress());
+              // AutoRouter.of(context).push(const DirectionsToAddress());
             },
           ),
         ];
@@ -121,7 +159,7 @@ class SingleOrder extends StatelessWidget {
                 ),
                 value: 'directions',
                 onTap: () {
-                  AutoRouter.of(context).push(const DirectionsToAddress());
+                  // AutoRouter.of(context).push(const DirectionsToAddress());
                 },
               ),
             ];

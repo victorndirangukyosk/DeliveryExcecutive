@@ -13,6 +13,9 @@ class AssignedDeCubit extends Cubit<AssignedDeState> {
     try {
       var response = await RestClient().dio!.get(
             'https://stage.apiadmin.kwikbasket.com/api/deliveryexecutive/getOrders',
+            queryParameters: {
+              'order_status_id': 1,
+            }
           );
       List ordersinJson = response.data['data']['orders'];
       List<AssignedDe> ordersde = List.generate(ordersinJson.length,

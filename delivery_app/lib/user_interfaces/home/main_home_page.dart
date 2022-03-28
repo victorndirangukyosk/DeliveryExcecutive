@@ -3,6 +3,7 @@ import 'package:calendar_time/calendar_time.dart';
 import 'package:delivery_app/configuration/configuration.dart';
 import 'package:delivery_app/cubits/get_assigned_cubit/op/get_assigned_cubit.dart';
 import 'package:delivery_app/cubits/cubits.dart';
+import 'package:delivery_app/models/assigned/de/assigned_de.dart';
 // import 'package:delivery_app/cubits/my_orders_cubit.dart/my_orders_cubit.dart';
 import 'package:delivery_app/models/order_details/order.dart';
 import 'package:delivery_app/routes/router.gr.dart';
@@ -112,8 +113,7 @@ class MainHomePage extends StatelessWidget {
                                             height: 20,
                                           ),
                                           const Text('Stalluri'),
-                                          const Text(
-                                              'stalluri@gmail.com'),
+                                          const Text('stalluri@gmail.com'),
                                           const SizedBox(
                                             height: 20,
                                           ),
@@ -383,13 +383,16 @@ class SingleOrderWidget extends StatelessWidget {
 }
 
 class HomeIconPagedelivery extends StatefulWidget {
-  const HomeIconPagedelivery({Key? key}) : super(key: key);
+  final AssignedDe orderde;
+  const HomeIconPagedelivery({Key? key, required this.orderde})
+      : super(key: key);
 
   @override
   _HomeIconPageState createState() => _HomeIconPageState();
 }
 
 class _HomeIconPageState extends State<HomeIconPagedelivery> {
+  late final AssignedDe orderde;
   @override
   Widget build(BuildContext context) {
     context.read<GetAssignedCubit>().getAssignedOrders();
@@ -466,7 +469,7 @@ class _HomeIconPageState extends State<HomeIconPagedelivery> {
                 right: 0,
                 child: CupertinoButton(
                   onPressed: () {
-                    AutoRouter.of(context).push(const DirectionsToAddress());
+                    // AutoRouter.of(context).push( DirectionsToAddress(orderId: orderde!.order_id!));
                   },
                   child: Card(
                     elevation: 10,
@@ -512,8 +515,8 @@ class _DispatchState extends State<Dispatch> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-          child: Stack(
-              children: [
+      child: Stack(
+        children: [
           const Positioned(
             left: 200,
             right: 200,
@@ -581,8 +584,8 @@ class _DispatchState extends State<Dispatch> {
               ),
             ),
           )
-              ],
-            ),
-        ));
+        ],
+      ),
+    ));
   }
 }

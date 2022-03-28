@@ -515,9 +515,12 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                             const VerticalDivider(),
                                             Expanded(
                                               child: Column(
-                                                children: const [
+                                                children: [
                                                   Text(
-                                                    '12kg ',
+                                                    // odetailsList[index]
+                                                    //     .quantity
+                                                    //     .toString(),
+                                                    '12',
                                                     style: TextStyle(
                                                         color: Palette
                                                             .placeholderGrey,

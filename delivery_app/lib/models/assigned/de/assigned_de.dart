@@ -22,7 +22,7 @@ class AssignedDe with _$AssignedDe {
     String? lastname,
     String? telephone,
     String? email,
-    String? customer_id,
+    num? customer_id,
   }) = _AssignedDe;
 
   factory AssignedDe.fromJson(Map<String, dynamic> json) =>

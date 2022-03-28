@@ -13,7 +13,7 @@ class OdetailsListCubit extends Cubit<OdetailsListState> {
     emit(OdetailsListState.loading());
     try {
       var response = await RestClient().dio!.get(
-          'https://stage.apiadmin.kwikbasket.com/api/op/getOrderProducts/${orderId}');
+          ' ');
       List orderProducts = response.data['data'];
       List<OdetailsList> odetailsList =
           List.generate(orderProducts.length, (index) {

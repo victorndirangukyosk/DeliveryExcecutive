@@ -39,7 +39,7 @@ class _$AssignedDeTearOff {
       String? lastname,
       String? telephone,
       String? email,
-      String? customer_id}) {
+      num? customer_id}) {
     return _AssignedDe(
       order_status: order_status,
       products_count: products_count,
@@ -87,7 +87,7 @@ mixin _$AssignedDe {
   String? get lastname => throw _privateConstructorUsedError;
   String? get telephone => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
-  String? get customer_id => throw _privateConstructorUsedError;
+  num? get customer_id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -117,7 +117,7 @@ abstract class $AssignedDeCopyWith<$Res> {
       String? lastname,
       String? telephone,
       String? email,
-      String? customer_id});
+      num? customer_id});
 }
 
 /// @nodoc
@@ -216,7 +216,7 @@ class _$AssignedDeCopyWithImpl<$Res> implements $AssignedDeCopyWith<$Res> {
       customer_id: customer_id == freezed
           ? _value.customer_id
           : customer_id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as num?,
     ));
   }
 }
@@ -244,7 +244,7 @@ abstract class _$AssignedDeCopyWith<$Res> implements $AssignedDeCopyWith<$Res> {
       String? lastname,
       String? telephone,
       String? email,
-      String? customer_id});
+      num? customer_id});
 }
 
 /// @nodoc
@@ -345,7 +345,7 @@ class __$AssignedDeCopyWithImpl<$Res> extends _$AssignedDeCopyWithImpl<$Res>
       customer_id: customer_id == freezed
           ? _value.customer_id
           : customer_id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as num?,
     ));
   }
 }
@@ -408,7 +408,7 @@ class _$_AssignedDe implements _AssignedDe {
   @override
   final String? email;
   @override
-  final String? customer_id;
+  final num? customer_id;
 
   @override
   String toString() {
@@ -500,7 +500,7 @@ abstract class _AssignedDe implements AssignedDe {
       String? lastname,
       String? telephone,
       String? email,
-      String? customer_id}) = _$_AssignedDe;
+      num? customer_id}) = _$_AssignedDe;
 
   factory _AssignedDe.fromJson(Map<String, dynamic> json) =
       _$_AssignedDe.fromJson;
@@ -538,7 +538,7 @@ abstract class _AssignedDe implements AssignedDe {
   @override
   String? get email;
   @override
-  String? get customer_id;
+  num? get customer_id;
   @override
   @JsonKey(ignore: true)
   _$AssignedDeCopyWith<_AssignedDe> get copyWith =>

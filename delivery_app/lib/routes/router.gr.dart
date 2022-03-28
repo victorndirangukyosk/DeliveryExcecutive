@@ -71,8 +71,10 @@ class AppRouter extends _i12.RootStackRouter {
           routeData: routeData, child: const _i7.CustomerVerification());
     },
     DirectionsToAddress.name: (routeData) {
+      final args = routeData.argsAs<DirectionsToAddressArgs>();
       return _i12.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i8.DirectionsToAddress());
+          routeData: routeData,
+          child: _i8.DirectionsToAddress(key: args.key, orderId: args.orderId));
     },
     ResetPasswordRoute.name: (routeData) {
       return _i12.MaterialPageX<dynamic>(
@@ -183,11 +185,26 @@ class CustomerVerification extends _i12.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i8.DirectionsToAddress]
-class DirectionsToAddress extends _i12.PageRouteInfo<void> {
-  const DirectionsToAddress()
-      : super(DirectionsToAddress.name, path: '/directions-to-address');
+class DirectionsToAddress extends _i12.PageRouteInfo<DirectionsToAddressArgs> {
+  DirectionsToAddress({_i14.Key? key, required int orderId})
+      : super(DirectionsToAddress.name,
+            path: '/directions-to-address',
+            args: DirectionsToAddressArgs(key: key, orderId: orderId));
 
   static const String name = 'DirectionsToAddress';
+}
+
+class DirectionsToAddressArgs {
+  const DirectionsToAddressArgs({this.key, required this.orderId});
+
+  final _i14.Key? key;
+
+  final int orderId;
+
+  @override
+  String toString() {
+    return 'DirectionsToAddressArgs{key: $key, orderId: $orderId}';
+  }
 }
 
 /// generated route for

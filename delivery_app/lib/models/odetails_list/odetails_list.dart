@@ -8,6 +8,7 @@ class OdetailsList with _$OdetailsList {
   factory OdetailsList({
     String? name,
     String? product_note,
+    int? quantity,
   }) = _OdetailsList;
 
   factory OdetailsList.fromJson(Map<String, dynamic> json) =>

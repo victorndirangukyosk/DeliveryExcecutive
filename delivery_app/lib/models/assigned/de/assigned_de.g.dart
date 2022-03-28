@@ -24,7 +24,7 @@ _$_AssignedDe _$$_AssignedDeFromJson(Map<String, dynamic> json) =>
       lastname: json['lastname'] as String?,
       telephone: json['telephone'] as String?,
       email: json['email'] as String?,
-      customer_id: json['customer_id'] as String?,
+      customer_id: json['customer_id'] as num?,
     );
 
 Map<String, dynamic> _$$_AssignedDeToJson(_$_AssignedDe instance) =>

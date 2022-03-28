@@ -9,7 +9,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class DirectionsToAddress extends StatelessWidget {
-  const DirectionsToAddress({Key? key}) : super(key: key);
+  final int orderId;
+  const DirectionsToAddress({Key? key,required this.orderId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
