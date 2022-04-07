@@ -8,6 +8,7 @@ class OdetailsList with _$OdetailsList {
   factory OdetailsList({
     String? name,
     String? product_note,
+    String? unit,
     int? quantity,
   }) = _OdetailsList;
 

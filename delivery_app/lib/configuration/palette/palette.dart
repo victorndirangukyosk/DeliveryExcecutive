@@ -11,6 +11,8 @@ class Palette {
   /// The orange accent app color
   static const Color orangeColor = Color(0xffef7b24);
 
+  static const Color hintTextColor = Color(0xFFbacCDCDCD);
+
   /// The grey color
   static const Color greyColor = Color(0xffF5F5F5);
 }

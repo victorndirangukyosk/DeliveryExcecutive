@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get_it/get_it.dart';
-import 'package:kiosk_mode/kiosk_mode.dart';
+// import 'package:kiosk_mode/kiosk_mode.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -20,8 +20,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 3), () async {
-      await startKioskMode();
+    Future.delayed(const Duration(seconds: 3), () {
+      // await startKioskMode();
       TokenCubit tokenCubit = GetIt.I.get<TokenCubit>();
       tokenCubit.state.isEmpty
           ? AutoRouter.of(context).replace(const LoginRoute())

@@ -15,8 +15,10 @@ class GetAssignedCubit extends Cubit<GetAssignedState> {
     emit(const GetAssignedState.loading());
     try {
       var response = await RestClient().dio!.get(
-            'https://stage.apiadmin.kwikbasket.com/api/op/getorders',
-          );
+          'https://stage.apiadmin.kwikbasket.com/api/op/getorders',
+          queryParameters: {
+            'order_status_id': 1,
+          });
       List ordersinJson = response.data['data']['orders'];
       List<AssignedOrder> orders = List.generate(ordersinJson.length,
           ((index) => AssignedOrder.fromJson(ordersinJson[index])));

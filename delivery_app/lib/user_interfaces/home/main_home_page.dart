@@ -513,75 +513,66 @@ class Dispatch extends StatefulWidget {
 class _DispatchState extends State<Dispatch> {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
-        body: Container(
-      child: Stack(
+        body: Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Positioned(
-            left: 200,
-            right: 200,
-            top: 200,
-            child: Center(
-              child: SpinKitCircle(
-                color: Palette.greenColor,
-              ),
-            ),
-          ),
-          const Positioned(
-            top: 100,
-            right: 0,
-            left: 0,
-            child: Center(
-              child: Text.rich(TextSpan(
-                  text: 'Kwik ',
-                  style: TextStyle(
-                      fontSize: 60,
-                      fontWeight: FontWeight.w900,
-                      color: Palette.orangeColor),
-                  children: [
-                    TextSpan(
-                        text: 'Delivery',
-                        style: TextStyle(color: Palette.greenColor))
-                  ])),
-            ),
-          ),
-          Positioned(
-              left: 0,
-              right: 0,
-              bottom: -10,
-              child: Image.asset(
-                'assets/truck_image.png',
-                width: MediaQuery.of(context).size.width + 20,
-              )),
-          const Positioned(
-            left: 480,
-            right: 0,
-            bottom: 120,
-            child: Text(
-              'READY FOR DISPATCH',
+          Expanded(child: SizedBox.shrink()),
+          Text.rich(TextSpan(
+              text: 'Kwik ',
               style: TextStyle(
-                  fontSize: 35,
-                  color: Palette.orangeColor,
-                  fontWeight: FontWeight.bold),
+                  fontSize: 60,
+                  fontWeight: FontWeight.w900,
+                  color: Palette.orangeColor),
+              children: [
+                TextSpan(
+                    text: 'Delivery',
+                    style: TextStyle(color: Palette.greenColor))
+              ])),
+          Expanded(
+            child: Image.asset(
+              'assets/truck_image.png',
+              // width: MediaQuery.of(context).size.width / 2,
+              // height: MediaQuery.of(context).size.height / 2,
             ),
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                // primary: Colors.black,
-                minimumSize: const Size.fromHeight(50), // NEW
-              ),
-              onPressed: () {
-                AutoRouter.of(context).replace(const MainHomeRoute());
-              },
-              child: const Text(
-                'Dispatch',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
+          // Spacer(),
+          Expanded(
+            child: Column(
+              children: [
+                Text(
+                  'READY FOR DISPATCH',
+                  style: TextStyle(
+                      fontSize: 35,
+                      color: Palette.orangeColor,
+                      fontWeight: FontWeight.bold),
                 ),
-              ),
+              ],
+            ),
+          ),
+
+          // const Spacer(),
+          Expanded(
+            child: Column(
+              children: [
+                const SpinKitCircle(color: Palette.greenColor),
+                CupertinoButton.filled(
+                  onPressed: () {
+                    AutoRouter.of(context).replace(const MainHomeRoute());
+                  },
+                  child: const Text(
+                    'Dispatch',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
             ),
           )
         ],

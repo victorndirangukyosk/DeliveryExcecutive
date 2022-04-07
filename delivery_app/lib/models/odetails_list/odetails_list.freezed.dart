@@ -22,10 +22,12 @@ OdetailsList _$OdetailsListFromJson(Map<String, dynamic> json) {
 class _$OdetailsListTearOff {
   const _$OdetailsListTearOff();
 
-  _OdetailsList call({String? name, String? product_note, int? quantity}) {
+  _OdetailsList call(
+      {String? name, String? product_note, String? unit, int? quantity}) {
     return _OdetailsList(
       name: name,
       product_note: product_note,
+      unit: unit,
       quantity: quantity,
     );
   }
@@ -42,6 +44,7 @@ const $OdetailsList = _$OdetailsListTearOff();
 mixin _$OdetailsList {
   String? get name => throw _privateConstructorUsedError;
   String? get product_note => throw _privateConstructorUsedError;
+  String? get unit => throw _privateConstructorUsedError;
   int? get quantity => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -55,7 +58,7 @@ abstract class $OdetailsListCopyWith<$Res> {
   factory $OdetailsListCopyWith(
           OdetailsList value, $Res Function(OdetailsList) then) =
       _$OdetailsListCopyWithImpl<$Res>;
-  $Res call({String? name, String? product_note, int? quantity});
+  $Res call({String? name, String? product_note, String? unit, int? quantity});
 }
 
 /// @nodoc
@@ -70,6 +73,7 @@ class _$OdetailsListCopyWithImpl<$Res> implements $OdetailsListCopyWith<$Res> {
   $Res call({
     Object? name = freezed,
     Object? product_note = freezed,
+    Object? unit = freezed,
     Object? quantity = freezed,
   }) {
     return _then(_value.copyWith(
@@ -80,6 +84,10 @@ class _$OdetailsListCopyWithImpl<$Res> implements $OdetailsListCopyWith<$Res> {
       product_note: product_note == freezed
           ? _value.product_note
           : product_note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      unit: unit == freezed
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
               as String?,
       quantity: quantity == freezed
           ? _value.quantity
@@ -96,7 +104,7 @@ abstract class _$OdetailsListCopyWith<$Res>
           _OdetailsList value, $Res Function(_OdetailsList) then) =
       __$OdetailsListCopyWithImpl<$Res>;
   @override
-  $Res call({String? name, String? product_note, int? quantity});
+  $Res call({String? name, String? product_note, String? unit, int? quantity});
 }
 
 /// @nodoc
@@ -113,6 +121,7 @@ class __$OdetailsListCopyWithImpl<$Res> extends _$OdetailsListCopyWithImpl<$Res>
   $Res call({
     Object? name = freezed,
     Object? product_note = freezed,
+    Object? unit = freezed,
     Object? quantity = freezed,
   }) {
     return _then(_OdetailsList(
@@ -123,6 +132,10 @@ class __$OdetailsListCopyWithImpl<$Res> extends _$OdetailsListCopyWithImpl<$Res>
       product_note: product_note == freezed
           ? _value.product_note
           : product_note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      unit: unit == freezed
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
               as String?,
       quantity: quantity == freezed
           ? _value.quantity
@@ -135,7 +148,7 @@ class __$OdetailsListCopyWithImpl<$Res> extends _$OdetailsListCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_OdetailsList implements _OdetailsList {
-  _$_OdetailsList({this.name, this.product_note, this.quantity});
+  _$_OdetailsList({this.name, this.product_note, this.unit, this.quantity});
 
   factory _$_OdetailsList.fromJson(Map<String, dynamic> json) =>
       _$$_OdetailsListFromJson(json);
@@ -145,11 +158,13 @@ class _$_OdetailsList implements _OdetailsList {
   @override
   final String? product_note;
   @override
+  final String? unit;
+  @override
   final int? quantity;
 
   @override
   String toString() {
-    return 'OdetailsList(name: $name, product_note: $product_note, quantity: $quantity)';
+    return 'OdetailsList(name: $name, product_note: $product_note, unit: $unit, quantity: $quantity)';
   }
 
   @override
@@ -160,6 +175,7 @@ class _$_OdetailsList implements _OdetailsList {
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
                 .equals(other.product_note, product_note) &&
+            const DeepCollectionEquality().equals(other.unit, unit) &&
             const DeepCollectionEquality().equals(other.quantity, quantity));
   }
 
@@ -168,6 +184,7 @@ class _$_OdetailsList implements _OdetailsList {
       runtimeType,
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(product_note),
+      const DeepCollectionEquality().hash(unit),
       const DeepCollectionEquality().hash(quantity));
 
   @JsonKey(ignore: true)
@@ -182,8 +199,11 @@ class _$_OdetailsList implements _OdetailsList {
 }
 
 abstract class _OdetailsList implements OdetailsList {
-  factory _OdetailsList({String? name, String? product_note, int? quantity}) =
-      _$_OdetailsList;
+  factory _OdetailsList(
+      {String? name,
+      String? product_note,
+      String? unit,
+      int? quantity}) = _$_OdetailsList;
 
   factory _OdetailsList.fromJson(Map<String, dynamic> json) =
       _$_OdetailsList.fromJson;
@@ -192,6 +212,8 @@ abstract class _OdetailsList implements OdetailsList {
   String? get name;
   @override
   String? get product_note;
+  @override
+  String? get unit;
   @override
   int? get quantity;
   @override

@@ -12,10 +12,15 @@ class FetchOrderStatusCubit extends Cubit<FetchOrderStatusState> {
   fetchOrderStatuses() async {
     emit(FetchOrderStatusState.loading());
     try {
-      var response = await ApiService.get(path: 'getOrderStatuses');
+      var response =
+          await ApiService.get(path: 'getOrderStatuses', queryParameters: {});
       List data = response['data'];
-      emit(FetchOrderStatusState.success(List.generate(
-          data.length, (index) => OrderStatus.fromJson(data[index]))));
+      var sada = List.generate(
+          data.length, (index) => OrderStatus.fromJson(data[index]));
+      emit(FetchOrderStatusState.success(sada
+          .where((element) =>
+              element.order_status_id == 1 || element.order_status_id == 17)
+          .toList()));
     } catch (e) {
       emit(FetchOrderStatusState.failed(e.toString()));
     }

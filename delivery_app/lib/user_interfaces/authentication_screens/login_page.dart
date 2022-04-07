@@ -34,17 +34,12 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-class LoginCard extends StatefulWidget {
+class LoginCard extends StatelessWidget {
   const LoginCard({Key? key}) : super(key: key);
 
-  @override
-  State<LoginCard> createState() => _LoginCardState();
-}
-
-class _LoginCardState extends State<LoginCard> {
+  static var _formKey = GlobalKey<FormBuilderState>();
   @override
   Widget build(BuildContext context) {
-    var _formKey = GlobalKey<FormBuilderState>();
     return Card(
       elevation: 20,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),

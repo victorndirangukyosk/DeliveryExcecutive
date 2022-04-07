@@ -5,6 +5,7 @@ import 'package:delivery_app/cubits/fetch_order_status_cubit/fetch_order_status_
 import 'package:delivery_app/cubits/order_details_cubit/order_details_cubit.dart';
 import 'package:delivery_app/cubits/order_details_list/odetails_list_cubit.dart';
 import 'package:delivery_app/models/missing/missing.dart';
+import 'package:delivery_app/models/odetails_list/odetails_list.dart';
 import 'package:delivery_app/services/api_service/api_service.dart';
 import 'package:delivery_app/theme/box_icons.dart';
 import 'package:delivery_app/user_interfaces/home/main_home_page.dart';
@@ -25,7 +26,6 @@ import 'package:overlay_support/overlay_support.dart';
 class OrderList extends StatefulWidget {
   final int orderId;
 
-
   OrderList({Key? key, required this.orderId}) : super(key: key);
 
   @override
@@ -33,7 +33,7 @@ class OrderList extends StatefulWidget {
 }
 
 class _OrderListState extends State<OrderList> {
-  var size,height,width;
+  var size, height, width;
 
   TextEditingController _textFieldController1 = TextEditingController();
 
@@ -118,6 +118,7 @@ class _OrderListState extends State<OrderList> {
     context.read<OrderDetailsCubit>().getOrderDetails(orderId: widget.orderId);
     context.read<OdetailsListCubit>().getOdetails(orderId: widget.orderId);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: BlocConsumer<OrderDetailsCubit, OrderDetailsState>(
         listener: (context, state) {
           // TODO: implement listener
@@ -142,8 +143,7 @@ class _OrderListState extends State<OrderList> {
                     ),
                   ),
               success: (orderDetails) {
-                return SafeArea(
-                    child: Padding(
+                return Padding(
                   padding: const EdgeInsets.only(top: 16.0),
                   child: Column(
                     children: <Widget>[
@@ -166,40 +166,32 @@ class _OrderListState extends State<OrderList> {
                                       MainAxisAlignment.spaceBetween,
                                   //implement here
                                   children: [
-                                    Positioned(
-                                      top: 30,
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: const Icon(
-                                          BoxIcons.bxs_left_arrow,
-                                          color: Palette.orangeColor,
-                                        ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Icon(
+                                        BoxIcons.bxs_left_arrow,
+                                        color: Palette.orangeColor,
                                       ),
                                     ),
                                     Column(
                                       children: [
                                         Column(
                                           children: const [
-                                            Positioned(
-                                                top: 30,
-                                                child: Text.rich(TextSpan(
-                                                    text: 'Kwik ',
-                                                    style: TextStyle(
-                                                        fontSize: 30,
-                                                        fontWeight:
-                                                            FontWeight.w900,
-                                                        color: Palette
-                                                            .orangeColor),
-                                                    children: [
-                                                      TextSpan(
-                                                          text: 'Delivery',
-                                                          style: TextStyle(
-                                                              color: Palette
-                                                                  .greenColor))
-                                                    ])),
-                                                left: 0),
+                                            Text.rich(TextSpan(
+                                                text: 'Kwik ',
+                                                style: TextStyle(
+                                                    fontSize: 30,
+                                                    fontWeight: FontWeight.w900,
+                                                    color: Palette.orangeColor),
+                                                children: [
+                                                  TextSpan(
+                                                      text: 'Delivery',
+                                                      style: TextStyle(
+                                                          color: Palette
+                                                              .greenColor))
+                                                ])),
                                           ],
                                         ),
                                         const Text(
@@ -215,185 +207,185 @@ class _OrderListState extends State<OrderList> {
                                           orderDetails.order_id.toString(),
                                           style: const TextStyle(
                                               color: Palette.orangeColor,
-                                              fontWeight:FontWeight.bold,
+                                              fontWeight: FontWeight.bold,
                                               fontFamily: 'Red Hat Display',
                                               fontSize: 21),
                                         ),
                                       ],
                                     ),
-                                    Positioned(
-                                        top: 20,
-                                        right: 20,
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            HapticFeedback.heavyImpact();
-                                          },
-                                          child: Material(
-                                            color: Colors.transparent,
-                                            child: CupertinoButton(
-                                                onPressed: () {
-                                                  showCupertinoModalPopup(
-                                                      context: context,
-                                                      builder:
-                                                          (context) => Center(
+                                    GestureDetector(
+                                      onTap: () {
+                                        HapticFeedback.heavyImpact();
+                                      },
+                                      child: Material(
+                                        color: Colors.transparent,
+                                        child: CupertinoButton(
+                                            onPressed: () {
+                                              showCupertinoModalPopup(
+                                                  context: context,
+                                                  builder: (context) => Center(
+                                                          child: SizedBox(
+                                                        // height: 100/,
+                                                        width: 300,
+                                                        child: Card(
+                                                          elevation: 0,
+                                                          child: Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .min,
+                                                            children: [
+                                                              const SizedBox(
+                                                                height: 20,
+                                                              ),
+                                                              const CircleAvatar(
+                                                                radius: 58,
+                                                                backgroundColor:
+                                                                    Palette
+                                                                        .orangeColor,
+                                                                child:
+                                                                    CircleAvatar(
+                                                                  radius: 54,
+                                                                  backgroundColor:
+                                                                      Colors
+                                                                          .white,
                                                                   child:
-                                                                      SizedBox(
-                                                                // height: 100/,
-                                                                width: 300,
-                                                                child: Card(
-                                                                  elevation: 0,
-                                                                  child: Column(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .min,
-                                                                    children: [
-                                                                      const SizedBox(
-                                                                        height:
-                                                                            20,
-                                                                      ),
-                                                                      const CircleAvatar(
-                                                                        radius:
-                                                                            58,
-                                                                        backgroundColor:
-                                                                            Palette.orangeColor,
-                                                                        child:
-                                                                            CircleAvatar(
-                                                                          radius:
-                                                                              54,
-                                                                          backgroundColor:
-                                                                              Colors.white,
-                                                                          child:
-                                                                              CircleAvatar(
-                                                                            radius:
-                                                                                50,
-                                                                            backgroundImage:
-                                                                                NetworkImage('https://th.bing.com/th/id/R.a5758d6fb64904904ec75fd1f083e3fb?rik=QVwaYy2Fd7Xi%2fA&pid=ImgRaw&r=0'),
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                      const SizedBox(
-                                                                        height:
-                                                                            20,
-                                                                      ),
-                                                                      const Text(
-                                                                          'stalluri'),
-                                                                      const Text(
-                                                                          'stalluri@gmail.com'),
-                                                                      const SizedBox(
-                                                                        height:
-                                                                            20,
-                                                                      ),
-                                                                      ListTile(
-                                                                        onTap:
-                                                                            () {},
-                                                                        leading:
-                                                                            const Icon(Icons.history),
-                                                                        title: const Text(
-                                                                            'Order history'),
-                                                                        trailing:
-                                                                            const Icon(CupertinoIcons.forward),
-                                                                        subtitle:
-                                                                            const Text('View order history'),
-                                                                      ),
-                                                                      ListTile(
-                                                                        onTap:
-                                                                            () {},
-                                                                        leading:
-                                                                            const Icon(CupertinoIcons.settings),
-                                                                        title: const Text(
-                                                                            'Settings'),
-                                                                        trailing:
-                                                                            const Icon(CupertinoIcons.forward),
-                                                                        subtitle:
-                                                                            const Text('Application settings'),
-                                                                      ),
-                                                                      ListTile(
-                                                                        onTap:
-                                                                            () {
-                                                                          // Clear the token
-                                                                          context
-                                                                              .read<TokenCubit>()
-                                                                              .clear();
-                                                                          AutoRouter.of(context)
-                                                                              .replace(const SplashScreen());
-                                                                        },
-                                                                        leading:
-                                                                            const Icon(
-                                                                          Icons
-                                                                              .logout_outlined,
-                                                                          color:
-                                                                              Palette.greenColor,
-                                                                        ),
-                                                                        title:
-                                                                            const Text(
-                                                                          'Logout',
-                                                                          style:
-                                                                              TextStyle(color: Colors.red),
-                                                                        ),
-                                                                        trailing:
-                                                                            const Icon(
-                                                                          CupertinoIcons
-                                                                              .forward,
-                                                                          color:
-                                                                              Palette.greenColor,
-                                                                        ),
-                                                                        subtitle:
-                                                                            const Text(
-                                                                          'Logout of this application',
-                                                                        ),
-                                                                      ),
-                                                                      ListTile(
-                                                                        onTap:
-                                                                            () {
-                                                                          showAboutDialog(
-                                                                            context:
-                                                                                context,
-                                                                            applicationIcon:
-                                                                                Image.asset('assets/logo.png', height: 30),
-                                                                          );
-                                                                        },
-                                                                        leading:
-                                                                            const Icon(
-                                                                          CupertinoIcons
-                                                                              .info,
-                                                                          color:
-                                                                              Palette.greenColor,
-                                                                        ),
-                                                                        title:
-                                                                            const Text(
-                                                                          "About",
-                                                                          style:
-                                                                              TextStyle(color: Palette.greenColor),
-                                                                        ),
-                                                                        trailing:
-                                                                            const Icon(
-                                                                          CupertinoIcons
-                                                                              .forward,
-                                                                          color:
-                                                                              Palette.greenColor,
-                                                                        ),
-                                                                        subtitle:
-                                                                            const Text(
-                                                                          'About this application',
-                                                                        ),
-                                                                      ),
-                                                                      const SizedBox(
-                                                                        height:
-                                                                            20,
-                                                                      )
-                                                                    ],
+                                                                      CircleAvatar(
+                                                                    radius: 50,
+                                                                    backgroundImage:
+                                                                        NetworkImage(
+                                                                            'https://th.bing.com/th/id/R.a5758d6fb64904904ec75fd1f083e3fb?rik=QVwaYy2Fd7Xi%2fA&pid=ImgRaw&r=0'),
                                                                   ),
                                                                 ),
-                                                              )));
-                                                },
-                                                child: const Center(
-                                                    child: Icon(
-                                                  Icons.dehaze,
-                                                  size: 40,
-                                                  color: Palette.orangeColor,
-                                                ))),
-                                          ),
-                                        )),
+                                                              ),
+                                                              const SizedBox(
+                                                                height: 20,
+                                                              ),
+                                                              const Text(
+                                                                  'stalluri'),
+                                                              const Text(
+                                                                  'stalluri@gmail.com'),
+                                                              const SizedBox(
+                                                                height: 20,
+                                                              ),
+                                                              ListTile(
+                                                                onTap: () {},
+                                                                leading: const Icon(
+                                                                    Icons
+                                                                        .history),
+                                                                title: const Text(
+                                                                    'Order history'),
+                                                                trailing: const Icon(
+                                                                    CupertinoIcons
+                                                                        .forward),
+                                                                subtitle:
+                                                                    const Text(
+                                                                        'View order history'),
+                                                              ),
+                                                              ListTile(
+                                                                onTap: () {},
+                                                                leading: const Icon(
+                                                                    CupertinoIcons
+                                                                        .settings),
+                                                                title: const Text(
+                                                                    'Settings'),
+                                                                trailing: const Icon(
+                                                                    CupertinoIcons
+                                                                        .forward),
+                                                                subtitle:
+                                                                    const Text(
+                                                                        'Application settings'),
+                                                              ),
+                                                              ListTile(
+                                                                onTap: () {
+                                                                  // Clear the token
+                                                                  context
+                                                                      .read<
+                                                                          TokenCubit>()
+                                                                      .clear();
+                                                                  AutoRouter.of(
+                                                                          context)
+                                                                      .replace(
+                                                                          const SplashScreen());
+                                                                },
+                                                                leading:
+                                                                    const Icon(
+                                                                  Icons
+                                                                      .logout_outlined,
+                                                                  color: Palette
+                                                                      .greenColor,
+                                                                ),
+                                                                title:
+                                                                    const Text(
+                                                                  'Logout',
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .red),
+                                                                ),
+                                                                trailing:
+                                                                    const Icon(
+                                                                  CupertinoIcons
+                                                                      .forward,
+                                                                  color: Palette
+                                                                      .greenColor,
+                                                                ),
+                                                                subtitle:
+                                                                    const Text(
+                                                                  'Logout of this application',
+                                                                ),
+                                                              ),
+                                                              ListTile(
+                                                                onTap: () {
+                                                                  showAboutDialog(
+                                                                    context:
+                                                                        context,
+                                                                    applicationIcon: Image.asset(
+                                                                        'assets/logo.png',
+                                                                        height:
+                                                                            30),
+                                                                  );
+                                                                },
+                                                                leading:
+                                                                    const Icon(
+                                                                  CupertinoIcons
+                                                                      .info,
+                                                                  color: Palette
+                                                                      .greenColor,
+                                                                ),
+                                                                title:
+                                                                    const Text(
+                                                                  "About",
+                                                                  style: TextStyle(
+                                                                      color: Palette
+                                                                          .greenColor),
+                                                                ),
+                                                                trailing:
+                                                                    const Icon(
+                                                                  CupertinoIcons
+                                                                      .forward,
+                                                                  color: Palette
+                                                                      .greenColor,
+                                                                ),
+                                                                subtitle:
+                                                                    const Text(
+                                                                  'About this application',
+                                                                ),
+                                                              ),
+                                                              const SizedBox(
+                                                                height: 20,
+                                                              )
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      )));
+                                            },
+                                            child: const Center(
+                                                child: Icon(
+                                              Icons.dehaze,
+                                              size: 40,
+                                              color: Palette.orangeColor,
+                                            ))),
+                                      ),
+                                    ),
                                   ],
                                 ),
                                 const SizedBox(
@@ -459,76 +451,77 @@ class _OrderListState extends State<OrderList> {
                       ),
                       //we can have the following o throjjjicf
                       Container(
-                          padding: const EdgeInsets.only(left: 20, right: 8),
-                          decoration: BoxDecoration(
-                              color: Palette.greenColor,
-                              borderRadius: BorderRadius.circular(10)),
-                          child: IntrinsicHeight(
-                            child: Row(
-                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                       crossAxisAlignment: CrossAxisAlignment.stretch,
-                       children:  [
-                         Expanded(
-                           child: Column(
-                             children: const[
-                               Text(
-                                 'Product Name',
-                                 style: TextStyle(
-                                   fontSize: 18,
-                                   color: Colors.white,
-                                   fontWeight: FontWeight.bold),
-                               ),
-                             ],
-                           ),
-                         ),
-                          const VerticalDivider(),
-                         Expanded(
-                           child: Column(
-                             children: [
-                               Text(
-                                 'Quantity',
-                                 style: TextStyle(
-                                   fontSize: 18,
-                                   color: Colors.white,
-                                   fontWeight: FontWeight.bold),
-                               ),
-                             ],
-                           ),
-                         ),
-                          const VerticalDivider(),
-                         Expanded(
-                           child: Column(
-                             children: [
-                               Flexible(
-                                 child: Text(
-                                   'Specifications',
-                                   style: TextStyle(
-                                     fontSize: 18,
-                                     color: Colors.white,
-                                     fontWeight: FontWeight.bold),
-                                 ),
-                               ),
-                             ],
-                           ),
-                         ),
-                          const VerticalDivider(),
-                         Expanded(
-                           child: Column(
-                             children: [
-                               Text(
-                                 'Action area',
-                                 style: TextStyle(
-                                   fontSize: 18,
-                                   color: Colors.white,
-                                   fontWeight: FontWeight.bold),
-                               ),
-                             ],
-                           ),
-                         ),
-                       ],
-                            ),
+                        // padding: const EdgeInsets.only(left: 20, right: 8),
+                        padding: EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                            color: Palette.greenColor,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: IntrinsicHeight(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  children: const [
+                                    Text(
+                                      'Product Name',
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const VerticalDivider(),
+                              Expanded(
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      'Quantity',
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const VerticalDivider(),
+                              Expanded(
+                                child: Column(
+                                  children: [
+                                    Flexible(
+                                      child: Text(
+                                        'Specifications',
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const VerticalDivider(),
+                              Expanded(
+                                child: Column(
+                                  children: const [
+                                    Text(
+                                      'Action area',
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
                         ),
+                      ),
                       //TODO: IMPLEMENT REAL PRODUCT LIST Used a model frezzed clas in order details cubit
                       BlocConsumer<OdetailsListCubit, OdetailsListState>(
                           listener: (context, state) {
@@ -555,112 +548,16 @@ class _OrderListState extends State<OrderList> {
                             );
                           },
                           success: (odetailsList) {
-                            return Expanded(
-                              child: ListView.builder(
-                                itemCount: odetailsList.length,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return Card(
-                                    margin: const EdgeInsets.all(15),
-                                    child: Container(
-                                      color: Colors.grey[100 * (index % 3 + 1)],
-                                      height: 80,
-                                      // alignment: Alignment.center,
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        // crossAxisAlignment: CrossAxisAlignment.stretch,
-                                        children: [
-                                          Expanded(
-                                            child: Column(
-                                              children: [
-                                                Wrap(
-                                                  children: [
-                                                    Text(
-                                                    odetailsList[index].name!,
-                                                    style: const TextStyle(
-                                                        color: Palette
-                                                            .placeholderGrey,
-                                                        fontSize: 16),
-                                                  ),
-                                                  ]
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          const VerticalDivider(),
-                                          Expanded(
-                                            child: Column(
-                                              children: const [
-                                                Text(
-                                                  '12kg ',
-                                                  style: TextStyle(
-                                                      color: Palette
-                                                          .placeholderGrey,
-                                                      fontSize: 16,
-                                                      fontWeight:
-                                                          FontWeight.w200),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          const VerticalDivider(),
-                                          Expanded(
-                                            child: Column(
-                                              children: [
-                                                Flexible(
-                                                  child: Text(
-                                                    odetailsList[index]
-                                                        .product_note!,
-                                                    softWrap: true,
-                                                    style: const TextStyle(
-                                                        color: Palette
-                                                            .placeholderGrey,
-                                                        fontSize: 16),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          const VerticalDivider(),
-                                          Expanded(
-                                            child: CupertinoButton(
-                                              child: Column(
-                                                children: [
-                                                  Row(
-                                                    children: const [
-                                                      Icon(BoxIcons.bx_note),
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    children: const [
-                                                        Flexible(
-                                                        child: Text(
-                                                          'Add Packing Notes',
-                                                          overflow:
-                                                              TextOverflow.fade,
-                                                          maxLines: 1,
-                                                          softWrap: false,
-                                                          style: TextStyle(
-                                                            color: Palette
-                                                                .orangeColor,
-                                                                fontSize: 13,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  )
-                                                ],
-                                              ),
-                                              onPressed: () {
-                                                _displayDialog(context);
-                                              },
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  );
-                                },
+                            return SingleChildScrollView(
+                              child: Column(
+                                children: [
+                                  ...List.generate(
+                                      odetailsList.length,
+                                      (index) => CardWidget(
+                                            dits: odetailsList[index],
+                                            index: index,
+                                          ))
+                                ],
                               ),
                             );
                           },
@@ -669,25 +566,9 @@ class _OrderListState extends State<OrderList> {
                           },
                         );
                       }),
+                      Spacer(),
                       Column(
                         children: [
-                          CupertinoButton(
-                            child: Text('Proceed'),
-                            onPressed: () {
-                              context
-                                  .read<AddMissingProductsCubitCubit>()
-                                  .addMissing(
-                                      products:
-                                          context.read<MissingCubit>().state,
-                                      orderId: widget.orderId);
-
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          const Dispatch()));
-                            },
-                          ),
                           DropdownButtonHideUnderline(
                             child: ButtonTheme(
                               alignedDropdown: true,
@@ -742,16 +623,212 @@ class _OrderListState extends State<OrderList> {
                               ),
                             ),
                           ),
+                          CupertinoButton(
+                            child: Text('Proceed'),
+                            onPressed: () {
+                              context
+                                  .read<AddMissingProductsCubitCubit>()
+                                  .addMissing(
+                                      products:
+                                          context.read<MissingCubit>().state,
+                                      orderId: widget.orderId);
+
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          const Dispatch()));
+                            },
+                          ),
                         ],
                       ),
                     ],
                   ),
-                ));
+                );
               },
               orElse: () {
                 return Container();
               });
         },
+      ),
+    );
+  }
+}
+
+class CardWidget extends StatefulWidget {
+  final OdetailsList dits;
+  final int index;
+  const CardWidget({Key? key, required this.dits, required this.index})
+      : super(key: key);
+
+  @override
+  State<CardWidget> createState() => _CardWidgetState();
+}
+
+class _CardWidgetState extends State<CardWidget> {
+  var size, height, width;
+
+  TextEditingController _textFieldController1 = TextEditingController();
+
+  TextEditingController _textFieldController2 = TextEditingController();
+
+  final _formKey = GlobalKey<FormBuilderState>();
+
+  _displayDialog(BuildContext context) async {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return FormBuilder(
+            key: _formKey,
+            child: AlertDialog(
+              title: Text('Add Packing Notes'),
+              content: SizedBox(
+                height: 200,
+                child: Column(
+                  children: [
+                    FormBuilderTextField(
+                      name: 'quantity',
+                      textInputAction: TextInputAction.go,
+                      decoration: InputDecoration(hintText: "quantity"),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    FormBuilderTextField(
+                      name: 'quantity_required',
+                      controller: _textFieldController1,
+                      textInputAction: TextInputAction.go,
+                      decoration:
+                          InputDecoration(hintText: "quantity required"),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    FormBuilderTextField(
+                      name: 'comment',
+                      controller: _textFieldController2,
+                      textInputAction: TextInputAction.go,
+                      decoration:
+                          InputDecoration(hintText: "additional comments"),
+                    ),
+                  ],
+                ),
+              ),
+              actions: <Widget>[
+                CupertinoButton(
+                  child: Text(
+                    'Submit',
+                  ),
+                  onPressed: () {
+                    if (_formKey.currentState!.saveAndValidate()) {
+                      context
+                          .read<MissingCubit>()
+                          .state
+                          .add(Missing.fromJson(_formKey.currentState!.value));
+                      Navigator.of(context).pop();
+                    }
+                  },
+                )
+              ],
+            ),
+          );
+        });
+  }
+
+  TextEditingController textarea = TextEditingController();
+
+  final PageController _controller = PageController(initialPage: 0);
+
+  bool isPerformingRequest = false;
+
+  ScrollController _scrollController = ScrollController();
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: const EdgeInsets.all(15),
+      child: Container(
+        color: Colors.grey[100 * (widget.index % 3 + 1)],
+        height: 80,
+        child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  widget.dits.name!,
+                  style: const TextStyle(
+                      color: Palette.placeholderGrey, fontSize: 16),
+                ),
+              ],
+            ),
+          ),
+          const VerticalDivider(),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  // odetailsList[index]
+                  //     .quantity
+                  //     .toString(),
+                  widget.dits.quantity!.toString(),
+                  style: const TextStyle(
+                      color: Palette.placeholderGrey,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w200),
+                ),
+              ],
+            ),
+          ),
+          const VerticalDivider(),
+          Expanded(
+              child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Flexible(
+                child: Text(
+                  widget.dits.product_note!,
+                  softWrap: true,
+                  style: const TextStyle(
+                      color: Palette.placeholderGrey, fontSize: 16),
+                ),
+              )
+            ],
+          )),
+          const VerticalDivider(),
+          Expanded(
+            child: CupertinoButton(
+              child: Column(
+                children: [
+                  Row(
+                    children: const [
+                      Icon(BoxIcons.bx_note),
+                    ],
+                  ),
+                  Row(
+                    children: const [
+                      Flexible(
+                        child: Text(
+                          'Add Packing Notes',
+                          overflow: TextOverflow.fade,
+                          maxLines: 1,
+                          softWrap: false,
+                          style: TextStyle(
+                            color: Palette.orangeColor,
+                            fontSize: 13,
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+              onPressed: () {
+                _displayDialog(context);
+              },
+            ),
+          )
+        ]),
       ),
     );
   }

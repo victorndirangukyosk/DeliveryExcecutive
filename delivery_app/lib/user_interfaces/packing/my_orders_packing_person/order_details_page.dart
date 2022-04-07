@@ -71,8 +71,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                     ),
                   ),
               success: (orderDetails) {
-                return SafeArea(
-                    child: Padding(
+                return Padding(
                   padding: const EdgeInsets.only(top: 16.0),
                   child: Column(
                     children: <Widget>[
@@ -129,7 +128,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                               color: Palette.placeholderGrey,
                                               fontFamily: 'Red Hat Display',
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 42),
+                                              fontSize: 32),
                                         ),
                                         SizedBox(width: 20),
                                         Text(
@@ -390,66 +389,65 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                       //we can have the following o throjjjicf
                       Container(
                         // padding: const EdgeInsets.only(left: 20, right: 8),
+                        padding: EdgeInsets.all(8),
                         decoration: BoxDecoration(
                             color: Palette.greenColor,
                             borderRadius: BorderRadius.circular(10)),
                         child: IntrinsicHeight(
-                          child: Flexible(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                Expanded(
-                                  child: Column(
-                                    children: const [
-                                      Text(
-                                        'Product Name',
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  children: const [
+                                    Text(
+                                      'Product Name',
+                                      overflow: TextOverflow.fade,
+                                      maxLines: 2,
+                                      softWrap: false,
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const VerticalDivider(),
+                              Expanded(
+                                child: Column(
+                                  children: const [
+                                    Text(
+                                      'Quantity',
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const VerticalDivider(),
+                              Expanded(
+                                child: Column(
+                                  children: const [
+                                    Flexible(
+                                      child: Text(
+                                        'Specifications',
                                         overflow: TextOverflow.fade,
-                                        maxLines: 2,
+                                        maxLines: 1,
                                         softWrap: false,
                                         style: TextStyle(
                                             fontSize: 18,
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold),
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
-                                const VerticalDivider(),
-                                Expanded(
-                                  child: Column(
-                                    children: const [
-                                      Text(
-                                        'Quantity',
-                                        style: TextStyle(
-                                            fontSize: 18,
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                const VerticalDivider(),
-                                Expanded(
-                                  child: Column(
-                                    children: const [
-                                      Flexible(
-                                        child: Text(
-                                          'Specifications',
-                                          overflow: TextOverflow.fade,
-                                          maxLines: 1,
-                                          softWrap: false,
-                                          style: TextStyle(
-                                              fontSize: 18,
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -479,82 +477,16 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                             );
                           },
                           success: (odetailsList) {
-                            return Expanded(
-                              child: ListView.builder(
-                                itemCount: odetailsList.length,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return Card(
-                                    margin: const EdgeInsets.all(15),
-                                    child: Container(
-                                      color: Colors.grey[100 * (index % 3 + 1)],
-                                      height: 80,
-                                      // alignment: Alignment.center,
-                                      child: Container(
-                                        height: 50,
-                                        margin: const EdgeInsets.all(2),
-                                        // color: msgCount[index]>=10? Colors.blue[400]:
-                                        //   msgCount[index]>3? Colors.blue[100]: Colors.grey,
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          // crossAxisAlignment: CrossAxisAlignment.stretch,
-                                          children: [
-                                            Expanded(
-                                              child: Column(
-                                                children: [
-                                                  Text(
-                                                    odetailsList[index].name!,
-                                                    style: const TextStyle(
-                                                        color: Palette
-                                                            .placeholderGrey,
-                                                        fontSize: 16),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            const VerticalDivider(),
-                                            Expanded(
-                                              child: Column(
-                                                children: [
-                                                  Text(
-                                                    // odetailsList[index]
-                                                    //     .quantity
-                                                    //     .toString(),
-                                                    '12',
-                                                    style: TextStyle(
-                                                        color: Palette
-                                                            .placeholderGrey,
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                            FontWeight.w200),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            const VerticalDivider(),
-                                            Expanded(
-                                              child: Column(
-                                                children: [
-                                                  Flexible(
-                                                    child: Text(
-                                                      odetailsList[index]
-                                                          .product_note!,
-                                                      softWrap: true,
-                                                      style: const TextStyle(
-                                                          color: Palette
-                                                              .placeholderGrey,
-                                                          fontSize: 16),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                },
+                            return SingleChildScrollView(
+                              child: Column(
+                                children: [
+                                  ...List.generate(
+                                      odetailsList.length,
+                                      (index) => CardWidget(
+                                            dits: odetailsList[index],
+                                            index: index,
+                                          ))
+                                ],
                               ),
                             );
                           },
@@ -565,13 +497,91 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                       }),
                     ],
                   ),
-                ));
+                );
               },
               orElse: () {
                 return Container();
               });
         },
       ),
+    );
+  }
+}
+
+class CardWidget extends StatelessWidget {
+  final OdetailsList dits;
+  final int index;
+  const CardWidget({Key? key, required this.dits, required this.index})
+      : super(key: key);
+
+  @override
+  Widget build(
+    BuildContext context,
+  ) {
+    Size size = MediaQuery.of(context).size;
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    return Card(
+      margin: const EdgeInsets.all(15),
+      child: Container(
+          color: Colors.grey[100 * (index % 3 + 1)],
+          height: 80,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Expanded(
+                child: Column(
+                  children: [
+                    Text(
+                      dits.name!,
+                      style: const TextStyle(
+                          color: Palette.placeholderGrey, fontSize: 16),
+                    ),
+                  ],
+                ),
+              ),
+              const VerticalDivider(),
+              Expanded(
+                child: Column(
+                  children: [
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                      Text(
+                        // odetailsList[index]
+                        //     .quantity
+                        //     .toString(),
+                        dits.quantity!.toString(),
+                        style: TextStyle(
+                            color: Palette.placeholderGrey,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w200),
+                      ),
+                      Text(
+                        dits.unit.toString(),
+                        style: TextStyle(
+                            color: Palette.placeholderGrey,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w200),
+                      )
+                    ])
+                  ],
+                ),
+              ),
+              const VerticalDivider(),
+              Expanded(
+                  child: Column(
+                children: [
+                  Flexible(
+                    child: Text(
+                      dits.product_note!,
+                      softWrap: true,
+                      style: const TextStyle(
+                          color: Palette.placeholderGrey, fontSize: 16),
+                    ),
+                  )
+                ],
+              )),
+            ],
+          )),
     );
   }
 }

@@ -3,7 +3,7 @@ import 'package:delivery_app/utilities/rest_client/rest_client.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
-class ApiService {
+class   ApiService {
   ///Retrieves the [RestClient] from the service locator
   static RestClient restClient = GetIt.I<RestClient>();
 
@@ -29,7 +29,7 @@ class ApiService {
 
   ///This method gets data from the API via the [Dio] in the [restClient]
   ///Returns a dynamic based on the API Response
-  static Future<dynamic> get({required String path, Options? options}) async {
+  static Future<dynamic> get({required String path, Options? options, required Map queryParameters}) async {
     try {
       ///Get the response after posting
       var response = await restClient.dio!

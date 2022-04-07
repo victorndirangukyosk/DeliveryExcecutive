@@ -35,17 +35,43 @@ class _HomeIconPagePackingState extends State<HomeIconPagePacking> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          iconTheme: IconThemeData(color: Colors.black),
-          elevation: 0,
-          backgroundColor: Palette.greenColor,
-          title: const Text(
-            'My Orders',
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-                fontFamily: 'Red Hat Display',
-                color: Colors.white),
+          toolbarHeight: 40,
+          flexibleSpace: Container(
+            height: 40,
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+                color: Palette.greenColor,
+                borderRadius: BorderRadius.circular(30)),
+            child: IntrinsicHeight(
+              child: Row(
+                // crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: const [
+                  Text(
+                    'My orders',
+                    maxLines: 1,
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.white,
+                        fontFamily: 'Helvetica',
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ),
           ),
+
+          // iconTheme: IconThemeData(color: Colors.black),
+          // elevation: 0,
+          // backgroundColor: Palette.greenColor,
+          // title: const Text(
+          //   'My Orders',
+          //   style: TextStyle(
+          //       fontWeight: FontWeight.bold,
+          //       fontSize: 24,
+          //       fontFamily: 'Red Hat Display',
+          //       color: Colors.white),
+          // ),
         ),
         body: BlocConsumer<GetAssignedCubit, GetAssignedState>(
           listener: (context, state) {
@@ -146,185 +172,211 @@ class CardWidget extends StatelessWidget {
             decoration: BoxDecoration(
                 // color: Palette.orangeBackgroundColor,
                 borderRadius: const BorderRadius.only(
-                    topRight: Radius.circular(30.0),
-                    bottomLeft: Radius.circular(30.0),
-                    bottomRight: Radius.circular(30.0),
-                    topLeft: Radius.circular(30.0)),
+                    topRight: Radius.circular(10.0),
+                    bottomLeft: Radius.circular(10.0),
+                    bottomRight: Radius.circular(10.0),
+                    topLeft: Radius.circular(10.0)),
                 border: Border.all(width: 1, color: Colors.black)),
             constraints: const BoxConstraints(
               maxHeight: double.infinity,
+              maxWidth: double.infinity,
             ),
             child: Column(children: [
               Container(
-                height: height / 6,
-                width: width,
-                child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    // mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Container(
-                          child: Column(children: [
-                        Row(
-                          // crossAxisAlignment: CrossAxisAlignment.start,
-                          // mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            const Text(
-                              "Order Id",
-                              style: TextStyle(
-                                fontFamily: 'Red Hat Display',
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Palette.orangeColor,
-                              ),
-                            ),
-                            SizedBox(width: width * 0.01),
-                            Text(
-                              order.order_id!.toString(),
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Palette.placeholderGrey,
-                                // color: Colors.orange,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: height * 0.02),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SizedBox(width: width * 0.01),
-                            const Text(
-                              "Order Status",
-                              style: TextStyle(
-                                  fontFamily: 'Red Hat Display',
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Palette.orangeColor),
-                            ),
-                            SizedBox(width: width * 0.01),
-                            Text(
-                              order.order_status!.toString(),
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Palette.placeholderGrey,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: height * 0.02),
-                        Row(
-                          children: [
-                            const Text(
-                              'Number of Products',
-                              style: TextStyle(
-                                  fontFamily: 'Red Hat Display',
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Palette.orangeColor),
-                            ),
-                            SizedBox(width: width * 0.01),
-                            Text(
-                              order.products_count!.toString(),
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Palette.placeholderGrey,
-                              ),
-                            ),
-                          ],
-                        )
-                      ])),
-                      Container(
+                padding: const EdgeInsets.all(8),
+                height: height / 4,
+                // width: width,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                      // crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 8.0, bottom: 16.0, top: 16.0),
                           child: Column(
-                        children: [
-                          Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  // crossAxisAlignment: CrossAxisAlignment.start,
+                                  // mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    const Text(
+                                      "Order Id",
+                                      style: TextStyle(
+                                        fontFamily: 'Red Hat Display',
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: Palette.orangeColor,
+                                      ),
+                                    ),
+                                    SizedBox(width: width * 0.01),
+                                    Text(
+                                      order.order_id!.toString(),
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        color: Palette.placeholderGrey,
+                                        // color: Colors.orange,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: height * 0.02),
+                                Row(
+                                  // crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    // SizedBox(width: width * 0.01),
+                                    const Text(
+                                      "Order Status",
+                                      style: TextStyle(
+                                          fontFamily: 'Red Hat Display',
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                          color: Palette.orangeColor),
+                                    ),
+                                    SizedBox(width: width * 0.01),
+                                    Text(
+                                      order.order_status!.toString(),
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        color: Palette.placeholderGrey,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                // SizedBox(height: height * 0.02),
+                              ]),
+                        ),
+                        const SizedBox(width: 20),
+                        Padding(
+                          padding:
+                              const EdgeInsets.only(bottom: 16.0, top: 16.0),
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Row(
+                                  children: [
+                                    const Text(
+                                      'Number of Products',
+                                      style: TextStyle(
+                                          fontFamily: 'Red Hat Display',
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                          color: Palette.orangeColor),
+                                    ),
+                                    SizedBox(width: width * 0.01),
+                                    Text(
+                                      order.products_count!.toString(),
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        color: Palette.placeholderGrey,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Spacer(),
+                                Align(
+                                  alignment: Alignment.bottomRight,
+                                  child: CupertinoButton.filled(
+                                    // style: ElevatedButton.styleFrom(
+                                    //   // primary: Colors.black,
+                                    //   minimumSize: const Size.fromHeight(50), // NEW
+                                    // ),
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                OrderDetailsPage(
+                                                  orderId: order.order_id!,
+                                                )),
+                                      );
+                                    },
+                                    child: const Text(
+                                      'Start Processing ',
+                                      style: TextStyle(
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ]),
+                        ),
+                        const SizedBox(width: 20),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              right: 8.0, bottom: 16.0, top: 16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            // crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              const Text(
-                                'Date of Delivery',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Palette.orangeColor,
-                                  fontFamily: 'Red Hat Display',
-                                ),
+                              Row(
+                                children: [
+                                  const Text(
+                                    'Date of Delivery',
+                                    overflow: TextOverflow.fade,
+                                    maxLines: 1,
+                                    softWrap: false,
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Palette.orangeColor,
+                                      fontFamily: 'Red Hat Display',
+                                    ),
+                                  ),
+                                  SizedBox(width: width * 0.01),
+                                  Text(
+                                    // order.delivery_date!,
+                                    CalendarTime(DateTime.parse(
+                                            order.delivery_date!))
+                                        .toHuman,
+                                    overflow: TextOverflow.ellipsis,
+                                    softWrap: true,
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Palette.placeholderGrey,
+                                    ),
+                                  )
+                                ],
                               ),
-                              SizedBox(width: width * 0.01),
-                              Text(
-                                // order.delivery_date!,
-                                CalendarTime(
-                                        DateTime.parse(order.delivery_date!))
-                                    .toHuman,
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Palette.placeholderGrey,
+                              SizedBox(height: height * 0.02),
+                              Row(children: [
+                                const Text(
+                                  "Time of Delivery",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontFamily: 'Red Hat Display',
+                                    fontWeight: FontWeight.bold,
+                                    color: Palette.orangeColor,
+                                  ),
                                 ),
-                              )
+                                SizedBox(width: width * 0.01),
+                                Text(
+                                  order.delivery_timeslot!,
+                                  // CalendarTime(DateTime.parse(order.delivery_timeslot!))
+                                  //     .toHuman,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Palette.placeholderGrey,
+                                  ),
+                                )
+                              ]),
                             ],
                           ),
-                          SizedBox(height: height * 0.02),
-                          Row(children: [
-                            const Text(
-                              "Time of Delivery",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontFamily: 'Red Hat Display',
-                                fontWeight: FontWeight.bold,
-                                color: Palette.orangeColor,
-                              ),
-                            ),
-                            SizedBox(width: width * 0.01),
-                            Text(
-                              order.delivery_timeslot!,
-                              // CalendarTime(DateTime.parse(order.delivery_timeslot!))
-                              //     .toHuman,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Palette.placeholderGrey,
-                              ),
-                            )
-                          ]),
-                        ],
-                      )),
-                    ]),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    // width: width,
-                    child: Align(
-                      alignment: Alignment.bottomRight,
-                      child: CupertinoButton.filled(
-                        // style: ElevatedButton.styleFrom(
-                        //   // primary: Colors.black,
-                        //   minimumSize: const Size.fromHeight(50), // NEW
-                        // ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => OrderDetailsPage(
-                                      orderId: order.order_id!,
-                                    )),
-                          );
-                        },
-                        child: const Text(
-                          'Start Processing ',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                          ),
                         ),
-                      ),
-                    ),
-                  ),
-                ],
+                      ]),
+                ),
               ),
             ])),
       ),

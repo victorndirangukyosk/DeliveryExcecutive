@@ -12,7 +12,7 @@ import 'app/app.dart';
 
 ///This is the starting point for the application
 main() async {
-  FlutterServicesBinding.ensureInitialized();
+  await FlutterServicesBinding.ensureInitialized();
   //Set the license font the poppins google font
   LicenseRegistry.addLicense(() async* {
     final license = await rootBundle.loadString('google_fonts/OFL.txt');
@@ -30,7 +30,7 @@ main() async {
   GetIt.I.registerSingleton<RestClient>(RestClient());
 
   ///Get directory to store all state persists (Securely 😊😊)
-  Directory storageDirectory = await getTemporaryDirectory();
+  Directory storageDirectory = await getApplicationDocumentsDirectory();
 
   /// Initialize hydrated storage for all state persists storage
   final storage =
