@@ -81,7 +81,8 @@ class CustomerVerification extends StatelessWidget {
                 child: const Text('Submit'),
                 color: Palette.greenColor,
                 onPressed: () {
-                  AutoRouter.of(context).replace(const MainHomeRoute());
+                  AutoRouter.of(context)
+                      .replace(const MainHomeDeliveryExecutiveRoute());
                 })
           ],
         ),

@@ -767,16 +767,25 @@ class _CardWidgetState extends State<CardWidget> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  // odetailsList[index]
-                  //     .quantity
-                  //     .toString(),
-                  widget.dits.quantity!.toString(),
-                  style: const TextStyle(
-                      color: Palette.placeholderGrey,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w200),
-                ),
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  Text(
+                    // odetailsList[index]
+                    //     .quantity
+                    //     .toString(),
+                    widget.dits.quantity!.toString(),
+                    style: const TextStyle(
+                        color: Palette.placeholderGrey,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w200),
+                  ),
+                  Text(
+                    widget.dits.unit.toString(),
+                    style:const TextStyle(
+                        color: Palette.placeholderGrey,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w200),
+                  )
+                ])
               ],
             ),
           ),
