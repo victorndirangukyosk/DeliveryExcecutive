@@ -1,14 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:delivery_app/configuration/configuration.dart';
 import 'package:delivery_app/cubits/crates_qr_cubit/crates_qr_cubit.dart';
-import 'package:delivery_app/models/assigned/op/assigned_order.dart';
+import 'package:delivery_app/models/crate/crate.dart';
 import 'package:delivery_app/models/order_details/order_details.dart';
 import 'package:delivery_app/routes/router.gr.dart';
-// import 'package:delivery_app/cubits/qr_scanner_cubit/qr_scanner_cubit.dart';
-import 'package:delivery_app/user_interfaces/packing/items_processing/processed_order_list.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class Scanner extends StatelessWidget {
@@ -21,7 +19,13 @@ class Scanner extends StatelessWidget {
   Widget build(BuildContext context) {
     void _onQRViewCreated(QRViewController controller) {
       controller.scannedDataStream.listen((scanData) async {
-        context.read<CratesQRCubit>().addQR(scanData);
+        try {
+          context
+              .read<CratesQRCubit>()
+              .addQR(Crate.fromJson(JwtDecoder.decode(scanData.code!)));
+        } catch (e) {
+          throw Exception("Invalid QR Code");
+        }
       });
     }
 
