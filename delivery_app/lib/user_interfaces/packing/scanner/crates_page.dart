@@ -27,21 +27,20 @@ class _CratesPageState extends State<CratesPage> {
               '${context.watch<CratesQRCubit>().state.length} Scanned crates'),
         ),
         actions: const [
-             Tooltip(
-               message: "Having Trouble?",
-               child: Icon(
-                         Icons.info_outline_rounded,
-                         color: Colors.white,
-                       ),
-             ),
+          Tooltip(
+            message: "Having Trouble?",
+            child: Icon(
+              Icons.info_outline_rounded,
+              color: Colors.white,
+            ),
+          ),
         ],
       ),
       body: ListView.builder(
         itemBuilder: (context, index) {
-          var crate = JwtDecoder.decode(
-              context.watch<CratesQRCubit>().state[index].code!);
+          var crate = context.watch<CratesQRCubit>().state[index];
           return ListTile(
-            title: Text(crate['serial_number']),
+            title: Text(crate.serial_number!),
             trailing: IconButton(
                 onPressed: () {
                   context
@@ -81,12 +80,12 @@ class _CratesPageState extends State<CratesPage> {
                       context.read<AddCratesCubit>().addCrates(
                           crates: List.generate(
                               context.read<CratesQRCubit>().state.length,
-                              (index) => Crate.fromJson(JwtDecoder.decode(
+                              (index) => 
                                     context
                                         .read<CratesQRCubit>()
                                         .state[index]
-                                        .code!,
-                                  ))),
+                                        ,
+                                  ),
                           orderId: widget.orderId);
                     });
               });

@@ -1,22 +1,26 @@
+import 'package:delivery_app/models/crate/crate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_beep/flutter_beep.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
-class CratesQRCubit extends Cubit<List<Barcode>> {
+class CratesQRCubit extends Cubit<List<Crate>> {
   CratesQRCubit(List<Barcode> initialState) : super([]);
 
-  addQR(Barcode scanData) {
-    var x = state.where((element) => element.code == scanData.code);
+  addQR(Crate crate) {
+    var x = state
+        .where((element) => element.serial_number == crate.serial_number)
+        .toList();
     if (x.isEmpty) {
-      emit([...state, scanData]);
+      emit([...state, crate]);
       FlutterBeep.beep();
     } else {
       // FlutterBeep.playSysSound(AndroidSoundIDs.TONE_SUP_ERROR);
     }
   }
 
-  removeQR(Barcode scanData) {
-    state.removeWhere((element) => element.code == scanData.code);
+  removeQR(Crate crate) {
+    state
+        .removeWhere((element) => element.serial_number == crate.serial_number);
     emit(state);
   }
 }
