@@ -58,6 +58,7 @@ class _CratesPageState extends State<CratesPage> {
           state.maybeWhen(
               orElse: () {},
               success: () {
+                // context.read<CratesQrCubit>().emit([]);
                 Navigator.push(
                     maincontext,
                     MaterialPageRoute(
@@ -72,20 +73,12 @@ class _CratesPageState extends State<CratesPage> {
                 return CupertinoButton(
                     child: const Text('Submit'),
                     onPressed: () {
-                      Navigator.push(
-                          maincontext,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  OrderList(orderId: widget.orderId)));
                       context.read<AddCratesCubit>().addCrates(
                           crates: List.generate(
-                              context.read<CratesQRCubit>().state.length,
-                              (index) => 
-                                    context
-                                        .read<CratesQRCubit>()
-                                        .state[index]
-                                        ,
-                                  ),
+                            context.read<CratesQRCubit>().state.length,
+                            (index) =>
+                                context.read<CratesQRCubit>().state[index],
+                          ),
                           orderId: widget.orderId);
                     });
               });
