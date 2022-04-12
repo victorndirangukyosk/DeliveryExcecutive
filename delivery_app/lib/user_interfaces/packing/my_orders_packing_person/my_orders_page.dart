@@ -91,7 +91,7 @@ class _HomeIconPagePackingState extends State<HomeIconPagePacking> {
           builder: (context, state) {
             return state.maybeWhen(loading: () {
               return const Center(
-                child: SpinKitDualRing(color: Palette.greenColor),
+                child: CupertinoActivityIndicator(color: Palette.greenColor),
               );
             }, success: (orders) {
               return SingleChildScrollView(

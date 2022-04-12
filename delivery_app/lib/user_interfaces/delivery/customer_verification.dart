@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:signature/signature.dart';
+import 'package:user_profile_avatar/user_profile_avatar.dart';
 
 class CustomerVerification extends StatelessWidget {
   const CustomerVerification({Key? key}) : super(key: key);
@@ -16,6 +17,7 @@ class CustomerVerification extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // backgroundColor: Colors.transparent,
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -34,7 +36,11 @@ class CustomerVerification extends StatelessWidget {
           children: [
             const Text(
               'Customer photo',
-              style: TextStyle(color: Palette.greenColor, fontSize: 20),
+              style: TextStyle(
+                  color: Palette.greenColor,
+                  fontSize: 20,
+                  fontFamily: 'Helvetica',
+                  fontWeight: FontWeight.bold),
             ),
             context.watch<PickImageCubit>().state.path.length < 2
                 ? InkWell(
@@ -48,6 +54,32 @@ class CustomerVerification extends StatelessWidget {
                       height: 200,
                       width: 200,
                       decoration: BoxDecoration(border: Border.all(width: 2)),
+                      child: Center(
+                        child: UserProfileAvatar(
+                          avatarUrl: '',
+                          onAvatarTap: () async {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text('Tapped on avatar'),
+                            ));
+                            var x = await ImagePicker()
+                                .pickImage(source: ImageSource.camera);
+                            context.read<PickImageCubit>().emit(File(x!.path));
+                          },
+                          // notificationCount: 10,
+                          notificationBubbleTextStyle: TextStyle(
+                            fontSize: 30,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          avatarSplashColor: Colors.purple,
+                          radius: 100,
+                          isActivityIndicatorSmall: false,
+                          avatarBorderData: AvatarBorderData(
+                            borderColor: Colors.black54,
+                            borderWidth: 5.0,
+                          ),
+                        ),
+                      ),
                     ),
                   )
                 : Image.file(
@@ -56,9 +88,16 @@ class CustomerVerification extends StatelessWidget {
                     width: 300,
                     fit: BoxFit.cover,
                   ),
+            const SizedBox(
+              height: 70,
+            ),
             const Text(
               'Customer signature',
-              style: TextStyle(color: Palette.greenColor, fontSize: 20),
+              style: TextStyle(
+                  color: Palette.greenColor,
+                  fontSize: 20,
+                  fontFamily: 'Helvetica',
+                  fontWeight: FontWeight.bold),
             ),
             SizedBox(
               width: MediaQuery.of(context).size.width,
@@ -66,7 +105,11 @@ class CustomerVerification extends StatelessWidget {
             Container(
               height: 200,
               width: 300,
-              decoration: BoxDecoration(border: Border.all(width: 1)),
+              decoration: BoxDecoration(
+                color: Palette.greenColor,
+                border: Border.all(width: 1),
+                // borderRadius: BorderRadius.circular(30),
+              ),
               child: Signature(
                 controller: SignatureController(),
                 height: 200,
@@ -75,7 +118,7 @@ class CustomerVerification extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 40,
             ),
             CupertinoButton(
                 child: const Text('Submit'),
