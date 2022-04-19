@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:delivery_app/configuration/configuration.dart';
 import 'package:delivery_app/cubits/authentication/token_cubit.dart';
 import 'package:delivery_app/routes/router.gr.dart';
+import 'package:delivery_app/user_interfaces/delivery/summary_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,7 +11,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class DirectionsToAddress extends StatelessWidget {
   final int orderId;
-  const DirectionsToAddress({Key? key,required this.orderId}) : super(key: key);
+  const DirectionsToAddress({Key? key, required this.orderId})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -196,7 +198,12 @@ class DirectionsToAddress extends StatelessWidget {
                         child: const Text('Ready for delivery'),
                         color: Palette.greenColor,
                         onPressed: () {
-                          AutoRouter.of(context).push(const ReadyForDelivery());
+                          // AutoRouter.of(context).push(const ReadyForDelivery());
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      const SummaryPage()));
                         }),
                     const SizedBox(
                       height: 20,

@@ -7,6 +7,7 @@ import 'package:delivery_app/user_interfaces/packing/items_processing/processed_
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
 class CratesPage extends StatefulWidget {
@@ -36,22 +37,32 @@ class _CratesPageState extends State<CratesPage> {
           ),
         ],
       ),
-      body: ListView.builder(
-        itemBuilder: (context, index) {
-          var crate = context.watch<CratesQRCubit>().state[index];
-          return ListTile(
-            title: Text(crate.serial_number!),
-            trailing: IconButton(
-                onPressed: () {
-                  context
-                      .read<CratesQRCubit>()
-                      .removeQR(context.watch<CratesQRCubit>().state[index]);
-                  setState(() {});
-                },
-                icon: const Icon(Icons.close)),
-          );
-        },
-        itemCount: context.watch<CratesQRCubit>().state.length,
+      body: AnimationLimiter(
+        child: ListView.builder(
+          itemBuilder: (context, index) {
+            var crate = context.watch<CratesQRCubit>().state[index];
+            return AnimationConfiguration.staggeredList(
+              position: index,
+              duration: const Duration(milliseconds: 375),
+              child: SlideAnimation(
+                verticalOffset: 50.0,
+                child: FadeInAnimation(
+                  child: ListTile(
+                    title: Text(crate.serial_number!),
+                    trailing: IconButton(
+                        onPressed: () {
+                          context.read<CratesQRCubit>().removeQR(
+                              context.watch<CratesQRCubit>().state[index]);
+                          setState(() {});
+                        },
+                        icon: const Icon(Icons.close)),
+                  ),
+                ),
+              ),
+            );
+          },
+          itemCount: context.watch<CratesQRCubit>().state.length,
+        ),
       ),
       bottomNavigationBar: BlocConsumer<AddCratesCubit, AddCratesState>(
         listener: (context, state) {

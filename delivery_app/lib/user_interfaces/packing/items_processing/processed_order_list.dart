@@ -126,7 +126,7 @@ class _OrderListState extends State<OrderList> {
               orElse: () {},
               failed: (e) {
                 showDialog(
-                    context: context,
+                    context: context, 
                     builder: (context) {
                       return CupertinoAlertDialog(
                         title: Text('Error'),
@@ -145,6 +145,7 @@ class _OrderListState extends State<OrderList> {
               success: (orderDetails) {
                 return Padding(
                   padding: const EdgeInsets.only(top: 16.0),
+                  // ignore: avoid_unnecessary_containers
                   child: Column(
                     children: <Widget>[
                       Container(
@@ -780,7 +781,7 @@ class _CardWidgetState extends State<CardWidget> {
                   ),
                   Text(
                     widget.dits.unit.toString(),
-                    style:const TextStyle(
+                    style: const TextStyle(
                         color: Palette.placeholderGrey,
                         fontSize: 16,
                         fontWeight: FontWeight.w200),

@@ -516,67 +516,133 @@ class _DispatchState extends State<Dispatch> {
     Size size = MediaQuery.of(context).size;
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return Scaffold(
-        body: Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(child: SizedBox.shrink()),
-          Text.rich(TextSpan(
-              text: 'Kwik ',
-              style: TextStyle(
-                  fontSize: 60,
-                  fontWeight: FontWeight.w900,
-                  color: Palette.orangeColor),
-              children: [
-                TextSpan(
-                    text: 'Delivery',
-                    style: TextStyle(color: Palette.greenColor))
-              ])),
-          Expanded(
-            child: Image.asset(
-              'assets/truck_image.png',
-              // width: MediaQuery.of(context).size.width / 2,
-              // height: MediaQuery.of(context).size.height / 2,
-            ),
-          ),
-          // Spacer(),
-          Expanded(
+    return Scaffold(body: LayoutBuilder(
+      builder: (context, constraints) {
+        if (constraints.maxWidth > 600) {
+          return Center(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'READY FOR DISPATCH',
-                  style: TextStyle(
-                      fontSize: 35,
-                      color: Palette.orangeColor,
-                      fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-          ),
-
-          // const Spacer(),
-          Expanded(
-            child: Column(
-              children: [
-                const SpinKitCircle(color: Palette.greenColor),
-                CupertinoButton.filled(
-                  onPressed: () {
-                    AutoRouter.of(context).replace(const MainHomeRoute());
-                  },
-                  child: const Text(
-                    'Dispatch',
+                const Expanded(child: SizedBox.shrink()),
+                const Text.rich(TextSpan(
+                    text: 'Kwik ',
                     style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
+                        fontSize: 60,
+                        fontWeight: FontWeight.w900,
+                        color: Palette.orangeColor),
+                    children: [
+                      TextSpan(
+                          text: 'Delivery',
+                          style: TextStyle(color: Palette.greenColor))
+                    ])),
+                Expanded(
+                  child: Image.asset(
+                    'assets/truck_image.png',
+                    // width: MediaQuery.of(context).size.width / 2,
+                    // height: MediaQuery.of(context).size.height / 2,
                   ),
                 ),
+                // Spacer(),
+                Expanded(
+                  child: Column(
+                    children: [
+                      Text(
+                        'READY FOR DISPATCH',
+                        style: TextStyle(
+                            fontSize: 35,
+                            color: Palette.orangeColor,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+
+                // const Spacer(),
+                Expanded(
+                  child: Column(
+                    children: [
+                      const SpinKitCircle(color: Palette.greenColor),
+                      CupertinoButton.filled(
+                        onPressed: () {
+                          AutoRouter.of(context).replace(const MainHomeRoute());
+                        },
+                        child: const Text(
+                          'Dispatch',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
               ],
             ),
-          )
-        ],
-      ),
+          );
+        }
+        return Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Expanded(child: SizedBox.shrink()),
+              Text.rich(TextSpan(
+                  text: 'Kwik ',
+                  style: TextStyle(
+                      fontSize: 60,
+                      fontWeight: FontWeight.w900,
+                      color: Palette.orangeColor),
+                  children: [
+                    TextSpan(
+                        text: 'Delivery',
+                        style: TextStyle(color: Palette.greenColor))
+                  ])),
+              Expanded(
+                child: Image.asset(
+                  'assets/truck_image.png',
+                  // width: MediaQuery.of(context).size.width / 2,
+                  // height: MediaQuery.of(context).size.height / 2,
+                ),
+              ),
+              // Spacer(),
+              Expanded(
+                child: Column(
+                  children: [
+                    Text(
+                      'READY FOR DISPATCH',
+                      style: TextStyle(
+                          fontSize: 30,
+                          color: Palette.orangeColor,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
+
+              // const Spacer(),
+              Expanded(
+                child: Column(
+                  children: [
+                    // const SpinKitCircle(color: Palette.greenColor),
+                    CupertinoButton.filled(
+                      onPressed: () {
+                        AutoRouter.of(context).replace(const MainHomeRoute());
+                      },
+                      child: const Text(
+                        'Dispatch',
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+        );
+      },
     ));
   }
 }
