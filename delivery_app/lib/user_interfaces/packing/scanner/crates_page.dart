@@ -20,7 +20,7 @@ class CratesPage extends StatefulWidget {
 
 class _CratesPageState extends State<CratesPage> {
   @override
-  Widget build(BuildContext maincontext) {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Center(
@@ -39,7 +39,7 @@ class _CratesPageState extends State<CratesPage> {
       ),
       body: AnimationLimiter(
         child: ListView.builder(
-          itemBuilder: (context, index) {
+          itemBuilder: (context, index)  {
             var crate = context.watch<CratesQRCubit>().state[index];
             return AnimationConfiguration.staggeredList(
               position: index,
@@ -71,7 +71,7 @@ class _CratesPageState extends State<CratesPage> {
               success: () {
                 // context.read<CratesQrCubit>().emit([]);
                 Navigator.push(
-                    maincontext,
+                    context,
                     MaterialPageRoute(
                         builder: (BuildContext context) =>
                             OrderList(orderId: widget.orderId)));

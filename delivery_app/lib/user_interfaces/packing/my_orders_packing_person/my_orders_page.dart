@@ -95,14 +95,23 @@ class _HomeIconPagePackingState extends State<HomeIconPagePacking> {
               );
             }, success: (orders) {
               return SingleChildScrollView(
-                child: Column(
+                child: Column(children: [
+                  ListView.builder(
+                      itemCount: orders.length,
+                      itemBuilder: (BuildContext context, index) {
+                        return CardWidget(
+                          order: orders[index],
+                        );
+                      })
+                ]
                     // mainAxisAlignment: MainAxisAlignment.center,
                     // children: List.generate(100, (index) => CardWidget())),
-                    children: List.generate(
-                        orders.length,
-                        (index) => CardWidget(
-                              order: orders[index],
-                            ))),
+                    // children: List.generate(
+                    //     orders.length,
+                    //     (index) => CardWidget(
+                    //           order: orders[index],
+                    //         ))
+                    ),
               );
             }, orElse: () {
               return Container();

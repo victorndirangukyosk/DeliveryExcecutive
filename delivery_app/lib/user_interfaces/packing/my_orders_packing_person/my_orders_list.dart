@@ -159,7 +159,7 @@ class SingleOrder extends StatelessWidget {
                 ),
                 value: 'directions',
                 onTap: () {
-                  // AutoRouter.of(context).push(const DirectionsToAddress());
+                  AutoRouter.of(context).push( DirectionsToAddress(orderId: orderde.order_id!));
                 },
               ),
             ];
