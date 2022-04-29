@@ -1,4 +1,7 @@
+import 'dart:async';
 
+import 'package:auto_route/auto_route.dart';
+import 'package:delivery_app/routes/router.gr.dart';
 import 'package:delivery_app/user_interfaces/delivery/directions_to_address/components/api_secret.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,10 +22,11 @@ class DirectionsToAddress extends StatefulWidget {
 }
 
 class _DirectionsToAddressState extends State<DirectionsToAddress> {
-   CameraPosition _initialLocation = CameraPosition(target: LatLng(0.0, 0.0));
-  late GoogleMapController mapController;
+  CameraPosition _initialLocation = CameraPosition(target: LatLng(0.0, 0.0));
+  Completer<GoogleMapController> mapController = Completer();
 
   late Position _currentPosition;
+// static LatLng _currentPosition;
   String _currentAddress = '';
 
   final startAddressController = TextEditingController();
@@ -61,7 +65,7 @@ class _DirectionsToAddressState extends State<DirectionsToAddress> {
         },
         controller: controller,
         focusNode: focusNode,
-        decoration:  InputDecoration(
+        decoration: InputDecoration(
           prefixIcon: prefixIcon,
           suffixIcon: suffixIcon,
           labelText: label,
@@ -99,14 +103,6 @@ class _DirectionsToAddressState extends State<DirectionsToAddress> {
       setState(() {
         _currentPosition = position;
         print('CURRENT POS: $_currentPosition');
-        mapController.animateCamera(
-          CameraUpdate.newCameraPosition(
-            CameraPosition(
-              target: LatLng(position.latitude, position.longitude),
-              zoom: 18.0,
-            ),
-          ),
-        );
       });
       await _getAddress();
     }).catchError((e) {
@@ -136,6 +132,7 @@ class _DirectionsToAddressState extends State<DirectionsToAddress> {
   // Method for calculating the distance between two places
   Future<bool> _calculateDistance() async {
     try {
+      final GoogleMapController controller = await mapController.future;
       // Retrieving placemarks from addresses
       List<Location> startPlacemark = await locationFromAddress(_startAddress);
       List<Location> destinationPlacemark =
@@ -215,7 +212,8 @@ class _DirectionsToAddressState extends State<DirectionsToAddress> {
 
       // Accommodate the two locations within the
       // camera view of the map
-      mapController.animateCamera(
+
+      controller.animateCamera(
         CameraUpdate.newLatLngBounds(
           LatLngBounds(
             northeast: LatLng(northEastLatitude, northEastLongitude),
@@ -331,8 +329,19 @@ class _DirectionsToAddressState extends State<DirectionsToAddress> {
               zoomGesturesEnabled: true,
               zoomControlsEnabled: false,
               polylines: Set<Polyline>.of(polylines.values),
-              onMapCreated: (GoogleMapController controller) {
-                mapController = controller;
+              onMapCreated: (GoogleMapController controller) async {
+                mapController.complete(controller);
+                await Geolocator.getCurrentPosition(
+                        desiredAccuracy: LocationAccuracy.high)
+                    .then((Position position) async {
+                  setState(() {
+                    _currentPosition = position;
+                    print('CURRENT POS: $_currentPosition');
+                  });
+                  await _getAddress();
+                }).catchError((e) {
+                  print(e);
+                });
               },
             ),
             // Show zoom buttons
@@ -352,8 +361,10 @@ class _DirectionsToAddressState extends State<DirectionsToAddress> {
                             height: 50,
                             child: Icon(Icons.add),
                           ),
-                          onTap: () {
-                            mapController.animateCamera(
+                          onTap: () async {
+                            final GoogleMapController controller =
+                                await mapController.future;
+                            controller.animateCamera(
                               CameraUpdate.zoomIn(),
                             );
                           },
@@ -371,8 +382,10 @@ class _DirectionsToAddressState extends State<DirectionsToAddress> {
                             height: 50,
                             child: Icon(Icons.remove),
                           ),
-                          onTap: () {
-                            mapController.animateCamera(
+                          onTap: () async {
+                            final GoogleMapController controller =
+                                await mapController.future;
+                            controller.animateCamera(
                               CameraUpdate.zoomOut(),
                             );
                           },
@@ -505,9 +518,36 @@ class _DirectionsToAddressState extends State<DirectionsToAddress> {
                               ),
                             ),
                           ),
+                          SizedBox(
+                            height: 20.0,
+                          ),
                         ],
                       ),
                     ),
+                  ),
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: ElevatedButton(
+                onPressed: () {
+                  AutoRouter.of(context).replace(const CustomerVerification());
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    'End Trip'.toUpperCase(),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20.0,
+                    ),
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.red,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
                   ),
                 ),
               ),
@@ -517,34 +557,34 @@ class _DirectionsToAddressState extends State<DirectionsToAddress> {
               child: Align(
                 alignment: Alignment.bottomRight,
                 child: Padding(
-                  padding: const EdgeInsets.only(right: 10.0, bottom: 10.0),
-                  child: ClipOval(
-                    child: Material(
-                      color: Colors.orange.shade100, // button color
-                      child: InkWell(
-                        splashColor: Colors.orange, // inkwell color
-                        child: SizedBox(
-                          width: 56,
-                          height: 56,
-                          child: Icon(Icons.my_location),
-                        ),
-                        onTap: () {
-                          mapController.animateCamera(
-                            CameraUpdate.newCameraPosition(
-                              CameraPosition(
-                                target: LatLng(
-                                  _currentPosition.latitude,
-                                  _currentPosition.longitude,
-                                ),
-                                zoom: 18.0,
-                              ),
+                    padding: const EdgeInsets.only(right: 10.0, bottom: 10.0),
+                    child: ClipOval(
+                      child: Material(
+                          color: Colors.orange.shade100, // button color
+                          child: InkWell(
+                            splashColor: Colors.orange, // inkwell color
+                            child: const SizedBox(
+                              width: 56,
+                              height: 56,
+                              child: Icon(Icons.my_location),
                             ),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ),
+                            onTap: () async {
+                              final GoogleMapController controller =
+                                  await mapController.future;
+                              controller.animateCamera(
+                                CameraUpdate.newCameraPosition(
+                                  CameraPosition(
+                                    target: LatLng(
+                                      _currentPosition.latitude,
+                                      _currentPosition.longitude,
+                                    ),
+                                    zoom: 18.0,
+                                  ),
+                                ),
+                              );
+                            },
+                          )),
+                    )),
               ),
             ),
           ],

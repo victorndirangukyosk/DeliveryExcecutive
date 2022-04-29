@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:delivery_app/configuration/configuration.dart';
 import 'package:delivery_app/configuration/palette/palette.dart';
 import 'package:delivery_app/cubits/cubits.dart';
+import 'package:delivery_app/cubits/is_de_cubit/is_de_cubit.dart';
 import 'package:delivery_app/cubits/op_selection_cubit/op_selection_cubit.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 import 'package:delivery_app/utilities/toast/toast.dart';
@@ -151,6 +152,11 @@ class LoginCard extends StatelessWidget {
                           state.loginResponse.delivery_executive_id != null;
                       bool isOp =
                           state.loginResponse.order_processor_id != null;
+                      context.read<IsDeCubit>().emit(isDe
+                          ? true
+                          : isOp
+                              ? false
+                              : false);
                       await AppToast.showToast(
                           message: 'Login successful', isError: false);
                       context

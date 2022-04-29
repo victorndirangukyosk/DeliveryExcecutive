@@ -18,6 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 import '../../../cubits/order_details_list/odetails_list_cubit.dart';
 
@@ -73,46 +74,39 @@ class _HomeIconPagePackingState extends State<HomeIconPagePacking> {
           //       color: Colors.white),
           // ),
         ),
-        body: BlocConsumer<GetAssignedCubit, GetAssignedState>(
-          listener: (context, state) {
-            state.maybeWhen(
-                orElse: () {},
-                failed: (e) {
-                  showDialog(
-                      context: context,
-                      builder: (context) {
-                        return CupertinoAlertDialog(
-                          title: Text('Error'),
-                          content: Text(e),
-                        );
-                      });
-                });
-          },
+        body: BlocBuilder<GetAssignedCubit, GetAssignedState>(
           builder: (context, state) {
             return state.maybeWhen(loading: () {
               return const Center(
                 child: CupertinoActivityIndicator(color: Palette.greenColor),
               );
             }, success: (orders) {
-              return SingleChildScrollView(
-                child: Column(children: [
-                  ListView.builder(
-                      itemCount: orders.length,
-                      itemBuilder: (BuildContext context, index) {
-                        return CardWidget(
-                          order: orders[index],
-                        );
-                      })
-                ]
-                    // mainAxisAlignment: MainAxisAlignment.center,
-                    // children: List.generate(100, (index) => CardWidget())),
-                    // children: List.generate(
-                    //     orders.length,
-                    //     (index) => CardWidget(
-                    //           order: orders[index],
-                    //         ))
-                    ),
+              return AnimationLimiter(
+                child: ListView.builder(
+                    itemCount: orders.length,
+                    itemBuilder: (BuildContext context, index) {
+                      return AnimationConfiguration.staggeredList(
+                        position: index,
+                        duration: const Duration(milliseconds: 375),
+                        child: SlideAnimation(
+                          verticalOffset: 50.0,
+                          child: FadeInAnimation(
+                            child: CardWidget(
+                              order: orders[index],
+                            ),
+                          ),
+                        ),
+                      );
+                    }),
               );
+
+              // mainAxisAlignment: MainAxisAlignment.center,
+              // children: List.generate(100, (index) => CardWidget())),
+              // children: List.generate(
+              //     orders.length,
+              //     (index) => CardWidget(
+              //           order: orders[index],
+              //         ))
             }, orElse: () {
               return Container();
             });

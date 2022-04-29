@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:delivery_app/configuration/configuration.dart';
 import 'package:delivery_app/cubits/authentication/token_cubit.dart';
+import 'package:delivery_app/cubits/is_de_cubit/is_de_cubit.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,9 +24,14 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(const Duration(seconds: 3), () {
       // await startKioskMode();
       TokenCubit tokenCubit = GetIt.I.get<TokenCubit>();
+
+      IsDeCubit isDeCubit = GetIt.I.get<IsDeCubit>();
+
+
+      
       tokenCubit.state.isEmpty
           ? AutoRouter.of(context).replace(const LoginRoute())
-          : AutoRouter.of(context).replace(const MainHomeRoute());
+          :isDeCubit.state? AutoRouter.of(context).replace(const MainHomeDeliveryExecutiveRoute()):AutoRouter.of(context).replace(const MainHomeRoute());
     });
   }
 
@@ -34,6 +40,8 @@ class _SplashScreenState extends State<SplashScreen> {
     /// Register the token cubit
     TokenCubit tokenCubit = BlocProvider.of<TokenCubit>(context);
     GetIt.I.registerSingleton(tokenCubit);
+     IsDeCubit isDeCubit = BlocProvider.of<IsDeCubit>(context);
+    GetIt.I.registerSingleton(isDeCubit);
     return Scaffold(
         body: Stack(
       children: [

@@ -10,6 +10,7 @@ import 'package:delivery_app/cubits/get_assigned_cubit/de/cubit/assigned_de_cubi
 import 'package:delivery_app/cubits/get_assigned_cubit/op/get_assigned_cubit.dart';
 // import 'package:delivery_app/cubits/authentication/token_cubit.dart';
 import 'package:delivery_app/cubits/cubits.dart';
+import 'package:delivery_app/cubits/is_de_cubit/is_de_cubit.dart';
 import 'package:delivery_app/cubits/op_selection_cubit/op_selection_cubit.dart';
 import 'package:delivery_app/cubits/order_details_cubit/order_details_cubit.dart';
 import 'package:delivery_app/cubits/order_details_list/odetails_list_cubit.dart';
@@ -57,6 +58,7 @@ class KwikBasketDeliveryApp extends StatelessWidget {
         // an empty list wrappped with one
         BlocProvider(create: (context) => CratesQRCubit([])),
         BlocProvider(create: (context) => AddCratesCubit()),
+        BlocProvider(create: (context) => IsDeCubit(true)),
         BlocProvider(create: (context) => AddMissingProductsCubitCubit()),
         BlocProvider(create: (context) => MissingCubit([])),
 
