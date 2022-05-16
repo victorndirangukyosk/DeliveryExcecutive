@@ -12,7 +12,7 @@ import 'app/app.dart';
 
 ///This is the starting point for the application
 main() async {
-  await FlutterServicesBinding.ensureInitialized();
+   FlutterServicesBinding.ensureInitialized();
   //Set the license font the poppins google font
   LicenseRegistry.addLicense(() async* {
     final license = await rootBundle.loadString('google_fonts/OFL.txt');

@@ -126,7 +126,7 @@ class _OrderListState extends State<OrderList> {
               orElse: () {},
               failed: (e) {
                 showDialog(
-                    context: context, 
+                    context: context,
                     builder: (context) {
                       return CupertinoAlertDialog(
                         title: Text('Error'),
@@ -557,6 +557,7 @@ class _OrderListState extends State<OrderList> {
                                       (index) => CardWidget(
                                             dits: odetailsList[index],
                                             index: index,
+                                            orderId: widget.orderId,
                                           ))
                                 ],
                               ),
@@ -567,7 +568,7 @@ class _OrderListState extends State<OrderList> {
                           },
                         );
                       }),
-                      Spacer(),
+                      const Spacer(),
                       Column(
                         children: [
                           DropdownButtonHideUnderline(
@@ -579,7 +580,7 @@ class _OrderListState extends State<OrderList> {
                                   return state.maybeWhen(orElse: () {
                                     return Container();
                                   }, loading: () {
-                                    return CupertinoActivityIndicator();
+                                    return const CupertinoActivityIndicator();
                                   }, success: (statuses) {
                                     return FormBuilderDropdown<int>(
                                         name: 'status',
@@ -657,9 +658,14 @@ class _OrderListState extends State<OrderList> {
 }
 
 class CardWidget extends StatefulWidget {
+  final int orderId;
   final OdetailsList dits;
   final int index;
-  const CardWidget({Key? key, required this.dits, required this.index})
+  const CardWidget(
+      {Key? key,
+      required this.dits,
+      required this.index,
+      required this.orderId})
       : super(key: key);
 
   @override
@@ -749,7 +755,7 @@ class _CardWidgetState extends State<CardWidget> {
       margin: const EdgeInsets.all(15),
       child: Container(
         color: Colors.grey[100 * (widget.index % 3 + 1)],
-        height: 80,
+        height: 100,
         child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           Expanded(
             child: Column(
@@ -807,35 +813,136 @@ class _CardWidgetState extends State<CardWidget> {
           )),
           const VerticalDivider(),
           Expanded(
-            child: CupertinoButton(
-              child: Column(
-                children: [
-                  Row(
-                    children: const [
-                      Icon(BoxIcons.bx_note),
-                    ],
-                  ),
-                  Row(
-                    children: const [
-                      Flexible(
-                        child: Text(
-                          'Add Packing Notes',
-                          overflow: TextOverflow.fade,
-                          maxLines: 1,
-                          softWrap: false,
-                          style: TextStyle(
-                            color: Palette.orangeColor,
-                            fontSize: 13,
+            child: Column(
+              children: [
+                // CupertinoButton(
+                //     child: Icon(BoxIcons.bx_note), onPressed: () {}),
+                Row(
+                  children: [
+                    Flexible(
+                      child: DropdownButtonHideUnderline(
+                        child: ButtonTheme(
+                          alignedDropdown: true,
+                          child: BlocBuilder<FetchOrderStatusCubit,
+                              FetchOrderStatusState>(
+                            builder: (context, state) {
+                              return state.maybeWhen(orElse: () {
+                                return Container();
+                              }, loading: () {
+                                return const CupertinoActivityIndicator();
+                              }, success: (statuses) {
+                                return FormBuilderDropdown<dynamic>(
+                                    name: 'status',
+                                    onChanged: (e) async {
+                                      if (e == 'Accepted') {
+                                        ///Accepted api call
+
+                                      } else {
+                                        showDialog(
+                                            context: context,
+                                            builder: (context) {
+                                              return CupertinoAlertDialog(
+                                                  title: Text('Rejected'),
+                                                  actions: [
+                                                    CupertinoActionSheetAction(
+                                                      child: Text('Dismiss'),
+                                                      onPressed: () {},
+                                                      isDestructiveAction: true,
+                                                    ),
+                                                    CupertinoActionSheetAction(
+                                                      child: Text('Accept'),
+                                                      onPressed: () {},
+                                                      isDefaultAction: true,
+                                                    ),
+                                                  ],
+                                                  content: Material(
+                                                    child: FormBuilder(
+                                                        child: Column(
+                                                      children: [
+                                                        FormBuilderRadioGroup<
+                                                                String>(
+                                                            name: 'radio',
+                                                            valueTransformer:
+                                                                (val) {
+                                                              return {
+                                                                'status':'R',
+                                                                'comment':val
+                                                              };
+                                                            },
+                                                            options: [
+                                                              'Damaged',
+                                                              'Not Available',
+                                                            ]
+                                                                .map((e) =>
+                                                                    FormBuilderFieldOption(
+                                                                      value: e,
+                                                                    ))
+                                                                .toList()),
+                                                        //Hint to add any additional info
+                                                        FormBuilderTextField(
+                                                          valueTransformer: (val){
+                                                            return {
+                                                                'status':'R',
+                                                                'comment':val
+                                                              };
+                                                          },
+                                                            name: 'name')
+                                                      ],
+                                                    )),
+                                                  ));
+                                            });
+                                      }
+                                    },
+                                    isExpanded: true,
+                                    items: ['Accepted', 'Rejected']
+                                        .map((e) => DropdownMenuItem(
+                                            value: e, child: Text(e)))
+                                        .toList()
+                                    // List.generate(
+                                    // statuses.length,
+                                    // (index) => DropdownMenuItem(
+                                    // value: int.parse(statuses[index]
+                                    // .order_status_id
+                                    // .toString()),
+                                    // child: Row(
+                                    // children:
+                                    // [
+                                    // CircleAvatar(
+                                    //   backgroundColor: Color(
+                                    //       int.parse(
+                                    //           '0xFF${statuses[index].color}')
+                                    // ),
+                                    // ),
+                                    //   const SizedBox(
+                                    //     width: 10,
+                                    //   ),
+                                    //   Text(
+                                    //     statuses[index].name!,
+                                    //     style: const TextStyle(
+                                    //         color: Colors.red),
+                                    //   ),
+                                    // ],
+                                    // ),
+                                    // )),
+                                    ,
+                                    // onChanged: (value) async {
+                                    //   await ApiService.post(data: {
+                                    //     'order_status_id': value!,
+                                    //     'order_id': widget.orderId
+                                    //   }, path: 'op/orderStatus');
+                                    //   AppToast.showToast(
+                                    //       message: 'Success', isError: false);
+                                    // },
+                                    hint: const Text("Status"));
+                              });
+                            },
                           ),
                         ),
                       ),
-                    ],
-                  )
-                ],
-              ),
-              onPressed: () {
-                _displayDialog(context);
-              },
+                    ),
+                  ],
+                )
+              ],
             ),
           )
         ]),

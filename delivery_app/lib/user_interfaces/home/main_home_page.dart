@@ -521,20 +521,20 @@ class _DispatchState extends State<Dispatch> {
         if (constraints.maxWidth > 600) {
           return Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                const Expanded(child: SizedBox.shrink()),
-                const Text.rich(TextSpan(
-                    text: 'Kwik ',
-                    style: TextStyle(
-                        fontSize: 60,
-                        fontWeight: FontWeight.w900,
-                        color: Palette.orangeColor),
-                    children: [
-                      TextSpan(
-                          text: 'Delivery',
-                          style: TextStyle(color: Palette.greenColor))
-                    ])),
+                // const Expanded(child: SizedBox.shrink()),
+                // const Text.rich(TextSpan(
+                //     text: 'Kwik ',
+                //     style: TextStyle(
+                //         fontSize: 60,
+                //         fontWeight: FontWeight.w900,
+                //         color: Palette.orangeColor),
+                //     children: [
+                //       TextSpan(
+                //           text: 'Delivery',
+                //           style: TextStyle(color: Palette.greenColor))
+                //     ])),
                 Expanded(
                   child: Image.asset(
                     'assets/truck_image.png',

@@ -12,7 +12,7 @@ class   ApiService {
   static Future<dynamic> post(
       {required Map<String, dynamic> data,
       required String path,
-      Options? options, Map queryParameters}) async {
+      Options? options, Map? queryParameters}) async {
     try {
       ///Get the response after posting
       var response = await restClient.dio!
