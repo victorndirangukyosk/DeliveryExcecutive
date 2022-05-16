@@ -10,13 +10,13 @@ class AcceptRejectCubit extends Cubit<AcceptRejectState> {
   AcceptRejectCubit() : super(AcceptRejectState.initial());
 
 
-  actionArea({required List<AcceptReject> crates, required int orderId}) async {
+  actionArea({required List<AcceptReject> accept, required int orderId}) async {
     emit(const AcceptRejectState.loading());
     try {
       await ApiService.post(data: {
         'order_id': orderId,
         'products':
-            List.generate(crates.length, (index) => crates[index].toJson())
+            List.generate(accept.length, (index) => accept[index].toJson())
       }, path: 'deliveryexecutive/accept_rejectProducts');
       emit(const AcceptRejectState.success());
     } catch (e) {

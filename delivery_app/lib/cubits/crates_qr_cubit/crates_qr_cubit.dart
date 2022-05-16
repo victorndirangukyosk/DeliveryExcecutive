@@ -24,3 +24,4 @@ class CratesQRCubit extends Cubit<List<Crate>> {
     emit(state);
   }
 }
+

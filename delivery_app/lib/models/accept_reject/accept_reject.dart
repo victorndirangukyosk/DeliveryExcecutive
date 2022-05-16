@@ -8,6 +8,14 @@ part 'accept_reject.g.dart';
 class AcceptReject with _$AcceptReject {
   factory AcceptReject({
     String? status,
+    String? product_store_id,
+    String? product_id,
+    String? quantity,
+    String? price,
+    String? total,
+    String? tax,
+    String? name,
+    String? unit,
     String? comment
   }) = _AcceptReject;
 	
