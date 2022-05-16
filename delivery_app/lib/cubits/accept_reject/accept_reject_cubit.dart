@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:delivery_app/models/accept_reject/accept_reject.dart';
 import 'package:delivery_app/services/api_service/api_service.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -9,7 +10,7 @@ class AcceptRejectCubit extends Cubit<AcceptRejectState> {
   AcceptRejectCubit() : super(AcceptRejectState.initial());
 
 
-  actionArea({required List<Crate> crates, required int orderId}) async {
+  actionArea({required List<AcceptReject> crates, required int orderId}) async {
     emit(const AcceptRejectState.loading());
     try {
       await ApiService.post(data: {
