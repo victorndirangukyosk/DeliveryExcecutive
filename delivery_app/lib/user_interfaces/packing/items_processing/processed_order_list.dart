@@ -834,7 +834,7 @@ class _CardWidgetState extends State<CardWidget> {
                                 return FormBuilderDropdown<dynamic>(
                                     name: 'status',
                                     onChanged: (e) async {
-                                      if (e == 'Accepted') {
+                                      if (e == 'Fully-Packed') {
                                         ///Accepted api call
 
                                       } else {
@@ -842,7 +842,7 @@ class _CardWidgetState extends State<CardWidget> {
                                             context: context,
                                             builder: (context) {
                                               return CupertinoAlertDialog(
-                                                  title: Text('Rejected'),
+                                                  title:  Text('Rejected'),
                                                   actions: [
                                                     CupertinoActionSheetAction(
                                                       child: Text('Dismiss'),
@@ -865,8 +865,8 @@ class _CardWidgetState extends State<CardWidget> {
                                                             valueTransformer:
                                                                 (val) {
                                                               return {
-                                                                'status':'R',
-                                                                'comment':val
+                                                                'status': 'R',
+                                                                'comment': val
                                                               };
                                                             },
                                                             options: [
@@ -880,12 +880,13 @@ class _CardWidgetState extends State<CardWidget> {
                                                                 .toList()),
                                                         //Hint to add any additional info
                                                         FormBuilderTextField(
-                                                          valueTransformer: (val){
-                                                            return {
-                                                                'status':'R',
-                                                                'comment':val
+                                                            valueTransformer:
+                                                                (val) {
+                                                              return {
+                                                                'status': 'R',
+                                                                'comment': val
                                                               };
-                                                          },
+                                                            },
                                                             name: 'name')
                                                       ],
                                                     )),
@@ -894,7 +895,7 @@ class _CardWidgetState extends State<CardWidget> {
                                       }
                                     },
                                     isExpanded: true,
-                                    items: ['Accepted', 'Rejected']
+                                    items: ['Fully-Packed', 'Rejected']
                                         .map((e) => DropdownMenuItem(
                                             value: e, child: Text(e)))
                                         .toList()
