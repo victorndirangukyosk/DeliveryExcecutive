@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:delivery_app/utilities/utilities.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

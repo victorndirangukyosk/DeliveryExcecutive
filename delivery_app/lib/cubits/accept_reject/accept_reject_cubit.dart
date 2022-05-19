@@ -6,11 +6,12 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'accept_reject_state.dart';
 part 'accept_reject_cubit.freezed.dart';
 
+
 class AcceptRejectCubit extends Cubit<AcceptRejectState> {
   AcceptRejectCubit() : super(AcceptRejectState.initial());
 
 
-  actionArea({required List<AcceptReject> accept, required int orderId}) async {
+  actionArea({required List<AcceptReject> accept, required int orderId, }) async {
     emit(const AcceptRejectState.loading());
     try {
       await ApiService.post(data: {

@@ -1,9 +1,11 @@
 import 'package:calendar_time/calendar_time.dart';
+import 'package:delivery_app/cubits/accept_reject/accept_reject_cubit.dart';
 import 'package:delivery_app/cubits/add_missing_products/add_missing_products_cubit_cubit.dart';
 import 'package:delivery_app/cubits/authentication/token_cubit.dart';
 import 'package:delivery_app/cubits/fetch_order_status_cubit/fetch_order_status_cubit.dart';
 import 'package:delivery_app/cubits/order_details_cubit/order_details_cubit.dart';
 import 'package:delivery_app/cubits/order_details_list/odetails_list_cubit.dart';
+import 'package:delivery_app/models/accept_reject/accept_reject.dart';
 import 'package:delivery_app/models/missing/missing.dart';
 import 'package:delivery_app/models/odetails_list/odetails_list.dart';
 import 'package:delivery_app/services/api_service/api_service.dart';
@@ -556,6 +558,29 @@ class _OrderListState extends State<OrderList> {
                                       odetailsList.length,
                                       (index) => CardWidget(
                                             dits: odetailsList[index],
+                                            acceptReject: AcceptReject(
+                                                status: 'A',
+                                                price: odetailsList[index]
+                                                    .price!
+                                                    .toString(),
+                                                product_id: odetailsList[index]
+                                                    .product_id!
+                                                    .toString(),
+                                                unit: odetailsList[index].unit,
+                                                name: odetailsList[index].name,
+                                                tax: odetailsList[index]
+                                                    .tax!
+                                                    .toString(),
+                                                total: odetailsList[index]
+                                                    .total
+                                                    .toString(),
+                                                quantity: odetailsList[index]
+                                                    .quantity!
+                                                    .toString(),
+                                                product_store_id:
+                                                    odetailsList[index]
+                                                        .product_store_id,
+                                                comment: 'Products accepted'),
                                             index: index,
                                             orderId: widget.orderId,
                                           ))
@@ -660,12 +685,14 @@ class _OrderListState extends State<OrderList> {
 class CardWidget extends StatefulWidget {
   final int orderId;
   final OdetailsList dits;
+  final AcceptReject acceptReject;
   final int index;
   const CardWidget(
       {Key? key,
       required this.dits,
       required this.index,
-      required this.orderId})
+      required this.orderId,
+      required this.acceptReject})
       : super(key: key);
 
   @override
@@ -836,69 +863,55 @@ class _CardWidgetState extends State<CardWidget> {
                                     onChanged: (e) async {
                                       if (e == 'Fully-Packed') {
                                         ///Accepted api call
-
-                                      } else {
-                                        showDialog(
-                                            context: context,
-                                            builder: (context) {
-                                              return CupertinoAlertDialog(
-                                                  title:  Text('Rejected'),
-                                                  actions: [
-                                                    CupertinoActionSheetAction(
-                                                      child: Text('Dismiss'),
-                                                      onPressed: () {},
-                                                      isDestructiveAction: true,
-                                                    ),
-                                                    CupertinoActionSheetAction(
-                                                      child: Text('Accept'),
-                                                      onPressed: () {},
-                                                      isDefaultAction: true,
-                                                    ),
-                                                  ],
-                                                  content: Material(
-                                                    child: FormBuilder(
-                                                        child: Column(
-                                                      children: [
-                                                        FormBuilderRadioGroup<
-                                                                String>(
-                                                            name: 'radio',
-                                                            valueTransformer:
-                                                                (val) {
-                                                              return {
-                                                                'status': 'R',
-                                                                'comment': val
-                                                              };
-                                                            },
-                                                            options: [
-                                                              'Damaged',
-                                                              'Not Available',
-                                                            ]
-                                                                .map((e) =>
-                                                                    FormBuilderFieldOption(
-                                                                      value: e,
-                                                                    ))
-                                                                .toList()),
-                                                        //Hint to add any additional info
-                                                        FormBuilderTextField(
-                                                            valueTransformer:
-                                                                (val) {
-                                                              return {
-                                                                'status': 'R',
-                                                                'comment': val
-                                                              };
-                                                            },
-                                                            name: 'name')
-                                                      ],
-                                                    )),
-                                                  ));
-                                            });
+                                        context
+                                            .read<AcceptRejectCubit>()
+                                            .actionArea(accept: [
+                                          widget.acceptReject.copyWith(
+                                              status: 'A', comment: 'Accept')
+                                        ], orderId: widget.orderId);
+                                      } else if (e == 'Rejected') {
+                                        context
+                                            .read<AcceptRejectCubit>()
+                                            .actionArea(accept: [
+                                          widget.acceptReject.copyWith(
+                                              status: 'R', comment: 'Rejected')
+                                        ], orderId: widget.orderId);
+                                      } else if (e == 'Missing') {
+                                        /// Missing api call
+                                        await _displayDialog(context);
+                                        context
+                                            .read<
+                                                AddMissingProductsCubitCubit>()
+                                            .addMissing(
+                                                products: context
+                                                    .read<MissingCubit>()
+                                                    .state,
+                                                orderId: widget.orderId);
                                       }
                                     },
                                     isExpanded: true,
-                                    items: ['Fully-Packed', 'Rejected']
-                                        .map((e) => DropdownMenuItem(
-                                            value: e, child: Text(e)))
-                                        .toList()
+                                    items:
+                                        ['Fully-Packed', 'Rejected', 'Missing']
+                                            .map((e) => DropdownMenuItem(
+                                                onTap: () {
+                                                  // if (e == 'Fully-Packed') {
+                                                  //   ///Accepted api call
+                                                  //   context
+                                                  //       .read<AcceptRejectCubit>()
+                                                  //       .actionArea(accept: [
+                                                  //     widget.acceptReject
+                                                  //   ], orderId: widget.orderId);
+                                                  // } else if (e == 'Rejected') {
+                                                  //   /// Rejected api call
+
+                                                  // } else if (e == 'Missing') {
+                                                  //   /// Missing api call
+
+                                                  // }
+                                                },
+                                                value: e,
+                                                child: Text(e)))
+                                            .toList()
                                     // List.generate(
                                     // statuses.length,
                                     // (index) => DropdownMenuItem(

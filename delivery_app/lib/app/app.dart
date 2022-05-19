@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:delivery_app/configuration/configuration.dart';
+import 'package:delivery_app/cubits/accept_reject/accept_reject_cubit.dart';
 import 'package:delivery_app/cubits/add_crates_cubit/add_crates_cubit.dart';
 import 'package:delivery_app/cubits/add_missing_products/add_missing_products_cubit_cubit.dart';
 import 'package:delivery_app/cubits/api/reset_password_cubit/reset_password_cubit.dart';
@@ -58,6 +59,7 @@ class KwikBasketDeliveryApp extends StatelessWidget {
         // an empty list wrappped with one
         BlocProvider(create: (context) => CratesQRCubit([])),
         BlocProvider(create: (context) => AddCratesCubit()),
+        BlocProvider(create: (context) => AcceptRejectCubit()),
         BlocProvider(create: (context) => IsDeCubit(true)),
         BlocProvider(create: (context) => AddMissingProductsCubitCubit()),
         BlocProvider(create: (context) => MissingCubit([])),
