@@ -15,11 +15,7 @@ class FilterFlagCubit extends Cubit<FilterFlagState> {
   }) async {
     emit(const FilterFlagState.loading());
     try {
-      await ApiService.get(data: {
-        'order_id': orderId,
-        'products':
-            List.generate(accept.length, (index) => accept[index].toJson())
-      }, path: 'deliveryexecutive/accept_rejectProducts');
+      await ApiService.getData( path: 'deliveryexecutive/accept_rejectProducts/order_id/$orderId');
       emit(const FilterFlagState.success());
     } catch (e) {
       emit(FilterFlagState.failed(e.toString()));

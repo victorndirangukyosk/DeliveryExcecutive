@@ -11,6 +11,7 @@
 // ignore_for_file: type=lint
 
 import 'package:auto_route/auto_route.dart' as _i13;
+import 'package:flutter/cupertino.dart' as _i15;
 import 'package:flutter/material.dart' as _i14;
 
 import '../user_interfaces/authentication_screens/reset_password_page.dart'
@@ -191,7 +192,7 @@ class CustomerVerification extends _i13.PageRouteInfo<void> {
 /// generated route for
 /// [_i8.DirectionsToAddress]
 class DirectionsToAddress extends _i13.PageRouteInfo<DirectionsToAddressArgs> {
-  DirectionsToAddress({_i14.Key? key, required int orderId})
+  DirectionsToAddress({_i15.Key? key, required int orderId})
       : super(DirectionsToAddress.name,
             path: '/directions-to-address',
             args: DirectionsToAddressArgs(key: key, orderId: orderId));
@@ -202,7 +203,7 @@ class DirectionsToAddress extends _i13.PageRouteInfo<DirectionsToAddressArgs> {
 class DirectionsToAddressArgs {
   const DirectionsToAddressArgs({this.key, required this.orderId});
 
-  final _i14.Key? key;
+  final _i15.Key? key;
 
   final int orderId;
 
@@ -232,7 +233,7 @@ class SummaryRoute extends _i13.PageRouteInfo<void> {
 /// generated route for
 /// [_i11.OrderDetailsPage]
 class OrderDetailsRoute extends _i13.PageRouteInfo<OrderDetailsRouteArgs> {
-  OrderDetailsRoute({_i14.Key? key, required int orderId})
+  OrderDetailsRoute({_i15.Key? key, required int orderId})
       : super(OrderDetailsRoute.name,
             path: '/order-details-page',
             args: OrderDetailsRouteArgs(key: key, orderId: orderId));
@@ -243,7 +244,7 @@ class OrderDetailsRoute extends _i13.PageRouteInfo<OrderDetailsRouteArgs> {
 class OrderDetailsRouteArgs {
   const OrderDetailsRouteArgs({this.key, required this.orderId});
 
-  final _i14.Key? key;
+  final _i15.Key? key;
 
   final int orderId;
 
@@ -256,7 +257,7 @@ class OrderDetailsRouteArgs {
 /// generated route for
 /// [_i12.CratesPage]
 class CratesRoute extends _i13.PageRouteInfo<CratesRouteArgs> {
-  CratesRoute({_i14.Key? key, required int orderId})
+  CratesRoute({_i15.Key? key, required int orderId})
       : super(CratesRoute.name,
             path: '/crates-page',
             args: CratesRouteArgs(key: key, orderId: orderId));
@@ -267,7 +268,7 @@ class CratesRoute extends _i13.PageRouteInfo<CratesRouteArgs> {
 class CratesRouteArgs {
   const CratesRouteArgs({this.key, required this.orderId});
 
-  final _i14.Key? key;
+  final _i15.Key? key;
 
   final int orderId;
 
