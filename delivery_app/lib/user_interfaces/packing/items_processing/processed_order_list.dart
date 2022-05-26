@@ -865,7 +865,9 @@ class _CardWidgetState extends State<CardWidget> {
                                         .state
                                         .where((element) =>
                                             element['order_id'] ==
-                                            widget.orderId)
+                                                widget.orderId &&
+                                            element['product_id'] ==
+                                                widget.dits.product_id)
                                         .isNotEmpty
                                     ? Text('Accepted')
                                     : FormBuilderDropdown<dynamic>(
