@@ -523,29 +523,29 @@ class _DispatchState extends State<Dispatch> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                // const Expanded(child: SizedBox.shrink()),
-                // const Text.rich(TextSpan(
-                //     text: 'Kwik ',
-                //     style: TextStyle(
-                //         fontSize: 60,
-                //         fontWeight: FontWeight.w900,
-                //         color: Palette.orangeColor),
-                //     children: [
-                //       TextSpan(
-                //           text: 'Delivery',
-                //           style: TextStyle(color: Palette.greenColor))
-                //     ])),
+                const Expanded(child: SizedBox.shrink()),
+                const Text.rich(TextSpan(
+                    text: 'Kwik ',
+                    style: TextStyle(
+                        fontSize: 60,
+                        fontWeight: FontWeight.w900,
+                        color: Palette.orangeColor),
+                    children: [
+                      TextSpan(
+                          text: 'Delivery',
+                          style: TextStyle(color: Palette.greenColor))
+                    ])),
                 Expanded(
                   child: Image.asset(
                     'assets/truck_image.png',
-                    // width: MediaQuery.of(context).size.width / 2,
-                    // height: MediaQuery.of(context).size.height / 2,
+                    width: MediaQuery.of(context).size.width / 2,
+                    height: MediaQuery.of(context).size.height / 2,
                   ),
                 ),
                 // Spacer(),
                 Expanded(
                   child: Column(
-                    children: [
+                    children:const [
                       Text(
                         'READY FOR DISPATCH',
                         style: TextStyle(
@@ -561,7 +561,7 @@ class _DispatchState extends State<Dispatch> {
                 Expanded(
                   child: Column(
                     children: [
-                      const SpinKitCircle(color: Palette.greenColor),
+                      // const SpinKitCircle(color: Palette.greenColor),
                       CupertinoButton.filled(
                         onPressed: () {
                           AutoRouter.of(context).replace(const MainHomeRoute());

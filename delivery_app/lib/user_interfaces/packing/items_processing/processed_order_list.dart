@@ -780,6 +780,7 @@ class _CardWidgetState extends State<CardWidget> {
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.all(15),
+      // color: widget.dits.status=="A"?Colors.green:Colors.red,
       child: Container(
         color: Colors.grey[100 * (widget.index % 3 + 1)],
         height: 100,
@@ -869,7 +870,7 @@ class _CardWidgetState extends State<CardWidget> {
                                           widget.acceptReject.copyWith(
                                               status: 'A', comment: 'Accept')
                                         ], orderId: widget.orderId);
-                                      } else if (e == 'Rejected') {
+                                      } else if (e == 'Rejected') { 
                                         context
                                             .read<AcceptRejectCubit>()
                                             .actionArea(accept: [
@@ -911,43 +912,9 @@ class _CardWidgetState extends State<CardWidget> {
                                                 },
                                                 value: e,
                                                 child: Text(e)))
-                                            .toList()
-                                    // List.generate(
-                                    // statuses.length,
-                                    // (index) => DropdownMenuItem(
-                                    // value: int.parse(statuses[index]
-                                    // .order_status_id
-                                    // .toString()),
-                                    // child: Row(
-                                    // children:
-                                    // [
-                                    // CircleAvatar(
-                                    //   backgroundColor: Color(
-                                    //       int.parse(
-                                    //           '0xFF${statuses[index].color}')
-                                    // ),
-                                    // ),
-                                    //   const SizedBox(
-                                    //     width: 10,
-                                    //   ),
-                                    //   Text(
-                                    //     statuses[index].name!,
-                                    //     style: const TextStyle(
-                                    //         color: Colors.red),
-                                    //   ),
-                                    // ],
-                                    // ),
-                                    // )),
-                                    ,
-                                    // onChanged: (value) async {
-                                    //   await ApiService.post(data: {
-                                    //     'order_status_id': value!,
-                                    //     'order_id': widget.orderId
-                                    //   }, path: 'op/orderStatus');
-                                    //   AppToast.showToast(
-                                    //       message: 'Success', isError: false);
-                                    // },
-                                    hint: const Text("Status"));
+                                            .toList(),
+                                    
+                                    hint: const Text('Status'));
                               });
                             },
                           ),
