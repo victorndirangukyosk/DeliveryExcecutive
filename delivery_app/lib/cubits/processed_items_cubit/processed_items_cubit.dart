@@ -1,7 +1,17 @@
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
-class ProcessedItemsCubit extends Cubit<List<Map<String, dynamic>>> {
+class ProcessedItemsCubit extends HydratedCubit<List<Map<String, dynamic>>> {
   ProcessedItemsCubit() : super([]);
+
+  @override
+  List<Map<String, dynamic>>? fromJson(Map<String, dynamic> json) {
+    return json['value'];
+  }
+
+  @override
+  Map<String, dynamic>? toJson(List<Map<String, dynamic>> state) {
+    return {'value': state};
+  }
 
   // getProcessedItems() async {
   //   emit([]);
