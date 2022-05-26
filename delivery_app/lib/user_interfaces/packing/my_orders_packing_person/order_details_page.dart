@@ -6,6 +6,7 @@ import 'package:delivery_app/cubits/order_details_cubit/order_details_cubit.dart
 import 'package:delivery_app/cubits/order_details_list/odetails_list_cubit.dart';
 import 'package:delivery_app/models/odetails_list/odetails_list.dart';
 import 'package:delivery_app/models/order_details/order_details.dart';
+import 'package:delivery_app/models/order_status.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 import 'package:delivery_app/theme/box_icons.dart';
 import 'package:delivery_app/user_interfaces/packing/my_orders_packing_person/my_orders_page.dart';
@@ -486,14 +487,15 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                 ),
                               );
                             },
-                            success: (odetailsList) {
+                            success: (odetailsList, orderStatus) {
                               return SingleChildScrollView(
                                 child: Column(
                                   children: [
                                     ...List.generate(
-                                        odetailsList.length,
+                                        odetailsList!.length,
                                         (index) => CardWidget(
                                               dits: odetailsList[index],
+                                              active: false,
                                               index: index,
                                             ))
                                   ],
@@ -522,7 +524,8 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
 class CardWidget extends StatelessWidget {
   final OdetailsList dits;
   final int index;
-  const CardWidget({Key? key, required this.dits, required this.index})
+  final bool active;
+  const CardWidget({Key? key, required this.dits, required this.index,required this.active})
       : super(key: key);
 
   @override

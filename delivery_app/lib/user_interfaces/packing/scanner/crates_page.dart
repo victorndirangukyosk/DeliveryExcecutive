@@ -39,7 +39,7 @@ class _CratesPageState extends State<CratesPage> {
       ),
       body: AnimationLimiter(
         child: ListView.builder(
-          itemBuilder: (context, index)  {
+          itemBuilder: (context, index) {
             var crate = context.watch<CratesQRCubit>().state[index];
             return AnimationConfiguration.staggeredList(
               position: index,
@@ -48,7 +48,8 @@ class _CratesPageState extends State<CratesPage> {
                 verticalOffset: 50.0,
                 child: FadeInAnimation(
                   child: ListTile(
-                    title: Text(crate.serial_number!),
+                    title: Text(crate.color! + ' Crate'),
+                    subtitle: Text(crate.serial_number!),
                     trailing: IconButton(
                         onPressed: () {
                           context.read<CratesQRCubit>().removeQR(

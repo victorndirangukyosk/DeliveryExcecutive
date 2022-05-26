@@ -1,5 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:delivery_app/models/odetails_list/odetails_list.dart';
+import 'package:delivery_app/models/order_status.dart';
+import 'package:delivery_app/models/processed_products/processed_products.dart';
+import 'package:delivery_app/services/services.dart';
 import 'package:delivery_app/utilities/utilities.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -19,7 +22,13 @@ class OdetailsListCubit extends Cubit<OdetailsListState> {
           List.generate(orderProducts.length, (index) {
         return OdetailsList.fromJson(orderProducts[index]);
       });
-      emit(OdetailsListState.success(odetailsList));
+      // var orderStatusResponse =
+      //     await ApiService.get(path: 'deliveryexecutive/getProcessedProducts/${orderId}', queryParameters: {});
+      // List data = orderStatusResponse['data'];
+      // var orderStatuses = data.map((e) {
+      //   return ProcessedProducts.fromJson(e);
+      // }).toList();
+      emit(OdetailsListState.success(odetailsList: odetailsList, status: []));
     } catch (e) {
       emit(OdetailsListState.failed(e.toString()));
     }

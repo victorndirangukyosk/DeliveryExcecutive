@@ -21,7 +21,7 @@ main() async {
   //   // Permission.camera,
   //   Permission.storage,
   // ].request();
-
+  
   ///Allow getit reassignments for smoother debuging
   GetIt.I.allowReassignment = true;
 

@@ -26,9 +26,9 @@ class _$GetAssignedStateTearOff {
     return const _Loading();
   }
 
-  _Success success(List<AssignedOrder> orders) {
+  _Success success({List<AssignedOrder>? assignedOrders}) {
     return _Success(
-      orders,
+      assignedOrders: assignedOrders,
     );
   }
 
@@ -48,7 +48,7 @@ mixin _$GetAssignedState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<AssignedOrder> orders) success,
+    required TResult Function(List<AssignedOrder>? assignedOrders) success,
     required TResult Function(String string) failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -56,7 +56,7 @@ mixin _$GetAssignedState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<AssignedOrder> orders)? success,
+    TResult Function(List<AssignedOrder>? assignedOrders)? success,
     TResult Function(String string)? failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -64,7 +64,7 @@ mixin _$GetAssignedState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<AssignedOrder> orders)? success,
+    TResult Function(List<AssignedOrder>? assignedOrders)? success,
     TResult Function(String string)? failed,
     required TResult orElse(),
   }) =>
@@ -153,7 +153,7 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<AssignedOrder> orders) success,
+    required TResult Function(List<AssignedOrder>? assignedOrders) success,
     required TResult Function(String string) failed,
   }) {
     return initial();
@@ -164,7 +164,7 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<AssignedOrder> orders)? success,
+    TResult Function(List<AssignedOrder>? assignedOrders)? success,
     TResult Function(String string)? failed,
   }) {
     return initial?.call();
@@ -175,7 +175,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<AssignedOrder> orders)? success,
+    TResult Function(List<AssignedOrder>? assignedOrders)? success,
     TResult Function(String string)? failed,
     required TResult orElse(),
   }) {
@@ -267,7 +267,7 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<AssignedOrder> orders) success,
+    required TResult Function(List<AssignedOrder>? assignedOrders) success,
     required TResult Function(String string) failed,
   }) {
     return loading();
@@ -278,7 +278,7 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<AssignedOrder> orders)? success,
+    TResult Function(List<AssignedOrder>? assignedOrders)? success,
     TResult Function(String string)? failed,
   }) {
     return loading?.call();
@@ -289,7 +289,7 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<AssignedOrder> orders)? success,
+    TResult Function(List<AssignedOrder>? assignedOrders)? success,
     TResult Function(String string)? failed,
     required TResult orElse(),
   }) {
@@ -345,7 +345,7 @@ abstract class _Loading implements GetAssignedState {
 abstract class _$SuccessCopyWith<$Res> {
   factory _$SuccessCopyWith(_Success value, $Res Function(_Success) then) =
       __$SuccessCopyWithImpl<$Res>;
-  $Res call({List<AssignedOrder> orders});
+  $Res call({List<AssignedOrder>? assignedOrders});
 }
 
 /// @nodoc
@@ -359,13 +359,13 @@ class __$SuccessCopyWithImpl<$Res> extends _$GetAssignedStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? orders = freezed,
+    Object? assignedOrders = freezed,
   }) {
     return _then(_Success(
-      orders == freezed
-          ? _value.orders
-          : orders // ignore: cast_nullable_to_non_nullable
-              as List<AssignedOrder>,
+      assignedOrders: assignedOrders == freezed
+          ? _value.assignedOrders
+          : assignedOrders // ignore: cast_nullable_to_non_nullable
+              as List<AssignedOrder>?,
     ));
   }
 }
@@ -373,14 +373,14 @@ class __$SuccessCopyWithImpl<$Res> extends _$GetAssignedStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Success implements _Success {
-  const _$_Success(this.orders);
+  const _$_Success({this.assignedOrders});
 
   @override
-  final List<AssignedOrder> orders;
+  final List<AssignedOrder>? assignedOrders;
 
   @override
   String toString() {
-    return 'GetAssignedState.success(orders: $orders)';
+    return 'GetAssignedState.success(assignedOrders: $assignedOrders)';
   }
 
   @override
@@ -388,12 +388,13 @@ class _$_Success implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Success &&
-            const DeepCollectionEquality().equals(other.orders, orders));
+            const DeepCollectionEquality()
+                .equals(other.assignedOrders, assignedOrders));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(orders));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(assignedOrders));
 
   @JsonKey(ignore: true)
   @override
@@ -405,10 +406,10 @@ class _$_Success implements _Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<AssignedOrder> orders) success,
+    required TResult Function(List<AssignedOrder>? assignedOrders) success,
     required TResult Function(String string) failed,
   }) {
-    return success(orders);
+    return success(assignedOrders);
   }
 
   @override
@@ -416,10 +417,10 @@ class _$_Success implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<AssignedOrder> orders)? success,
+    TResult Function(List<AssignedOrder>? assignedOrders)? success,
     TResult Function(String string)? failed,
   }) {
-    return success?.call(orders);
+    return success?.call(assignedOrders);
   }
 
   @override
@@ -427,12 +428,12 @@ class _$_Success implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<AssignedOrder> orders)? success,
+    TResult Function(List<AssignedOrder>? assignedOrders)? success,
     TResult Function(String string)? failed,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(orders);
+      return success(assignedOrders);
     }
     return orElse();
   }
@@ -476,9 +477,9 @@ class _$_Success implements _Success {
 }
 
 abstract class _Success implements GetAssignedState {
-  const factory _Success(List<AssignedOrder> orders) = _$_Success;
+  const factory _Success({List<AssignedOrder>? assignedOrders}) = _$_Success;
 
-  List<AssignedOrder> get orders;
+  List<AssignedOrder>? get assignedOrders;
   @JsonKey(ignore: true)
   _$SuccessCopyWith<_Success> get copyWith =>
       throw _privateConstructorUsedError;
@@ -548,7 +549,7 @@ class _$_Failed implements _Failed {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<AssignedOrder> orders) success,
+    required TResult Function(List<AssignedOrder>? assignedOrders) success,
     required TResult Function(String string) failed,
   }) {
     return failed(string);
@@ -559,7 +560,7 @@ class _$_Failed implements _Failed {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<AssignedOrder> orders)? success,
+    TResult Function(List<AssignedOrder>? assignedOrders)? success,
     TResult Function(String string)? failed,
   }) {
     return failed?.call(string);
@@ -570,7 +571,7 @@ class _$_Failed implements _Failed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<AssignedOrder> orders)? success,
+    TResult Function(List<AssignedOrder>? assignedOrders)? success,
     TResult Function(String string)? failed,
     required TResult orElse(),
   }) {

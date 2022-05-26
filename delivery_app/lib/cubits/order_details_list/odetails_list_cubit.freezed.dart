@@ -26,9 +26,11 @@ class _$OdetailsListStateTearOff {
     return const _Loading();
   }
 
-  _Success success(List<OdetailsList> odetailsList) {
+  _Success success(
+      {List<OdetailsList>? odetailsList, List<ProcessedProducts>? status}) {
     return _Success(
-      odetailsList,
+      odetailsList: odetailsList,
+      status: status,
     );
   }
 
@@ -48,7 +50,9 @@ mixin _$OdetailsListState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<OdetailsList> odetailsList) success,
+    required TResult Function(
+            List<OdetailsList>? odetailsList, List<ProcessedProducts>? status)
+        success,
     required TResult Function(String error) failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -56,7 +60,9 @@ mixin _$OdetailsListState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<OdetailsList> odetailsList)? success,
+    TResult Function(
+            List<OdetailsList>? odetailsList, List<ProcessedProducts>? status)?
+        success,
     TResult Function(String error)? failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -64,7 +70,9 @@ mixin _$OdetailsListState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<OdetailsList> odetailsList)? success,
+    TResult Function(
+            List<OdetailsList>? odetailsList, List<ProcessedProducts>? status)?
+        success,
     TResult Function(String error)? failed,
     required TResult orElse(),
   }) =>
@@ -153,7 +161,9 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<OdetailsList> odetailsList) success,
+    required TResult Function(
+            List<OdetailsList>? odetailsList, List<ProcessedProducts>? status)
+        success,
     required TResult Function(String error) failed,
   }) {
     return initial();
@@ -164,7 +174,9 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<OdetailsList> odetailsList)? success,
+    TResult Function(
+            List<OdetailsList>? odetailsList, List<ProcessedProducts>? status)?
+        success,
     TResult Function(String error)? failed,
   }) {
     return initial?.call();
@@ -175,7 +187,9 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<OdetailsList> odetailsList)? success,
+    TResult Function(
+            List<OdetailsList>? odetailsList, List<ProcessedProducts>? status)?
+        success,
     TResult Function(String error)? failed,
     required TResult orElse(),
   }) {
@@ -267,7 +281,9 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<OdetailsList> odetailsList) success,
+    required TResult Function(
+            List<OdetailsList>? odetailsList, List<ProcessedProducts>? status)
+        success,
     required TResult Function(String error) failed,
   }) {
     return loading();
@@ -278,7 +294,9 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<OdetailsList> odetailsList)? success,
+    TResult Function(
+            List<OdetailsList>? odetailsList, List<ProcessedProducts>? status)?
+        success,
     TResult Function(String error)? failed,
   }) {
     return loading?.call();
@@ -289,7 +307,9 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<OdetailsList> odetailsList)? success,
+    TResult Function(
+            List<OdetailsList>? odetailsList, List<ProcessedProducts>? status)?
+        success,
     TResult Function(String error)? failed,
     required TResult orElse(),
   }) {
@@ -345,7 +365,8 @@ abstract class _Loading implements OdetailsListState {
 abstract class _$SuccessCopyWith<$Res> {
   factory _$SuccessCopyWith(_Success value, $Res Function(_Success) then) =
       __$SuccessCopyWithImpl<$Res>;
-  $Res call({List<OdetailsList> odetailsList});
+  $Res call(
+      {List<OdetailsList>? odetailsList, List<ProcessedProducts>? status});
 }
 
 /// @nodoc
@@ -360,12 +381,17 @@ class __$SuccessCopyWithImpl<$Res> extends _$OdetailsListStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? odetailsList = freezed,
+    Object? status = freezed,
   }) {
     return _then(_Success(
-      odetailsList == freezed
+      odetailsList: odetailsList == freezed
           ? _value.odetailsList
           : odetailsList // ignore: cast_nullable_to_non_nullable
-              as List<OdetailsList>,
+              as List<OdetailsList>?,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as List<ProcessedProducts>?,
     ));
   }
 }
@@ -373,14 +399,16 @@ class __$SuccessCopyWithImpl<$Res> extends _$OdetailsListStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Success implements _Success {
-  const _$_Success(this.odetailsList);
+  const _$_Success({this.odetailsList, this.status});
 
   @override
-  final List<OdetailsList> odetailsList;
+  final List<OdetailsList>? odetailsList;
+  @override
+  final List<ProcessedProducts>? status;
 
   @override
   String toString() {
-    return 'OdetailsListState.success(odetailsList: $odetailsList)';
+    return 'OdetailsListState.success(odetailsList: $odetailsList, status: $status)';
   }
 
   @override
@@ -389,12 +417,15 @@ class _$_Success implements _Success {
         (other.runtimeType == runtimeType &&
             other is _Success &&
             const DeepCollectionEquality()
-                .equals(other.odetailsList, odetailsList));
+                .equals(other.odetailsList, odetailsList) &&
+            const DeepCollectionEquality().equals(other.status, status));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(odetailsList));
+      runtimeType,
+      const DeepCollectionEquality().hash(odetailsList),
+      const DeepCollectionEquality().hash(status));
 
   @JsonKey(ignore: true)
   @override
@@ -406,10 +437,12 @@ class _$_Success implements _Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<OdetailsList> odetailsList) success,
+    required TResult Function(
+            List<OdetailsList>? odetailsList, List<ProcessedProducts>? status)
+        success,
     required TResult Function(String error) failed,
   }) {
-    return success(odetailsList);
+    return success(odetailsList, status);
   }
 
   @override
@@ -417,10 +450,12 @@ class _$_Success implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<OdetailsList> odetailsList)? success,
+    TResult Function(
+            List<OdetailsList>? odetailsList, List<ProcessedProducts>? status)?
+        success,
     TResult Function(String error)? failed,
   }) {
-    return success?.call(odetailsList);
+    return success?.call(odetailsList, status);
   }
 
   @override
@@ -428,12 +463,14 @@ class _$_Success implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<OdetailsList> odetailsList)? success,
+    TResult Function(
+            List<OdetailsList>? odetailsList, List<ProcessedProducts>? status)?
+        success,
     TResult Function(String error)? failed,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(odetailsList);
+      return success(odetailsList, status);
     }
     return orElse();
   }
@@ -477,9 +514,12 @@ class _$_Success implements _Success {
 }
 
 abstract class _Success implements OdetailsListState {
-  const factory _Success(List<OdetailsList> odetailsList) = _$_Success;
+  const factory _Success(
+      {List<OdetailsList>? odetailsList,
+      List<ProcessedProducts>? status}) = _$_Success;
 
-  List<OdetailsList> get odetailsList;
+  List<OdetailsList>? get odetailsList;
+  List<ProcessedProducts>? get status;
   @JsonKey(ignore: true)
   _$SuccessCopyWith<_Success> get copyWith =>
       throw _privateConstructorUsedError;
@@ -549,7 +589,9 @@ class _$_Failed implements _Failed {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<OdetailsList> odetailsList) success,
+    required TResult Function(
+            List<OdetailsList>? odetailsList, List<ProcessedProducts>? status)
+        success,
     required TResult Function(String error) failed,
   }) {
     return failed(error);
@@ -560,7 +602,9 @@ class _$_Failed implements _Failed {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<OdetailsList> odetailsList)? success,
+    TResult Function(
+            List<OdetailsList>? odetailsList, List<ProcessedProducts>? status)?
+        success,
     TResult Function(String error)? failed,
   }) {
     return failed?.call(error);
@@ -571,7 +615,9 @@ class _$_Failed implements _Failed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<OdetailsList> odetailsList)? success,
+    TResult Function(
+            List<OdetailsList>? odetailsList, List<ProcessedProducts>? status)?
+        success,
     TResult Function(String error)? failed,
     required TResult orElse(),
   }) {

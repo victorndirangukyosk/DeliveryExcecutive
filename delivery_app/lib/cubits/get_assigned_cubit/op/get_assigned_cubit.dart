@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
 import 'package:delivery_app/models/assigned/op/assigned_order.dart';
+import 'package:delivery_app/models/order_status.dart';
+import 'package:delivery_app/services/services.dart';
 import 'package:delivery_app/utilities/utilities.dart';
 import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -20,8 +22,9 @@ class GetAssignedCubit extends Cubit<GetAssignedState> {
             'order_status_id': 1,
           });
       List ordersinJson = response.data['data']['orders'];
-      List<AssignedOrder> orders = List.generate(ordersinJson.length,
-          ((index) => AssignedOrder.fromJson(ordersinJson[index])));
+      List<AssignedOrder> orders = ordersinJson.map((e) {
+        return AssignedOrder.fromJson(e);
+      }).toList();
 
       // Map<String, dynamic> map = json.decode(response.data['data']);
       // // ignore: prefer_typing_uninitialized_variables
@@ -30,7 +33,7 @@ class GetAssignedCubit extends Cubit<GetAssignedState> {
       //     ((index) => AssignedOrder.fromJson(ordersinJson[index])));
       // print(orders[0]);
 
-      emit(GetAssignedState.success(orders));
+      emit(GetAssignedState.success(assignedOrders: orders));
     } catch (e) {
       emit(GetAssignedState.failed(e.toString()));
     }

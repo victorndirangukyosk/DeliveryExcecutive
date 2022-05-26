@@ -86,12 +86,14 @@ class _HomeIconPagePackingState extends State<HomeIconPagePacking> {
                   if (constraints.maxWidth <= 600) {
                     return AnimationLimiter(
                       child: ListView.builder(
-                          itemCount: orders.length,
+                          itemCount: orders!.length,
                           shrinkWrap: true,
+                          physics: const BouncingScrollPhysics(
+                              parent: AlwaysScrollableScrollPhysics()),
                           itemBuilder: (BuildContext context, index) {
                             return AnimationConfiguration.staggeredList(
                               position: index,
-                              duration: const Duration(milliseconds: 375),
+                              duration: const Duration(milliseconds: 500),
                               child: SlideAnimation(
                                 verticalOffset: 50.0,
                                 child: FadeInAnimation(
@@ -111,7 +113,7 @@ class _HomeIconPagePackingState extends State<HomeIconPagePacking> {
                                 childAspectRatio: 3,
                                 crossAxisSpacing: 20,
                                 mainAxisSpacing: 20),
-                        itemCount: orders.length,
+                        itemCount: orders!.length,
                         itemBuilder: (BuildContext ctx, index) {
                           return CardWidget(
                             order: orders[index],

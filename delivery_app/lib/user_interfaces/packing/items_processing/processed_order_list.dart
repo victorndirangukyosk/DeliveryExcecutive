@@ -5,6 +5,7 @@ import 'package:delivery_app/cubits/authentication/token_cubit.dart';
 import 'package:delivery_app/cubits/fetch_order_status_cubit/fetch_order_status_cubit.dart';
 import 'package:delivery_app/cubits/order_details_cubit/order_details_cubit.dart';
 import 'package:delivery_app/cubits/order_details_list/odetails_list_cubit.dart';
+import 'package:delivery_app/cubits/processed_items_cubit/processed_items_cubit.dart';
 import 'package:delivery_app/models/accept_reject/accept_reject.dart';
 import 'package:delivery_app/models/missing/missing.dart';
 import 'package:delivery_app/models/odetails_list/odetails_list.dart';
@@ -550,12 +551,12 @@ class _OrderListState extends State<OrderList> {
                               ),
                             );
                           },
-                          success: (odetailsList) {
+                          success: (odetailsList, success) {
                             return SingleChildScrollView(
                               child: Column(
                                 children: [
                                   ...List.generate(
-                                      odetailsList.length,
+                                      odetailsList!.length,
                                       (index) => CardWidget(
                                             dits: odetailsList[index],
                                             acceptReject: AcceptReject(
@@ -596,60 +597,61 @@ class _OrderListState extends State<OrderList> {
                       const Spacer(),
                       Column(
                         children: [
-                          DropdownButtonHideUnderline(
-                            child: ButtonTheme(
-                              alignedDropdown: true,
-                              child: BlocBuilder<FetchOrderStatusCubit,
-                                  FetchOrderStatusState>(
-                                builder: (context, state) {
-                                  return state.maybeWhen(orElse: () {
-                                    return Container();
-                                  }, loading: () {
-                                    return const CupertinoActivityIndicator();
-                                  }, success: (statuses) {
-                                    return FormBuilderDropdown<int>(
-                                        name: 'status',
-                                        isExpanded: true,
-                                        items: List.generate(
-                                            statuses.length,
-                                            (index) => DropdownMenuItem(
-                                                  value: int.parse(
-                                                      statuses[index]
-                                                          .order_status_id
-                                                          .toString()),
-                                                  child: Row(
-                                                    children: [
-                                                      CircleAvatar(
-                                                        backgroundColor: Color(
-                                                            int.parse(
-                                                                '0xFF${statuses[index].color}')),
-                                                      ),
-                                                      const SizedBox(
-                                                        width: 10,
-                                                      ),
-                                                      Text(
-                                                        statuses[index].name!,
-                                                        style: const TextStyle(
-                                                            color: Colors.red),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                )),
-                                        onChanged: (value) async {
-                                          await ApiService.post(data: {
-                                            'order_status_id': value!,
-                                            'order_id': widget.orderId
-                                          }, path: 'op/orderStatus');
-                                          AppToast.showToast(
-                                              message: 'Success',
-                                              isError: false);
-                                        },
-                                        hint: const Text("Status"));
-                                  });
-                                },
-                              ),
-                            ),
-                          ),
+                          // DropdownButtonHideUnderline(
+                          //   child: ButtonTheme(
+                          //     alignedDropdown: true,
+                          //     child: BlocBuilder<FetchOrderStatusCubit,
+                          //         FetchOrderStatusState>(
+                          //       builder: (context, state) {
+                          //         return state.maybeWhen(orElse: () {
+                          //           return Container();
+                          //         }, loading: () {
+                          //           return const CupertinoActivityIndicator();
+                          //         }, success: (statuses) {
+                          //           return FormBuilderDropdown<int>(
+                          //               name: 'status',
+                          //               isExpanded: true,
+                          //               items: List.generate(
+                          //                   statuses.length,
+                          //                   (index) => DropdownMenuItem(
+                          //                         value: int.parse(
+                          //                             statuses[index]
+                          //                                 .order_status_id
+                          //                                 .toString()),
+                          //                         child: Row(
+                          //                           children: [
+                          //                             CircleAvatar(
+                          //                               backgroundColor: Color(
+                          //                                   int.parse(
+                          //                                       '0xFF${statuses[index].color}')),
+                          //                             ),
+                          //                             const SizedBox(
+                          //                               width: 10,
+                          //                             ),
+                          //                             Text(
+                          //                               statuses[index].name!,
+                          //                               style: const TextStyle(
+                          //                                   color: Colors.red),
+                          //                             ),
+                          //                           ],
+                          //                         ),
+                          //                       )),
+                          //               onChanged: (value) async {
+                          //                 await ApiService.post(data: {
+                          //                   'order_status_id': value!,
+                          //                   'order_id': widget.orderId
+                          //                 }, path: 'op/orderStatus');
+                          //                 AppToast.showToast(
+                          //                     message: 'Success',
+                          //                     isError: false);
+                          //               },
+                          //               hint: const Text("Status"));
+                          //         });
+                          //       },
+                          //     ),
+                          //   ),
+                          // ),
+
                           CupertinoButton(
                             child: Text('Proceed'),
                             onPressed: () {
@@ -858,40 +860,62 @@ class _CardWidgetState extends State<CardWidget> {
                               }, loading: () {
                                 return const CupertinoActivityIndicator();
                               }, success: (statuses) {
-                                return FormBuilderDropdown<dynamic>(
-                                    name: 'status',
-                                    onChanged: (e) async {
-                                      if (e == 'Fully-Packed') {
-                                        ///Accepted api call
-                                        context
-                                            .read<AcceptRejectCubit>()
-                                            .actionArea(accept: [
-                                          widget.acceptReject.copyWith(
-                                              status: 'A', comment: 'Accept')
-                                        ], orderId: widget.orderId);
-                                      } else if (e == 'Rejected') {
-                                        context
-                                            .read<AcceptRejectCubit>()
-                                            .actionArea(accept: [
-                                          widget.acceptReject.copyWith(
-                                              status: 'R', comment: 'Rejected')
-                                        ], orderId: widget.orderId);
-                                      } else if (e == 'Missing') {
-                                        /// Missing api call
-                                        await _displayDialog(context);
-                                        context
-                                            .read<
-                                                AddMissingProductsCubitCubit>()
-                                            .addMissing(
-                                                products: context
-                                                    .read<MissingCubit>()
-                                                    .state,
-                                                orderId: widget.orderId);
-                                      }
-                                    },
-                                    isExpanded: true,
-                                    items:
-                                        ['Fully-Packed', 'Rejected', 'Missing']
+                                return context
+                                        .watch<ProcessedItemsCubit>()
+                                        .state
+                                        .where((element) =>
+                                            element['order_id'] ==
+                                            widget.orderId)
+                                        .isNotEmpty
+                                    ? Text('Accepted')
+                                    : FormBuilderDropdown<dynamic>(
+                                        name: 'status',
+                                        onChanged: (e) async {
+                                          if (e == 'Fully-Packed') {
+                                            ///Accepted api call
+                                            context
+                                                .read<AcceptRejectCubit>()
+                                                .actionArea(accept: [
+                                              widget.acceptReject.copyWith(
+                                                  status: 'A',
+                                                  comment: 'Accept')
+                                            ], orderId: widget.orderId);
+                                            // TODO: This is a temporary solution
+                                            context
+                                                .read<ProcessedItemsCubit>()
+                                                .state
+                                                .add({
+                                              'order_id': widget.orderId,
+                                              'product_id':
+                                                  widget.dits.product_id,
+                                            });
+                                          } else if (e == 'Rejected') {
+                                            context
+                                                .read<AcceptRejectCubit>()
+                                                .actionArea(accept: [
+                                              widget.acceptReject.copyWith(
+                                                  status: 'R',
+                                                  comment: 'Rejected')
+                                            ], orderId: widget.orderId);
+                                          } else if (e == 'Missing') {
+                                            /// Missing api call
+                                            await _displayDialog(context);
+                                            context
+                                                .read<
+                                                    AddMissingProductsCubitCubit>()
+                                                .addMissing(
+                                                    products: context
+                                                        .read<MissingCubit>()
+                                                        .state,
+                                                    orderId: widget.orderId);
+                                          }
+                                        },
+                                        isExpanded: true,
+                                        items: [
+                                          'Fully-Packed',
+                                          'Rejected',
+                                          'Missing'
+                                        ]
                                             .map((e) => DropdownMenuItem(
                                                 onTap: () {
                                                   // if (e == 'Fully-Packed') {
@@ -912,42 +936,42 @@ class _CardWidgetState extends State<CardWidget> {
                                                 value: e,
                                                 child: Text(e)))
                                             .toList()
-                                    // List.generate(
-                                    // statuses.length,
-                                    // (index) => DropdownMenuItem(
-                                    // value: int.parse(statuses[index]
-                                    // .order_status_id
-                                    // .toString()),
-                                    // child: Row(
-                                    // children:
-                                    // [
-                                    // CircleAvatar(
-                                    //   backgroundColor: Color(
-                                    //       int.parse(
-                                    //           '0xFF${statuses[index].color}')
-                                    // ),
-                                    // ),
-                                    //   const SizedBox(
-                                    //     width: 10,
-                                    //   ),
-                                    //   Text(
-                                    //     statuses[index].name!,
-                                    //     style: const TextStyle(
-                                    //         color: Colors.red),
-                                    //   ),
-                                    // ],
-                                    // ),
-                                    // )),
-                                    ,
-                                    // onChanged: (value) async {
-                                    //   await ApiService.post(data: {
-                                    //     'order_status_id': value!,
-                                    //     'order_id': widget.orderId
-                                    //   }, path: 'op/orderStatus');
-                                    //   AppToast.showToast(
-                                    //       message: 'Success', isError: false);
-                                    // },
-                                    hint: const Text("Status"));
+                                        // List.generate(
+                                        // statuses.length,
+                                        // (index) => DropdownMenuItem(
+                                        // value: int.parse(statuses[index]
+                                        // .order_status_id
+                                        // .toString()),
+                                        // child: Row(
+                                        // children:
+                                        // [
+                                        // CircleAvatar(
+                                        //   backgroundColor: Color(
+                                        //       int.parse(
+                                        //           '0xFF${statuses[index].color}')
+                                        // ),
+                                        // ),
+                                        //   const SizedBox(
+                                        //     width: 10,
+                                        //   ),
+                                        //   Text(
+                                        //     statuses[index].name!,
+                                        //     style: const TextStyle(
+                                        //         color: Colors.red),
+                                        //   ),
+                                        // ],
+                                        // ),
+                                        // )),
+                                        ,
+                                        // onChanged: (value) async {
+                                        //   await ApiService.post(data: {
+                                        //     'order_status_id': value!,
+                                        //     'order_id': widget.orderId
+                                        //   }, path: 'op/orderStatus');
+                                        //   AppToast.showToast(
+                                        //       message: 'Success', isError: false);
+                                        // },
+                                        hint: const Text("Status"));
                               });
                             },
                           ),

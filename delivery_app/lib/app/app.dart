@@ -15,6 +15,7 @@ import 'package:delivery_app/cubits/is_de_cubit/is_de_cubit.dart';
 import 'package:delivery_app/cubits/op_selection_cubit/op_selection_cubit.dart';
 import 'package:delivery_app/cubits/order_details_cubit/order_details_cubit.dart';
 import 'package:delivery_app/cubits/order_details_list/odetails_list_cubit.dart';
+import 'package:delivery_app/cubits/processed_items_cubit/processed_items_cubit.dart';
 import 'package:delivery_app/models/assigned/de/assigned_de.dart';
 // import 'package:delivery_app/cubits/qr_scanner_cubit/qr_scanner_cubit.dart';
 // import 'package:delivery_app/cubits/select_date_cubit/select_date_cubit.dart';
@@ -46,6 +47,7 @@ class KwikBasketDeliveryApp extends StatelessWidget {
         BlocProvider(create: (context) => HomeBottomNavigationIndexCubit(0)),
         BlocProvider(create: (context) => SelectDateCubit(DateTime.now())),
         BlocProvider(create: (context) => PickImageCubit(File(''))),
+        BlocProvider(create: ((context) => ProcessedItemsCubit())),
 
         /// This blocprovider persists the token state
         BlocProvider(create: (context) => TokenCubit('')),
