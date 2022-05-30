@@ -5,6 +5,7 @@ import 'package:delivery_app/cubits/order_details_list/odetails_list_cubit.dart'
 import 'package:delivery_app/theme/box_icons.dart';
 import 'package:delivery_app/user_interfaces/home/main_home_page.dart';
 import 'package:delivery_app/user_interfaces/packing/scanner/scanner.dart';
+import 'package:delivery_app/user_interfaces/settings/settings_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -224,7 +225,13 @@ class _OrderListState extends State<OrderList> {
                                                                       ),
                                                                       ListTile(
                                                                         onTap:
-                                                                            () {},
+                                                                            () {
+                                                                          Navigator
+                                                                              .push(
+                                                                            context,
+                                                                            MaterialPageRoute(builder: (context) => SettingsPage()),
+                                                                          );
+                                                                        },
                                                                         leading:
                                                                             const Icon(CupertinoIcons.settings),
                                                                         title: const Text(
@@ -442,7 +449,7 @@ class _OrderListState extends State<OrderList> {
                               ),
                             );
                           },
-                          success: (odetailsList,success) {
+                          success: (odetailsList, success) {
                             return Expanded(
                               child: ListView.builder(
                                 itemCount: odetailsList!.length,

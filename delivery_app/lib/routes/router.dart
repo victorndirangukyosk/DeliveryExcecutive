@@ -9,6 +9,7 @@ import 'package:delivery_app/user_interfaces/home/main_home_page.dart';
 import 'package:delivery_app/user_interfaces/packing/my_orders_packing_person/order_details_page.dart';
 import 'package:delivery_app/user_interfaces/packing/my_orders_packing_person/single_order_page.dart';
 import 'package:delivery_app/user_interfaces/packing/scanner/crates_page.dart';
+import 'package:delivery_app/user_interfaces/settings/settings_page.dart';
 import 'package:delivery_app/user_interfaces/splash_screen/splash_screen.dart';
 import 'package:delivery_app/user_interfaces/user_interfaces.dart';
 
@@ -19,6 +20,7 @@ import 'package:delivery_app/user_interfaces/user_interfaces.dart';
     AutoRoute(page: LoginPage),
     AutoRoute(page: RegisterPage),
     AutoRoute(page: MainHomePage),
+    AutoRoute(page: SettingsPage),
     AutoRoute(page: MainHomeDeliveryExecutivePage),
     AutoRoute(page: SingleOrderPage),
     AutoRoute(page: ReadyForDelivery),

@@ -36,13 +36,13 @@ class _HomeIconPagePackingState extends State<HomeIconPagePacking> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          toolbarHeight: 40,
+          toolbarHeight: 15,
           flexibleSpace: Container(
             height: 40,
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
                 color: Palette.greenColor,
-                borderRadius: BorderRadius.circular(30)),
+                borderRadius: BorderRadius.circular(10)),
             child: IntrinsicHeight(
               child: Row(
                 // crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,9 +110,9 @@ class _HomeIconPagePackingState extends State<HomeIconPagePacking> {
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
-                                childAspectRatio: 3,
-                                crossAxisSpacing: 20,
-                                mainAxisSpacing: 20),
+                                childAspectRatio: 9 / 2,
+                                crossAxisSpacing: 5,
+                                mainAxisSpacing: 5),
                         itemCount: orders!.length,
                         itemBuilder: (BuildContext ctx, index) {
                           return CardWidget(

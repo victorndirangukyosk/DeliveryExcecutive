@@ -11,6 +11,7 @@ import 'package:delivery_app/routes/router.gr.dart';
 import 'package:delivery_app/theme/box_icons.dart';
 import 'package:delivery_app/user_interfaces/packing/my_orders_packing_person/my_orders_page.dart';
 import 'package:delivery_app/user_interfaces/packing/scanner/scanner.dart';
+import 'package:delivery_app/user_interfaces/settings/settings_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -221,7 +222,14 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                                                     ),
                                                                     ListTile(
                                                                       onTap:
-                                                                          () {},
+                                                                          () {
+                                                                        Navigator
+                                                                            .push(
+                                                                          context,
+                                                                          MaterialPageRoute(
+                                                                              builder: (context) => SettingsPage()),
+                                                                        );
+                                                                      },
                                                                       leading: const Icon(
                                                                           CupertinoIcons
                                                                               .settings),
@@ -525,7 +533,8 @@ class CardWidget extends StatelessWidget {
   final OdetailsList dits;
   final int index;
   final bool active;
-  const CardWidget({Key? key, required this.dits, required this.index,required this.active})
+  const CardWidget(
+      {Key? key, required this.dits, required this.index, required this.active})
       : super(key: key);
 
   @override

@@ -11,6 +11,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class MainHomeDeliveryExecutivePage extends StatelessWidget {
   const MainHomeDeliveryExecutivePage({Key? key}) : super(key: key);
@@ -234,20 +235,66 @@ class MainHomeDeliveryExecutivePage extends StatelessWidget {
                   Expanded(
                     child: Stack(
                       children: [
-                        SingleChildScrollView(
-                          child: Container(
-                            child: Column(
-                                // mainAxisAlignment: MainAxisAlignment.center,
-                                // children: List.generate(100, (index) => CardWidget())),
-                                children: [
-                                  ...List.generate(
-                                      ordersde.length,
-                                      (index) => CardWidget(
-                                            orderde: ordersde[index],
-                                          ))
-                                ]),
-                          ),
+                        LayoutBuilder(
+                          builder: (BuildContext context,
+                              BoxConstraints constraints) {
+                            if (constraints.maxWidth <= 610) {
+                              return AnimationLimiter(
+                                child: ListView.builder(
+                                    itemCount: ordersde.length,
+                                    shrinkWrap: true,
+                                    physics: const BouncingScrollPhysics(
+                                        parent:
+                                            AlwaysScrollableScrollPhysics()),
+                                    itemBuilder: (BuildContext context, index) {
+                                      return AnimationConfiguration
+                                          .staggeredList(
+                                        position: index,
+                                        duration:
+                                            const Duration(milliseconds: 500),
+                                        child: SlideAnimation(
+                                          verticalOffset: 50.0,
+                                          child: FadeInAnimation(
+                                            child: CardWidget(
+                                              orderde: ordersde[index],
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    }),
+                              );
+                            } else {
+                              return GridView.builder(
+                                  gridDelegate:
+                                      const SliverGridDelegateWithFixedCrossAxisCount(
+                                          crossAxisCount: 2,
+                                          childAspectRatio: 9 / 2,
+                                          crossAxisSpacing: 5,
+                                          mainAxisSpacing: 5),
+                                  itemCount: ordersde.length,
+                                  itemBuilder: (BuildContext ctx, index) {
+                                    return CardWidget(
+                                      orderde: ordersde[index],
+                                    );
+                                  });
+                            }
+                          },
                         ),
+
+                        // SingleChildScrollView(
+                        //   child: Container(
+                        //     child: Column(
+                        //         // mainAxisAlignment: MainAxisAlignment.center,
+                        //         // children: List.generate(100, (index) => CardWidget())),
+                        //         children: [
+                        //           ...List.generate(
+                        //               ordersde.length,
+                        //               (index) => CardWidget(
+                        //                     orderde: ordersde[index],
+                        //                   ))
+                        //         ]),
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),

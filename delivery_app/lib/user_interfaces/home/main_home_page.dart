@@ -14,6 +14,7 @@ import 'package:delivery_app/user_interfaces/packing/my_orders_packing_person/pr
 
 import 'package:delivery_app/user_interfaces/packing/order_summary/order_summary.dart';
 import 'package:delivery_app/user_interfaces/packing/scanner/scanner.dart';
+import 'package:delivery_app/user_interfaces/settings/settings_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -127,14 +128,21 @@ class MainHomePage extends StatelessWidget {
                                                 'View order history'),
                                           ),
                                           ListTile(
-                                            onTap: () {},
+                                            onTap: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        SettingsPage()),
+                                              );
+                                            },
                                             leading: const Icon(
                                                 CupertinoIcons.settings),
-                                            title: const Text('Settings'),
+                                            title: const Text('About'),
                                             trailing: const Icon(
                                                 CupertinoIcons.forward),
                                             subtitle: const Text(
-                                                'Application settings'),
+                                                'More about this appplication'),
                                           ),
                                           ListTile(
                                             onTap: () {
@@ -176,7 +184,7 @@ class MainHomePage extends StatelessWidget {
                                               color: Palette.greenColor,
                                             ),
                                             title: const Text(
-                                              "About",
+                                              "T & C(s)",
                                               style: TextStyle(
                                                   color: Palette.greenColor),
                                             ),
@@ -185,7 +193,7 @@ class MainHomePage extends StatelessWidget {
                                               color: Palette.greenColor,
                                             ),
                                             subtitle: const Text(
-                                              'About this application',
+                                              'Licenses and terms',
                                             ),
                                           ),
                                           const SizedBox(
