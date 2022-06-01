@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:delivery_app/configuration/configuration.dart';
+import 'package:delivery_app/cubits/Profile/de/logged_in_de_cubit.dart';
 import 'package:delivery_app/cubits/accept_reject/accept_reject_cubit.dart';
 import 'package:delivery_app/cubits/add_crates_cubit/add_crates_cubit.dart';
 import 'package:delivery_app/cubits/add_missing_products/add_missing_products_cubit_cubit.dart';
@@ -52,6 +53,7 @@ class KwikBasketDeliveryApp extends StatelessWidget {
         /// This blocprovider persists the token state
         BlocProvider(create: (context) => TokenCubit('')),
         BlocProvider(create: (context) => AssignedDeCubit()),
+        BlocProvider(create: (context) => LoggedInDeCubit()),
         BlocProvider(create: (context) => LoginCubit()),
         BlocProvider(create: (context) => ResetPasswordCubit()),
         BlocProvider(create: (context) => GetAssignedCubit()),
