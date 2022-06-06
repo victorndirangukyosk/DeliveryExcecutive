@@ -7,6 +7,7 @@ import 'package:delivery_app/models/assigned/de/assigned_de.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 
 import 'package:delivery_app/user_interfaces/packing/my_orders_packing_person/order_details_page.dart';
+import 'package:delivery_app/user_interfaces/settings/settings_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -103,7 +104,13 @@ class MainHomeDeliveryExecutivePage extends StatelessWidget {
                                                   'View order history'),
                                             ),
                                             ListTile(
-                                              onTap: () {},
+                                              onTap: () {
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            SettingsPage()));
+                                              },
                                               leading: const Icon(
                                                   CupertinoIcons.settings),
                                               title: const Text('Settings'),

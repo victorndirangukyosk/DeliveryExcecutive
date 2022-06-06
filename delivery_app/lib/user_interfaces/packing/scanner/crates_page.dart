@@ -4,6 +4,7 @@ import 'package:delivery_app/models/crate/crate.dart';
 import 'package:delivery_app/models/order_details/order.dart';
 import 'package:delivery_app/models/order_details/order_details.dart';
 import 'package:delivery_app/user_interfaces/packing/items_processing/processed_order_list.dart';
+import 'package:delivery_app/utilities/toast/toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -70,6 +71,7 @@ class _CratesPageState extends State<CratesPage> {
           state.maybeWhen(
               orElse: () {},
               success: () {
+                AppToast.showToast(message: 'Success', isError: false);
                 // context.read<CratesQrCubit>().emit([]);
                 Navigator.push(
                     context,
