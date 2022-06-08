@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/build/google_maps_flutter/intermediates/merged_res/debug/layout-v21/notification_action_tombstone.xml",
+        "source": "/Users/victortechnobrain/.gradle/caches/transforms-3/ac01873b5f746ff1d8d1e5e2eae17882/transformed/core-1.6.0/res/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/build/google_maps_flutter/intermediates/merged_res/debug/layout-v21/notification_action.xml",
+        "source": "/Users/victortechnobrain/.gradle/caches/transforms-3/ac01873b5f746ff1d8d1e5e2eae17882/transformed/core-1.6.0/res/layout-v21/notification_action.xml"
+    },
+    {
+        "merged": "/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/build/google_maps_flutter/intermediates/merged_res/debug/layout-v21/notification_template_custom_big.xml",
+        "source": "/Users/victortechnobrain/.gradle/caches/transforms-3/ac01873b5f746ff1d8d1e5e2eae17882/transformed/core-1.6.0/res/layout-v21/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/build/google_maps_flutter/intermediates/merged_res/debug/layout-v21/notification_template_icon_group.xml",
+        "source": "/Users/victortechnobrain/.gradle/caches/transforms-3/ac01873b5f746ff1d8d1e5e2eae17882/transformed/core-1.6.0/res/layout-v21/notification_template_icon_group.xml"
+    }
+]
