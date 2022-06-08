@@ -1,0 +1,286 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.kwikbasket.delivery_app.delivery_app"
+4    android:versionCode="3"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+8-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="30" />
+9-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+11-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:3:5-77
+11-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:3:22-74
+12    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+12-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:4:5-79
+12-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:4:22-76
+13    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+13-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:5:5-81
+13-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:5:22-78
+14ired="false" />
+15    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- Include required permissions for Google Maps API to run. -->
+15-->[:geolocator_android] /Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/build/geolocator_android/intermediates/merged_manifest/release/AndroidManifest.xml:7:5-77
+15-->[:geolocator_android] /Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/build/geolocator_android/intermediates/merged_manifest/release/AndroidManifest.xml:7:22-74
+16    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+16-->[com.google.android.gms:play-services-maps:18.0.2] /Users/victortechnobrain/.gradle/caches/transforms-3/e33397e810115f059a5df3f19aca9953/transformed/jetified-play-services-maps-18.0.2/AndroidManifest.xml:23:5-79
+16-->[com.google.android.gms:play-services-maps:18.0.2] /Users/victortechnobrain/.gradle/caches/transforms-3/e33397e810115f059a5df3f19aca9953/transformed/jetified-play-services-maps-18.0.2/AndroidManifest.xml:23:22-76
+17    <uses-permission android:name="android.permission.INTERNET" />
+17-->[com.google.android.gms:play-services-maps:18.0.2] /Users/victortechnobrain/.gradle/caches/transforms-3/e33397e810115f059a5df3f19aca9953/transformed/jetified-play-services-maps-18.0.2/AndroidManifest.xml:24:5-67
+17-->[com.google.android.gms:play-services-maps:18.0.2] /Users/victortechnobrain/.gradle/caches/transforms-3/e33397e810115f059a5df3f19aca9953/transformed/jetified-play-services-maps-18.0.2/AndroidManifest.xml:24:22-64
+18
+19    <uses-feature
+19-->[com.google.android.gms:play-services-maps:18.0.2] /Users/victortechnobrain/.gradle/caches/transforms-3/e33397e810115f059a5df3f19aca9953/transformed/jetified-play-services-maps-18.0.2/AndroidManifest.xml:26:5-28:35
+20        android:glEsVersion="0x00020000"
+20-->[com.google.android.gms:play-services-maps:18.0.2] /Users/victortechnobrain/.gradle/caches/transforms-3/e33397e810115f059a5df3f19aca9953/transformed/jetified-play-services-maps-18.0.2/AndroidManifest.xml:27:9-41
+21        android:required="true" />
+21-->[com.google.android.gms:play-services-maps:18.0.2] /Users/victortechnobrain/.gradle/caches/transforms-3/e33397e810115f059a5df3f19aca9953/transformed/jetified-play-services-maps-18.0.2/AndroidManifest.xml:28:9-32
+22
+23    <queries>
+23-->[com.google.android.gms:play-services-maps:18.0.2] /Users/victortechnobrain/.gradle/caches/transforms-3/e33397e810115f059a5df3f19aca9953/transformed/jetified-play-services-maps-18.0.2/AndroidManifest.xml:30:5-34:15
+24
+25        <!-- Needs to be explicitly declared on Android R+ -->
+26        <package android:name="com.google.android.apps.maps" />
+26-->[com.google.android.gms:play-services-maps:18.0.2] /Users/victortechnobrain/.gradle/caches/transforms-3/e33397e810115f059a5df3f19aca9953/transformed/jetified-play-services-maps-18.0.2/AndroidManifest.xml:33:9-64
+26-->[com.google.android.gms:play-services-maps:18.0.2] /Users/victortechnobrain/.gradle/caches/transforms-3/e33397e810115f059a5df3f19aca9953/transformed/jetified-play-services-maps-18.0.2/AndroidManifest.xml:33:18-61
+27    </queries>
+28
+29    <uses-permission android:name="android.permission.CAMERA" /> <!-- Don't require camera, as this requires a rear camera. This allows it to work on the Nexus 7 -->
+29-->[com.journeyapps:zxing-android-embedded:4.3.0] /Users/victortechnobrain/.gradle/caches/transforms-3/c2d249676d69f2d59edb347be0276118/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:22:5-65
+29-->[com.journeyapps:zxing-android-embedded:4.3.0] /Users/victortechnobrain/.gradle/caches/transforms-3/c2d249676d69f2d59edb347be0276118/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:22:22-62
+30    <uses-feature
+30-->[com.journeyapps:zxing-android-embedded:4.3.0] /Users/victortechnobrain/.gradle/caches/transforms-3/c2d249676d69f2d59edb347be0276118/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:25:5-27:36
+31        android:name="android.hardware.camera"
+31-->[com.journeyapps:zxing-android-embedded:4.3.0] /Users/victortechnobrain/.gradle/caches/transforms-3/c2d249676d69f2d59edb347be0276118/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:26:9-47
+32        android:required="false" />
+32-->[com.journeyapps:zxing-android-embedded:4.3.0] /Users/victortechnobrain/.gradle/caches/transforms-3/c2d249676d69f2d59edb347be0276118/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:27:9-33
+33    <uses-feature
+33-->[com.journeyapps:zxing-android-embedded:4.3.0] /Users/victortechnobrain/.gradle/caches/transforms-3/c2d249676d69f2d59edb347be0276118/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:28:5-30:36
+34        android:name="android.hardware.camera.front"
+34-->[com.journeyapps:zxing-android-embedded:4.3.0] /Users/victortechnobrain/.gradle/caches/transforms-3/c2d249676d69f2d59edb347be0276118/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:29:9-53
+35        android:required="false" /> <!-- TODO replace above two with next line after Android 4.2 -->
+35-->[com.journeyapps:zxing-android-embedded:4.3.0] /Users/victortechnobrain/.gradle/caches/transforms-3/c2d249676d69f2d59edb347be0276118/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:30:9-33
+36    <!-- <uses-feature android:name="android.hardware.camera.any"/> -->
+37    <uses-feature
+37-->[com.journeyapps:zxing-android-embedded:4.3.0] /Users/victortechnobrain/.gradle/caches/transforms-3/c2d249676d69f2d59edb347be0276118/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:33:5-35:36
+38        android:name="android.hardware.camera.autofocus"
+38-->[com.journeyapps:zxing-android-embedded:4.3.0] /Users/victortechnobrain/.gradle/caches/transforms-3/c2d249676d69f2d59edb347be0276118/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:34:9-57
+39        android:required="false" />
+39-->[com.journeyapps:zxing-android-embedded:4.3.0] /Users/victortechnobrain/.gradle/caches/transforms-3/c2d249676d69f2d59edb347be0276118/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:35:9-33
+40    <uses-feature
+40-->[com.journeyapps:zxing-android-embedded:4.3.0] /Users/victortechnobrain/.gradle/caches/transforms-3/c2d249676d69f2d59edb347be0276118/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:36:5-38:36
+41        android:name="android.hardware.camera.flash"
+41-->[com.journeyapps:zxing-android-embedded:4.3.0] /Users/victortechnobrain/.gradle/caches/transforms-3/c2d249676d69f2d59edb347be0276118/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:37:9-53
+42        android:required="false" />
+42-->[com.journeyapps:zxing-android-embedded:4.3.0] /Users/victortechnobrain/.gradle/caches/transforms-3/c2d249676d69f2d59edb347be0276118/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:38:9-33
+43    <uses-feature
+43-->[com.journeyapps:zxing-android-embedded:4.3.0] /Users/victortechnobrain/.gradle/caches/transforms-3/c2d249676d69f2d59edb347be0276118/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:39:5-41:36
+44        android:name="android.hardware.screen.landscape"
+44-->[com.journeyapps:zxing-android-embedded:4.3.0] /Users/victortechnobrain/.gradle/caches/transforms-3/c2d249676d69f2d59edb347be0276118/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:40:9-57
+45        android:required="false" />
+45-->[com.journeyapps:zxing-android-embedded:4.3.0] /Users/victortechnobrain/.gradle/caches/transforms-3/c2d249676d69f2d59edb347be0276118/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:41:9-33
+46    <uses-feature
+46-->[com.journeyapps:zxing-android-embedded:4.3.0] /Users/victortechnobrain/.gradle/caches/transforms-3/c2d249676d69f2d59edb347be0276118/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:42:5-44:36
+47        android:name="android.hardware.wifi"
+47-->[com.journeyapps:zxing-android-embedded:4.3.0] /Users/victortechnobrain/.gradle/caches/transforms-3/c2d249676d69f2d59edb347be0276118/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:43:9-45
+48        android:required="false" />
+48-->[com.journeyapps:zxing-android-embedded:4.3.0] /Users/victortechnobrain/.gradle/caches/transforms-3/c2d249676d69f2d59edb347be0276118/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:44:9-33
+49
+50    <application
+51        android:name="android.app.Application"
+51-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:9:9-42
+52        android:allowBackup="false"
+52-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:8:9-36
+53        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+53-->[androidx.core:core:1.7.0] /Users/victortechnobrain/.gradle/caches/transforms-3/c9419055a4609320c204b9c040cba2fc/transformed/core-1.7.0/AndroidManifest.xml:24:18-86
+54        android:icon="@mipmap/launcher_icon"
+54-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:10:9-45
+55        android:label="Kwikbasket Delivery" >
+55-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:7:9-44
+56        <activity
+56-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:12:9-14:38
+57            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
+57-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:12:19-80
+58            android:exported="false"
+58-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:14:12-36
+59            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+59-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:13:12-70
+60        <activity
+60-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:15:9-45:20
+61            android:name="com.kwikbasket.delivery_app.delivery_app.MainActivity"
+61-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:16:13-41
+62            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+62-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:19:13-163
+63            android:hardwareAccelerated="true"
+63-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:20:13-47
+64            android:launchMode="singleTop"
+64-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:17:13-43
+65            android:theme="@style/LaunchTheme"
+65-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:18:13-47
+66            android:windowSoftInputMode="adjustResize" >
+66-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:21:13-55
+67
+68            <!--
+69                 Specifies an Android theme to apply to this Activity as soon as
+70                 the Android process has started. This theme is visible to the user
+71                 while the Flutter UI initializes. After that, this theme continues
+72                 to determine the Window background behind the Flutter UI.
+73            -->
+74            <meta-data
+74-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:26:13-29:17
+75                android:name="io.flutter.embedding.android.NormalTheme"
+75-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:27:15-70
+76                android:resource="@style/NormalTheme" />
+76-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:28:15-52
+77            <meta-data
+77-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:30:15-31:73
+78                android:name="com.google.android.geo.API_KEY"
+78-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:30:26-71
+79                android:value="AIzaSyCUj3QK9TEgRUIHCOjCrZrHB3SrY0Lo-Lg" />
+79-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:31:16-71
+80            <!--
+81                 Displays an Android View that continues showing the launch screen
+82                 Drawable until Flutter paints its first frame, then this splash
+83                 screen fades out. A splash screen is useful to avoid any visual
+84                 gap between the end of Android's launch screen and the painting of
+85                 Flutter's first frame.
+86            -->
+87            <meta-data
+87-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:37:13-40:17
+88                android:name="io.flutter.embedding.android.SplashScreenDrawable"
+88-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:38:15-79
+89                android:resource="@drawable/launch_background" />
+89-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:39:15-61
+90
+91            <intent-filter>
+91-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:41:13-44:29
+92                <action android:name="android.intent.action.MAIN" />
+92-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:42:17-68
+92-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:42:25-66
+93
+94                <category android:name="android.intent.category.LAUNCHER" />
+94-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:43:17-76
+94-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:43:27-74
+95            </intent-filter>
+96        </activity>
+97        <!--
+98             Don't delete the meta-data below.
+99             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+100        -->
+101        <meta-data
+101-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:48:9-50:33
+102            android:name="flutterEmbedding"
+102-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:49:13-44
+103            android:value="2" />
+103-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:50:13-30
+104        <meta-data
+104-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:30:15-31:73
+105            android:name="com.google.android.geo.API_KEY"
+105-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:30:26-71
+106            android:value="AIzaSyC609B_WIP-xSXEWnauc4p-xGvV3draH2s" />
+106-->/Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/android/app/src/main/AndroidManifest.xml:31:16-71
+107
+108        <service
+108-->[:geolocator_android] /Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/build/geolocator_android/intermediates/merged_manifest/release/AndroidManifest.xml:10:9-14:56
+109            android:name="com.baseflow.geolocator.GeolocatorLocationService"
+109-->[:geolocator_android] /Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/build/geolocator_android/intermediates/merged_manifest/release/AndroidManifest.xml:11:13-77
+110            android:enabled="true"
+110-->[:geolocator_android] /Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/build/geolocator_android/intermediates/merged_manifest/release/AndroidManifest.xml:12:13-35
+111            android:exported="false"
+111-->[:geolocator_android] /Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/build/geolocator_android/intermediates/merged_manifest/release/AndroidManifest.xml:13:13-37
+112            android:foregroundServiceType="location" />
+112-->[:geolocator_android] /Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/build/geolocator_android/intermediates/merged_manifest/release/AndroidManifest.xml:14:13-53
+113
+114        <provider
+114-->[:image_picker_android] /Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/build/image_picker_android/intermediates/merged_manifest/release/AndroidManifest.xml:8:9-16:20
+115            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
+115-->[:image_picker_android] /Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/build/image_picker_android/intermediates/merged_manifest/release/AndroidManifest.xml:9:13-82
+116            android:authorities="com.kwikbasket.delivery_app.delivery_app.flutter.image_provider"
+116-->[:image_picker_android] /Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/build/image_picker_android/intermediates/merged_manifest/release/AndroidManifest.xml:10:13-74
+117            android:exported="false"
+117-->[:image_picker_android] /Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/build/image_picker_android/intermediates/merged_manifest/release/AndroidManifest.xml:11:13-37
+118            android:grantUriPermissions="true" >
+118-->[:image_picker_android] /Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/build/image_picker_android/intermediates/merged_manifest/release/AndroidManifest.xml:12:13-47
+119            <meta-data
+119-->[:image_picker_android] /Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/build/image_picker_android/intermediates/merged_manifest/release/AndroidManifest.xml:13:13-15:75
+120                android:name="android.support.FILE_PROVIDER_PATHS"
+120-->[:image_picker_android] /Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/build/image_picker_android/intermediates/merged_manifest/release/AndroidManifest.xml:14:17-67
+121                android:resource="@xml/flutter_image_picker_file_paths" />
+121-->[:image_picker_android] /Users/victortechnobrain/Desktop/flutter/Untitled/delivery_app/build/image_picker_android/intermediates/merged_manifest/release/AndroidManifest.xml:15:17-72
+122        </provider>
+123
+124        <uses-library
+124-->[androidx.window:window:1.0.0-beta04] /Users/victortechnobrain/.gradle/caches/transforms-3/5f12f2e827049896fcea5c2c684df845/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
+125            android:name="androidx.window.extensions"
+125-->[androidx.window:window:1.0.0-beta04] /Users/victortechnobrain/.gradle/caches/transforms-3/5f12f2e827049896fcea5c2c684df845/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
+126            android:required="false" />
+126-->[androidx.window:window:1.0.0-beta04] /Users/victortechnobrain/.gradle/caches/transforms-3/5f12f2e827049896fcea5c2c684df845/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
+127        <uses-library
+127-->[androidx.window:window:1.0.0-beta04] /Users/victortechnobrain/.gradle/caches/transforms-3/5f12f2e827049896fcea5c2c684df845/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
+128            android:name="androidx.window.sidecar"
+128-->[androidx.window:window:1.0.0-beta04] /Users/victortechnobrain/.gradle/caches/transforms-3/5f12f2e827049896fcea5c2c684df845/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51
+129            android:required="false" /> <!-- Needs to be explicitly declared on P+ -->
+129-->[androidx.window:window:1.0.0-beta04] /Users/victortechnobrain/.gradle/caches/transforms-3/5f12f2e827049896fcea5c2c684df845/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
+130        <uses-library
+130-->[com.google.android.gms:play-services-maps:18.0.2] /Users/victortechnobrain/.gradle/caches/transforms-3/e33397e810115f059a5df3f19aca9953/transformed/jetified-play-services-maps-18.0.2/AndroidManifest.xml:39:9-41:40
+131            android:name="org.apache.http.legacy"
+131-->[com.google.android.gms:play-services-maps:18.0.2] /Users/victortechnobrain/.gradle/caches/transforms-3/e33397e810115f059a5df3f19aca9953/transformed/jetified-play-services-maps-18.0.2/AndroidManifest.xml:40:13-50
+132            android:required="false" />
+132-->[com.google.android.gms:play-services-maps:18.0.2] /Users/victortechnobrain/.gradle/caches/transforms-3/e33397e810115f059a5df3f19aca9953/transformed/jetified-play-services-maps-18.0.2/AndroidManifest.xml:41:13-37
+133
+134        <activity
+134-->[com.google.android.gms:play-services-base:18.0.1] /Users/victortechnobrain/.gradle/caches/transforms-3/d72c339579c5687e953fbe0f220773ab/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
+135            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+135-->[com.google.android.gms:play-services-base:18.0.1] /Users/victortechnobrain/.gradle/caches/transforms-3/d72c339579c5687e953fbe0f220773ab/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:19-85
+136            android:exported="false"
+136-->[com.google.android.gms:play-services-base:18.0.1] /Users/victortechnobrain/.gradle/caches/transforms-3/d72c339579c5687e953fbe0f220773ab/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:22:19-43
+137            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+137-->[com.google.android.gms:play-services-base:18.0.1] /Users/victortechnobrain/.gradle/caches/transforms-3/d72c339579c5687e953fbe0f220773ab/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:21:19-78
+138
+139        <meta-data
+139-->[com.google.android.gms:play-services-basement:18.0.0] /Users/victortechnobrain/.gradle/caches/transforms-3/947efaba560b5dfe2a40b2c2b1d03892/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:21:9-23:69
+140            android:name="com.google.android.gms.version"
+140-->[com.google.android.gms:play-services-basement:18.0.0] /Users/victortechnobrain/.gradle/caches/transforms-3/947efaba560b5dfe2a40b2c2b1d03892/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:22:13-58
+141            android:value="@integer/google_play_services_version" />
+141-->[com.google.android.gms:play-services-basement:18.0.0] /Users/victortechnobrain/.gradle/caches/transforms-3/947efaba560b5dfe2a40b2c2b1d03892/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:23:13-66
+142
+143        <provider
+143-->[androidx.emoji2:emoji2:1.0.0] /Users/victortechnobrain/.gradle/caches/transforms-3/df82d206c6205b92a8335157b8f18741/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:26:9-34:20
+144            android:name="androidx.startup.InitializationProvider"
+144-->[androidx.emoji2:emoji2:1.0.0] /Users/victortechnobrain/.gradle/caches/transforms-3/df82d206c6205b92a8335157b8f18741/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:27:13-67
+145            android:authorities="com.kwikbasket.delivery_app.delivery_app.androidx-startup"
+145-->[androidx.emoji2:emoji2:1.0.0] /Users/victortechnobrain/.gradle/caches/transforms-3/df82d206c6205b92a8335157b8f18741/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:28:13-68
+146            android:exported="false" >
+146-->[androidx.emoji2:emoji2:1.0.0] /Users/victortechnobrain/.gradle/caches/transforms-3/df82d206c6205b92a8335157b8f18741/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:29:13-37
+147            <meta-data
+147-->[androidx.emoji2:emoji2:1.0.0] /Users/victortechnobrain/.gradle/caches/transforms-3/df82d206c6205b92a8335157b8f18741/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:31:13-33:52
+148                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+148-->[androidx.emoji2:emoji2:1.0.0] /Users/victortechnobrain/.gradle/caches/transforms-3/df82d206c6205b92a8335157b8f18741/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:32:17-75
+149                android:value="androidx.startup" />
+149-->[androidx.emoji2:emoji2:1.0.0] /Users/victortechnobrain/.gradle/caches/transforms-3/df82d206c6205b92a8335157b8f18741/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:33:17-49
+150            <meta-data
+150-->[androidx.lifecycle:lifecycle-process:2.4.0] /Users/victortechnobrain/.gradle/caches/transforms-3/111a710e3e4cab3d405fd48facfd32ad/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:31:13-33:52
+151                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+151-->[androidx.lifecycle:lifecycle-process:2.4.0] /Users/victortechnobrain/.gradle/caches/transforms-3/111a710e3e4cab3d405fd48facfd32ad/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:32:17-78
+152                android:value="androidx.startup" />
+152-->[androidx.lifecycle:lifecycle-process:2.4.0] /Users/victortechnobrain/.gradle/caches/transforms-3/111a710e3e4cab3d405fd48facfd32ad/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:33:17-49
+153        </provider>
+154
+155        <activity
+155-->[com.journeyapps:zxing-android-embedded:4.3.0] /Users/victortechnobrain/.gradle/caches/transforms-3/c2d249676d69f2d59edb347be0276118/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:47:9-53:63
+156            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+156-->[com.journeyapps:zxing-android-embedded:4.3.0] /Users/victortechnobrain/.gradle/caches/transforms-3/c2d249676d69f2d59edb347be0276118/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:48:13-74
+157            android:clearTaskOnLaunch="true"
+157-->[com.journeyapps:zxing-android-embedded:4.3.0] /Users/victortechnobrain/.gradle/caches/transforms-3/c2d249676d69f2d59edb347be0276118/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:49:13-45
+158            android:screenOrientation="sensorLandscape"
+158-->[com.journeyapps:zxing-android-embedded:4.3.0] /Users/victortechnobrain/.gradle/caches/transforms-3/c2d249676d69f2d59edb347be0276118/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:50:13-56
+159            android:stateNotNeeded="true"
+159-->[com.journeyapps:zxing-android-embedded:4.3.0] /Users/victortechnobrain/.gradle/caches/transforms-3/c2d249676d69f2d59edb347be0276118/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:51:13-42
+160            android:theme="@style/zxing_CaptureTheme"
+160-->[com.journeyapps:zxing-android-embedded:4.3.0] /Users/victortechnobrain/.gradle/caches/transforms-3/c2d249676d69f2d59edb347be0276118/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:52:13-54
+161            android:windowSoftInputMode="stateAlwaysHidden" />
+161-->[com.journeyapps:zxing-android-embedded:4.3.0] /Users/victortechnobrain/.gradle/caches/transforms-3/c2d249676d69f2d59edb347be0276118/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:53:13-60
+162    </application>
+163
+164</manifest>
