@@ -11,7 +11,8 @@ import 'app/app.dart';
 
 ///This is the starting point for the application
 main() async {
-   FlutterServicesBinding.ensureInitialized();
+  //  FlutterServicesBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   //Set the license font the poppins google font
   LicenseRegistry.addLicense(() async* {
     final license = await rootBundle.loadString('google_fonts/OFL.txt');
@@ -21,7 +22,7 @@ main() async {
   //   // Permission.camera,
   //   Permission.storage,
   // ].request();
-  
+
   ///Allow getit reassignments for smoother debuging
   GetIt.I.allowReassignment = true;
 

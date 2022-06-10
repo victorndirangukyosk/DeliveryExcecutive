@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+// import 'package:mobile_scanner/mobile_scanner.dart';
 
 class Scanner extends StatelessWidget {
   final OrderDetails order;

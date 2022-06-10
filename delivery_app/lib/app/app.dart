@@ -7,6 +7,7 @@ import 'package:delivery_app/cubits/add_crates_cubit/add_crates_cubit.dart';
 import 'package:delivery_app/cubits/add_missing_products/add_missing_products_cubit_cubit.dart';
 import 'package:delivery_app/cubits/api/reset_password_cubit/reset_password_cubit.dart';
 import 'package:delivery_app/cubits/crates_qr_cubit/crates_qr_cubit.dart';
+import 'package:delivery_app/cubits/customer_verification/customer_verification_cubit.dart';
 import 'package:delivery_app/cubits/fetch_order_status_cubit/fetch_order_status_cubit.dart';
 import 'package:delivery_app/cubits/get_assigned_cubit/de/cubit/assigned_de_cubit.dart';
 import 'package:delivery_app/cubits/get_assigned_cubit/op/get_assigned_cubit.dart';
@@ -52,6 +53,7 @@ class KwikBasketDeliveryApp extends StatelessWidget {
 
         /// This blocprovider persists the token state
         BlocProvider(create: (context) => TokenCubit('')),
+        BlocProvider(create: (context) => CustomerVerificationCubit()),
         BlocProvider(create: (context) => AssignedDeCubit()),
         BlocProvider(create: (context) => LoggedInDeCubit()),
         BlocProvider(create: (context) => LoginCubit()),

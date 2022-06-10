@@ -280,7 +280,7 @@ class MainHomeDeliveryExecutivePage extends StatelessWidget {
                                           mainAxisSpacing: 5),
                                   itemCount: ordersde.length,
                                   itemBuilder: (BuildContext ctx, index) {
-                                    return CardWidget(
+                                    return CardTwo(
                                       orderde: ordersde[index],
                                     );
                                   });
@@ -316,6 +316,209 @@ class MainHomeDeliveryExecutivePage extends StatelessWidget {
   }
 }
 
+class CardTwo extends StatelessWidget {
+  final AssignedDe orderde;
+  const CardTwo({Key? key, required this.orderde}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    return ClipRRect(
+      borderRadius: const BorderRadius.all(Radius.circular(16.0)),
+      child: FittedBox(
+        child: Container(
+            margin: const EdgeInsets.all(30.0),
+            decoration: BoxDecoration(
+                // color: Palette.orangeBackgroundColor,
+                borderRadius: const BorderRadius.only(
+                    topRight: Radius.circular(10.0),
+                    bottomLeft: Radius.circular(10.0),
+                    bottomRight: Radius.circular(10.0),
+                    topLeft: Radius.circular(10.0)),
+                border: Border.all(width: 1, color: Colors.black)),
+            constraints: const BoxConstraints(
+              maxHeight: double.infinity,
+            ),
+            child: Column(children: [
+              Container(
+                height: height / 5,
+                padding: const EdgeInsets.all(8),
+                // width: width,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                // crossAxisAlignment: CrossAxisAlignment.start,
+                                // mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  const Text(
+                                    "Order Id",
+                                    style: TextStyle(
+                                      fontFamily: 'Red Hat Display',
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Palette.orangeColor,
+                                    ),
+                                  ),
+                                  SizedBox(width: width * 0.01),
+                                  Text(
+                                    orderde.order_id!.toString(),
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Palette.placeholderGrey,
+                                      // color: Colors.orange,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: height * 0.02),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Text(
+                                    "Order Status",
+                                    style: TextStyle(
+                                        fontFamily: 'Red Hat Display',
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: Palette.orangeColor),
+                                  ),
+                                  SizedBox(width: width * 0.01),
+                                  Text(
+                                    orderde.order_status!.toString(),
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Palette.placeholderGrey,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ]),
+                        const SizedBox(width: 20),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Row(
+                              children: [
+                                const Text(
+                                  'Number of Products',
+                                  style: TextStyle(
+                                      fontFamily: 'Red Hat Display',
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Palette.orangeColor),
+                                ),
+                                SizedBox(width: width * 0.01),
+                                Text(
+                                  orderde.products_count!.toString(),
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Palette.placeholderGrey,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Spacer(),
+                            Align(
+                              alignment: Alignment.bottomRight,
+                              child: CupertinoButton.filled(
+                                // style: ElevatedButton.styleFrom(
+                                //   // primary: Colors.black,
+                                //   minimumSize: const Size.fromHeight(50), // NEW
+                                // ),
+                                onPressed: () {
+                                  AutoRouter.of(context)
+                                      .push(DirectionsToAddress(
+                                    orderId: orderde.order_id!,
+                                  ));
+                                },
+                                child: const Text(
+                                  'Start Trip ',
+                                  style: TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(width: 20),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                const Text(
+                                  'Date of Delivery',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Palette.orangeColor,
+                                    fontFamily: 'Red Hat Display',
+                                  ),
+                                ),
+                                SizedBox(width: width * 0.01),
+                                Text(
+                                  // order.delivery_date!,
+                                  CalendarTime(DateTime.parse(
+                                          orderde.delivery_date!))
+                                      .toHuman,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Palette.placeholderGrey,
+                                  ),
+                                )
+                              ],
+                            ),
+                            SizedBox(height: height * 0.02),
+                            Row(children: [
+                              const Text(
+                                "Time of Delivery",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontFamily: 'Red Hat Display',
+                                  fontWeight: FontWeight.bold,
+                                  color: Palette.orangeColor,
+                                ),
+                              ),
+                              SizedBox(width: width * 0.01),
+                              Text(
+                                orderde.delivery_timeslot!,
+                                // CalendarTime(DateTime.parse(order.delivery_timeslot!))
+                                //     .toHuman,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Palette.placeholderGrey,
+                                ),
+                              )
+                            ]),
+                          ],
+                        ),
+                      ]),
+                ),
+              ),
+            ])),
+      ),
+    );
+  }
+}
+
 class CardWidget extends StatelessWidget {
   final AssignedDe orderde;
   const CardWidget({Key? key, required this.orderde}) : super(key: key);
@@ -343,7 +546,7 @@ class CardWidget extends StatelessWidget {
             ),
             child: Column(children: [
               Container(
-                height: height / 5,
+                height: height / 6,
                 padding: const EdgeInsets.all(8),
                 // width: width,
                 child: SingleChildScrollView(

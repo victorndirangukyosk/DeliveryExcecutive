@@ -2,6 +2,7 @@ import 'package:delivery_app/models/crate/crate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_beep/flutter_beep.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+// import 'package:mobile_scanner/mobile_scanner.dart';
 
 class CratesQRCubit extends Cubit<List<Crate>> {
   CratesQRCubit(List<Barcode> initialState) : super([]);
