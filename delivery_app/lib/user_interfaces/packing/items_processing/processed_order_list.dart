@@ -661,11 +661,8 @@ class _OrderListState extends State<OrderList> {
                                           context.read<MissingCubit>().state,
                                       orderId: widget.orderId);
 
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          const HomeIconPagePacking()));
+                              AutoRouter.of(context)
+                                  .replace(const MainHomeRoute());
                             },
                           ),
                         ],
@@ -873,9 +870,7 @@ class _CardWidgetState extends State<CardWidget> {
                                         ? 'Accepted'
                                         : ('status' == 'Rejected')
                                             ? 'Rejected'
-                                            : ('status' == 'Missing')
-                                                ? 'Missing'
-                                                : 'status')
+                                            : 'Missing')
                                     : FormBuilderDropdown<dynamic>(
                                         name: 'status',
                                         onChanged: (e) async {
