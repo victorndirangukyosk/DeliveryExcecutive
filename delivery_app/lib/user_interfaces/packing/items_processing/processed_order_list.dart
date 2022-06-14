@@ -721,7 +721,7 @@ class _CardWidgetState extends State<CardWidget> {
                     FormBuilderTextField(
                       name: 'Packed_quantity ',
                       textInputAction: TextInputAction.go,
-                      decoration: InputDecoration(hintText: "quantity"),
+                      decoration: InputDecoration(hintText: "packed quantity"),
                     ),
                     const SizedBox(
                       height: 20,
@@ -864,7 +864,7 @@ class _CardWidgetState extends State<CardWidget> {
                                                 widget.orderId &&
                                             element['product_id'] ==
                                                 widget.dits.product_id &&
-                                            element['status'] == 'status')
+                                            element['status'] == '')
                                         .isNotEmpty
                                     ? const Text(('status' == 'Accepted')
                                         ? 'Accepted'
