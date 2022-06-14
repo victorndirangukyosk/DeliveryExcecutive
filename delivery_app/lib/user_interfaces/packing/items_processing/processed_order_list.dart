@@ -12,6 +12,7 @@ import 'package:delivery_app/models/odetails_list/odetails_list.dart';
 import 'package:delivery_app/services/api_service/api_service.dart';
 import 'package:delivery_app/theme/box_icons.dart';
 import 'package:delivery_app/user_interfaces/home/main_home_page.dart';
+import 'package:delivery_app/user_interfaces/packing/my_orders_packing_person/my_orders_page.dart';
 import 'package:delivery_app/user_interfaces/packing/scanner/scanner.dart';
 import 'package:delivery_app/utilities/toast/toast.dart';
 import 'package:flutter/cupertino.dart';
@@ -664,7 +665,7 @@ class _OrderListState extends State<OrderList> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (BuildContext context) =>
-                                          const Dispatch()));
+                                          const HomeIconPagePacking()));
                             },
                           ),
                         ],
@@ -721,7 +722,7 @@ class _CardWidgetState extends State<CardWidget> {
                 child: Column(
                   children: [
                     FormBuilderTextField(
-                      name: 'quantity',
+                      name: 'Packed_quantity ',
                       textInputAction: TextInputAction.go,
                       decoration: InputDecoration(hintText: "quantity"),
                     ),
@@ -865,9 +866,16 @@ class _CardWidgetState extends State<CardWidget> {
                                             element['order_id'] ==
                                                 widget.orderId &&
                                             element['product_id'] ==
-                                                widget.dits.product_id)
+                                                widget.dits.product_id &&
+                                            element['status'] == 'status')
                                         .isNotEmpty
-                                    ? Text('Accepted')
+                                    ? const Text(('status' == 'Accepted')
+                                        ? 'Accepted'
+                                        : ('status' == 'Rejected')
+                                            ? 'Rejected'
+                                            : ('status' == 'Missing')
+                                                ? 'Missing'
+                                                : 'status')
                                     : FormBuilderDropdown<dynamic>(
                                         name: 'status',
                                         onChanged: (e) async {
@@ -888,6 +896,7 @@ class _CardWidgetState extends State<CardWidget> {
                                               'order_id': widget.orderId,
                                               'product_id':
                                                   widget.dits.product_id,
+                                              'status': 'Accepted'
                                             });
                                           } else if (e == 'Rejected') {
                                             context
@@ -897,6 +906,15 @@ class _CardWidgetState extends State<CardWidget> {
                                                   status: 'R',
                                                   comment: 'Rejected')
                                             ], orderId: widget.orderId);
+                                            context
+                                                .read<ProcessedItemsCubit>()
+                                                .state
+                                                .add({
+                                              'order_id': widget.orderId,
+                                              'product_id':
+                                                  widget.dits.product_id,
+                                              'status': 'Rejected'
+                                            });
                                           } else if (e == 'Missing') {
                                             /// Missing api call
                                             await _displayDialog(context);
@@ -908,6 +926,15 @@ class _CardWidgetState extends State<CardWidget> {
                                                         .read<MissingCubit>()
                                                         .state,
                                                     orderId: widget.orderId);
+                                            context
+                                                .read<ProcessedItemsCubit>()
+                                                .state
+                                                .add({
+                                              'order_id': widget.orderId,
+                                              'product_id':
+                                                  widget.dits.product_id,
+                                              'status': 'Missing'
+                                            });
                                           }
                                         },
                                         isExpanded: true,

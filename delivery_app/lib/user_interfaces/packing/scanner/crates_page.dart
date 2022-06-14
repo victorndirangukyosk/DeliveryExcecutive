@@ -29,11 +29,13 @@ class _CratesPageState extends State<CratesPage> {
               '${context.watch<CratesQRCubit>().state.length} Scanned crates'),
         ),
         actions: const [
-          Tooltip(
-            message: "Having Trouble?",
-            child: Icon(
-              Icons.info_outline_rounded,
-              color: Colors.white,
+          InkWell(
+            child: Tooltip(
+              message: "Go back to add more crates",
+              child: Icon(
+                Icons.info_outline_rounded,
+                color: Colors.white,
+              ),
             ),
           ),
         ],

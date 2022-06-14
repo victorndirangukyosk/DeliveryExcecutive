@@ -497,9 +497,21 @@ class _DirectionsToAddressState extends State<DirectionsToAddress> {
                               prefixIcon: Icon(Icons.looks_one),
                               suffixIcon: IconButton(
                                 icon: Icon(Icons.my_location),
-                                onPressed: () {
-                                  startAddressController.text = _currentAddress;
-                                  _startAddress = _currentAddress;
+                                onPressed: () async {
+                                  final GoogleMapController controller =
+                                      await mapController.future;
+                                  controller.animateCamera(
+                                    CameraUpdate.newCameraPosition(
+                                      CameraPosition(
+                                        target: LatLng(
+                                          _currentPosition.latitude,
+                                          _currentPosition.longitude,
+                                        ),
+                                        zoom: 18.0,
+                                      ),
+                                    ),
+                                  );
+                                  _handlePermission;
                                 },
                               ),
                               controller: startAddressController,
@@ -652,6 +664,7 @@ class _DirectionsToAddressState extends State<DirectionsToAddress> {
                                   ),
                                 ),
                               );
+                              _handlePermission;
                             },
                           )),
                     )),

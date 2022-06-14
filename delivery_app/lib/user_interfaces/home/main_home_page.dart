@@ -34,27 +34,27 @@ class MainHomePage extends StatelessWidget {
       // const OrderList(),
       // Scanner(),
       // const OrderSummary(),
-      const Dispatch(),
+      // const Dispatch(),
     ];
 
     return Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-        bottomNavigationBar: CupertinoTabBar(
-            currentIndex: context.watch<HomeBottomNavigationIndexCubit>().state,
-            onTap: (val) {
-              context.read<HomeBottomNavigationIndexCubit>().emit(val);
-            },
-            items: const [
-              BottomNavigationBarItem(icon: Icon(Icons.home)),
-              // BottomNavigationBarItem(
-              // icon: Icon(Icons.check_box_outline_blank)),
-              // BottomNavigationBarItem(icon: Icon(Icons.qr_code_scanner_sharp)),
-              // ignore: todo
-              //TODO: get corresponding icons for each of these
-              // BottomNavigationBarItem(icon: Icon(Icons.check_box_rounded)),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.delivery_dining_rounded)),
-            ]),
+        // bottomNavigationBar: CupertinoTabBar(
+        //     currentIndex: context.watch<HomeBottomNavigationIndexCubit>().state,
+        //     onTap: (val) {
+        //       context.read<HomeBottomNavigationIndexCubit>().emit(val);
+        //     },
+        //     items: const [
+        //       BottomNavigationBarItem(icon: Icon(Icons.home)),
+        //       // BottomNavigationBarItem(
+        //       // icon: Icon(Icons.check_box_outline_blank)),
+        //       // BottomNavigationBarItem(icon: Icon(Icons.qr_code_scanner_sharp)),
+        //       // ignore: todo
+        //       //TODO: get corresponding icons for each of these
+        //       // BottomNavigationBarItem(icon: Icon(Icons.check_box_rounded)),
+        //       // BottomNavigationBarItem(
+        //       //     icon: Icon(Icons.delivery_dining_rounded)),
+        //     ]),
         body: Stack(
           children: [
             const Positioned(

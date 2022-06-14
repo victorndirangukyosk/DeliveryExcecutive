@@ -24,6 +24,8 @@ class Scanner extends StatelessWidget {
           context
               .read<CratesQRCubit>()
               .addQR(Crate.fromJson(JwtDecoder.decode(scanData.code!)));
+          AutoRouter.of(context)
+              .push(CratesRoute(orderId: int.parse(order.order_id!)));
         } catch (e) {
           throw Exception("Invalid QR Code");
         }

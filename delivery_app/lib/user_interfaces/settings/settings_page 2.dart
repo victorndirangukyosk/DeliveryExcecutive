@@ -66,21 +66,21 @@ class SettingsPage extends StatelessWidget {
                           SizedBox(
                             height: 10,
                           ),
-                          ItemCard(
-                            title: 'Settings Item 01',
-                            color: (brightness == Brightness.light)
-                                ? Colors.white
-                                : Theme.of(context).scaffoldBackgroundColor,
-                            rightWidget:
-                                Container(child: CupertinoActivityIndicator()),
-                            callback: () {
-                              print('Tap Settings Item 01');
-                            },
-                            textColor: Colors.amber,
-                          ),
-                          SizedBox(
-                            height: 40,
-                          ),
+                          // ItemCard(
+                          //   title: 'Settings Item 01',
+                          //   color: (brightness == Brightness.light)
+                          //       ? Colors.white
+                          //       : Theme.of(context).scaffoldBackgroundColor,
+                          //   rightWidget:
+                          //       Container(child: CupertinoActivityIndicator()),
+                          //   callback: () {
+                          //     print('Tap Settings Item 01');
+                          //   },
+                          //   textColor: Colors.amber,
+                          // ),
+                          // SizedBox(
+                          //   height: 40,
+                          // ),
                           Container(
                             padding: EdgeInsets.only(left: 16),
                             child: Text(
