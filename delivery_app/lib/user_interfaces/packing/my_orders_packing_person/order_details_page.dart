@@ -491,7 +491,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                             loading: () {
                               return const Center(
                                 child: CircularProgressIndicator(
-                                  color: Colors.red,
+                                  color: Colors.green,
                                 ),
                               );
                             },
