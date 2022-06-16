@@ -856,6 +856,7 @@ class _CardWidgetState extends State<CardWidget> {
                               }, loading: () {
                                 return const CupertinoActivityIndicator();
                               }, success: (statuses) {
+                                /// Make sure we have a value stored before displaying the text
                                 return context
                                         .watch<ProcessedItemsCubit>()
                                         .state
@@ -863,14 +864,18 @@ class _CardWidgetState extends State<CardWidget> {
                                             element['order_id'] ==
                                                 widget.orderId &&
                                             element['product_id'] ==
-                                                widget.dits.product_id &&
-                                            element['status'] == '')
+                                                widget.dits.product_id )
                                         .isNotEmpty
-                                    ? const Text(('status' == 'Accepted')
-                                        ? 'Accepted'
-                                        : ('status' == 'Rejected')
-                                            ? 'Rejected'
-                                            : 'Missing')
+                                    ? 
+                                    /// Display the selected status if it's already there
+                                    Text(context
+                                        .watch<ProcessedItemsCubit>()
+                                        .state
+                                        .where((element) =>
+                                            element['order_id'] ==
+                                                widget.orderId &&
+                                            element['product_id'] ==
+                                                widget.dits.product_id ).first['status'])
                                     : FormBuilderDropdown<dynamic>(
                                         name: 'status',
                                         onChanged: (e) async {
