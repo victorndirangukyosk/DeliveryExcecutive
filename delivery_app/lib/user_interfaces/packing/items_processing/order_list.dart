@@ -204,9 +204,9 @@ class _OrderListState extends State<OrderList> {
                                                                             20,
                                                                       ),
                                                                       const Text(
-                                                                          'stalluri'),
+                                                                          'Stalluri'),
                                                                       const Text(
-                                                                          'stalluri'),
+                                                                          'stalluri@gmail.com'),
                                                                       const SizedBox(
                                                                         height:
                                                                             20,
@@ -235,11 +235,11 @@ class _OrderListState extends State<OrderList> {
                                                                         leading:
                                                                             const Icon(CupertinoIcons.settings),
                                                                         title: const Text(
-                                                                            'Settings'),
+                                                                            'About'),
                                                                         trailing:
                                                                             const Icon(CupertinoIcons.forward),
                                                                         subtitle:
-                                                                            const Text('Application settings'),
+                                                                            const Text('More about this appplication'),
                                                                       ),
                                                                       ListTile(
                                                                         onTap:
@@ -295,7 +295,7 @@ class _OrderListState extends State<OrderList> {
                                                                         ),
                                                                         title:
                                                                             const Text(
-                                                                          "About",
+                                                                          "T & C(s)",
                                                                           style:
                                                                               TextStyle(color: Palette.greenColor),
                                                                         ),
@@ -308,7 +308,7 @@ class _OrderListState extends State<OrderList> {
                                                                         ),
                                                                         subtitle:
                                                                             const Text(
-                                                                          'About this application',
+                                                                          'Licenses and terms',
                                                                         ),
                                                                       ),
                                                                       const SizedBox(

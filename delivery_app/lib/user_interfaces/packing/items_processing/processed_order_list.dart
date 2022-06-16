@@ -14,6 +14,7 @@ import 'package:delivery_app/theme/box_icons.dart';
 import 'package:delivery_app/user_interfaces/home/main_home_page.dart';
 import 'package:delivery_app/user_interfaces/packing/my_orders_packing_person/my_orders_page.dart';
 import 'package:delivery_app/user_interfaces/packing/scanner/scanner.dart';
+import 'package:delivery_app/user_interfaces/settings/settings_page.dart';
 import 'package:delivery_app/utilities/toast/toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -264,7 +265,7 @@ class _OrderListState extends State<OrderList> {
                                                                 height: 20,
                                                               ),
                                                               const Text(
-                                                                  'stalluri'),
+                                                                  'Stalluri'),
                                                               const Text(
                                                                   'stalluri@gmail.com'),
                                                               const SizedBox(
@@ -285,18 +286,28 @@ class _OrderListState extends State<OrderList> {
                                                                         'View order history'),
                                                               ),
                                                               ListTile(
-                                                                onTap: () {},
+                                                                onTap: () {
+                                                                  Navigator
+                                                                      .push(
+                                                                    context,
+                                                                    MaterialPageRoute(
+                                                                        builder:
+                                                                            (context) =>
+                                                                                SettingsPage()),
+                                                                  );
+                                                                },
                                                                 leading: const Icon(
                                                                     CupertinoIcons
                                                                         .settings),
-                                                                title: const Text(
-                                                                    'Settings'),
+                                                                title:
+                                                                    const Text(
+                                                                        'About'),
                                                                 trailing: const Icon(
                                                                     CupertinoIcons
                                                                         .forward),
                                                                 subtitle:
                                                                     const Text(
-                                                                        'Application settings'),
+                                                                        'More about this appplication'),
                                                               ),
                                                               ListTile(
                                                                 onTap: () {
@@ -356,7 +367,7 @@ class _OrderListState extends State<OrderList> {
                                                                 ),
                                                                 title:
                                                                     const Text(
-                                                                  "About",
+                                                                  "T & C(s)",
                                                                   style: TextStyle(
                                                                       color: Palette
                                                                           .greenColor),
@@ -370,7 +381,7 @@ class _OrderListState extends State<OrderList> {
                                                                 ),
                                                                 subtitle:
                                                                     const Text(
-                                                                  'About this application',
+                                                                  'Licenses and terms',
                                                                 ),
                                                               ),
                                                               const SizedBox(
@@ -652,7 +663,7 @@ class _OrderListState extends State<OrderList> {
                           // ),
 
                           CupertinoButton(
-                            child: Text('Proceed'),
+                            child: Text('Mark Complete Order'),
                             onPressed: () {
                               context
                                   .read<AddMissingProductsCubitCubit>()
@@ -757,6 +768,14 @@ class _CardWidgetState extends State<CardWidget> {
                           .read<MissingCubit>()
                           .state
                           .add(Missing.fromJson(_formKey.currentState!.value));
+                      context.read<AddMissingProductsCubitCubit>().addMissing(
+                          products: context.read<MissingCubit>().state,
+                          orderId: widget.orderId);
+                      context.read<ProcessedItemsCubit>().state.add({
+                        'order_id': widget.orderId,
+                        'product_id': widget.dits.product_id,
+                        'status': 'Missing'
+                      });
                       Navigator.of(context).pop();
                     }
                   },
@@ -856,6 +875,7 @@ class _CardWidgetState extends State<CardWidget> {
                               }, loading: () {
                                 return const CupertinoActivityIndicator();
                               }, success: (statuses) {
+                                /// Make sure we have a value stored before displaying the text
                                 return context
                                         .watch<ProcessedItemsCubit>()
                                         .state
@@ -863,14 +883,20 @@ class _CardWidgetState extends State<CardWidget> {
                                             element['order_id'] ==
                                                 widget.orderId &&
                                             element['product_id'] ==
-                                                widget.dits.product_id &&
-                                            element['status'] == '')
+                                                widget.dits.product_id)
                                         .isNotEmpty
-                                    ? const Text(('status' == 'Accepted')
-                                        ? 'Accepted'
-                                        : ('status' == 'Rejected')
-                                            ? 'Rejected'
-                                            : 'Missing')
+                                    ?
+
+                                    /// Display the selected status if it's already there
+                                    Text(context
+                                        .watch<ProcessedItemsCubit>()
+                                        .state
+                                        .where((element) =>
+                                            element['order_id'] ==
+                                                widget.orderId &&
+                                            element['product_id'] ==
+                                                widget.dits.product_id)
+                                        .first['status'])
                                     : FormBuilderDropdown<dynamic>(
                                         name: 'status',
                                         onChanged: (e) async {

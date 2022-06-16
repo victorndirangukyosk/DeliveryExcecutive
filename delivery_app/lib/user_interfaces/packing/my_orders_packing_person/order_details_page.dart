@@ -234,13 +234,13 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                                                           CupertinoIcons
                                                                               .settings),
                                                                       title: const Text(
-                                                                          'Settings'),
+                                                                          'About'),
                                                                       trailing:
                                                                           const Icon(
                                                                               CupertinoIcons.forward),
                                                                       subtitle:
                                                                           const Text(
-                                                                              'Application settings'),
+                                                                              'More about this appplication'),
                                                                     ),
                                                                     ListTile(
                                                                       onTap:
@@ -298,7 +298,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                                                       ),
                                                                       title:
                                                                           const Text(
-                                                                        "About",
+                                                                        "T & C(s)",
                                                                         style: TextStyle(
                                                                             color:
                                                                                 Palette.greenColor),
@@ -312,7 +312,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                                                       ),
                                                                       subtitle:
                                                                           const Text(
-                                                                        'is application',
+                                                                        'Licenses and terms',
                                                                       ),
                                                                     ),
                                                                     const SizedBox(
