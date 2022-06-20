@@ -12,43 +12,7 @@ part of 'filteroptions.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$FilterOptionsTearOff {
-  const _$FilterOptionsTearOff();
-
-  _None none() {
-    return _None();
-  }
-
-  _DeliveryDate deliveryDate() {
-    return _DeliveryDate();
-  }
-
-  _Timeslot timeslot(String timeslot) {
-    return _Timeslot(
-      timeslot,
-    );
-  }
-
-  _OrderStatus orderStatus() {
-    return _OrderStatus();
-  }
-
-  _DateAssigned dateAssigned(DateTime dateAssigned) {
-    return _DateAssigned(
-      dateAssigned,
-    );
-  }
-
-  _MonthYear monthYear() {
-    return _MonthYear();
-  }
-}
-
-/// @nodoc
-const $FilterOptions = _$FilterOptionsTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$FilterOptions {
@@ -134,19 +98,19 @@ class _$FilterOptionsCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$NoneCopyWith<$Res> {
-  factory _$NoneCopyWith(_None value, $Res Function(_None) then) =
-      __$NoneCopyWithImpl<$Res>;
+abstract class _$$_NoneCopyWith<$Res> {
+  factory _$$_NoneCopyWith(_$_None value, $Res Function(_$_None) then) =
+      __$$_NoneCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$NoneCopyWithImpl<$Res> extends _$FilterOptionsCopyWithImpl<$Res>
-    implements _$NoneCopyWith<$Res> {
-  __$NoneCopyWithImpl(_None _value, $Res Function(_None) _then)
-      : super(_value, (v) => _then(v as _None));
+class __$$_NoneCopyWithImpl<$Res> extends _$FilterOptionsCopyWithImpl<$Res>
+    implements _$$_NoneCopyWith<$Res> {
+  __$$_NoneCopyWithImpl(_$_None _value, $Res Function(_$_None) _then)
+      : super(_value, (v) => _then(v as _$_None));
 
   @override
-  _None get _value => super._value as _None;
+  _$_None get _value => super._value as _$_None;
 }
 
 /// @nodoc
@@ -162,7 +126,7 @@ class _$_None implements _None {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _None);
+        (other.runtimeType == runtimeType && other is _$_None);
   }
 
   @override
@@ -260,22 +224,22 @@ abstract class _None implements FilterOptions {
 }
 
 /// @nodoc
-abstract class _$DeliveryDateCopyWith<$Res> {
-  factory _$DeliveryDateCopyWith(
-          _DeliveryDate value, $Res Function(_DeliveryDate) then) =
-      __$DeliveryDateCopyWithImpl<$Res>;
+abstract class _$$_DeliveryDateCopyWith<$Res> {
+  factory _$$_DeliveryDateCopyWith(
+          _$_DeliveryDate value, $Res Function(_$_DeliveryDate) then) =
+      __$$_DeliveryDateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$DeliveryDateCopyWithImpl<$Res>
+class __$$_DeliveryDateCopyWithImpl<$Res>
     extends _$FilterOptionsCopyWithImpl<$Res>
-    implements _$DeliveryDateCopyWith<$Res> {
-  __$DeliveryDateCopyWithImpl(
-      _DeliveryDate _value, $Res Function(_DeliveryDate) _then)
-      : super(_value, (v) => _then(v as _DeliveryDate));
+    implements _$$_DeliveryDateCopyWith<$Res> {
+  __$$_DeliveryDateCopyWithImpl(
+      _$_DeliveryDate _value, $Res Function(_$_DeliveryDate) _then)
+      : super(_value, (v) => _then(v as _$_DeliveryDate));
 
   @override
-  _DeliveryDate get _value => super._value as _DeliveryDate;
+  _$_DeliveryDate get _value => super._value as _$_DeliveryDate;
 }
 
 /// @nodoc
@@ -291,7 +255,7 @@ class _$_DeliveryDate implements _DeliveryDate {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _DeliveryDate);
+        (other.runtimeType == runtimeType && other is _$_DeliveryDate);
   }
 
   @override
@@ -389,26 +353,28 @@ abstract class _DeliveryDate implements FilterOptions {
 }
 
 /// @nodoc
-abstract class _$TimeslotCopyWith<$Res> {
-  factory _$TimeslotCopyWith(_Timeslot value, $Res Function(_Timeslot) then) =
-      __$TimeslotCopyWithImpl<$Res>;
+abstract class _$$_TimeslotCopyWith<$Res> {
+  factory _$$_TimeslotCopyWith(
+          _$_Timeslot value, $Res Function(_$_Timeslot) then) =
+      __$$_TimeslotCopyWithImpl<$Res>;
   $Res call({String timeslot});
 }
 
 /// @nodoc
-class __$TimeslotCopyWithImpl<$Res> extends _$FilterOptionsCopyWithImpl<$Res>
-    implements _$TimeslotCopyWith<$Res> {
-  __$TimeslotCopyWithImpl(_Timeslot _value, $Res Function(_Timeslot) _then)
-      : super(_value, (v) => _then(v as _Timeslot));
+class __$$_TimeslotCopyWithImpl<$Res> extends _$FilterOptionsCopyWithImpl<$Res>
+    implements _$$_TimeslotCopyWith<$Res> {
+  __$$_TimeslotCopyWithImpl(
+      _$_Timeslot _value, $Res Function(_$_Timeslot) _then)
+      : super(_value, (v) => _then(v as _$_Timeslot));
 
   @override
-  _Timeslot get _value => super._value as _Timeslot;
+  _$_Timeslot get _value => super._value as _$_Timeslot;
 
   @override
   $Res call({
     Object? timeslot = freezed,
   }) {
-    return _then(_Timeslot(
+    return _then(_$_Timeslot(
       timeslot == freezed
           ? _value.timeslot
           : timeslot // ignore: cast_nullable_to_non_nullable
@@ -434,7 +400,7 @@ class _$_Timeslot implements _Timeslot {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Timeslot &&
+            other is _$_Timeslot &&
             const DeepCollectionEquality().equals(other.timeslot, timeslot));
   }
 
@@ -444,8 +410,8 @@ class _$_Timeslot implements _Timeslot {
 
   @JsonKey(ignore: true)
   @override
-  _$TimeslotCopyWith<_Timeslot> get copyWith =>
-      __$TimeslotCopyWithImpl<_Timeslot>(this, _$identity);
+  _$$_TimeslotCopyWith<_$_Timeslot> get copyWith =>
+      __$$_TimeslotCopyWithImpl<_$_Timeslot>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -535,30 +501,31 @@ class _$_Timeslot implements _Timeslot {
 }
 
 abstract class _Timeslot implements FilterOptions {
-  factory _Timeslot(String timeslot) = _$_Timeslot;
+  factory _Timeslot(final String timeslot) = _$_Timeslot;
 
-  String get timeslot;
+  String get timeslot => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$TimeslotCopyWith<_Timeslot> get copyWith =>
+  _$$_TimeslotCopyWith<_$_Timeslot> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$OrderStatusCopyWith<$Res> {
-  factory _$OrderStatusCopyWith(
-          _OrderStatus value, $Res Function(_OrderStatus) then) =
-      __$OrderStatusCopyWithImpl<$Res>;
+abstract class _$$_OrderStatusCopyWith<$Res> {
+  factory _$$_OrderStatusCopyWith(
+          _$_OrderStatus value, $Res Function(_$_OrderStatus) then) =
+      __$$_OrderStatusCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$OrderStatusCopyWithImpl<$Res> extends _$FilterOptionsCopyWithImpl<$Res>
-    implements _$OrderStatusCopyWith<$Res> {
-  __$OrderStatusCopyWithImpl(
-      _OrderStatus _value, $Res Function(_OrderStatus) _then)
-      : super(_value, (v) => _then(v as _OrderStatus));
+class __$$_OrderStatusCopyWithImpl<$Res>
+    extends _$FilterOptionsCopyWithImpl<$Res>
+    implements _$$_OrderStatusCopyWith<$Res> {
+  __$$_OrderStatusCopyWithImpl(
+      _$_OrderStatus _value, $Res Function(_$_OrderStatus) _then)
+      : super(_value, (v) => _then(v as _$_OrderStatus));
 
   @override
-  _OrderStatus get _value => super._value as _OrderStatus;
+  _$_OrderStatus get _value => super._value as _$_OrderStatus;
 }
 
 /// @nodoc
@@ -574,7 +541,7 @@ class _$_OrderStatus implements _OrderStatus {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _OrderStatus);
+        (other.runtimeType == runtimeType && other is _$_OrderStatus);
   }
 
   @override
@@ -672,29 +639,29 @@ abstract class _OrderStatus implements FilterOptions {
 }
 
 /// @nodoc
-abstract class _$DateAssignedCopyWith<$Res> {
-  factory _$DateAssignedCopyWith(
-          _DateAssigned value, $Res Function(_DateAssigned) then) =
-      __$DateAssignedCopyWithImpl<$Res>;
+abstract class _$$_DateAssignedCopyWith<$Res> {
+  factory _$$_DateAssignedCopyWith(
+          _$_DateAssigned value, $Res Function(_$_DateAssigned) then) =
+      __$$_DateAssignedCopyWithImpl<$Res>;
   $Res call({DateTime dateAssigned});
 }
 
 /// @nodoc
-class __$DateAssignedCopyWithImpl<$Res>
+class __$$_DateAssignedCopyWithImpl<$Res>
     extends _$FilterOptionsCopyWithImpl<$Res>
-    implements _$DateAssignedCopyWith<$Res> {
-  __$DateAssignedCopyWithImpl(
-      _DateAssigned _value, $Res Function(_DateAssigned) _then)
-      : super(_value, (v) => _then(v as _DateAssigned));
+    implements _$$_DateAssignedCopyWith<$Res> {
+  __$$_DateAssignedCopyWithImpl(
+      _$_DateAssigned _value, $Res Function(_$_DateAssigned) _then)
+      : super(_value, (v) => _then(v as _$_DateAssigned));
 
   @override
-  _DateAssigned get _value => super._value as _DateAssigned;
+  _$_DateAssigned get _value => super._value as _$_DateAssigned;
 
   @override
   $Res call({
     Object? dateAssigned = freezed,
   }) {
-    return _then(_DateAssigned(
+    return _then(_$_DateAssigned(
       dateAssigned == freezed
           ? _value.dateAssigned
           : dateAssigned // ignore: cast_nullable_to_non_nullable
@@ -720,7 +687,7 @@ class _$_DateAssigned implements _DateAssigned {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _DateAssigned &&
+            other is _$_DateAssigned &&
             const DeepCollectionEquality()
                 .equals(other.dateAssigned, dateAssigned));
   }
@@ -731,8 +698,8 @@ class _$_DateAssigned implements _DateAssigned {
 
   @JsonKey(ignore: true)
   @override
-  _$DateAssignedCopyWith<_DateAssigned> get copyWith =>
-      __$DateAssignedCopyWithImpl<_DateAssigned>(this, _$identity);
+  _$$_DateAssignedCopyWith<_$_DateAssigned> get copyWith =>
+      __$$_DateAssignedCopyWithImpl<_$_DateAssigned>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -822,29 +789,30 @@ class _$_DateAssigned implements _DateAssigned {
 }
 
 abstract class _DateAssigned implements FilterOptions {
-  factory _DateAssigned(DateTime dateAssigned) = _$_DateAssigned;
+  factory _DateAssigned(final DateTime dateAssigned) = _$_DateAssigned;
 
-  DateTime get dateAssigned;
+  DateTime get dateAssigned => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$DateAssignedCopyWith<_DateAssigned> get copyWith =>
+  _$$_DateAssignedCopyWith<_$_DateAssigned> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$MonthYearCopyWith<$Res> {
-  factory _$MonthYearCopyWith(
-          _MonthYear value, $Res Function(_MonthYear) then) =
-      __$MonthYearCopyWithImpl<$Res>;
+abstract class _$$_MonthYearCopyWith<$Res> {
+  factory _$$_MonthYearCopyWith(
+          _$_MonthYear value, $Res Function(_$_MonthYear) then) =
+      __$$_MonthYearCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$MonthYearCopyWithImpl<$Res> extends _$FilterOptionsCopyWithImpl<$Res>
-    implements _$MonthYearCopyWith<$Res> {
-  __$MonthYearCopyWithImpl(_MonthYear _value, $Res Function(_MonthYear) _then)
-      : super(_value, (v) => _then(v as _MonthYear));
+class __$$_MonthYearCopyWithImpl<$Res> extends _$FilterOptionsCopyWithImpl<$Res>
+    implements _$$_MonthYearCopyWith<$Res> {
+  __$$_MonthYearCopyWithImpl(
+      _$_MonthYear _value, $Res Function(_$_MonthYear) _then)
+      : super(_value, (v) => _then(v as _$_MonthYear));
 
   @override
-  _MonthYear get _value => super._value as _MonthYear;
+  _$_MonthYear get _value => super._value as _$_MonthYear;
 }
 
 /// @nodoc
@@ -860,7 +828,7 @@ class _$_MonthYear implements _MonthYear {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _MonthYear);
+        (other.runtimeType == runtimeType && other is _$_MonthYear);
   }
 
   @override

@@ -12,43 +12,12 @@ part of 'reset_password_response.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ResetPasswordResponse _$ResetPasswordResponseFromJson(
     Map<String, dynamic> json) {
   return _ResetPasswordResponse.fromJson(json);
 }
-
-/// @nodoc
-class _$ResetPasswordResponseTearOff {
-  const _$ResetPasswordResponseTearOff();
-
-  _ResetPasswordResponse call(
-      {int? delivery_executive_id,
-      String? firstname,
-      String? lastname,
-      String? email,
-      String? telephone,
-      int? status,
-      String? date_added}) {
-    return _ResetPasswordResponse(
-      delivery_executive_id: delivery_executive_id,
-      firstname: firstname,
-      lastname: lastname,
-      email: email,
-      telephone: telephone,
-      status: status,
-      date_added: date_added,
-    );
-  }
-
-  ResetPasswordResponse fromJson(Map<String, Object?> json) {
-    return ResetPasswordResponse.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ResetPasswordResponse = _$ResetPasswordResponseTearOff();
 
 /// @nodoc
 mixin _$ResetPasswordResponse {
@@ -134,11 +103,11 @@ class _$ResetPasswordResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ResetPasswordResponseCopyWith<$Res>
+abstract class _$$_ResetPasswordResponseCopyWith<$Res>
     implements $ResetPasswordResponseCopyWith<$Res> {
-  factory _$ResetPasswordResponseCopyWith(_ResetPasswordResponse value,
-          $Res Function(_ResetPasswordResponse) then) =
-      __$ResetPasswordResponseCopyWithImpl<$Res>;
+  factory _$$_ResetPasswordResponseCopyWith(_$_ResetPasswordResponse value,
+          $Res Function(_$_ResetPasswordResponse) then) =
+      __$$_ResetPasswordResponseCopyWithImpl<$Res>;
   @override
   $Res call(
       {int? delivery_executive_id,
@@ -151,15 +120,16 @@ abstract class _$ResetPasswordResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ResetPasswordResponseCopyWithImpl<$Res>
+class __$$_ResetPasswordResponseCopyWithImpl<$Res>
     extends _$ResetPasswordResponseCopyWithImpl<$Res>
-    implements _$ResetPasswordResponseCopyWith<$Res> {
-  __$ResetPasswordResponseCopyWithImpl(_ResetPasswordResponse _value,
-      $Res Function(_ResetPasswordResponse) _then)
-      : super(_value, (v) => _then(v as _ResetPasswordResponse));
+    implements _$$_ResetPasswordResponseCopyWith<$Res> {
+  __$$_ResetPasswordResponseCopyWithImpl(_$_ResetPasswordResponse _value,
+      $Res Function(_$_ResetPasswordResponse) _then)
+      : super(_value, (v) => _then(v as _$_ResetPasswordResponse));
 
   @override
-  _ResetPasswordResponse get _value => super._value as _ResetPasswordResponse;
+  _$_ResetPasswordResponse get _value =>
+      super._value as _$_ResetPasswordResponse;
 
   @override
   $Res call({
@@ -171,7 +141,7 @@ class __$ResetPasswordResponseCopyWithImpl<$Res>
     Object? status = freezed,
     Object? date_added = freezed,
   }) {
-    return _then(_ResetPasswordResponse(
+    return _then(_$_ResetPasswordResponse(
       delivery_executive_id: delivery_executive_id == freezed
           ? _value.delivery_executive_id
           : delivery_executive_id // ignore: cast_nullable_to_non_nullable
@@ -243,7 +213,7 @@ class _$_ResetPasswordResponse implements _ResetPasswordResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ResetPasswordResponse &&
+            other is _$_ResetPasswordResponse &&
             const DeepCollectionEquality()
                 .equals(other.delivery_executive_id, delivery_executive_id) &&
             const DeepCollectionEquality().equals(other.firstname, firstname) &&
@@ -255,6 +225,7 @@ class _$_ResetPasswordResponse implements _ResetPasswordResponse {
                 .equals(other.date_added, date_added));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -268,8 +239,8 @@ class _$_ResetPasswordResponse implements _ResetPasswordResponse {
 
   @JsonKey(ignore: true)
   @override
-  _$ResetPasswordResponseCopyWith<_ResetPasswordResponse> get copyWith =>
-      __$ResetPasswordResponseCopyWithImpl<_ResetPasswordResponse>(
+  _$$_ResetPasswordResponseCopyWith<_$_ResetPasswordResponse> get copyWith =>
+      __$$_ResetPasswordResponseCopyWithImpl<_$_ResetPasswordResponse>(
           this, _$identity);
 
   @override
@@ -280,33 +251,33 @@ class _$_ResetPasswordResponse implements _ResetPasswordResponse {
 
 abstract class _ResetPasswordResponse implements ResetPasswordResponse {
   factory _ResetPasswordResponse(
-      {int? delivery_executive_id,
-      String? firstname,
-      String? lastname,
-      String? email,
-      String? telephone,
-      int? status,
-      String? date_added}) = _$_ResetPasswordResponse;
+      {final int? delivery_executive_id,
+      final String? firstname,
+      final String? lastname,
+      final String? email,
+      final String? telephone,
+      final int? status,
+      final String? date_added}) = _$_ResetPasswordResponse;
 
   factory _ResetPasswordResponse.fromJson(Map<String, dynamic> json) =
       _$_ResetPasswordResponse.fromJson;
 
   @override
-  int? get delivery_executive_id;
+  int? get delivery_executive_id => throw _privateConstructorUsedError;
   @override
-  String? get firstname;
+  String? get firstname => throw _privateConstructorUsedError;
   @override
-  String? get lastname;
+  String? get lastname => throw _privateConstructorUsedError;
   @override
-  String? get email;
+  String? get email => throw _privateConstructorUsedError;
   @override
-  String? get telephone;
+  String? get telephone => throw _privateConstructorUsedError;
   @override
-  int? get status;
+  int? get status => throw _privateConstructorUsedError;
   @override
-  String? get date_added;
+  String? get date_added => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ResetPasswordResponseCopyWith<_ResetPasswordResponse> get copyWith =>
+  _$$_ResetPasswordResponseCopyWith<_$_ResetPasswordResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }

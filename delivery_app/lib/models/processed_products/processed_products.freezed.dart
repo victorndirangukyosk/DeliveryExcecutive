@@ -12,33 +12,11 @@ part of 'processed_products.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ProcessedProducts _$ProcessedProductsFromJson(Map<String, dynamic> json) {
   return _ProcessedProducts.fromJson(json);
 }
-
-/// @nodoc
-class _$ProcessedProductsTearOff {
-  const _$ProcessedProductsTearOff();
-
-  _ProcessedProducts call(
-      {num? order_product_id, num? order_id, num? product_id, String? status}) {
-    return _ProcessedProducts(
-      order_product_id: order_product_id,
-      order_id: order_id,
-      product_id: product_id,
-      status: status,
-    );
-  }
-
-  ProcessedProducts fromJson(Map<String, Object?> json) {
-    return ProcessedProducts.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ProcessedProducts = _$ProcessedProductsTearOff();
 
 /// @nodoc
 mixin _$ProcessedProducts {
@@ -100,26 +78,26 @@ class _$ProcessedProductsCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ProcessedProductsCopyWith<$Res>
+abstract class _$$_ProcessedProductsCopyWith<$Res>
     implements $ProcessedProductsCopyWith<$Res> {
-  factory _$ProcessedProductsCopyWith(
-          _ProcessedProducts value, $Res Function(_ProcessedProducts) then) =
-      __$ProcessedProductsCopyWithImpl<$Res>;
+  factory _$$_ProcessedProductsCopyWith(_$_ProcessedProducts value,
+          $Res Function(_$_ProcessedProducts) then) =
+      __$$_ProcessedProductsCopyWithImpl<$Res>;
   @override
   $Res call(
       {num? order_product_id, num? order_id, num? product_id, String? status});
 }
 
 /// @nodoc
-class __$ProcessedProductsCopyWithImpl<$Res>
+class __$$_ProcessedProductsCopyWithImpl<$Res>
     extends _$ProcessedProductsCopyWithImpl<$Res>
-    implements _$ProcessedProductsCopyWith<$Res> {
-  __$ProcessedProductsCopyWithImpl(
-      _ProcessedProducts _value, $Res Function(_ProcessedProducts) _then)
-      : super(_value, (v) => _then(v as _ProcessedProducts));
+    implements _$$_ProcessedProductsCopyWith<$Res> {
+  __$$_ProcessedProductsCopyWithImpl(
+      _$_ProcessedProducts _value, $Res Function(_$_ProcessedProducts) _then)
+      : super(_value, (v) => _then(v as _$_ProcessedProducts));
 
   @override
-  _ProcessedProducts get _value => super._value as _ProcessedProducts;
+  _$_ProcessedProducts get _value => super._value as _$_ProcessedProducts;
 
   @override
   $Res call({
@@ -128,7 +106,7 @@ class __$ProcessedProductsCopyWithImpl<$Res>
     Object? product_id = freezed,
     Object? status = freezed,
   }) {
-    return _then(_ProcessedProducts(
+    return _then(_$_ProcessedProducts(
       order_product_id: order_product_id == freezed
           ? _value.order_product_id
           : order_product_id // ignore: cast_nullable_to_non_nullable
@@ -176,7 +154,7 @@ class _$_ProcessedProducts implements _ProcessedProducts {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ProcessedProducts &&
+            other is _$_ProcessedProducts &&
             const DeepCollectionEquality()
                 .equals(other.order_product_id, order_product_id) &&
             const DeepCollectionEquality().equals(other.order_id, order_id) &&
@@ -185,6 +163,7 @@ class _$_ProcessedProducts implements _ProcessedProducts {
             const DeepCollectionEquality().equals(other.status, status));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -195,8 +174,9 @@ class _$_ProcessedProducts implements _ProcessedProducts {
 
   @JsonKey(ignore: true)
   @override
-  _$ProcessedProductsCopyWith<_ProcessedProducts> get copyWith =>
-      __$ProcessedProductsCopyWithImpl<_ProcessedProducts>(this, _$identity);
+  _$$_ProcessedProductsCopyWith<_$_ProcessedProducts> get copyWith =>
+      __$$_ProcessedProductsCopyWithImpl<_$_ProcessedProducts>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -206,24 +186,24 @@ class _$_ProcessedProducts implements _ProcessedProducts {
 
 abstract class _ProcessedProducts implements ProcessedProducts {
   factory _ProcessedProducts(
-      {num? order_product_id,
-      num? order_id,
-      num? product_id,
-      String? status}) = _$_ProcessedProducts;
+      {final num? order_product_id,
+      final num? order_id,
+      final num? product_id,
+      final String? status}) = _$_ProcessedProducts;
 
   factory _ProcessedProducts.fromJson(Map<String, dynamic> json) =
       _$_ProcessedProducts.fromJson;
 
   @override
-  num? get order_product_id;
+  num? get order_product_id => throw _privateConstructorUsedError;
   @override
-  num? get order_id;
+  num? get order_id => throw _privateConstructorUsedError;
   @override
-  num? get product_id;
+  num? get product_id => throw _privateConstructorUsedError;
   @override
-  String? get status;
+  String? get status => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ProcessedProductsCopyWith<_ProcessedProducts> get copyWith =>
+  _$$_ProcessedProductsCopyWith<_$_ProcessedProducts> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -12,36 +12,11 @@ part of 'crate.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Crate _$CrateFromJson(Map<String, dynamic> json) {
   return _Crate.fromJson(json);
 }
-
-/// @nodoc
-class _$CrateTearOff {
-  const _$CrateTearOff();
-
-  _Crate call(
-      {String? serial_number,
-      String? color,
-      String? department,
-      String? purchase_date}) {
-    return _Crate(
-      serial_number: serial_number,
-      color: color,
-      department: department,
-      purchase_date: purchase_date,
-    );
-  }
-
-  Crate fromJson(Map<String, Object?> json) {
-    return Crate.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Crate = _$CrateTearOff();
 
 /// @nodoc
 mixin _$Crate {
@@ -103,9 +78,9 @@ class _$CrateCopyWithImpl<$Res> implements $CrateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$CrateCopyWith<$Res> implements $CrateCopyWith<$Res> {
-  factory _$CrateCopyWith(_Crate value, $Res Function(_Crate) then) =
-      __$CrateCopyWithImpl<$Res>;
+abstract class _$$_CrateCopyWith<$Res> implements $CrateCopyWith<$Res> {
+  factory _$$_CrateCopyWith(_$_Crate value, $Res Function(_$_Crate) then) =
+      __$$_CrateCopyWithImpl<$Res>;
   @override
   $Res call(
       {String? serial_number,
@@ -115,13 +90,13 @@ abstract class _$CrateCopyWith<$Res> implements $CrateCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$CrateCopyWithImpl<$Res> extends _$CrateCopyWithImpl<$Res>
-    implements _$CrateCopyWith<$Res> {
-  __$CrateCopyWithImpl(_Crate _value, $Res Function(_Crate) _then)
-      : super(_value, (v) => _then(v as _Crate));
+class __$$_CrateCopyWithImpl<$Res> extends _$CrateCopyWithImpl<$Res>
+    implements _$$_CrateCopyWith<$Res> {
+  __$$_CrateCopyWithImpl(_$_Crate _value, $Res Function(_$_Crate) _then)
+      : super(_value, (v) => _then(v as _$_Crate));
 
   @override
-  _Crate get _value => super._value as _Crate;
+  _$_Crate get _value => super._value as _$_Crate;
 
   @override
   $Res call({
@@ -130,7 +105,7 @@ class __$CrateCopyWithImpl<$Res> extends _$CrateCopyWithImpl<$Res>
     Object? department = freezed,
     Object? purchase_date = freezed,
   }) {
-    return _then(_Crate(
+    return _then(_$_Crate(
       serial_number: serial_number == freezed
           ? _value.serial_number
           : serial_number // ignore: cast_nullable_to_non_nullable
@@ -178,7 +153,7 @@ class _$_Crate implements _Crate {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Crate &&
+            other is _$_Crate &&
             const DeepCollectionEquality()
                 .equals(other.serial_number, serial_number) &&
             const DeepCollectionEquality().equals(other.color, color) &&
@@ -188,6 +163,7 @@ class _$_Crate implements _Crate {
                 .equals(other.purchase_date, purchase_date));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -198,8 +174,8 @@ class _$_Crate implements _Crate {
 
   @JsonKey(ignore: true)
   @override
-  _$CrateCopyWith<_Crate> get copyWith =>
-      __$CrateCopyWithImpl<_Crate>(this, _$identity);
+  _$$_CrateCopyWith<_$_Crate> get copyWith =>
+      __$$_CrateCopyWithImpl<_$_Crate>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -209,22 +185,23 @@ class _$_Crate implements _Crate {
 
 abstract class _Crate implements Crate {
   factory _Crate(
-      {String? serial_number,
-      String? color,
-      String? department,
-      String? purchase_date}) = _$_Crate;
+      {final String? serial_number,
+      final String? color,
+      final String? department,
+      final String? purchase_date}) = _$_Crate;
 
   factory _Crate.fromJson(Map<String, dynamic> json) = _$_Crate.fromJson;
 
   @override
-  String? get serial_number;
+  String? get serial_number => throw _privateConstructorUsedError;
   @override
-  String? get color;
+  String? get color => throw _privateConstructorUsedError;
   @override
-  String? get department;
+  String? get department => throw _privateConstructorUsedError;
   @override
-  String? get purchase_date;
+  String? get purchase_date => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$CrateCopyWith<_Crate> get copyWith => throw _privateConstructorUsedError;
+  _$$_CrateCopyWith<_$_Crate> get copyWith =>
+      throw _privateConstructorUsedError;
 }

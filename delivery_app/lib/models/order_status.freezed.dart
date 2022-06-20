@@ -12,40 +12,11 @@ part of 'order_status.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 OrderStatus _$OrderStatusFromJson(Map<String, dynamic> json) {
   return _OrderStatus.fromJson(json);
 }
-
-/// @nodoc
-class _$OrderStatusTearOff {
-  const _$OrderStatusTearOff();
-
-  _OrderStatus call(
-      {num? order_status_id,
-      num? language_id,
-      String? name,
-      String? message,
-      String? color,
-      num? sort_order}) {
-    return _OrderStatus(
-      order_status_id: order_status_id,
-      language_id: language_id,
-      name: name,
-      message: message,
-      color: color,
-      sort_order: sort_order,
-    );
-  }
-
-  OrderStatus fromJson(Map<String, Object?> json) {
-    return OrderStatus.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $OrderStatus = _$OrderStatusTearOff();
 
 /// @nodoc
 mixin _$OrderStatus {
@@ -123,11 +94,11 @@ class _$OrderStatusCopyWithImpl<$Res> implements $OrderStatusCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$OrderStatusCopyWith<$Res>
+abstract class _$$_OrderStatusCopyWith<$Res>
     implements $OrderStatusCopyWith<$Res> {
-  factory _$OrderStatusCopyWith(
-          _OrderStatus value, $Res Function(_OrderStatus) then) =
-      __$OrderStatusCopyWithImpl<$Res>;
+  factory _$$_OrderStatusCopyWith(
+          _$_OrderStatus value, $Res Function(_$_OrderStatus) then) =
+      __$$_OrderStatusCopyWithImpl<$Res>;
   @override
   $Res call(
       {num? order_status_id,
@@ -139,14 +110,14 @@ abstract class _$OrderStatusCopyWith<$Res>
 }
 
 /// @nodoc
-class __$OrderStatusCopyWithImpl<$Res> extends _$OrderStatusCopyWithImpl<$Res>
-    implements _$OrderStatusCopyWith<$Res> {
-  __$OrderStatusCopyWithImpl(
-      _OrderStatus _value, $Res Function(_OrderStatus) _then)
-      : super(_value, (v) => _then(v as _OrderStatus));
+class __$$_OrderStatusCopyWithImpl<$Res> extends _$OrderStatusCopyWithImpl<$Res>
+    implements _$$_OrderStatusCopyWith<$Res> {
+  __$$_OrderStatusCopyWithImpl(
+      _$_OrderStatus _value, $Res Function(_$_OrderStatus) _then)
+      : super(_value, (v) => _then(v as _$_OrderStatus));
 
   @override
-  _OrderStatus get _value => super._value as _OrderStatus;
+  _$_OrderStatus get _value => super._value as _$_OrderStatus;
 
   @override
   $Res call({
@@ -157,7 +128,7 @@ class __$OrderStatusCopyWithImpl<$Res> extends _$OrderStatusCopyWithImpl<$Res>
     Object? color = freezed,
     Object? sort_order = freezed,
   }) {
-    return _then(_OrderStatus(
+    return _then(_$_OrderStatus(
       order_status_id: order_status_id == freezed
           ? _value.order_status_id
           : order_status_id // ignore: cast_nullable_to_non_nullable
@@ -222,7 +193,7 @@ class _$_OrderStatus implements _OrderStatus {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _OrderStatus &&
+            other is _$_OrderStatus &&
             const DeepCollectionEquality()
                 .equals(other.order_status_id, order_status_id) &&
             const DeepCollectionEquality()
@@ -234,6 +205,7 @@ class _$_OrderStatus implements _OrderStatus {
                 .equals(other.sort_order, sort_order));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -246,8 +218,8 @@ class _$_OrderStatus implements _OrderStatus {
 
   @JsonKey(ignore: true)
   @override
-  _$OrderStatusCopyWith<_OrderStatus> get copyWith =>
-      __$OrderStatusCopyWithImpl<_OrderStatus>(this, _$identity);
+  _$$_OrderStatusCopyWith<_$_OrderStatus> get copyWith =>
+      __$$_OrderStatusCopyWithImpl<_$_OrderStatus>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -257,30 +229,30 @@ class _$_OrderStatus implements _OrderStatus {
 
 abstract class _OrderStatus implements OrderStatus {
   factory _OrderStatus(
-      {num? order_status_id,
-      num? language_id,
-      String? name,
-      String? message,
-      String? color,
-      num? sort_order}) = _$_OrderStatus;
+      {final num? order_status_id,
+      final num? language_id,
+      final String? name,
+      final String? message,
+      final String? color,
+      final num? sort_order}) = _$_OrderStatus;
 
   factory _OrderStatus.fromJson(Map<String, dynamic> json) =
       _$_OrderStatus.fromJson;
 
   @override
-  num? get order_status_id;
+  num? get order_status_id => throw _privateConstructorUsedError;
   @override
-  num? get language_id;
+  num? get language_id => throw _privateConstructorUsedError;
   @override
-  String? get name;
+  String? get name => throw _privateConstructorUsedError;
   @override
-  String? get message;
+  String? get message => throw _privateConstructorUsedError;
   @override
-  String? get color;
+  String? get color => throw _privateConstructorUsedError;
   @override
-  num? get sort_order;
+  num? get sort_order => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$OrderStatusCopyWith<_OrderStatus> get copyWith =>
+  _$$_OrderStatusCopyWith<_$_OrderStatus> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -20,9 +20,6 @@ class ResetPasswordPage extends StatelessWidget {
     return Scaffold(
         body: AnimatedContainer(
       duration: const Duration(seconds: 1),
-      child: const Center(
-        child: ResetCard(),
-      ),
       decoration: const BoxDecoration(color: Palette.orangeColor
           // gradient: LinearGradient(
           //     begin: Alignment.topLeft,
@@ -30,6 +27,9 @@ class ResetPasswordPage extends StatelessWidget {
           //     colors: [Palette.greenColor, Palette.orangeColor]
           //     )
           ),
+      child: const Center(
+        child: ResetCard(),
+      ),
     ));
   }
 }
@@ -39,7 +39,7 @@ class ResetCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var _formKey = GlobalKey<FormBuilderState>();
+    var formKey = GlobalKey<FormBuilderState>();
     return Card(
       elevation: 20,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
@@ -49,7 +49,7 @@ class ResetCard extends StatelessWidget {
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: FormBuilder(
-            key: _formKey,
+            key: formKey,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -97,6 +97,7 @@ class ResetCard extends StatelessWidget {
                       await AppToast.showToast(
                           message: 'Check your email', isError: false);
 
+                      // ignore: use_build_context_synchronously
                       AutoRouter.of(context).pop();
                     }
                     if (state is ResetPasswordFailed) {
@@ -108,14 +109,14 @@ class ResetCard extends StatelessWidget {
                       return const SpinKitHourGlass(color: Palette.greenColor);
                     }
                     return CupertinoButton(
-                        child: const Text('Reset password'),
                         color: Palette.greenColor,
                         onPressed: () {
-                          if (_formKey.currentState!.saveAndValidate()) {
+                          if (formKey.currentState!.saveAndValidate()) {
                             context.read<ResetPasswordCubit>().resetPassword(
-                                data: _formKey.currentState!.value);
+                                data: formKey.currentState!.value);
                           }
-                        });
+                        },
+                        child: const Text('Reset password'));
                   },
                 ),
                 const SizedBox(

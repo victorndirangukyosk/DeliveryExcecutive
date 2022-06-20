@@ -12,48 +12,11 @@ part of 'accept_reject.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 AcceptReject _$AcceptRejectFromJson(Map<String, dynamic> json) {
   return _AcceptReject.fromJson(json);
 }
-
-/// @nodoc
-class _$AcceptRejectTearOff {
-  const _$AcceptRejectTearOff();
-
-  _AcceptReject call(
-      {String? status,
-      String? product_store_id,
-      String? product_id,
-      String? quantity,
-      String? price,
-      String? total,
-      String? tax,
-      String? name,
-      String? unit,
-      String? comment}) {
-    return _AcceptReject(
-      status: status,
-      product_store_id: product_store_id,
-      product_id: product_id,
-      quantity: quantity,
-      price: price,
-      total: total,
-      tax: tax,
-      name: name,
-      unit: unit,
-      comment: comment,
-    );
-  }
-
-  AcceptReject fromJson(Map<String, Object?> json) {
-    return AcceptReject.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $AcceptReject = _$AcceptRejectTearOff();
 
 /// @nodoc
 mixin _$AcceptReject {
@@ -159,11 +122,11 @@ class _$AcceptRejectCopyWithImpl<$Res> implements $AcceptRejectCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$AcceptRejectCopyWith<$Res>
+abstract class _$$_AcceptRejectCopyWith<$Res>
     implements $AcceptRejectCopyWith<$Res> {
-  factory _$AcceptRejectCopyWith(
-          _AcceptReject value, $Res Function(_AcceptReject) then) =
-      __$AcceptRejectCopyWithImpl<$Res>;
+  factory _$$_AcceptRejectCopyWith(
+          _$_AcceptReject value, $Res Function(_$_AcceptReject) then) =
+      __$$_AcceptRejectCopyWithImpl<$Res>;
   @override
   $Res call(
       {String? status,
@@ -179,14 +142,15 @@ abstract class _$AcceptRejectCopyWith<$Res>
 }
 
 /// @nodoc
-class __$AcceptRejectCopyWithImpl<$Res> extends _$AcceptRejectCopyWithImpl<$Res>
-    implements _$AcceptRejectCopyWith<$Res> {
-  __$AcceptRejectCopyWithImpl(
-      _AcceptReject _value, $Res Function(_AcceptReject) _then)
-      : super(_value, (v) => _then(v as _AcceptReject));
+class __$$_AcceptRejectCopyWithImpl<$Res>
+    extends _$AcceptRejectCopyWithImpl<$Res>
+    implements _$$_AcceptRejectCopyWith<$Res> {
+  __$$_AcceptRejectCopyWithImpl(
+      _$_AcceptReject _value, $Res Function(_$_AcceptReject) _then)
+      : super(_value, (v) => _then(v as _$_AcceptReject));
 
   @override
-  _AcceptReject get _value => super._value as _AcceptReject;
+  _$_AcceptReject get _value => super._value as _$_AcceptReject;
 
   @override
   $Res call({
@@ -201,7 +165,7 @@ class __$AcceptRejectCopyWithImpl<$Res> extends _$AcceptRejectCopyWithImpl<$Res>
     Object? unit = freezed,
     Object? comment = freezed,
   }) {
-    return _then(_AcceptReject(
+    return _then(_$_AcceptReject(
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -294,7 +258,7 @@ class _$_AcceptReject implements _AcceptReject {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _AcceptReject &&
+            other is _$_AcceptReject &&
             const DeepCollectionEquality().equals(other.status, status) &&
             const DeepCollectionEquality()
                 .equals(other.product_store_id, product_store_id) &&
@@ -309,6 +273,7 @@ class _$_AcceptReject implements _AcceptReject {
             const DeepCollectionEquality().equals(other.comment, comment));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -325,8 +290,8 @@ class _$_AcceptReject implements _AcceptReject {
 
   @JsonKey(ignore: true)
   @override
-  _$AcceptRejectCopyWith<_AcceptReject> get copyWith =>
-      __$AcceptRejectCopyWithImpl<_AcceptReject>(this, _$identity);
+  _$$_AcceptRejectCopyWith<_$_AcceptReject> get copyWith =>
+      __$$_AcceptRejectCopyWithImpl<_$_AcceptReject>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -336,42 +301,42 @@ class _$_AcceptReject implements _AcceptReject {
 
 abstract class _AcceptReject implements AcceptReject {
   factory _AcceptReject(
-      {String? status,
-      String? product_store_id,
-      String? product_id,
-      String? quantity,
-      String? price,
-      String? total,
-      String? tax,
-      String? name,
-      String? unit,
-      String? comment}) = _$_AcceptReject;
+      {final String? status,
+      final String? product_store_id,
+      final String? product_id,
+      final String? quantity,
+      final String? price,
+      final String? total,
+      final String? tax,
+      final String? name,
+      final String? unit,
+      final String? comment}) = _$_AcceptReject;
 
   factory _AcceptReject.fromJson(Map<String, dynamic> json) =
       _$_AcceptReject.fromJson;
 
   @override
-  String? get status;
+  String? get status => throw _privateConstructorUsedError;
   @override
-  String? get product_store_id;
+  String? get product_store_id => throw _privateConstructorUsedError;
   @override
-  String? get product_id;
+  String? get product_id => throw _privateConstructorUsedError;
   @override
-  String? get quantity;
+  String? get quantity => throw _privateConstructorUsedError;
   @override
-  String? get price;
+  String? get price => throw _privateConstructorUsedError;
   @override
-  String? get total;
+  String? get total => throw _privateConstructorUsedError;
   @override
-  String? get tax;
+  String? get tax => throw _privateConstructorUsedError;
   @override
-  String? get name;
+  String? get name => throw _privateConstructorUsedError;
   @override
-  String? get unit;
+  String? get unit => throw _privateConstructorUsedError;
   @override
-  String? get comment;
+  String? get comment => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$AcceptRejectCopyWith<_AcceptReject> get copyWith =>
+  _$$_AcceptRejectCopyWith<_$_AcceptReject> get copyWith =>
       throw _privateConstructorUsedError;
 }

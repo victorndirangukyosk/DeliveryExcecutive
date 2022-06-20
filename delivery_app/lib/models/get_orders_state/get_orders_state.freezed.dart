@@ -12,30 +12,11 @@ part of 'get_orders_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 GetOrdersState _$GetOrdersStateFromJson(Map<String, dynamic> json) {
   return _GetOrdersState.fromJson(json);
 }
-
-/// @nodoc
-class _$GetOrdersStateTearOff {
-  const _$GetOrdersStateTearOff();
-
-  _GetOrdersState call(num? order_status_id, String? name) {
-    return _GetOrdersState(
-      order_status_id,
-      name,
-    );
-  }
-
-  GetOrdersState fromJson(Map<String, Object?> json) {
-    return GetOrdersState.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $GetOrdersState = _$GetOrdersStateTearOff();
 
 /// @nodoc
 mixin _$GetOrdersState {
@@ -84,32 +65,32 @@ class _$GetOrdersStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$GetOrdersStateCopyWith<$Res>
+abstract class _$$_GetOrdersStateCopyWith<$Res>
     implements $GetOrdersStateCopyWith<$Res> {
-  factory _$GetOrdersStateCopyWith(
-          _GetOrdersState value, $Res Function(_GetOrdersState) then) =
-      __$GetOrdersStateCopyWithImpl<$Res>;
+  factory _$$_GetOrdersStateCopyWith(
+          _$_GetOrdersState value, $Res Function(_$_GetOrdersState) then) =
+      __$$_GetOrdersStateCopyWithImpl<$Res>;
   @override
   $Res call({num? order_status_id, String? name});
 }
 
 /// @nodoc
-class __$GetOrdersStateCopyWithImpl<$Res>
+class __$$_GetOrdersStateCopyWithImpl<$Res>
     extends _$GetOrdersStateCopyWithImpl<$Res>
-    implements _$GetOrdersStateCopyWith<$Res> {
-  __$GetOrdersStateCopyWithImpl(
-      _GetOrdersState _value, $Res Function(_GetOrdersState) _then)
-      : super(_value, (v) => _then(v as _GetOrdersState));
+    implements _$$_GetOrdersStateCopyWith<$Res> {
+  __$$_GetOrdersStateCopyWithImpl(
+      _$_GetOrdersState _value, $Res Function(_$_GetOrdersState) _then)
+      : super(_value, (v) => _then(v as _$_GetOrdersState));
 
   @override
-  _GetOrdersState get _value => super._value as _GetOrdersState;
+  _$_GetOrdersState get _value => super._value as _$_GetOrdersState;
 
   @override
   $Res call({
     Object? order_status_id = freezed,
     Object? name = freezed,
   }) {
-    return _then(_GetOrdersState(
+    return _then(_$_GetOrdersState(
       order_status_id == freezed
           ? _value.order_status_id
           : order_status_id // ignore: cast_nullable_to_non_nullable
@@ -144,12 +125,13 @@ class _$_GetOrdersState implements _GetOrdersState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _GetOrdersState &&
+            other is _$_GetOrdersState &&
             const DeepCollectionEquality()
                 .equals(other.order_status_id, order_status_id) &&
             const DeepCollectionEquality().equals(other.name, name));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -158,8 +140,8 @@ class _$_GetOrdersState implements _GetOrdersState {
 
   @JsonKey(ignore: true)
   @override
-  _$GetOrdersStateCopyWith<_GetOrdersState> get copyWith =>
-      __$GetOrdersStateCopyWithImpl<_GetOrdersState>(this, _$identity);
+  _$$_GetOrdersStateCopyWith<_$_GetOrdersState> get copyWith =>
+      __$$_GetOrdersStateCopyWithImpl<_$_GetOrdersState>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -168,18 +150,18 @@ class _$_GetOrdersState implements _GetOrdersState {
 }
 
 abstract class _GetOrdersState implements GetOrdersState {
-  factory _GetOrdersState(num? order_status_id, String? name) =
+  factory _GetOrdersState(final num? order_status_id, final String? name) =
       _$_GetOrdersState;
 
   factory _GetOrdersState.fromJson(Map<String, dynamic> json) =
       _$_GetOrdersState.fromJson;
 
   @override
-  num? get order_status_id;
+  num? get order_status_id => throw _privateConstructorUsedError;
   @override
-  String? get name;
+  String? get name => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$GetOrdersStateCopyWith<_GetOrdersState> get copyWith =>
+  _$$_GetOrdersStateCopyWith<_$_GetOrdersState> get copyWith =>
       throw _privateConstructorUsedError;
 }

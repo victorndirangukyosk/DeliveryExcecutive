@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
@@ -56,6 +58,8 @@ class CustomerVerification extends StatelessWidget {
                       );
                     });
                 Navigator.pop(context);
+                AutoRouter.of(context)
+                    .replace(const MainHomeDeliveryExecutiveRoute());
               });
         },
         builder: (context, state) {
@@ -160,8 +164,6 @@ class CustomerVerification extends StatelessWidget {
                     color: Palette.greenColor,
                     onPressed: () {
                       context.read<CustomerVerificationCubit>();
-                      AutoRouter.of(context)
-                          .replace(const MainHomeDeliveryExecutiveRoute());
                     })
               ],
             ),

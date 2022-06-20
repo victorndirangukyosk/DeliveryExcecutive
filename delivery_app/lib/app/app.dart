@@ -11,16 +11,13 @@ import 'package:delivery_app/cubits/customer_verification/customer_verification_
 import 'package:delivery_app/cubits/fetch_order_status_cubit/fetch_order_status_cubit.dart';
 import 'package:delivery_app/cubits/get_assigned_cubit/de/cubit/assigned_de_cubit.dart';
 import 'package:delivery_app/cubits/get_assigned_cubit/op/get_assigned_cubit.dart';
-// import 'package:delivery_app/cubits/authentication/token_cubit.dart';
+
 import 'package:delivery_app/cubits/cubits.dart';
 import 'package:delivery_app/cubits/is_de_cubit/is_de_cubit.dart';
 import 'package:delivery_app/cubits/op_selection_cubit/op_selection_cubit.dart';
 import 'package:delivery_app/cubits/order_details_cubit/order_details_cubit.dart';
 import 'package:delivery_app/cubits/order_details_list/odetails_list_cubit.dart';
 import 'package:delivery_app/cubits/processed_items_cubit/processed_items_cubit.dart';
-import 'package:delivery_app/models/assigned/de/assigned_de.dart';
-// import 'package:delivery_app/cubits/qr_scanner_cubit/qr_scanner_cubit.dart';
-// import 'package:delivery_app/cubits/select_date_cubit/select_date_cubit.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 import 'package:delivery_app/user_interfaces/packing/items_processing/processed_order_list.dart';
 import 'package:flutter/material.dart';
@@ -90,9 +87,7 @@ class KwikBasketDeliveryApp extends StatelessWidget {
                 primaryColor: Palette.greenColor,
                 colorScheme: const ColorScheme(
                     primary: Palette.greenColor,
-                    primaryVariant: Colors.black,
                     secondary: Palette.orangeColor,
-                    secondaryVariant: Colors.amber,
                     surface: Colors.white,
                     background: Colors.white,
                     error: Colors.red,

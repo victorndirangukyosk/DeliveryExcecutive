@@ -12,50 +12,11 @@ part of 'filter_flag.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 FilterFlag _$FilterFlagFromJson(Map<String, dynamic> json) {
   return _FilterFlag.fromJson(json);
 }
-
-/// @nodoc
-class _$FilterFlagTearOff {
-  const _$FilterFlagTearOff();
-
-  _FilterFlag call(
-      {num? order_product_id,
-      num? order_id,
-      num? product_id,
-      num? product_general_id,
-      num? quantity,
-      num? price,
-      num? total,
-      num? tax,
-      String? name,
-      String? unit,
-      String? status}) {
-    return _FilterFlag(
-      order_product_id: order_product_id,
-      order_id: order_id,
-      product_id: product_id,
-      product_general_id: product_general_id,
-      quantity: quantity,
-      price: price,
-      total: total,
-      tax: tax,
-      name: name,
-      unit: unit,
-      status: status,
-    );
-  }
-
-  FilterFlag fromJson(Map<String, Object?> json) {
-    return FilterFlag.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $FilterFlag = _$FilterFlagTearOff();
 
 /// @nodoc
 mixin _$FilterFlag {
@@ -168,10 +129,11 @@ class _$FilterFlagCopyWithImpl<$Res> implements $FilterFlagCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$FilterFlagCopyWith<$Res> implements $FilterFlagCopyWith<$Res> {
-  factory _$FilterFlagCopyWith(
-          _FilterFlag value, $Res Function(_FilterFlag) then) =
-      __$FilterFlagCopyWithImpl<$Res>;
+abstract class _$$_FilterFlagCopyWith<$Res>
+    implements $FilterFlagCopyWith<$Res> {
+  factory _$$_FilterFlagCopyWith(
+          _$_FilterFlag value, $Res Function(_$_FilterFlag) then) =
+      __$$_FilterFlagCopyWithImpl<$Res>;
   @override
   $Res call(
       {num? order_product_id,
@@ -188,14 +150,14 @@ abstract class _$FilterFlagCopyWith<$Res> implements $FilterFlagCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$FilterFlagCopyWithImpl<$Res> extends _$FilterFlagCopyWithImpl<$Res>
-    implements _$FilterFlagCopyWith<$Res> {
-  __$FilterFlagCopyWithImpl(
-      _FilterFlag _value, $Res Function(_FilterFlag) _then)
-      : super(_value, (v) => _then(v as _FilterFlag));
+class __$$_FilterFlagCopyWithImpl<$Res> extends _$FilterFlagCopyWithImpl<$Res>
+    implements _$$_FilterFlagCopyWith<$Res> {
+  __$$_FilterFlagCopyWithImpl(
+      _$_FilterFlag _value, $Res Function(_$_FilterFlag) _then)
+      : super(_value, (v) => _then(v as _$_FilterFlag));
 
   @override
-  _FilterFlag get _value => super._value as _FilterFlag;
+  _$_FilterFlag get _value => super._value as _$_FilterFlag;
 
   @override
   $Res call({
@@ -211,7 +173,7 @@ class __$FilterFlagCopyWithImpl<$Res> extends _$FilterFlagCopyWithImpl<$Res>
     Object? unit = freezed,
     Object? status = freezed,
   }) {
-    return _then(_FilterFlag(
+    return _then(_$_FilterFlag(
       order_product_id: order_product_id == freezed
           ? _value.order_product_id
           : order_product_id // ignore: cast_nullable_to_non_nullable
@@ -311,7 +273,7 @@ class _$_FilterFlag implements _FilterFlag {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _FilterFlag &&
+            other is _$_FilterFlag &&
             const DeepCollectionEquality()
                 .equals(other.order_product_id, order_product_id) &&
             const DeepCollectionEquality().equals(other.order_id, order_id) &&
@@ -328,6 +290,7 @@ class _$_FilterFlag implements _FilterFlag {
             const DeepCollectionEquality().equals(other.status, status));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -345,8 +308,8 @@ class _$_FilterFlag implements _FilterFlag {
 
   @JsonKey(ignore: true)
   @override
-  _$FilterFlagCopyWith<_FilterFlag> get copyWith =>
-      __$FilterFlagCopyWithImpl<_FilterFlag>(this, _$identity);
+  _$$_FilterFlagCopyWith<_$_FilterFlag> get copyWith =>
+      __$$_FilterFlagCopyWithImpl<_$_FilterFlag>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -356,45 +319,45 @@ class _$_FilterFlag implements _FilterFlag {
 
 abstract class _FilterFlag implements FilterFlag {
   factory _FilterFlag(
-      {num? order_product_id,
-      num? order_id,
-      num? product_id,
-      num? product_general_id,
-      num? quantity,
-      num? price,
-      num? total,
-      num? tax,
-      String? name,
-      String? unit,
-      String? status}) = _$_FilterFlag;
+      {final num? order_product_id,
+      final num? order_id,
+      final num? product_id,
+      final num? product_general_id,
+      final num? quantity,
+      final num? price,
+      final num? total,
+      final num? tax,
+      final String? name,
+      final String? unit,
+      final String? status}) = _$_FilterFlag;
 
   factory _FilterFlag.fromJson(Map<String, dynamic> json) =
       _$_FilterFlag.fromJson;
 
   @override
-  num? get order_product_id;
+  num? get order_product_id => throw _privateConstructorUsedError;
   @override
-  num? get order_id;
+  num? get order_id => throw _privateConstructorUsedError;
   @override
-  num? get product_id;
+  num? get product_id => throw _privateConstructorUsedError;
   @override
-  num? get product_general_id;
+  num? get product_general_id => throw _privateConstructorUsedError;
   @override
-  num? get quantity;
+  num? get quantity => throw _privateConstructorUsedError;
   @override
-  num? get price;
+  num? get price => throw _privateConstructorUsedError;
   @override
-  num? get total;
+  num? get total => throw _privateConstructorUsedError;
   @override
-  num? get tax;
+  num? get tax => throw _privateConstructorUsedError;
   @override
-  String? get name;
+  String? get name => throw _privateConstructorUsedError;
   @override
-  String? get unit;
+  String? get unit => throw _privateConstructorUsedError;
   @override
-  String? get status;
+  String? get status => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$FilterFlagCopyWith<_FilterFlag> get copyWith =>
+  _$$_FilterFlagCopyWith<_$_FilterFlag> get copyWith =>
       throw _privateConstructorUsedError;
 }

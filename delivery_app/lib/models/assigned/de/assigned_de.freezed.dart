@@ -12,62 +12,11 @@ part of 'assigned_de.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 AssignedDe _$AssignedDeFromJson(Map<String, dynamic> json) {
   return _AssignedDe.fromJson(json);
 }
-
-/// @nodoc
-class _$AssignedDeTearOff {
-  const _$AssignedDeTearOff();
-
-  _AssignedDe call(
-      {String? order_status,
-      num? products_count,
-      String? delivery_date,
-      String? delivery_timeslot,
-      String? comment,
-      String? shipping_address,
-      num? shopper_distance,
-      String? vehicle_number,
-      String? shipping_building_name,
-      num? delivery_executive_id,
-      String? shipping_flat_number,
-      int? order_id,
-      String? firstname,
-      String? lastname,
-      String? telephone,
-      String? email,
-      num? customer_id}) {
-    return _AssignedDe(
-      order_status: order_status,
-      products_count: products_count,
-      delivery_date: delivery_date,
-      delivery_timeslot: delivery_timeslot,
-      comment: comment,
-      shipping_address: shipping_address,
-      shopper_distance: shopper_distance,
-      vehicle_number: vehicle_number,
-      shipping_building_name: shipping_building_name,
-      delivery_executive_id: delivery_executive_id,
-      shipping_flat_number: shipping_flat_number,
-      order_id: order_id,
-      firstname: firstname,
-      lastname: lastname,
-      telephone: telephone,
-      email: email,
-      customer_id: customer_id,
-    );
-  }
-
-  AssignedDe fromJson(Map<String, Object?> json) {
-    return AssignedDe.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $AssignedDe = _$AssignedDeTearOff();
 
 /// @nodoc
 mixin _$AssignedDe {
@@ -222,10 +171,11 @@ class _$AssignedDeCopyWithImpl<$Res> implements $AssignedDeCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$AssignedDeCopyWith<$Res> implements $AssignedDeCopyWith<$Res> {
-  factory _$AssignedDeCopyWith(
-          _AssignedDe value, $Res Function(_AssignedDe) then) =
-      __$AssignedDeCopyWithImpl<$Res>;
+abstract class _$$_AssignedDeCopyWith<$Res>
+    implements $AssignedDeCopyWith<$Res> {
+  factory _$$_AssignedDeCopyWith(
+          _$_AssignedDe value, $Res Function(_$_AssignedDe) then) =
+      __$$_AssignedDeCopyWithImpl<$Res>;
   @override
   $Res call(
       {String? order_status,
@@ -248,14 +198,14 @@ abstract class _$AssignedDeCopyWith<$Res> implements $AssignedDeCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$AssignedDeCopyWithImpl<$Res> extends _$AssignedDeCopyWithImpl<$Res>
-    implements _$AssignedDeCopyWith<$Res> {
-  __$AssignedDeCopyWithImpl(
-      _AssignedDe _value, $Res Function(_AssignedDe) _then)
-      : super(_value, (v) => _then(v as _AssignedDe));
+class __$$_AssignedDeCopyWithImpl<$Res> extends _$AssignedDeCopyWithImpl<$Res>
+    implements _$$_AssignedDeCopyWith<$Res> {
+  __$$_AssignedDeCopyWithImpl(
+      _$_AssignedDe _value, $Res Function(_$_AssignedDe) _then)
+      : super(_value, (v) => _then(v as _$_AssignedDe));
 
   @override
-  _AssignedDe get _value => super._value as _AssignedDe;
+  _$_AssignedDe get _value => super._value as _$_AssignedDe;
 
   @override
   $Res call({
@@ -277,7 +227,7 @@ class __$AssignedDeCopyWithImpl<$Res> extends _$AssignedDeCopyWithImpl<$Res>
     Object? email = freezed,
     Object? customer_id = freezed,
   }) {
-    return _then(_AssignedDe(
+    return _then(_$_AssignedDe(
       order_status: order_status == freezed
           ? _value.order_status
           : order_status // ignore: cast_nullable_to_non_nullable
@@ -419,7 +369,7 @@ class _$_AssignedDe implements _AssignedDe {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _AssignedDe &&
+            other is _$_AssignedDe &&
             const DeepCollectionEquality()
                 .equals(other.order_status, order_status) &&
             const DeepCollectionEquality()
@@ -450,6 +400,7 @@ class _$_AssignedDe implements _AssignedDe {
                 .equals(other.customer_id, customer_id));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -473,8 +424,8 @@ class _$_AssignedDe implements _AssignedDe {
 
   @JsonKey(ignore: true)
   @override
-  _$AssignedDeCopyWith<_AssignedDe> get copyWith =>
-      __$AssignedDeCopyWithImpl<_AssignedDe>(this, _$identity);
+  _$$_AssignedDeCopyWith<_$_AssignedDe> get copyWith =>
+      __$$_AssignedDeCopyWithImpl<_$_AssignedDe>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -484,63 +435,63 @@ class _$_AssignedDe implements _AssignedDe {
 
 abstract class _AssignedDe implements AssignedDe {
   factory _AssignedDe(
-      {String? order_status,
-      num? products_count,
-      String? delivery_date,
-      String? delivery_timeslot,
-      String? comment,
-      String? shipping_address,
-      num? shopper_distance,
-      String? vehicle_number,
-      String? shipping_building_name,
-      num? delivery_executive_id,
-      String? shipping_flat_number,
-      int? order_id,
-      String? firstname,
-      String? lastname,
-      String? telephone,
-      String? email,
-      num? customer_id}) = _$_AssignedDe;
+      {final String? order_status,
+      final num? products_count,
+      final String? delivery_date,
+      final String? delivery_timeslot,
+      final String? comment,
+      final String? shipping_address,
+      final num? shopper_distance,
+      final String? vehicle_number,
+      final String? shipping_building_name,
+      final num? delivery_executive_id,
+      final String? shipping_flat_number,
+      final int? order_id,
+      final String? firstname,
+      final String? lastname,
+      final String? telephone,
+      final String? email,
+      final num? customer_id}) = _$_AssignedDe;
 
   factory _AssignedDe.fromJson(Map<String, dynamic> json) =
       _$_AssignedDe.fromJson;
 
   @override
-  String? get order_status;
+  String? get order_status => throw _privateConstructorUsedError;
   @override
-  num? get products_count;
+  num? get products_count => throw _privateConstructorUsedError;
   @override
-  String? get delivery_date;
+  String? get delivery_date => throw _privateConstructorUsedError;
   @override
-  String? get delivery_timeslot;
+  String? get delivery_timeslot => throw _privateConstructorUsedError;
   @override
-  String? get comment;
+  String? get comment => throw _privateConstructorUsedError;
   @override
-  String? get shipping_address;
+  String? get shipping_address => throw _privateConstructorUsedError;
   @override
-  num? get shopper_distance;
+  num? get shopper_distance => throw _privateConstructorUsedError;
   @override
-  String? get vehicle_number;
+  String? get vehicle_number => throw _privateConstructorUsedError;
   @override
-  String? get shipping_building_name;
+  String? get shipping_building_name => throw _privateConstructorUsedError;
   @override
-  num? get delivery_executive_id;
+  num? get delivery_executive_id => throw _privateConstructorUsedError;
   @override
-  String? get shipping_flat_number;
+  String? get shipping_flat_number => throw _privateConstructorUsedError;
   @override
-  int? get order_id;
+  int? get order_id => throw _privateConstructorUsedError;
   @override
-  String? get firstname;
+  String? get firstname => throw _privateConstructorUsedError;
   @override
-  String? get lastname;
+  String? get lastname => throw _privateConstructorUsedError;
   @override
-  String? get telephone;
+  String? get telephone => throw _privateConstructorUsedError;
   @override
-  String? get email;
+  String? get email => throw _privateConstructorUsedError;
   @override
-  num? get customer_id;
+  num? get customer_id => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$AssignedDeCopyWith<_AssignedDe> get copyWith =>
+  _$$_AssignedDeCopyWith<_$_AssignedDe> get copyWith =>
       throw _privateConstructorUsedError;
 }

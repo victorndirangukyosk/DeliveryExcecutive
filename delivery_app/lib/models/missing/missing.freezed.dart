@@ -12,33 +12,11 @@ part of 'missing.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Missing _$MissingFromJson(Map<String, dynamic> json) {
   return _Missing.fromJson(json);
 }
-
-/// @nodoc
-class _$MissingTearOff {
-  const _$MissingTearOff();
-
-  _Missing call(String? prouct_id, String? quantity, String? quantity_required,
-      String? comment) {
-    return _Missing(
-      prouct_id,
-      quantity,
-      quantity_required,
-      comment,
-    );
-  }
-
-  Missing fromJson(Map<String, Object?> json) {
-    return Missing.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Missing = _$MissingTearOff();
 
 /// @nodoc
 mixin _$Missing {
@@ -100,9 +78,10 @@ class _$MissingCopyWithImpl<$Res> implements $MissingCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$MissingCopyWith<$Res> implements $MissingCopyWith<$Res> {
-  factory _$MissingCopyWith(_Missing value, $Res Function(_Missing) then) =
-      __$MissingCopyWithImpl<$Res>;
+abstract class _$$_MissingCopyWith<$Res> implements $MissingCopyWith<$Res> {
+  factory _$$_MissingCopyWith(
+          _$_Missing value, $Res Function(_$_Missing) then) =
+      __$$_MissingCopyWithImpl<$Res>;
   @override
   $Res call(
       {String? prouct_id,
@@ -112,13 +91,13 @@ abstract class _$MissingCopyWith<$Res> implements $MissingCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$MissingCopyWithImpl<$Res> extends _$MissingCopyWithImpl<$Res>
-    implements _$MissingCopyWith<$Res> {
-  __$MissingCopyWithImpl(_Missing _value, $Res Function(_Missing) _then)
-      : super(_value, (v) => _then(v as _Missing));
+class __$$_MissingCopyWithImpl<$Res> extends _$MissingCopyWithImpl<$Res>
+    implements _$$_MissingCopyWith<$Res> {
+  __$$_MissingCopyWithImpl(_$_Missing _value, $Res Function(_$_Missing) _then)
+      : super(_value, (v) => _then(v as _$_Missing));
 
   @override
-  _Missing get _value => super._value as _Missing;
+  _$_Missing get _value => super._value as _$_Missing;
 
   @override
   $Res call({
@@ -127,7 +106,7 @@ class __$MissingCopyWithImpl<$Res> extends _$MissingCopyWithImpl<$Res>
     Object? quantity_required = freezed,
     Object? comment = freezed,
   }) {
-    return _then(_Missing(
+    return _then(_$_Missing(
       prouct_id == freezed
           ? _value.prouct_id
           : prouct_id // ignore: cast_nullable_to_non_nullable
@@ -175,7 +154,7 @@ class _$_Missing implements _Missing {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Missing &&
+            other is _$_Missing &&
             const DeepCollectionEquality().equals(other.prouct_id, prouct_id) &&
             const DeepCollectionEquality().equals(other.quantity, quantity) &&
             const DeepCollectionEquality()
@@ -183,6 +162,7 @@ class _$_Missing implements _Missing {
             const DeepCollectionEquality().equals(other.comment, comment));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -193,8 +173,8 @@ class _$_Missing implements _Missing {
 
   @JsonKey(ignore: true)
   @override
-  _$MissingCopyWith<_Missing> get copyWith =>
-      __$MissingCopyWithImpl<_Missing>(this, _$identity);
+  _$$_MissingCopyWith<_$_Missing> get copyWith =>
+      __$$_MissingCopyWithImpl<_$_Missing>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -203,21 +183,21 @@ class _$_Missing implements _Missing {
 }
 
 abstract class _Missing implements Missing {
-  factory _Missing(String? prouct_id, String? quantity,
-      String? quantity_required, String? comment) = _$_Missing;
+  factory _Missing(final String? prouct_id, final String? quantity,
+      final String? quantity_required, final String? comment) = _$_Missing;
 
   factory _Missing.fromJson(Map<String, dynamic> json) = _$_Missing.fromJson;
 
   @override
-  String? get prouct_id;
+  String? get prouct_id => throw _privateConstructorUsedError;
   @override
-  String? get quantity;
+  String? get quantity => throw _privateConstructorUsedError;
   @override
-  String? get quantity_required;
+  String? get quantity_required => throw _privateConstructorUsedError;
   @override
-  String? get comment;
+  String? get comment => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$MissingCopyWith<_Missing> get copyWith =>
+  _$$_MissingCopyWith<_$_Missing> get copyWith =>
       throw _privateConstructorUsedError;
 }

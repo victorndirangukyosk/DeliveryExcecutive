@@ -12,38 +12,11 @@ part of 'order_details.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 OrderDetails _$OrderDetailsFromJson(Map<String, dynamic> json) {
   return _OrderDetails.fromJson(json);
 }
-
-/// @nodoc
-class _$OrderDetailsTearOff {
-  const _$OrderDetailsTearOff();
-
-  _OrderDetails call(
-      {String? order_id,
-      num? products_count,
-      String? delivery_date,
-      String? delivery_timeslot,
-      String? comment}) {
-    return _OrderDetails(
-      order_id: order_id,
-      products_count: products_count,
-      delivery_date: delivery_date,
-      delivery_timeslot: delivery_timeslot,
-      comment: comment,
-    );
-  }
-
-  OrderDetails fromJson(Map<String, Object?> json) {
-    return OrderDetails.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $OrderDetails = _$OrderDetailsTearOff();
 
 /// @nodoc
 mixin _$OrderDetails {
@@ -115,11 +88,11 @@ class _$OrderDetailsCopyWithImpl<$Res> implements $OrderDetailsCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$OrderDetailsCopyWith<$Res>
+abstract class _$$_OrderDetailsCopyWith<$Res>
     implements $OrderDetailsCopyWith<$Res> {
-  factory _$OrderDetailsCopyWith(
-          _OrderDetails value, $Res Function(_OrderDetails) then) =
-      __$OrderDetailsCopyWithImpl<$Res>;
+  factory _$$_OrderDetailsCopyWith(
+          _$_OrderDetails value, $Res Function(_$_OrderDetails) then) =
+      __$$_OrderDetailsCopyWithImpl<$Res>;
   @override
   $Res call(
       {String? order_id,
@@ -130,14 +103,15 @@ abstract class _$OrderDetailsCopyWith<$Res>
 }
 
 /// @nodoc
-class __$OrderDetailsCopyWithImpl<$Res> extends _$OrderDetailsCopyWithImpl<$Res>
-    implements _$OrderDetailsCopyWith<$Res> {
-  __$OrderDetailsCopyWithImpl(
-      _OrderDetails _value, $Res Function(_OrderDetails) _then)
-      : super(_value, (v) => _then(v as _OrderDetails));
+class __$$_OrderDetailsCopyWithImpl<$Res>
+    extends _$OrderDetailsCopyWithImpl<$Res>
+    implements _$$_OrderDetailsCopyWith<$Res> {
+  __$$_OrderDetailsCopyWithImpl(
+      _$_OrderDetails _value, $Res Function(_$_OrderDetails) _then)
+      : super(_value, (v) => _then(v as _$_OrderDetails));
 
   @override
-  _OrderDetails get _value => super._value as _OrderDetails;
+  _$_OrderDetails get _value => super._value as _$_OrderDetails;
 
   @override
   $Res call({
@@ -147,7 +121,7 @@ class __$OrderDetailsCopyWithImpl<$Res> extends _$OrderDetailsCopyWithImpl<$Res>
     Object? delivery_timeslot = freezed,
     Object? comment = freezed,
   }) {
-    return _then(_OrderDetails(
+    return _then(_$_OrderDetails(
       order_id: order_id == freezed
           ? _value.order_id
           : order_id // ignore: cast_nullable_to_non_nullable
@@ -185,7 +159,8 @@ class _$_OrderDetails implements _OrderDetails {
   factory _$_OrderDetails.fromJson(Map<String, dynamic> json) =>
       _$$_OrderDetailsFromJson(json);
 
-  @override // dynamic? data,
+// dynamic? data,
+  @override
   final String? order_id;
   @override
   final num? products_count;
@@ -205,7 +180,7 @@ class _$_OrderDetails implements _OrderDetails {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _OrderDetails &&
+            other is _$_OrderDetails &&
             const DeepCollectionEquality().equals(other.order_id, order_id) &&
             const DeepCollectionEquality()
                 .equals(other.products_count, products_count) &&
@@ -216,6 +191,7 @@ class _$_OrderDetails implements _OrderDetails {
             const DeepCollectionEquality().equals(other.comment, comment));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -227,8 +203,8 @@ class _$_OrderDetails implements _OrderDetails {
 
   @JsonKey(ignore: true)
   @override
-  _$OrderDetailsCopyWith<_OrderDetails> get copyWith =>
-      __$OrderDetailsCopyWithImpl<_OrderDetails>(this, _$identity);
+  _$$_OrderDetailsCopyWith<_$_OrderDetails> get copyWith =>
+      __$$_OrderDetailsCopyWithImpl<_$_OrderDetails>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -238,27 +214,27 @@ class _$_OrderDetails implements _OrderDetails {
 
 abstract class _OrderDetails implements OrderDetails {
   factory _OrderDetails(
-      {String? order_id,
-      num? products_count,
-      String? delivery_date,
-      String? delivery_timeslot,
-      String? comment}) = _$_OrderDetails;
+      {final String? order_id,
+      final num? products_count,
+      final String? delivery_date,
+      final String? delivery_timeslot,
+      final String? comment}) = _$_OrderDetails;
 
   factory _OrderDetails.fromJson(Map<String, dynamic> json) =
       _$_OrderDetails.fromJson;
 
   @override // dynamic? data,
-  String? get order_id;
+  String? get order_id => throw _privateConstructorUsedError;
   @override
-  num? get products_count;
+  num? get products_count => throw _privateConstructorUsedError;
   @override
-  String? get delivery_date;
+  String? get delivery_date => throw _privateConstructorUsedError;
   @override
-  String? get delivery_timeslot;
+  String? get delivery_timeslot => throw _privateConstructorUsedError;
   @override
-  String? get comment;
+  String? get comment => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$OrderDetailsCopyWith<_OrderDetails> get copyWith =>
+  _$$_OrderDetailsCopyWith<_$_OrderDetails> get copyWith =>
       throw _privateConstructorUsedError;
 }

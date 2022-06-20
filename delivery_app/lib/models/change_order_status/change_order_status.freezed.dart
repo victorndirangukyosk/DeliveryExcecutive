@@ -12,48 +12,11 @@ part of 'change_order_status.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ChangeOrderStatus _$ChangeOrderStatusFromJson(Map<String, dynamic> json) {
   return _ChangeOrderStatus.fromJson(json);
 }
-
-/// @nodoc
-class _$ChangeOrderStatusTearOff {
-  const _$ChangeOrderStatusTearOff();
-
-  _ChangeOrderStatus call(
-      {String? tracking,
-      String? paid,
-      String? amount_partially_paid,
-      String? vehicle_number,
-      String? shipping_landmark,
-      String? shipping_building_name,
-      String? shipping_flat_number,
-      num? customer_id,
-      num? invoice_no,
-      String? invoice_prefix}) {
-    return _ChangeOrderStatus(
-      tracking: tracking,
-      paid: paid,
-      amount_partially_paid: amount_partially_paid,
-      vehicle_number: vehicle_number,
-      shipping_landmark: shipping_landmark,
-      shipping_building_name: shipping_building_name,
-      shipping_flat_number: shipping_flat_number,
-      customer_id: customer_id,
-      invoice_no: invoice_no,
-      invoice_prefix: invoice_prefix,
-    );
-  }
-
-  ChangeOrderStatus fromJson(Map<String, Object?> json) {
-    return ChangeOrderStatus.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ChangeOrderStatus = _$ChangeOrderStatusTearOff();
 
 /// @nodoc
 mixin _$ChangeOrderStatus {
@@ -160,11 +123,11 @@ class _$ChangeOrderStatusCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ChangeOrderStatusCopyWith<$Res>
+abstract class _$$_ChangeOrderStatusCopyWith<$Res>
     implements $ChangeOrderStatusCopyWith<$Res> {
-  factory _$ChangeOrderStatusCopyWith(
-          _ChangeOrderStatus value, $Res Function(_ChangeOrderStatus) then) =
-      __$ChangeOrderStatusCopyWithImpl<$Res>;
+  factory _$$_ChangeOrderStatusCopyWith(_$_ChangeOrderStatus value,
+          $Res Function(_$_ChangeOrderStatus) then) =
+      __$$_ChangeOrderStatusCopyWithImpl<$Res>;
   @override
   $Res call(
       {String? tracking,
@@ -180,15 +143,15 @@ abstract class _$ChangeOrderStatusCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ChangeOrderStatusCopyWithImpl<$Res>
+class __$$_ChangeOrderStatusCopyWithImpl<$Res>
     extends _$ChangeOrderStatusCopyWithImpl<$Res>
-    implements _$ChangeOrderStatusCopyWith<$Res> {
-  __$ChangeOrderStatusCopyWithImpl(
-      _ChangeOrderStatus _value, $Res Function(_ChangeOrderStatus) _then)
-      : super(_value, (v) => _then(v as _ChangeOrderStatus));
+    implements _$$_ChangeOrderStatusCopyWith<$Res> {
+  __$$_ChangeOrderStatusCopyWithImpl(
+      _$_ChangeOrderStatus _value, $Res Function(_$_ChangeOrderStatus) _then)
+      : super(_value, (v) => _then(v as _$_ChangeOrderStatus));
 
   @override
-  _ChangeOrderStatus get _value => super._value as _ChangeOrderStatus;
+  _$_ChangeOrderStatus get _value => super._value as _$_ChangeOrderStatus;
 
   @override
   $Res call({
@@ -203,7 +166,7 @@ class __$ChangeOrderStatusCopyWithImpl<$Res>
     Object? invoice_no = freezed,
     Object? invoice_prefix = freezed,
   }) {
-    return _then(_ChangeOrderStatus(
+    return _then(_$_ChangeOrderStatus(
       tracking: tracking == freezed
           ? _value.tracking
           : tracking // ignore: cast_nullable_to_non_nullable
@@ -296,7 +259,7 @@ class _$_ChangeOrderStatus implements _ChangeOrderStatus {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ChangeOrderStatus &&
+            other is _$_ChangeOrderStatus &&
             const DeepCollectionEquality().equals(other.tracking, tracking) &&
             const DeepCollectionEquality().equals(other.paid, paid) &&
             const DeepCollectionEquality()
@@ -317,6 +280,7 @@ class _$_ChangeOrderStatus implements _ChangeOrderStatus {
                 .equals(other.invoice_prefix, invoice_prefix));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -333,8 +297,9 @@ class _$_ChangeOrderStatus implements _ChangeOrderStatus {
 
   @JsonKey(ignore: true)
   @override
-  _$ChangeOrderStatusCopyWith<_ChangeOrderStatus> get copyWith =>
-      __$ChangeOrderStatusCopyWithImpl<_ChangeOrderStatus>(this, _$identity);
+  _$$_ChangeOrderStatusCopyWith<_$_ChangeOrderStatus> get copyWith =>
+      __$$_ChangeOrderStatusCopyWithImpl<_$_ChangeOrderStatus>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -344,42 +309,42 @@ class _$_ChangeOrderStatus implements _ChangeOrderStatus {
 
 abstract class _ChangeOrderStatus implements ChangeOrderStatus {
   factory _ChangeOrderStatus(
-      {String? tracking,
-      String? paid,
-      String? amount_partially_paid,
-      String? vehicle_number,
-      String? shipping_landmark,
-      String? shipping_building_name,
-      String? shipping_flat_number,
-      num? customer_id,
-      num? invoice_no,
-      String? invoice_prefix}) = _$_ChangeOrderStatus;
+      {final String? tracking,
+      final String? paid,
+      final String? amount_partially_paid,
+      final String? vehicle_number,
+      final String? shipping_landmark,
+      final String? shipping_building_name,
+      final String? shipping_flat_number,
+      final num? customer_id,
+      final num? invoice_no,
+      final String? invoice_prefix}) = _$_ChangeOrderStatus;
 
   factory _ChangeOrderStatus.fromJson(Map<String, dynamic> json) =
       _$_ChangeOrderStatus.fromJson;
 
   @override
-  String? get tracking;
+  String? get tracking => throw _privateConstructorUsedError;
   @override
-  String? get paid;
+  String? get paid => throw _privateConstructorUsedError;
   @override
-  String? get amount_partially_paid;
+  String? get amount_partially_paid => throw _privateConstructorUsedError;
   @override
-  String? get vehicle_number;
+  String? get vehicle_number => throw _privateConstructorUsedError;
   @override
-  String? get shipping_landmark;
+  String? get shipping_landmark => throw _privateConstructorUsedError;
   @override
-  String? get shipping_building_name;
+  String? get shipping_building_name => throw _privateConstructorUsedError;
   @override
-  String? get shipping_flat_number;
+  String? get shipping_flat_number => throw _privateConstructorUsedError;
   @override
-  num? get customer_id;
+  num? get customer_id => throw _privateConstructorUsedError;
   @override
-  num? get invoice_no;
+  num? get invoice_no => throw _privateConstructorUsedError;
   @override
-  String? get invoice_prefix;
+  String? get invoice_prefix => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ChangeOrderStatusCopyWith<_ChangeOrderStatus> get copyWith =>
+  _$$_ChangeOrderStatusCopyWith<_$_ChangeOrderStatus> get copyWith =>
       throw _privateConstructorUsedError;
 }

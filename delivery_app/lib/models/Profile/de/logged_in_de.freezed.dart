@@ -12,38 +12,11 @@ part of 'logged_in_de.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 LoggedInDe _$LoggedInDeFromJson(Map<String, dynamic> json) {
   return _LoggedInDe.fromJson(json);
 }
-
-/// @nodoc
-class _$LoggedInDeTearOff {
-  const _$LoggedInDeTearOff();
-
-  _LoggedInDe call(
-      {String? firstname,
-      String? lastname,
-      String? email,
-      String? date_added,
-      String? username}) {
-    return _LoggedInDe(
-      firstname: firstname,
-      lastname: lastname,
-      email: email,
-      date_added: date_added,
-      username: username,
-    );
-  }
-
-  LoggedInDe fromJson(Map<String, Object?> json) {
-    return LoggedInDe.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $LoggedInDe = _$LoggedInDeTearOff();
 
 /// @nodoc
 mixin _$LoggedInDe {
@@ -114,10 +87,11 @@ class _$LoggedInDeCopyWithImpl<$Res> implements $LoggedInDeCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$LoggedInDeCopyWith<$Res> implements $LoggedInDeCopyWith<$Res> {
-  factory _$LoggedInDeCopyWith(
-          _LoggedInDe value, $Res Function(_LoggedInDe) then) =
-      __$LoggedInDeCopyWithImpl<$Res>;
+abstract class _$$_LoggedInDeCopyWith<$Res>
+    implements $LoggedInDeCopyWith<$Res> {
+  factory _$$_LoggedInDeCopyWith(
+          _$_LoggedInDe value, $Res Function(_$_LoggedInDe) then) =
+      __$$_LoggedInDeCopyWithImpl<$Res>;
   @override
   $Res call(
       {String? firstname,
@@ -128,14 +102,14 @@ abstract class _$LoggedInDeCopyWith<$Res> implements $LoggedInDeCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$LoggedInDeCopyWithImpl<$Res> extends _$LoggedInDeCopyWithImpl<$Res>
-    implements _$LoggedInDeCopyWith<$Res> {
-  __$LoggedInDeCopyWithImpl(
-      _LoggedInDe _value, $Res Function(_LoggedInDe) _then)
-      : super(_value, (v) => _then(v as _LoggedInDe));
+class __$$_LoggedInDeCopyWithImpl<$Res> extends _$LoggedInDeCopyWithImpl<$Res>
+    implements _$$_LoggedInDeCopyWith<$Res> {
+  __$$_LoggedInDeCopyWithImpl(
+      _$_LoggedInDe _value, $Res Function(_$_LoggedInDe) _then)
+      : super(_value, (v) => _then(v as _$_LoggedInDe));
 
   @override
-  _LoggedInDe get _value => super._value as _LoggedInDe;
+  _$_LoggedInDe get _value => super._value as _$_LoggedInDe;
 
   @override
   $Res call({
@@ -145,7 +119,7 @@ class __$LoggedInDeCopyWithImpl<$Res> extends _$LoggedInDeCopyWithImpl<$Res>
     Object? date_added = freezed,
     Object? username = freezed,
   }) {
-    return _then(_LoggedInDe(
+    return _then(_$_LoggedInDe(
       firstname: firstname == freezed
           ? _value.firstname
           : firstname // ignore: cast_nullable_to_non_nullable
@@ -203,7 +177,7 @@ class _$_LoggedInDe implements _LoggedInDe {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _LoggedInDe &&
+            other is _$_LoggedInDe &&
             const DeepCollectionEquality().equals(other.firstname, firstname) &&
             const DeepCollectionEquality().equals(other.lastname, lastname) &&
             const DeepCollectionEquality().equals(other.email, email) &&
@@ -212,6 +186,7 @@ class _$_LoggedInDe implements _LoggedInDe {
             const DeepCollectionEquality().equals(other.username, username));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -223,8 +198,8 @@ class _$_LoggedInDe implements _LoggedInDe {
 
   @JsonKey(ignore: true)
   @override
-  _$LoggedInDeCopyWith<_LoggedInDe> get copyWith =>
-      __$LoggedInDeCopyWithImpl<_LoggedInDe>(this, _$identity);
+  _$$_LoggedInDeCopyWith<_$_LoggedInDe> get copyWith =>
+      __$$_LoggedInDeCopyWithImpl<_$_LoggedInDe>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -234,27 +209,27 @@ class _$_LoggedInDe implements _LoggedInDe {
 
 abstract class _LoggedInDe implements LoggedInDe {
   factory _LoggedInDe(
-      {String? firstname,
-      String? lastname,
-      String? email,
-      String? date_added,
-      String? username}) = _$_LoggedInDe;
+      {final String? firstname,
+      final String? lastname,
+      final String? email,
+      final String? date_added,
+      final String? username}) = _$_LoggedInDe;
 
   factory _LoggedInDe.fromJson(Map<String, dynamic> json) =
       _$_LoggedInDe.fromJson;
 
   @override
-  String? get firstname;
+  String? get firstname => throw _privateConstructorUsedError;
   @override
-  String? get lastname;
+  String? get lastname => throw _privateConstructorUsedError;
   @override
-  String? get email;
+  String? get email => throw _privateConstructorUsedError;
   @override
-  String? get date_added;
+  String? get date_added => throw _privateConstructorUsedError;
   @override
-  String? get username;
+  String? get username => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$LoggedInDeCopyWith<_LoggedInDe> get copyWith =>
+  _$$_LoggedInDeCopyWith<_$_LoggedInDe> get copyWith =>
       throw _privateConstructorUsedError;
 }

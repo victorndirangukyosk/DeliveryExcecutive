@@ -12,44 +12,11 @@ part of 'assigned_order.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 AssignedOrder _$AssignedOrderFromJson(Map<String, dynamic> json) {
   return _AssignedOrder.fromJson(json);
 }
-
-/// @nodoc
-class _$AssignedOrderTearOff {
-  const _$AssignedOrderTearOff();
-
-  _AssignedOrder call(
-      {String? order_status,
-      num? products_count,
-      String? delivery_date,
-      String? delivery_timeslot,
-      String? comment,
-      int? order_id,
-      num? order_processing_group_id,
-      num? order_processor_id}) {
-    return _AssignedOrder(
-      order_status: order_status,
-      products_count: products_count,
-      delivery_date: delivery_date,
-      delivery_timeslot: delivery_timeslot,
-      comment: comment,
-      order_id: order_id,
-      order_processing_group_id: order_processing_group_id,
-      order_processor_id: order_processor_id,
-    );
-  }
-
-  AssignedOrder fromJson(Map<String, Object?> json) {
-    return AssignedOrder.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $AssignedOrder = _$AssignedOrderTearOff();
 
 /// @nodoc
 mixin _$AssignedOrder {
@@ -142,11 +109,11 @@ class _$AssignedOrderCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$AssignedOrderCopyWith<$Res>
+abstract class _$$_AssignedOrderCopyWith<$Res>
     implements $AssignedOrderCopyWith<$Res> {
-  factory _$AssignedOrderCopyWith(
-          _AssignedOrder value, $Res Function(_AssignedOrder) then) =
-      __$AssignedOrderCopyWithImpl<$Res>;
+  factory _$$_AssignedOrderCopyWith(
+          _$_AssignedOrder value, $Res Function(_$_AssignedOrder) then) =
+      __$$_AssignedOrderCopyWithImpl<$Res>;
   @override
   $Res call(
       {String? order_status,
@@ -160,15 +127,15 @@ abstract class _$AssignedOrderCopyWith<$Res>
 }
 
 /// @nodoc
-class __$AssignedOrderCopyWithImpl<$Res>
+class __$$_AssignedOrderCopyWithImpl<$Res>
     extends _$AssignedOrderCopyWithImpl<$Res>
-    implements _$AssignedOrderCopyWith<$Res> {
-  __$AssignedOrderCopyWithImpl(
-      _AssignedOrder _value, $Res Function(_AssignedOrder) _then)
-      : super(_value, (v) => _then(v as _AssignedOrder));
+    implements _$$_AssignedOrderCopyWith<$Res> {
+  __$$_AssignedOrderCopyWithImpl(
+      _$_AssignedOrder _value, $Res Function(_$_AssignedOrder) _then)
+      : super(_value, (v) => _then(v as _$_AssignedOrder));
 
   @override
-  _AssignedOrder get _value => super._value as _AssignedOrder;
+  _$_AssignedOrder get _value => super._value as _$_AssignedOrder;
 
   @override
   $Res call({
@@ -181,7 +148,7 @@ class __$AssignedOrderCopyWithImpl<$Res>
     Object? order_processing_group_id = freezed,
     Object? order_processor_id = freezed,
   }) {
-    return _then(_AssignedOrder(
+    return _then(_$_AssignedOrder(
       order_status: order_status == freezed
           ? _value.order_status
           : order_status // ignore: cast_nullable_to_non_nullable
@@ -260,7 +227,7 @@ class _$_AssignedOrder implements _AssignedOrder {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _AssignedOrder &&
+            other is _$_AssignedOrder &&
             const DeepCollectionEquality()
                 .equals(other.order_status, order_status) &&
             const DeepCollectionEquality()
@@ -277,6 +244,7 @@ class _$_AssignedOrder implements _AssignedOrder {
                 .equals(other.order_processor_id, order_processor_id));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -291,8 +259,8 @@ class _$_AssignedOrder implements _AssignedOrder {
 
   @JsonKey(ignore: true)
   @override
-  _$AssignedOrderCopyWith<_AssignedOrder> get copyWith =>
-      __$AssignedOrderCopyWithImpl<_AssignedOrder>(this, _$identity);
+  _$$_AssignedOrderCopyWith<_$_AssignedOrder> get copyWith =>
+      __$$_AssignedOrderCopyWithImpl<_$_AssignedOrder>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -302,36 +270,36 @@ class _$_AssignedOrder implements _AssignedOrder {
 
 abstract class _AssignedOrder implements AssignedOrder {
   factory _AssignedOrder(
-      {String? order_status,
-      num? products_count,
-      String? delivery_date,
-      String? delivery_timeslot,
-      String? comment,
-      int? order_id,
-      num? order_processing_group_id,
-      num? order_processor_id}) = _$_AssignedOrder;
+      {final String? order_status,
+      final num? products_count,
+      final String? delivery_date,
+      final String? delivery_timeslot,
+      final String? comment,
+      final int? order_id,
+      final num? order_processing_group_id,
+      final num? order_processor_id}) = _$_AssignedOrder;
 
   factory _AssignedOrder.fromJson(Map<String, dynamic> json) =
       _$_AssignedOrder.fromJson;
 
   @override
-  String? get order_status;
+  String? get order_status => throw _privateConstructorUsedError;
   @override
-  num? get products_count;
+  num? get products_count => throw _privateConstructorUsedError;
   @override
-  String? get delivery_date;
+  String? get delivery_date => throw _privateConstructorUsedError;
   @override
-  String? get delivery_timeslot;
+  String? get delivery_timeslot => throw _privateConstructorUsedError;
   @override
-  String? get comment;
+  String? get comment => throw _privateConstructorUsedError;
   @override
-  int? get order_id;
+  int? get order_id => throw _privateConstructorUsedError;
   @override
-  num? get order_processing_group_id;
+  num? get order_processing_group_id => throw _privateConstructorUsedError;
   @override
-  num? get order_processor_id;
+  num? get order_processor_id => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$AssignedOrderCopyWith<_AssignedOrder> get copyWith =>
+  _$$_AssignedOrderCopyWith<_$_AssignedOrder> get copyWith =>
       throw _privateConstructorUsedError;
 }

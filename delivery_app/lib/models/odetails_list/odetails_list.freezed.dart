@@ -12,46 +12,11 @@ part of 'odetails_list.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 OdetailsList _$OdetailsListFromJson(Map<String, dynamic> json) {
   return _OdetailsList.fromJson(json);
 }
-
-/// @nodoc
-class _$OdetailsListTearOff {
-  const _$OdetailsListTearOff();
-
-  _OdetailsList call(
-      {String? name,
-      String? product_note,
-      String? unit,
-      String? product_store_id,
-      num? product_id,
-      num? price,
-      num? quantity,
-      num? total,
-      num? tax}) {
-    return _OdetailsList(
-      name: name,
-      product_note: product_note,
-      unit: unit,
-      product_store_id: product_store_id,
-      product_id: product_id,
-      price: price,
-      quantity: quantity,
-      total: total,
-      tax: tax,
-    );
-  }
-
-  OdetailsList fromJson(Map<String, Object?> json) {
-    return OdetailsList.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $OdetailsList = _$OdetailsListTearOff();
 
 /// @nodoc
 mixin _$OdetailsList {
@@ -150,11 +115,11 @@ class _$OdetailsListCopyWithImpl<$Res> implements $OdetailsListCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$OdetailsListCopyWith<$Res>
+abstract class _$$_OdetailsListCopyWith<$Res>
     implements $OdetailsListCopyWith<$Res> {
-  factory _$OdetailsListCopyWith(
-          _OdetailsList value, $Res Function(_OdetailsList) then) =
-      __$OdetailsListCopyWithImpl<$Res>;
+  factory _$$_OdetailsListCopyWith(
+          _$_OdetailsList value, $Res Function(_$_OdetailsList) then) =
+      __$$_OdetailsListCopyWithImpl<$Res>;
   @override
   $Res call(
       {String? name,
@@ -169,14 +134,15 @@ abstract class _$OdetailsListCopyWith<$Res>
 }
 
 /// @nodoc
-class __$OdetailsListCopyWithImpl<$Res> extends _$OdetailsListCopyWithImpl<$Res>
-    implements _$OdetailsListCopyWith<$Res> {
-  __$OdetailsListCopyWithImpl(
-      _OdetailsList _value, $Res Function(_OdetailsList) _then)
-      : super(_value, (v) => _then(v as _OdetailsList));
+class __$$_OdetailsListCopyWithImpl<$Res>
+    extends _$OdetailsListCopyWithImpl<$Res>
+    implements _$$_OdetailsListCopyWith<$Res> {
+  __$$_OdetailsListCopyWithImpl(
+      _$_OdetailsList _value, $Res Function(_$_OdetailsList) _then)
+      : super(_value, (v) => _then(v as _$_OdetailsList));
 
   @override
-  _OdetailsList get _value => super._value as _OdetailsList;
+  _$_OdetailsList get _value => super._value as _$_OdetailsList;
 
   @override
   $Res call({
@@ -190,7 +156,7 @@ class __$OdetailsListCopyWithImpl<$Res> extends _$OdetailsListCopyWithImpl<$Res>
     Object? total = freezed,
     Object? tax = freezed,
   }) {
-    return _then(_OdetailsList(
+    return _then(_$_OdetailsList(
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -276,7 +242,7 @@ class _$_OdetailsList implements _OdetailsList {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _OdetailsList &&
+            other is _$_OdetailsList &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
                 .equals(other.product_note, product_note) &&
@@ -291,6 +257,7 @@ class _$_OdetailsList implements _OdetailsList {
             const DeepCollectionEquality().equals(other.tax, tax));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -306,8 +273,8 @@ class _$_OdetailsList implements _OdetailsList {
 
   @JsonKey(ignore: true)
   @override
-  _$OdetailsListCopyWith<_OdetailsList> get copyWith =>
-      __$OdetailsListCopyWithImpl<_OdetailsList>(this, _$identity);
+  _$$_OdetailsListCopyWith<_$_OdetailsList> get copyWith =>
+      __$$_OdetailsListCopyWithImpl<_$_OdetailsList>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -317,39 +284,39 @@ class _$_OdetailsList implements _OdetailsList {
 
 abstract class _OdetailsList implements OdetailsList {
   factory _OdetailsList(
-      {String? name,
-      String? product_note,
-      String? unit,
-      String? product_store_id,
-      num? product_id,
-      num? price,
-      num? quantity,
-      num? total,
-      num? tax}) = _$_OdetailsList;
+      {final String? name,
+      final String? product_note,
+      final String? unit,
+      final String? product_store_id,
+      final num? product_id,
+      final num? price,
+      final num? quantity,
+      final num? total,
+      final num? tax}) = _$_OdetailsList;
 
   factory _OdetailsList.fromJson(Map<String, dynamic> json) =
       _$_OdetailsList.fromJson;
 
   @override
-  String? get name;
+  String? get name => throw _privateConstructorUsedError;
   @override
-  String? get product_note;
+  String? get product_note => throw _privateConstructorUsedError;
   @override
-  String? get unit;
+  String? get unit => throw _privateConstructorUsedError;
   @override
-  String? get product_store_id;
+  String? get product_store_id => throw _privateConstructorUsedError;
   @override
-  num? get product_id;
+  num? get product_id => throw _privateConstructorUsedError;
   @override
-  num? get price;
+  num? get price => throw _privateConstructorUsedError;
   @override
-  num? get quantity;
+  num? get quantity => throw _privateConstructorUsedError;
   @override
-  num? get total;
+  num? get total => throw _privateConstructorUsedError;
   @override
-  num? get tax;
+  num? get tax => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$OdetailsListCopyWith<_OdetailsList> get copyWith =>
+  _$$_OdetailsListCopyWith<_$_OdetailsList> get copyWith =>
       throw _privateConstructorUsedError;
 }
