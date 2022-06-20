@@ -883,16 +883,10 @@ class _CardWidgetState extends State<CardWidget> {
                                             element['order_id'] ==
                                                 widget.orderId &&
                                             element['product_id'] ==
-<<<<<<< HEAD
                                                 widget.dits.product_id)
                                         .isNotEmpty
                                     ?
 
-=======
-                                                widget.dits.product_id )
-                                        .isNotEmpty
-                                    ? 
->>>>>>> 94c2068fdf15030e88eb8a20f7f8bbb486f4bbf9
                                     /// Display the selected status if it's already there
                                     Text(context
                                         .watch<ProcessedItemsCubit>()
@@ -901,12 +895,8 @@ class _CardWidgetState extends State<CardWidget> {
                                             element['order_id'] ==
                                                 widget.orderId &&
                                             element['product_id'] ==
-<<<<<<< HEAD
                                                 widget.dits.product_id)
                                         .first['status'])
-=======
-                                                widget.dits.product_id ).first['status'])
->>>>>>> 94c2068fdf15030e88eb8a20f7f8bbb486f4bbf9
                                     : FormBuilderDropdown<dynamic>(
                                         name: 'status',
                                         onChanged: (e) async {

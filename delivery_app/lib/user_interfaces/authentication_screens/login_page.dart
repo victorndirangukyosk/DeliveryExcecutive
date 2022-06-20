@@ -79,7 +79,7 @@ class LoginCard extends StatelessWidget {
                 FormBuilderTextField(
                   name: 'user_name',
                   validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(context),
+                    FormBuilderValidators.required(),
                   ]),
                   decoration: InputDecoration(
                     hintText: 'Username',
@@ -97,7 +97,7 @@ class LoginCard extends StatelessWidget {
                 FormBuilderTextField(
                   name: 'password',
                   validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(context),
+                    FormBuilderValidators.required(),
                   ]),
                   obscureText: context.watch<ObscurePasswordCubit>().state,
                   decoration: InputDecoration(

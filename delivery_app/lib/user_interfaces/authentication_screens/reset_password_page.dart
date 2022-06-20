@@ -75,8 +75,8 @@ class ResetCard extends StatelessWidget {
                 FormBuilderTextField(
                   name: 'email',
                   validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(context),
-                    FormBuilderValidators.email(context),
+                    FormBuilderValidators.required(),
+                    FormBuilderValidators.email(),
                   ]),
                   decoration: InputDecoration(
                     hintText: 'Email',
