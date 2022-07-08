@@ -440,10 +440,12 @@ class CardTwo extends StatelessWidget {
                                 //   minimumSize: const Size.fromHeight(50), // NEW
                                 // ),
                                 onPressed: () {
+                                  // AutoRouter.of(context)
+                                  //     .push(DirectionsToAddress(
+                                  //   orderId: orderde.order_id!,
+                                  // ));
                                   AutoRouter.of(context)
-                                      .push(DirectionsToAddress(
-                                    orderId: orderde.order_id!,
-                                  ));
+                                      .push(const ReadyForDelivery());
                                 },
                                 child: const Text(
                                   'Start Trip ',
