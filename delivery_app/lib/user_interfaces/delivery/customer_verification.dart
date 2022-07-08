@@ -63,8 +63,7 @@ class _CustomerVerificationState extends State<CustomerVerification> {
                       );
                     });
                 Navigator.pop(context);
-                AutoRouter.of(context)
-                    .replace(const MainHomeDeliveryExecutiveRoute());
+                AutoRouter.of(context).replace(const InvoiceRoute());
               });
         },
         builder: (context, state) {
@@ -171,6 +170,7 @@ class _CustomerVerificationState extends State<CustomerVerification> {
                       color: Palette.greenColor,
                       onPressed: () {
                         context.read<CustomerVerificationCubit>();
+                        AutoRouter.of(context).replace(const InvoiceRoute());
                       })
                 ],
               ),
