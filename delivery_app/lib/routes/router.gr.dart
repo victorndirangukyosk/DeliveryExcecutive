@@ -11,7 +11,6 @@
 // ignore_for_file: type=lint
 
 import 'package:auto_route/auto_route.dart' as _i15;
-import 'package:flutter/cupertino.dart' as _i17;
 import 'package:flutter/material.dart' as _i16;
 
 import '../user_interfaces/authentication_screens/reset_password_page.dart'
@@ -53,29 +52,40 @@ class AppRouter extends _i15.RootStackRouter {
           routeData: routeData, child: const _i2.RegisterPage());
     },
     MainHomeRoute.name: (routeData) {
+      final args = routeData.argsAs<MainHomeRouteArgs>();
       return _i15.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i3.MainHomePage());
+          routeData: routeData,
+          child: _i3.MainHomePage(key: args.key, orderId: args.orderId));
     },
     SettingsRoute.name: (routeData) {
       return _i15.MaterialPageX<dynamic>(
           routeData: routeData, child: _i4.SettingsPage());
     },
     MainHomeDeliveryExecutiveRoute.name: (routeData) {
+      final args = routeData.argsAs<MainHomeDeliveryExecutiveRouteArgs>();
       return _i15.MaterialPageX<dynamic>(
           routeData: routeData,
-          child: const _i5.MainHomeDeliveryExecutivePage());
+          child: _i5.MainHomeDeliveryExecutivePage(
+              key: args.key, orderId: args.orderId));
     },
     SingleOrderRoute.name: (routeData) {
+      final args = routeData.argsAs<SingleOrderRouteArgs>();
       return _i15.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i6.SingleOrderPage());
+          routeData: routeData,
+          child: _i6.SingleOrderPage(key: args.key, orderId: args.orderId));
     },
     ReadyForDelivery.name: (routeData) {
+      final args = routeData.argsAs<ReadyForDeliveryArgs>();
       return _i15.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i7.ReadyForDelivery());
+          routeData: routeData,
+          child: _i7.ReadyForDelivery(key: args.key, orderId: args.orderId));
     },
     CustomerVerification.name: (routeData) {
+      final args = routeData.argsAs<CustomerVerificationArgs>();
       return _i15.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i8.CustomerVerification());
+          routeData: routeData,
+          child:
+              _i8.CustomerVerification(key: args.key, orderId: args.orderId));
     },
     DirectionsToAddress.name: (routeData) {
       final args = routeData.argsAs<DirectionsToAddressArgs>();
@@ -88,8 +98,10 @@ class AppRouter extends _i15.RootStackRouter {
           routeData: routeData, child: const _i10.ResetPasswordPage());
     },
     SummaryRoute.name: (routeData) {
+      final args = routeData.argsAs<SummaryRouteArgs>();
       return _i15.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i11.SummaryPage());
+          routeData: routeData,
+          child: _i11.SummaryPage(key: args.key, orderId: args.orderId));
     },
     OrderDetailsRoute.name: (routeData) {
       final args = routeData.argsAs<OrderDetailsRouteArgs>();
@@ -104,8 +116,10 @@ class AppRouter extends _i15.RootStackRouter {
           child: _i13.CratesPage(key: args.key, orderId: args.orderId));
     },
     InvoiceRoute.name: (routeData) {
+      final args = routeData.argsAs<InvoiceRouteArgs>();
       return _i15.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i14.InvoicePage());
+          routeData: routeData,
+          child: _i14.InvoicePage(key: args.key, orderId: args.orderId));
     }
   };
 
@@ -158,10 +172,26 @@ class RegisterRoute extends _i15.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.MainHomePage]
-class MainHomeRoute extends _i15.PageRouteInfo<void> {
-  const MainHomeRoute() : super(MainHomeRoute.name, path: '/main-home-page');
+class MainHomeRoute extends _i15.PageRouteInfo<MainHomeRouteArgs> {
+  MainHomeRoute({_i16.Key? key, required int orderId})
+      : super(MainHomeRoute.name,
+            path: '/main-home-page',
+            args: MainHomeRouteArgs(key: key, orderId: orderId));
 
   static const String name = 'MainHomeRoute';
+}
+
+class MainHomeRouteArgs {
+  const MainHomeRouteArgs({this.key, required this.orderId});
+
+  final _i16.Key? key;
+
+  final int orderId;
+
+  @override
+  String toString() {
+    return 'MainHomeRouteArgs{key: $key, orderId: $orderId}';
+  }
 }
 
 /// generated route for
@@ -174,45 +204,107 @@ class SettingsRoute extends _i15.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i5.MainHomeDeliveryExecutivePage]
-class MainHomeDeliveryExecutiveRoute extends _i15.PageRouteInfo<void> {
-  const MainHomeDeliveryExecutiveRoute()
+class MainHomeDeliveryExecutiveRoute
+    extends _i15.PageRouteInfo<MainHomeDeliveryExecutiveRouteArgs> {
+  MainHomeDeliveryExecutiveRoute({_i16.Key? key, required int orderId})
       : super(MainHomeDeliveryExecutiveRoute.name,
-            path: '/main-home-delivery-executive-page');
+            path: '/main-home-delivery-executive-page',
+            args:
+                MainHomeDeliveryExecutiveRouteArgs(key: key, orderId: orderId));
 
   static const String name = 'MainHomeDeliveryExecutiveRoute';
 }
 
+class MainHomeDeliveryExecutiveRouteArgs {
+  const MainHomeDeliveryExecutiveRouteArgs({this.key, required this.orderId});
+
+  final _i16.Key? key;
+
+  final int orderId;
+
+  @override
+  String toString() {
+    return 'MainHomeDeliveryExecutiveRouteArgs{key: $key, orderId: $orderId}';
+  }
+}
+
 /// generated route for
 /// [_i6.SingleOrderPage]
-class SingleOrderRoute extends _i15.PageRouteInfo<void> {
-  const SingleOrderRoute()
-      : super(SingleOrderRoute.name, path: '/single-order-page');
+class SingleOrderRoute extends _i15.PageRouteInfo<SingleOrderRouteArgs> {
+  SingleOrderRoute({_i16.Key? key, required int orderId})
+      : super(SingleOrderRoute.name,
+            path: '/single-order-page',
+            args: SingleOrderRouteArgs(key: key, orderId: orderId));
 
   static const String name = 'SingleOrderRoute';
 }
 
+class SingleOrderRouteArgs {
+  const SingleOrderRouteArgs({this.key, required this.orderId});
+
+  final _i16.Key? key;
+
+  final int orderId;
+
+  @override
+  String toString() {
+    return 'SingleOrderRouteArgs{key: $key, orderId: $orderId}';
+  }
+}
+
 /// generated route for
 /// [_i7.ReadyForDelivery]
-class ReadyForDelivery extends _i15.PageRouteInfo<void> {
-  const ReadyForDelivery()
-      : super(ReadyForDelivery.name, path: '/ready-for-delivery');
+class ReadyForDelivery extends _i15.PageRouteInfo<ReadyForDeliveryArgs> {
+  ReadyForDelivery({_i16.Key? key, required int orderId})
+      : super(ReadyForDelivery.name,
+            path: '/ready-for-delivery',
+            args: ReadyForDeliveryArgs(key: key, orderId: orderId));
 
   static const String name = 'ReadyForDelivery';
 }
 
+class ReadyForDeliveryArgs {
+  const ReadyForDeliveryArgs({this.key, required this.orderId});
+
+  final _i16.Key? key;
+
+  final int orderId;
+
+  @override
+  String toString() {
+    return 'ReadyForDeliveryArgs{key: $key, orderId: $orderId}';
+  }
+}
+
 /// generated route for
 /// [_i8.CustomerVerification]
-class CustomerVerification extends _i15.PageRouteInfo<void> {
-  const CustomerVerification()
-      : super(CustomerVerification.name, path: '/customer-verification');
+class CustomerVerification
+    extends _i15.PageRouteInfo<CustomerVerificationArgs> {
+  CustomerVerification({_i16.Key? key, required int orderId})
+      : super(CustomerVerification.name,
+            path: '/customer-verification',
+            args: CustomerVerificationArgs(key: key, orderId: orderId));
 
   static const String name = 'CustomerVerification';
+}
+
+class CustomerVerificationArgs {
+  const CustomerVerificationArgs({this.key, required this.orderId});
+
+  final _i16.Key? key;
+
+  final int orderId;
+
+  @override
+  String toString() {
+    return 'CustomerVerificationArgs{key: $key, orderId: $orderId}';
+  }
 }
 
 /// generated route for
 /// [_i9.DirectionsToAddress]
 class DirectionsToAddress extends _i15.PageRouteInfo<DirectionsToAddressArgs> {
-  DirectionsToAddress({_i17.Key? key, required int orderId})
+  DirectionsToAddress({_i16.Key? key, required int orderId})
       : super(DirectionsToAddress.name,
             path: '/directions-to-address',
             args: DirectionsToAddressArgs(key: key, orderId: orderId));
@@ -223,7 +315,7 @@ class DirectionsToAddress extends _i15.PageRouteInfo<DirectionsToAddressArgs> {
 class DirectionsToAddressArgs {
   const DirectionsToAddressArgs({this.key, required this.orderId});
 
-  final _i17.Key? key;
+  final _i16.Key? key;
 
   final int orderId;
 
@@ -244,16 +336,32 @@ class ResetPasswordRoute extends _i15.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i11.SummaryPage]
-class SummaryRoute extends _i15.PageRouteInfo<void> {
-  const SummaryRoute() : super(SummaryRoute.name, path: '/summary-page');
+class SummaryRoute extends _i15.PageRouteInfo<SummaryRouteArgs> {
+  SummaryRoute({_i16.Key? key, required int orderId})
+      : super(SummaryRoute.name,
+            path: '/summary-page',
+            args: SummaryRouteArgs(key: key, orderId: orderId));
 
   static const String name = 'SummaryRoute';
+}
+
+class SummaryRouteArgs {
+  const SummaryRouteArgs({this.key, required this.orderId});
+
+  final _i16.Key? key;
+
+  final int orderId;
+
+  @override
+  String toString() {
+    return 'SummaryRouteArgs{key: $key, orderId: $orderId}';
+  }
 }
 
 /// generated route for
 /// [_i12.OrderDetailsPage]
 class OrderDetailsRoute extends _i15.PageRouteInfo<OrderDetailsRouteArgs> {
-  OrderDetailsRoute({_i17.Key? key, required int orderId})
+  OrderDetailsRoute({_i16.Key? key, required int orderId})
       : super(OrderDetailsRoute.name,
             path: '/order-details-page',
             args: OrderDetailsRouteArgs(key: key, orderId: orderId));
@@ -264,7 +372,7 @@ class OrderDetailsRoute extends _i15.PageRouteInfo<OrderDetailsRouteArgs> {
 class OrderDetailsRouteArgs {
   const OrderDetailsRouteArgs({this.key, required this.orderId});
 
-  final _i17.Key? key;
+  final _i16.Key? key;
 
   final int orderId;
 
@@ -277,7 +385,7 @@ class OrderDetailsRouteArgs {
 /// generated route for
 /// [_i13.CratesPage]
 class CratesRoute extends _i15.PageRouteInfo<CratesRouteArgs> {
-  CratesRoute({_i17.Key? key, required int orderId})
+  CratesRoute({_i16.Key? key, required int orderId})
       : super(CratesRoute.name,
             path: '/crates-page',
             args: CratesRouteArgs(key: key, orderId: orderId));
@@ -288,7 +396,7 @@ class CratesRoute extends _i15.PageRouteInfo<CratesRouteArgs> {
 class CratesRouteArgs {
   const CratesRouteArgs({this.key, required this.orderId});
 
-  final _i17.Key? key;
+  final _i16.Key? key;
 
   final int orderId;
 
@@ -300,8 +408,24 @@ class CratesRouteArgs {
 
 /// generated route for
 /// [_i14.InvoicePage]
-class InvoiceRoute extends _i15.PageRouteInfo<void> {
-  const InvoiceRoute() : super(InvoiceRoute.name, path: '/invoice-page');
+class InvoiceRoute extends _i15.PageRouteInfo<InvoiceRouteArgs> {
+  InvoiceRoute({_i16.Key? key, required int orderId})
+      : super(InvoiceRoute.name,
+            path: '/invoice-page',
+            args: InvoiceRouteArgs(key: key, orderId: orderId));
 
   static const String name = 'InvoiceRoute';
+}
+
+class InvoiceRouteArgs {
+  const InvoiceRouteArgs({this.key, required this.orderId});
+
+  final _i16.Key? key;
+
+  final int orderId;
+
+  @override
+  String toString() {
+    return 'InvoiceRouteArgs{key: $key, orderId: $orderId}';
+  }
 }

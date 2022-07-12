@@ -16,7 +16,8 @@ import 'package:delivery_app/cubits/cubits.dart';
 import 'package:delivery_app/cubits/is_de_cubit/is_de_cubit.dart';
 import 'package:delivery_app/cubits/op_selection_cubit/op_selection_cubit.dart';
 import 'package:delivery_app/cubits/order_details_cubit/order_details_cubit.dart';
-import 'package:delivery_app/cubits/order_details_list/odetails_list_cubit.dart';
+import 'package:delivery_app/cubits/order_details_list/op/odetails_list_cubit.dart';
+
 import 'package:delivery_app/cubits/processed_items_cubit/processed_items_cubit.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 import 'package:delivery_app/user_interfaces/packing/items_processing/processed_order_list.dart';

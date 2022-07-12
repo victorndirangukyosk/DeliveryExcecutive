@@ -24,7 +24,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class MainHomePage extends StatelessWidget {
-  const MainHomePage({Key? key}) : super(key: key);
+  final int orderId;
+  const MainHomePage({Key? key, required this.orderId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -227,7 +228,10 @@ class MainHomePage extends StatelessWidget {
 
 class SingleOrderWidget extends StatelessWidget {
   final Order order;
-  const SingleOrderWidget({Key? key, required this.order}) : super(key: key);
+  final int orderId;
+  const SingleOrderWidget(
+      {Key? key, required this.order, required this.orderId})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -391,8 +395,10 @@ class SingleOrderWidget extends StatelessWidget {
 }
 
 class HomeIconPagedelivery extends StatefulWidget {
+  final int orderId;
   final AssignedDe orderde;
-  const HomeIconPagedelivery({Key? key, required this.orderde})
+  const HomeIconPagedelivery(
+      {Key? key, required this.orderde, required this.orderId})
       : super(key: key);
 
   @override
@@ -401,6 +407,7 @@ class HomeIconPagedelivery extends StatefulWidget {
 
 class _HomeIconPageState extends State<HomeIconPagedelivery> {
   late final AssignedDe orderde;
+
   @override
   Widget build(BuildContext context) {
     context.read<GetAssignedCubit>().getAssignedOrders();
@@ -468,8 +475,10 @@ class _HomeIconPageState extends State<HomeIconPagedelivery> {
                             .replaceFirst('at 12:00 AM', '')))
               ],
             ),
-            const Expanded(
-              child: MyOrdersList(),
+            Expanded(
+              child: MyOrdersList(
+                orderId: widget.orderId,
+              ),
             ),
             Positioned(
                 bottom: 100,

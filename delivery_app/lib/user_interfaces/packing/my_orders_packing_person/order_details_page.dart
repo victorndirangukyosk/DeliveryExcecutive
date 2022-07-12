@@ -3,8 +3,9 @@ import 'package:calendar_time/calendar_time.dart';
 import 'package:delivery_app/configuration/configuration.dart';
 import 'package:delivery_app/cubits/authentication/token_cubit.dart';
 import 'package:delivery_app/cubits/order_details_cubit/order_details_cubit.dart';
-import 'package:delivery_app/cubits/order_details_list/odetails_list_cubit.dart';
-import 'package:delivery_app/models/odetails_list/odetails_list.dart';
+import 'package:delivery_app/cubits/order_details_list/op/odetails_list_cubit.dart';
+import 'package:delivery_app/models/odetails_list/op/odetails_list.dart';
+
 import 'package:delivery_app/models/order_details/order_details.dart';
 import 'package:delivery_app/models/order_status.dart';
 import 'package:delivery_app/routes/router.gr.dart';

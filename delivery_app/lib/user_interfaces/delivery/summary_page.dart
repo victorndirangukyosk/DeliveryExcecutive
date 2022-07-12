@@ -7,7 +7,8 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import '../../routes/router.gr.dart';
 
 class SummaryPage extends StatelessWidget {
-  const SummaryPage({Key? key}) : super(key: key);
+  final int orderId;
+  const SummaryPage({Key? key, required this.orderId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +45,7 @@ class SummaryPage extends StatelessWidget {
                   child: IconButton(
                       onPressed: () {
                         AutoRouter.of(context)
-                            .push(const CustomerVerification());
+                            .push(CustomerVerification(orderId: orderId));
                       },
                       icon: const Icon(
                         CupertinoIcons.check_mark,

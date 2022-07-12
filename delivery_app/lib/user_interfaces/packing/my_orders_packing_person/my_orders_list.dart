@@ -9,7 +9,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MyOrdersList extends StatelessWidget {
-  const MyOrdersList({Key? key}) : super(key: key);
+  final int orderId;
+  const MyOrdersList({Key? key, required this.orderId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +45,7 @@ class MyOrdersList extends StatelessWidget {
                   (index) => SingleOrder(
                         index: index,
                         orderde: ordersde[index],
+                        orderId: orderId,
                       )),
             );
           },
@@ -57,9 +59,14 @@ class MyOrdersList extends StatelessWidget {
 }
 
 class SingleOrder extends StatelessWidget {
+  final int orderId;
   final AssignedDe orderde;
   final int index;
-  const SingleOrder({Key? key, required this.index, required this.orderde})
+  const SingleOrder(
+      {Key? key,
+      required this.index,
+      required this.orderde,
+      required this.orderId})
       : super(key: key);
 
   @override
@@ -78,7 +85,7 @@ class SingleOrder extends StatelessWidget {
             child: const Text('Ready for delivery.'),
             value: 'ready_for_delivery',
             onTap: () {
-              AutoRouter.of(context).push(const ReadyForDelivery());
+              AutoRouter.of(context).push(ReadyForDelivery(orderId: orderId));
             },
           ),
           PopupMenuItem<String>(
@@ -137,7 +144,8 @@ class SingleOrder extends StatelessWidget {
                 child: const Text('Ready for delivery.'),
                 value: 'ready_for_delivery',
                 onTap: () {
-                  AutoRouter.of(context).push(const ReadyForDelivery());
+                  AutoRouter.of(context)
+                      .push(ReadyForDelivery(orderId: orderId));
                 },
               ),
               PopupMenuItem<String>(
@@ -160,7 +168,8 @@ class SingleOrder extends StatelessWidget {
                 ),
                 value: 'directions',
                 onTap: () {
-                  AutoRouter.of(context).push( DirectionsToAddress(orderId: orderde.order_id!));
+                  AutoRouter.of(context)
+                      .push(DirectionsToAddress(orderId: orderde.order_id!));
                 },
               ),
             ];

@@ -15,7 +15,9 @@ import 'package:signature/signature.dart';
 import 'package:user_profile_avatar/user_profile_avatar.dart';
 
 class CustomerVerification extends StatefulWidget {
-  const CustomerVerification({Key? key}) : super(key: key);
+  final int orderId;
+  const CustomerVerification({Key? key, required this.orderId})
+      : super(key: key);
 
   @override
   State<CustomerVerification> createState() => _CustomerVerificationState();
@@ -63,7 +65,8 @@ class _CustomerVerificationState extends State<CustomerVerification> {
                       );
                     });
                 Navigator.pop(context);
-                AutoRouter.of(context).replace(const InvoiceRoute());
+                AutoRouter.of(context)
+                    .replace(InvoiceRoute(orderId: widget.orderId));
               });
         },
         builder: (context, state) {
@@ -170,7 +173,8 @@ class _CustomerVerificationState extends State<CustomerVerification> {
                       color: Palette.greenColor,
                       onPressed: () {
                         context.read<CustomerVerificationCubit>();
-                        AutoRouter.of(context).replace(const InvoiceRoute());
+                        AutoRouter.of(context)
+                            .replace(InvoiceRoute(orderId: widget.orderId));
                       })
                 ],
               ),

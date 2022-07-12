@@ -4,11 +4,13 @@ import 'package:delivery_app/cubits/add_missing_products/add_missing_products_cu
 import 'package:delivery_app/cubits/authentication/token_cubit.dart';
 import 'package:delivery_app/cubits/fetch_order_status_cubit/fetch_order_status_cubit.dart';
 import 'package:delivery_app/cubits/order_details_cubit/order_details_cubit.dart';
-import 'package:delivery_app/cubits/order_details_list/odetails_list_cubit.dart';
+
+import 'package:delivery_app/cubits/order_details_list/op/odetails_list_cubit.dart';
 import 'package:delivery_app/cubits/processed_items_cubit/processed_items_cubit.dart';
 import 'package:delivery_app/models/accept_reject/accept_reject.dart';
 import 'package:delivery_app/models/missing/missing.dart';
-import 'package:delivery_app/models/odetails_list/odetails_list.dart';
+import 'package:delivery_app/models/odetails_list/op/odetails_list.dart';
+
 import 'package:delivery_app/services/api_service/api_service.dart';
 import 'package:delivery_app/theme/box_icons.dart';
 import 'package:delivery_app/user_interfaces/home/main_home_page.dart';

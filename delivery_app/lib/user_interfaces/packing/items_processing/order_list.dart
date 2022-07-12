@@ -1,7 +1,8 @@
 import 'package:calendar_time/calendar_time.dart';
 import 'package:delivery_app/cubits/authentication/token_cubit.dart';
 import 'package:delivery_app/cubits/order_details_cubit/order_details_cubit.dart';
-import 'package:delivery_app/cubits/order_details_list/odetails_list_cubit.dart';
+import 'package:delivery_app/cubits/order_details_list/op/odetails_list_cubit.dart';
+
 import 'package:delivery_app/theme/box_icons.dart';
 import 'package:delivery_app/user_interfaces/home/main_home_page.dart';
 import 'package:delivery_app/user_interfaces/packing/scanner/scanner.dart';

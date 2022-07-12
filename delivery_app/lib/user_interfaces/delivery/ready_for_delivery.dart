@@ -5,7 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ReadyForDelivery extends StatelessWidget {
-  const ReadyForDelivery({Key? key}) : super(key: key);
+  final int orderId;
+  const ReadyForDelivery({Key? key, required this.orderId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +43,7 @@ class ReadyForDelivery extends StatelessWidget {
                   child: IconButton(
                       onPressed: () {
                         AutoRouter.of(context)
-                            .push(const CustomerVerification());
+                            .push(CustomerVerification(orderId: orderId));
                       },
                       icon: const Icon(
                         CupertinoIcons.check_mark,
