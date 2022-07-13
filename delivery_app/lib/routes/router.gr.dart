@@ -44,8 +44,10 @@ class AppRouter extends _i15.RootStackRouter {
           routeData: routeData, child: const _i1.SplashScreen());
     },
     LoginRoute.name: (routeData) {
+      final args = routeData.argsAs<LoginRouteArgs>();
       return _i15.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i2.LoginPage());
+          routeData: routeData,
+          child: _i2.LoginPage(key: args.key, orderId: args.orderId));
     },
     RegisterRoute.name: (routeData) {
       return _i15.MaterialPageX<dynamic>(
@@ -156,10 +158,26 @@ class SplashScreen extends _i15.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.LoginPage]
-class LoginRoute extends _i15.PageRouteInfo<void> {
-  const LoginRoute() : super(LoginRoute.name, path: '/login-page');
+class LoginRoute extends _i15.PageRouteInfo<LoginRouteArgs> {
+  LoginRoute({_i16.Key? key, required int orderId})
+      : super(LoginRoute.name,
+            path: '/login-page',
+            args: LoginRouteArgs(key: key, orderId: orderId));
 
   static const String name = 'LoginRoute';
+}
+
+class LoginRouteArgs {
+  const LoginRouteArgs({this.key, required this.orderId});
+
+  final _i16.Key? key;
+
+  final int orderId;
+
+  @override
+  String toString() {
+    return 'LoginRouteArgs{key: $key, orderId: $orderId}';
+  }
 }
 
 /// generated route for

@@ -78,7 +78,7 @@ class SingleOrder extends StatelessWidget {
           PopupMenuItem<String>(
               child: const Text('View order.'),
               onTap: () {
-                AutoRouter.of(context).push(const SingleOrderRoute());
+                AutoRouter.of(context).push(SingleOrderRoute(orderId: orderId));
               },
               value: 'view'),
           PopupMenuItem<String>(
@@ -137,7 +137,7 @@ class SingleOrder extends StatelessWidget {
               PopupMenuItem<String>(
                   child: const Text('View order.'),
                   onTap: () {
-                    AutoRouter.of(context).push(const SingleOrderRoute());
+                    AutoRouter.of(context).push(SingleOrderRoute(orderId: orderId));
                   },
                   value: 'view'),
               PopupMenuItem<String>(

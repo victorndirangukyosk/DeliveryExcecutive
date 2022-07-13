@@ -675,7 +675,7 @@ class _OrderListState extends State<OrderList> {
                                       orderId: widget.orderId);
 
                               AutoRouter.of(context)
-                                  .replace(const MainHomeRoute());
+                                  .replace( MainHomeRoute(orderId: widget.orderId));
                             },
                           ),
                         ],
