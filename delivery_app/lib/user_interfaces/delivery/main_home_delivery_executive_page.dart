@@ -15,8 +15,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class MainHomeDeliveryExecutivePage extends StatelessWidget {
-  final int orderId;
-  const MainHomeDeliveryExecutivePage({Key? key, required this.orderId})
+
+  const MainHomeDeliveryExecutivePage({Key? key,})
       : super(key: key);
 
   @override
@@ -284,7 +284,7 @@ class MainHomeDeliveryExecutivePage extends StatelessWidget {
                                   itemBuilder: (BuildContext ctx, index) {
                                     return CardTwo(
                                       orderde: ordersde[index],
-                                      orderId: orderId,
+                                      
                                     );
                                   });
                             }
@@ -320,9 +320,9 @@ class MainHomeDeliveryExecutivePage extends StatelessWidget {
 }
 
 class CardTwo extends StatelessWidget {
-  final int orderId;
+ 
   final AssignedDe orderde;
-  const CardTwo({Key? key, required this.orderde, required this.orderId})
+  const CardTwo({Key? key, required this.orderde})
       : super(key: key);
 
   @override
@@ -450,7 +450,7 @@ class CardTwo extends StatelessWidget {
                                   //   orderId: orderde.order_id!,
                                   // ));
                                   AutoRouter.of(context)
-                                      .push(ReadyForDelivery(orderId: orderId));
+                                      .push(ReadyForDelivery());
                                 },
                                 child: const Text(
                                   'Start Trip ',

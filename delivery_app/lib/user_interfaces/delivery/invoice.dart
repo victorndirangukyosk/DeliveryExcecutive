@@ -13,8 +13,8 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class InvoicePage extends StatefulWidget {
-  final int orderId;
-  const InvoicePage({Key? key, required this.orderId}) : super(key: key);
+  
+  const InvoicePage({Key? key}) : super(key: key);
 
   @override
   State<InvoicePage> createState() => _InvoicePageState();
@@ -55,8 +55,8 @@ class _InvoicePageState extends State<InvoicePage> {
                   padding: const EdgeInsets.all(8.0),
                   child: IconButton(
                       onPressed: () {
-                        AutoRouter.of(context).push(
-                            CustomerVerification(orderId: widget.orderId));
+                        // AutoRouter.of(context).push(
+                        //     CustomerVerification());
                       },
                       icon: const Icon(
                         CupertinoIcons.check_mark,
@@ -68,7 +68,7 @@ class _InvoicePageState extends State<InvoicePage> {
             ),
             Expanded(
                 child: SummaryTileList(
-              orderId: widget.orderId,
+              
             )),
           ],
         ),
@@ -78,13 +78,13 @@ class _InvoicePageState extends State<InvoicePage> {
 }
 
 class SummaryTileList extends StatelessWidget {
-  final int orderId;
-  const SummaryTileList({Key? key, required this.orderId}) : super(key: key);
+
+  const SummaryTileList({Key? key, }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    context.read<AssignedDeCubit>().getAssignedDeOrders();
-    context.read<ODetailsDeCubit>().getDeOrderDetails(orderId: orderId);
+    // context.read<AssignedDeCubit>().getAssignedDeOrders();
+    // context.read<ODetailsDeCubit>().getDeOrderDetails();
     return SingleChildScrollView(
       child: Column(children: [
         Padding(
@@ -478,7 +478,7 @@ class SummaryTileList extends StatelessWidget {
                                     odeDetailsList!.length,
                                     (index) => CardWidget(
                                           deets: odeDetailsList[index],
-                                          orderId: orderId,
+                                          // orderId: orderId,
                                           index: index,
                                         ))
                               ]),
@@ -511,7 +511,7 @@ class SummaryTileList extends StatelessWidget {
 }
 
 class CardWidget extends StatefulWidget {
-  final int orderId;
+  // final int orderId;
   final OdetailsDe deets;
 
   final int index;
@@ -519,7 +519,7 @@ class CardWidget extends StatefulWidget {
     Key? key,
     required this.deets,
     required this.index,
-    required this.orderId,
+    // required this.orderId,
   }) : super(key: key);
 
   @override

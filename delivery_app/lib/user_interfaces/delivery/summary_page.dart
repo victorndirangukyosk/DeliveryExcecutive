@@ -45,7 +45,7 @@ class SummaryPage extends StatelessWidget {
                   child: IconButton(
                       onPressed: () {
                         AutoRouter.of(context)
-                            .push(CustomerVerification(orderId: orderId));
+                            .push(CustomerVerification());
                       },
                       icon: const Icon(
                         CupertinoIcons.check_mark,

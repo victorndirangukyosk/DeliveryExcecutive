@@ -14,8 +14,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 class LoginPage extends StatelessWidget {
-  final int orderId;
-  const LoginPage({Key? key, required this.orderId}) : super(key: key);
+ 
+  const LoginPage({Key? key, }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class LoginPage extends StatelessWidget {
       // ignore: sort_child_properties_last
       child: Center(
         child: LoginCard(
-          orderId: orderId,
+        
         ),
       ),
       decoration: const BoxDecoration(color: Palette.orangeColor
@@ -40,8 +40,8 @@ class LoginPage extends StatelessWidget {
 }
 
 class LoginCard extends StatelessWidget {
-  final int orderId;
-  const LoginCard({Key? key, required this.orderId}) : super(key: key);
+
+  const LoginCard({Key? key}) : super(key: key);
 
   static var _formKey = GlobalKey<FormBuilderState>();
   @override
@@ -170,11 +170,11 @@ class LoginCard extends StatelessWidget {
 
                       isOp
                           ? AutoRouter.of(context)
-                              .replace(MainHomeRoute(orderId: orderId))
+                              .replace(MainHomeRoute())
                           : isDe
                               ? AutoRouter.of(context).replace(
                                   MainHomeDeliveryExecutiveRoute(
-                                      orderId: orderId))
+                                     ))
                               : print('Error');
                     }
                     if (state is LoginFailed) {

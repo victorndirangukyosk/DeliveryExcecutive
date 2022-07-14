@@ -8,8 +8,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'product_list.dart';
 
 class SingleOrderPage extends StatelessWidget {
-  final int orderId;
-  const SingleOrderPage({Key? key, required this.orderId}) : super(key: key);
+ 
+  const SingleOrderPage({Key? key, }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class SingleOrderPage extends StatelessWidget {
                   value: 'ready_for_delivery',
                   onTap: () {
                     AutoRouter.of(context)
-                        .push(ReadyForDelivery(orderId: orderId));
+                        .push(ReadyForDelivery());
                   },
                 ),
                 PopupMenuItem<String>(

@@ -27,11 +27,11 @@ class _SplashScreenState extends State<SplashScreen> {
 
       IsDeCubit isDeCubit = GetIt.I.get<IsDeCubit>();
 
-
-      
       tokenCubit.state.isEmpty
-          ? AutoRouter.of(context).replace(const LoginRoute())
-          :isDeCubit.state? AutoRouter.of(context).replace(const MainHomeDeliveryExecutiveRoute()):AutoRouter.of(context).replace(const MainHomeRoute());
+          ? AutoRouter.of(context).replace(LoginRoute())
+          : isDeCubit.state
+              ? AutoRouter.of(context).replace(MainHomeDeliveryExecutiveRoute())
+              : AutoRouter.of(context).replace(const MainHomeRoute());
     });
   }
 
@@ -40,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
     /// Register the token cubit
     TokenCubit tokenCubit = BlocProvider.of<TokenCubit>(context);
     GetIt.I.registerSingleton(tokenCubit);
-     IsDeCubit isDeCubit = BlocProvider.of<IsDeCubit>(context);
+    IsDeCubit isDeCubit = BlocProvider.of<IsDeCubit>(context);
     GetIt.I.registerSingleton(isDeCubit);
     return Scaffold(
         body: Stack(

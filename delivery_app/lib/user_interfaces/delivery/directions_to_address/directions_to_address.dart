@@ -615,7 +615,7 @@ class _DirectionsToAddressState extends State<DirectionsToAddress> {
               child: ElevatedButton(
                 onPressed: () {
                   AutoRouter.of(context)
-                      .replace(CustomerVerification(orderId: widget.orderId));
+                      .replace(CustomerVerification());
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),

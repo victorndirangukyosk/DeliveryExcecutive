@@ -24,8 +24,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class MainHomePage extends StatelessWidget {
-  final int orderId;
-  const MainHomePage({Key? key, required this.orderId}) : super(key: key);
+
+  const MainHomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -521,7 +521,8 @@ class _HomeIconPageState extends State<HomeIconPagedelivery> {
 }
 
 class Dispatch extends StatefulWidget {
-  const Dispatch({Key? key}) : super(key: key);
+  final int orderId;
+  const Dispatch({Key? key, required this.orderId}) : super(key: key);
 
   @override
   _DispatchState createState() => _DispatchState();
@@ -581,7 +582,7 @@ class _DispatchState extends State<Dispatch> {
                       const SpinKitCircle(color: Palette.greenColor),
                       CupertinoButton.filled(
                         onPressed: () {
-                          AutoRouter.of(context).replace(const MainHomeRoute());
+                          AutoRouter.of(context).replace( MainHomeRoute());
                         },
                         child: const Text(
                           'Dispatch',

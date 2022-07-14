@@ -78,14 +78,14 @@ class SingleOrder extends StatelessWidget {
           PopupMenuItem<String>(
               child: const Text('View order.'),
               onTap: () {
-                AutoRouter.of(context).push(SingleOrderRoute(orderId: orderId));
+                AutoRouter.of(context).push(SingleOrderRoute());
               },
               value: 'view'),
           PopupMenuItem<String>(
             child: const Text('Ready for delivery.'),
             value: 'ready_for_delivery',
             onTap: () {
-              AutoRouter.of(context).push(ReadyForDelivery(orderId: orderId));
+              AutoRouter.of(context).push(ReadyForDelivery());
             },
           ),
           PopupMenuItem<String>(
@@ -137,7 +137,7 @@ class SingleOrder extends StatelessWidget {
               PopupMenuItem<String>(
                   child: const Text('View order.'),
                   onTap: () {
-                    AutoRouter.of(context).push(SingleOrderRoute(orderId: orderId));
+                    AutoRouter.of(context).push(SingleOrderRoute());
                   },
                   value: 'view'),
               PopupMenuItem<String>(
@@ -145,7 +145,7 @@ class SingleOrder extends StatelessWidget {
                 value: 'ready_for_delivery',
                 onTap: () {
                   AutoRouter.of(context)
-                      .push(ReadyForDelivery(orderId: orderId));
+                      .push(ReadyForDelivery());
                 },
               ),
               PopupMenuItem<String>(

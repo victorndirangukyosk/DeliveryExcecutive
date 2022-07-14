@@ -10,7 +10,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class OrderSummary extends StatefulWidget {
-  const OrderSummary({Key? key}) : super(key: key);
+  final int orderId;
+  const OrderSummary({Key? key, required this.orderId}) : super(key: key);
 
   @override
   _OrderSummaryState createState() => _OrderSummaryState();
@@ -65,7 +66,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                 child: Column(
                     // mainAxisAlignment: MainAxisAlignment.center,
                     children:
-                        List.generate(status.length, (index) => CardWidget())),
+                        List.generate(status.length, (index) => CardWidget(orderId: widget.orderId,))),
               );
             },
             orElse: () {
@@ -120,7 +121,8 @@ class _OrderSummaryState extends State<OrderSummary> {
 }
 
 class CardWidget extends StatelessWidget {
-  const CardWidget({Key? key}) : super(key: key);
+  final int orderId;
+  const CardWidget({Key? key, required this.orderId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -243,7 +245,7 @@ class CardWidget extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const Dispatch()),
+                MaterialPageRoute(builder: (context) => Dispatch(orderId: orderId)),
               );
             },
             child: const Text(
