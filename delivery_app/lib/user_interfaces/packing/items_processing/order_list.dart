@@ -1,7 +1,9 @@
 import 'package:calendar_time/calendar_time.dart';
 import 'package:delivery_app/cubits/authentication/token_cubit.dart';
-import 'package:delivery_app/cubits/order_details_cubit/order_details_cubit.dart';
+import 'package:delivery_app/cubits/general_order_details_cubit/order_details_cubit.dart';
+
 import 'package:delivery_app/cubits/order_details_list/op/odetails_list_cubit.dart';
+import 'package:delivery_app/models/odetails_list/de/odetails_de.dart';
 
 import 'package:delivery_app/theme/box_icons.dart';
 import 'package:delivery_app/user_interfaces/home/main_home_page.dart';
@@ -18,6 +20,7 @@ import 'package:delivery_app/routes/router.gr.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 class OrderList extends StatefulWidget {
+    
   final int orderId;
   const OrderList({Key? key, required this.orderId}) : super(key: key);
 
@@ -249,8 +252,8 @@ class _OrderListState extends State<OrderList> {
                                                                           context
                                                                               .read<TokenCubit>()
                                                                               .clear();
-                                                                          AutoRouter.of(context)
-                                                                              .replace(const SplashScreen());
+                                                                          // AutoRouter.of(context)
+                                                                          //     .replace( SplashScreen());
                                                                         },
                                                                         leading:
                                                                             const Icon(

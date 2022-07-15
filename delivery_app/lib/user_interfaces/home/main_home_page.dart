@@ -4,6 +4,7 @@ import 'package:delivery_app/configuration/configuration.dart';
 import 'package:delivery_app/cubits/get_assigned_cubit/op/get_assigned_cubit.dart';
 import 'package:delivery_app/cubits/cubits.dart';
 import 'package:delivery_app/models/assigned/de/assigned_de.dart';
+import 'package:delivery_app/models/odetails_list/de/odetails_de.dart';
 // import 'package:delivery_app/cubits/my_orders_cubit.dart/my_orders_cubit.dart';
 import 'package:delivery_app/models/order_details/order.dart';
 import 'package:delivery_app/routes/router.gr.dart';
@@ -24,6 +25,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class MainHomePage extends StatelessWidget {
+    
 
   const MainHomePage({Key? key}) : super(key: key);
 
@@ -152,7 +154,7 @@ class MainHomePage extends StatelessWidget {
                                                   .read<TokenCubit>()
                                                   .clear();
                                               AutoRouter.of(context).replace(
-                                                  const SplashScreen());
+                                                   SplashScreen());
                                             },
                                             leading: const Icon(
                                               Icons.logout_outlined,
@@ -395,10 +397,11 @@ class SingleOrderWidget extends StatelessWidget {
 }
 
 class HomeIconPagedelivery extends StatefulWidget {
+   
   final int orderId;
   final AssignedDe orderde;
   const HomeIconPagedelivery(
-      {Key? key, required this.orderde, required this.orderId})
+      {Key? key, required this.orderde, required this.orderId, })
       : super(key: key);
 
   @override
@@ -477,6 +480,7 @@ class _HomeIconPageState extends State<HomeIconPagedelivery> {
             ),
             Expanded(
               child: MyOrdersList(
+                
                 orderId: widget.orderId,
               ),
             ),

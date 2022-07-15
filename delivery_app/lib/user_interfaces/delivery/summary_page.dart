@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:delivery_app/configuration/configuration.dart';
+import 'package:delivery_app/models/odetails_list/de/odetails_de.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -7,8 +8,9 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import '../../routes/router.gr.dart';
 
 class SummaryPage extends StatelessWidget {
+    
   final int orderId;
-  const SummaryPage({Key? key, required this.orderId}) : super(key: key);
+  const SummaryPage({Key? key, required this.orderId, }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +47,7 @@ class SummaryPage extends StatelessWidget {
                   child: IconButton(
                       onPressed: () {
                         AutoRouter.of(context)
-                            .push(CustomerVerification());
+                            .push(CustomerVerification(orderId: orderId));
                       },
                       icon: const Icon(
                         CupertinoIcons.check_mark,

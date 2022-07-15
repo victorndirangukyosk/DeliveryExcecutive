@@ -2,7 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:calendar_time/calendar_time.dart';
 import 'package:delivery_app/configuration/configuration.dart';
 import 'package:delivery_app/cubits/authentication/token_cubit.dart';
-import 'package:delivery_app/cubits/order_details_cubit/order_details_cubit.dart';
+import 'package:delivery_app/cubits/general_order_details_cubit/order_details_cubit.dart';
+
 import 'package:delivery_app/cubits/order_details_list/op/odetails_list_cubit.dart';
 import 'package:delivery_app/models/odetails_list/op/odetails_list.dart';
 
@@ -251,7 +252,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                                                             .read<TokenCubit>()
                                                                             .clear();
                                                                         AutoRouter.of(context)
-                                                                            .replace(const SplashScreen());
+                                                                            .replace( SplashScreen());
                                                                       },
                                                                       leading:
                                                                           const Icon(

@@ -4,6 +4,7 @@ import 'package:delivery_app/configuration/palette/palette.dart';
 import 'package:delivery_app/cubits/cubits.dart';
 import 'package:delivery_app/cubits/is_de_cubit/is_de_cubit.dart';
 import 'package:delivery_app/cubits/op_selection_cubit/op_selection_cubit.dart';
+import 'package:delivery_app/models/odetails_list/de/odetails_de.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 import 'package:delivery_app/utilities/toast/toast.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,6 +15,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 class LoginPage extends StatelessWidget {
+   
  
   const LoginPage({Key? key, }) : super(key: key);
 
@@ -40,8 +42,9 @@ class LoginPage extends StatelessWidget {
 }
 
 class LoginCard extends StatelessWidget {
+    
 
-  const LoginCard({Key? key}) : super(key: key);
+  const LoginCard({Key? key, }) : super(key: key);
 
   static var _formKey = GlobalKey<FormBuilderState>();
   @override

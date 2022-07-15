@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:delivery_app/models/odetails_list/de/odetails_de.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 import 'package:delivery_app/user_interfaces/delivery/directions_to_address/components/api_secret.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ import 'dart:math' show cos, sqrt, asin;
 import 'package:permission_handler/permission_handler.dart';
 
 class DirectionsToAddress extends StatefulWidget {
+ 
   final int orderId;
   const DirectionsToAddress({Key? key, required this.orderId})
       : super(key: key);
@@ -614,8 +616,7 @@ class _DirectionsToAddressState extends State<DirectionsToAddress> {
               alignment: Alignment.bottomCenter,
               child: ElevatedButton(
                 onPressed: () {
-                  AutoRouter.of(context)
-                      .replace(CustomerVerification());
+                  AutoRouter.of(context).replace(CustomerVerification(orderId: widget.orderId));
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),

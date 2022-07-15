@@ -4,6 +4,7 @@ import 'package:delivery_app/configuration/palette/palette.dart';
 import 'package:delivery_app/cubits/authentication/token_cubit.dart';
 import 'package:delivery_app/cubits/get_assigned_cubit/de/cubit/assigned_de_cubit.dart';
 import 'package:delivery_app/models/assigned/de/assigned_de.dart';
+import 'package:delivery_app/models/odetails_list/de/odetails_de.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 
 import 'package:delivery_app/user_interfaces/packing/my_orders_packing_person/order_details_page.dart';
@@ -15,9 +16,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class MainHomeDeliveryExecutivePage extends StatelessWidget {
-
-  const MainHomeDeliveryExecutivePage({Key? key,})
-      : super(key: key);
+    
+  const MainHomeDeliveryExecutivePage({
+    Key? key, 
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -128,7 +130,7 @@ class MainHomeDeliveryExecutivePage extends StatelessWidget {
                                                     .read<TokenCubit>()
                                                     .clear();
                                                 AutoRouter.of(context).replace(
-                                                    const SplashScreen());
+                                                    SplashScreen());
                                               },
                                               leading: const Icon(
                                                 Icons.logout_outlined,
@@ -265,6 +267,7 @@ class MainHomeDeliveryExecutivePage extends StatelessWidget {
                                           verticalOffset: 50.0,
                                           child: FadeInAnimation(
                                             child: CardWidget(
+                                            
                                               orderde: ordersde[index],
                                             ),
                                           ),
@@ -283,8 +286,8 @@ class MainHomeDeliveryExecutivePage extends StatelessWidget {
                                   itemCount: ordersde.length,
                                   itemBuilder: (BuildContext ctx, index) {
                                     return CardTwo(
+  
                                       orderde: ordersde[index],
-                                      
                                     );
                                   });
                             }
@@ -320,10 +323,9 @@ class MainHomeDeliveryExecutivePage extends StatelessWidget {
 }
 
 class CardTwo extends StatelessWidget {
- 
+    
   final AssignedDe orderde;
-  const CardTwo({Key? key, required this.orderde})
-      : super(key: key);
+  const CardTwo({Key? key, required this.orderde, }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -445,12 +447,12 @@ class CardTwo extends StatelessWidget {
                                 //   minimumSize: const Size.fromHeight(50), // NEW
                                 // ),
                                 onPressed: () {
-                                  // AutoRouter.of(context)
-                                  //     .push(DirectionsToAddress(
-                                  //   orderId: orderde.order_id!,
-                                  // ));
                                   AutoRouter.of(context)
-                                      .push(ReadyForDelivery());
+                                      .push(DirectionsToAddress(
+                                    orderId: orderde.order_id!, 
+                                  ));
+                                  // AutoRouter.of(context)
+                                  //     .push(ReadyForDelivery());
                                 },
                                 child: const Text(
                                   'Start Trip ',
@@ -527,8 +529,9 @@ class CardTwo extends StatelessWidget {
 }
 
 class CardWidget extends StatelessWidget {
+   
   final AssignedDe orderde;
-  const CardWidget({Key? key, required this.orderde}) : super(key: key);
+  const CardWidget({Key? key, required this.orderde,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -652,7 +655,7 @@ class CardWidget extends StatelessWidget {
                                 onPressed: () {
                                   AutoRouter.of(context)
                                       .push(DirectionsToAddress(
-                                    orderId: orderde.order_id!,
+                                    orderId: orderde.order_id!, 
                                   ));
                                 },
                                 child: const Text(

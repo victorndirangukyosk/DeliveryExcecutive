@@ -14,6 +14,7 @@ class OdetailsDe with _$OdetailsDe {
       String? model,
       String? product_type,
       num? general_product_id,
+      num? order_id,
       num? variation_id,
       num? quantity,
       num? price,

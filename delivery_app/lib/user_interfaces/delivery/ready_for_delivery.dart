@@ -42,8 +42,8 @@ class ReadyForDelivery extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: IconButton(
                       onPressed: () {
-                        AutoRouter.of(context)
-                            .push(CustomerVerification());
+                        // AutoRouter.of(context)
+                        //     .push(CustomerVerification());
                       },
                       icon: const Icon(
                         CupertinoIcons.check_mark,

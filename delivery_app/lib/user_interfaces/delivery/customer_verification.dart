@@ -3,9 +3,12 @@
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:calendar_time/calendar_time.dart';
 import 'package:delivery_app/configuration/configuration.dart';
 import 'package:delivery_app/cubits/cubits.dart';
 import 'package:delivery_app/cubits/customer_verification/customer_verification_cubit.dart';
+import 'package:delivery_app/cubits/general_order_details_cubit/de/cubit/de_order_details_cubit.dart';
+import 'package:delivery_app/cubits/get_assigned_cubit/de/cubit/assigned_de_cubit.dart';
 import 'package:delivery_app/cubits/order_details_list/de/o_details_de_cubit.dart';
 import 'package:delivery_app/models/odetails_list/de/odetails_de.dart';
 import 'package:delivery_app/routes/router.gr.dart';
@@ -19,7 +22,9 @@ import 'package:signature/signature.dart';
 import 'package:user_profile_avatar/user_profile_avatar.dart';
 
 class CustomerVerification extends StatefulWidget {
-  const CustomerVerification({Key? key}) : super(key: key);
+  final int orderId;
+  const CustomerVerification({Key? key, required this.orderId})
+      : super(key: key);
 
   @override
   State<CustomerVerification> createState() => _CustomerVerificationState();
@@ -29,6 +34,11 @@ class CustomerVerification extends StatefulWidget {
 class _CustomerVerificationState extends State<CustomerVerification> {
   @override
   Widget build(BuildContext context) {
+    context.read<AssignedDeCubit>().getAssignedDeOrders();
+    context
+        .read<DeOrderDetailsCubit>()
+        .getGeneralOrderDetails(orderId: widget.orderId);
+    context.read<ODetailsDeCubit>().getDeOrderDetails(orderId: widget.orderId);
     // context.read<CustomerVerificationCubit>().verifyCustomer(orderId: orderId, File file);
     return Scaffold(
       // backgroundColor: Colors.transparent,
@@ -83,8 +93,6 @@ class SummaryTileList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // context.read<AssignedDeCubit>().getAssignedDeOrders();
-    // context.read<ODetailsDeCubit>().getDeOrderDetails();
     return SingleChildScrollView(
       child: Column(children: [
         Padding(
@@ -103,154 +111,76 @@ class SummaryTileList extends StatelessWidget {
                       border: Border.all(color: Palette.orangeColor),
                       borderRadius: BorderRadius.all(Radius.circular(20))),
                   child: Center(
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            children: [
-                              context
-                                          .watch<PickImageCubit>()
-                                          .state
-                                          .path
-                                          .length <
-                                      2
-                                  ? InkWell(
-                                      onTap: () async {
-                                        var x = await ImagePicker().pickImage(
-                                            source: ImageSource.camera);
-                                        context
-                                            .read<PickImageCubit>()
-                                            .emit(File(x!.path));
-                                      },
-                                      child: AnimatedContainer(
-                                        duration: const Duration(seconds: 3),
-                                        height: 200,
-                                        width: 200,
-                                        // decoration: BoxDecoration(
-                                        //     border: Border.all(width: 2)),
-                                        child: Center(
-                                          child: UserProfileAvatar(
-                                            avatarUrl: '',
-                                            onAvatarTap: () async {
-                                              ScaffoldMessenger.of(context)
-                                                  .showSnackBar(SnackBar(
-                                                content:
-                                                    Text('Tapped on avatar'),
-                                              ));
-                                              var x = await ImagePicker()
-                                                  .pickImage(
-                                                      source:
-                                                          ImageSource.camera);
-                                              context
-                                                  .read<PickImageCubit>()
-                                                  .emit(File(x!.path));
-                                            },
-                                            // notificationCount: 10,
-                                            notificationBubbleTextStyle:
-                                                const TextStyle(
-                                              fontSize: 30,
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                            avatarSplashColor: Colors.purple,
-                                            radius: 100,
-                                            isActivityIndicatorSmall: false,
-                                            avatarBorderData: AvatarBorderData(
-                                              borderColor: Colors.black54,
-                                              borderWidth: 5.0,
-                                            ),
-                                          ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(40.0),
+                      child: Row(
+                        children: [
+                          context.watch<PickImageCubit>().state.path.length < 2
+                              ? InkWell(
+                                  onTap: () async {
+                                    var x = await ImagePicker()
+                                        .pickImage(source: ImageSource.camera);
+                                    context
+                                        .read<PickImageCubit>()
+                                        .emit(File(x!.path));
+                                  },
+                                  child: AnimatedContainer(
+                                    duration: const Duration(seconds: 3),
+                                    height: 200,
+                                    width: 200,
+                                    // decoration: BoxDecoration(
+                                    //     border: Border.all(width: 2)),
+                                    child: Center(
+                                      child: UserProfileAvatar(
+                                        avatarUrl: '',
+                                        onAvatarTap: () async {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(SnackBar(
+                                            content: Text('Tapped on avatar'),
+                                          ));
+                                          var x = await ImagePicker().pickImage(
+                                              source: ImageSource.camera);
+                                          context
+                                              .read<PickImageCubit>()
+                                              .emit(File(x!.path));
+                                        },
+                                        // notificationCount: 10,
+                                        notificationBubbleTextStyle:
+                                            const TextStyle(
+                                          fontSize: 30,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
                                         ),
-                                      ),
-                                    )
-                                  : InkWell(
-                                      onTap: () async {
-                                        var x = await ImagePicker().pickImage(
-                                            source: ImageSource.camera);
-                                        context
-                                            .read<PickImageCubit>()
-                                            .emit(File(x!.path));
-                                      },
-                                      child: Center(
-                                        child: Image.file(
-                                          context.read<PickImageCubit>().state,
-                                          height: 270,
-                                          width: 270,
-                                          fit: BoxFit.cover,
+                                        avatarSplashColor: Colors.purple,
+                                        radius: 100,
+                                        isActivityIndicatorSmall: false,
+                                        avatarBorderData: AvatarBorderData(
+                                          borderColor: Colors.black54,
+                                          borderWidth: 5.0,
                                         ),
                                       ),
                                     ),
-                            ],
-                          ),
-                        ),
-                        // Padding(
-                        //   padding: const EdgeInsets.all(8.0),
-                        //   child: Row(
-                        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        //     children: const [
-                        //       Text(
-                        //         'Tax Invoice',
-                        //         style: TextStyle(
-                        //             fontFamily: 'BOXICONS',
-                        //             fontWeight: FontWeight.bold,
-                        //             fontSize: 14),
-                        //       ),
-                        //       Text(
-                        //         'ORDER INFO',
-                        //         style: TextStyle(
-                        //             fontFamily: 'BOXICONS',
-                        //             fontWeight: FontWeight.bold,
-                        //             fontSize: 14),
-                        //       ),
-                        //     ],
-                        //   ),
-                        // ),
-                        // Padding(
-                        //   padding: const EdgeInsets.all(8.0),
-                        //   child: Row(
-                        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        //     children: const [
-                        //       Text(
-                        //         'Placed on',
-                        //         style: TextStyle(
-                        //             fontFamily: 'BOXICONS',
-                        //             fontWeight: FontWeight.bold,
-                        //             fontSize: 14),
-                        //       ),
-                        //       Text(
-                        //         'ORDER INFO',
-                        //         style: TextStyle(
-                        //             fontFamily: 'BOXICONS',
-                        //             fontWeight: FontWeight.bold,
-                        //             fontSize: 14),
-                        //       ),
-                        //     ],
-                        //   ),
-                        // ),
-                        // Padding(
-                        //   padding: const EdgeInsets.all(8.0),
-                        //   child: Row(
-                        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        //     children: const [
-                        //       Text(
-                        //         'Delivered on',
-                        //         style: TextStyle(
-                        //             fontFamily: 'BOXICONS',
-                        //             fontWeight: FontWeight.bold,
-                        //             fontSize: 14),
-                        //       ),
-                        //       Text(
-                        //         'ORDER INFO',
-                        //         style: TextStyle(
-                        //             fontFamily: 'BOXICONS',
-                        //             fontWeight: FontWeight.bold,
-                        //             fontSize: 14),
-                        //       ),
-                        //     ],
-                        //   ),
-                        // ),
-                      ],
+                                  ),
+                                )
+                              : InkWell(
+                                  onTap: () async {
+                                    var x = await ImagePicker()
+                                        .pickImage(source: ImageSource.camera);
+                                    context
+                                        .read<PickImageCubit>()
+                                        .emit(File(x!.path));
+                                  },
+                                  child: Flexible(
+                                    child: Image.file(
+                                      context.read<PickImageCubit>().state,
+                                      height: 270,
+                                      width: 200,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -262,75 +192,109 @@ class SummaryTileList extends StatelessWidget {
                   decoration: BoxDecoration(
                       border: Border.all(color: Palette.orangeColor),
                       borderRadius: BorderRadius.all(Radius.circular(20))),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
-                            Text(
-                              'Tax Invoice',
-                              style: TextStyle(
-                                  fontFamily: 'BOXICONS',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14),
+                  child: BlocConsumer<DeOrderDetailsCubit, DeOrderDetailsState>(
+                    listener: (context, state) {
+                      // TODO: implement listener
+                      state.maybeWhen(
+                          orElse: () {},
+                          failed: (e) {
+                            showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return CupertinoAlertDialog(
+                                    title: Text('Error'),
+                                    content: Text(e),
+                                  );
+                                });
+                          });
+                    },
+                    builder: (context, state) {
+                      return state.maybeWhen(loading: () {
+                        return const Center(
+                          child: CupertinoActivityIndicator(
+                            color: Palette.greenColor,
+                          ),
+                        );
+                      }, success: (generalDetails) {
+                        return Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Order ID',
+                                    style: TextStyle(
+                                        fontFamily: 'BOXICONS',
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14),
+                                  ),
+                                  Text(
+                                    generalDetails.order_id.toString(),
+                                    style: TextStyle(
+                                        fontFamily: 'BOXICONS',
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14),
+                                  ),
+                                ],
+                              ),
                             ),
-                            Text(
-                              'ORDER INFO',
-                              style: TextStyle(
-                                  fontFamily: 'BOXICONS',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Placed on',
+                                    style: TextStyle(
+                                        fontFamily: 'BOXICONS',
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14),
+                                  ),
+                                  Text(
+                                    CalendarTime(DateTime.parse(
+                                            generalDetails.delivery_date!))
+                                        .toHuman,
+                                    style: TextStyle(
+                                        fontFamily: 'BOXICONS',
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: const [
+                                  Text(
+                                    'Delivered on',
+                                    style: TextStyle(
+                                        fontFamily: 'BOXICONS',
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14),
+                                  ),
+                                  Text(
+                                    'ORDER INFO',
+                                    style: TextStyle(
+                                        fontFamily: 'BOXICONS',
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14),
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
-                            Text(
-                              'Placed on',
-                              style: TextStyle(
-                                  fontFamily: 'BOXICONS',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14),
-                            ),
-                            Text(
-                              'ORDER INFO',
-                              style: TextStyle(
-                                  fontFamily: 'BOXICONS',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
-                            Text(
-                              'Delivered on',
-                              style: TextStyle(
-                                  fontFamily: 'BOXICONS',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14),
-                            ),
-                            Text(
-                              'ORDER INFO',
-                              style: TextStyle(
-                                  fontFamily: 'BOXICONS',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                        );
+                      }, orElse: () {
+                        return Container();
+                      });
+                    },
                   ),
                 ),
               ),
@@ -431,132 +395,142 @@ class SummaryTileList extends StatelessWidget {
               // ),
               StaggeredGridTile.count(
                 crossAxisCellCount: 4,
-                mainAxisCellCount: 10,
+                mainAxisCellCount: 6,
                 child: Container(
                   decoration: BoxDecoration(
                       border: Border.all(color: Palette.orangeColor),
                       borderRadius: BorderRadius.all(Radius.circular(20))),
-                  child: Column(
-                    children: [
-                      Container(
-                        height: 60,
-                        // padding: const EdgeInsets.only(left: 20, right: 8),
-                        padding: EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                            color: Palette.greenColor,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: IntrinsicHeight(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Expanded(
-                                child: Column(
-                                  children: const [
-                                    Text(
-                                      'Product Name',
-                                      maxLines: 1,
-                                      overflow: TextOverflow.fade,
-                                      softWrap: false,
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold),
+                  child: SingleChildScrollView(
+                    physics: const NeverScrollableScrollPhysics(),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: 60,
+                            // padding: const EdgeInsets.only(left: 20, right: 8),
+                            padding: EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                                color: Palette.greenColor,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: IntrinsicHeight(
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Expanded(
+                                    child: Column(
+                                      children: const [
+                                        Text(
+                                          'Product Name',
+                                          maxLines: 1,
+                                          overflow: TextOverflow.fade,
+                                          softWrap: false,
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
-                              ),
-                              const VerticalDivider(),
-                              Expanded(
-                                child: Column(
-                                  children: const [
-                                    Text(
-                                      'Quantity',
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold),
+                                  ),
+                                  const VerticalDivider(),
+                                  Expanded(
+                                    child: Column(
+                                      children: const [
+                                        Text(
+                                          'Quantity',
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
-                              ),
-                              const VerticalDivider(),
-                              Expanded(
-                                child: Column(
-                                  children: const [
-                                    Flexible(
-                                      child: Text(
-                                        'Specifications',
-                                        style: TextStyle(
-                                            fontSize: 18,
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold),
-                                      ),
+                                  ),
+                                  const VerticalDivider(),
+                                  Expanded(
+                                    child: Column(
+                                      children: const [
+                                        Flexible(
+                                          child: Text(
+                                            'Specifications',
+                                            maxLines: 1,
+                                            overflow: TextOverflow.fade,
+                                            softWrap: false,
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
-                              ),
-                              const VerticalDivider(),
-                              Expanded(
-                                child: Column(
-                                  children: const [
-                                    Text(
-                                      'Total',
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold),
+                                  ),
+                                  const VerticalDivider(),
+                                  Expanded(
+                                    child: Column(
+                                      children: const [
+                                        Text(
+                                          'Total',
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                            ],
+                            ),
                           ),
                         ),
-                      ),
-                      BlocConsumer<ODetailsDeCubit, ODetailsDeState>(
-                          listener: (context, state) {
-                        // TODO: implement listener
-                        state.maybeWhen(
-                            orElse: () {},
-                            failed: (e) {
-                              showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return CupertinoAlertDialog(
-                                      title: Text('Error'),
-                                      content: Text(e),
-                                    );
-                                  });
-                            });
-                      }, builder: (context, state) {
-                        return state.maybeWhen(
-                          loading: () {
-                            return const Center(
-                              child: CircularProgressIndicator(
-                                color: Palette.greenColor,
-                              ),
-                            );
-                          },
-                          success: (odeDetailsList) {
-                            return SingleChildScrollView(
-                              child: Column(children: [
-                                ...List.generate(
-                                    odeDetailsList!.length,
-                                    (index) => CardWidget(
-                                          deets: odeDetailsList[index],
-                                          // orderId: orderId,
-                                          index: index,
-                                        ))
-                              ]),
-                            );
-                          },
-                          orElse: () {
-                            return Container();
-                          },
-                        );
-                      }),
-                    ],
+                        BlocConsumer<ODetailsDeCubit, ODetailsDeState>(
+                            listener: (context, state) {
+                          // TODO: implement listener
+                          state.maybeWhen(
+                              orElse: () {},
+                              failed: (e) {
+                                showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return CupertinoAlertDialog(
+                                        title: Text('Error'),
+                                        content: Text(e),
+                                      );
+                                    });
+                              });
+                        }, builder: (context, state) {
+                          return state.maybeWhen(
+                            loading: () {
+                              return const Center(
+                                child: CircularProgressIndicator(
+                                  color: Palette.greenColor,
+                                ),
+                              );
+                            },
+                            success: (odeDetailsList) {
+                              return SingleChildScrollView(
+                                child: Column(children: [
+                                  ...List.generate(
+                                      odeDetailsList!.length,
+                                      (index) => CardWidget(
+                                            deets: odeDetailsList[index],
+                                            // orderId: orderId,
+                                            index: index,
+                                          ))
+                                ]),
+                              );
+                            },
+                            orElse: () {
+                              return Container();
+                            },
+                          );
+                        }),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -574,6 +548,20 @@ class SummaryTileList extends StatelessWidget {
         )
       ]),
     );
+  }
+}
+
+class ColumnOne extends StatefulWidget {
+  ColumnOne({Key? key}) : super(key: key);
+
+  @override
+  State<ColumnOne> createState() => _ColumnOneState();
+}
+
+class _ColumnOneState extends State<ColumnOne> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }
 
@@ -678,7 +666,14 @@ class _CardWidgetState extends State<CardWidget> {
                 // CupertinoButton(
                 //     child: Icon(BoxIcons.bx_note), onPressed: () {}),
                 Row(
-                  children: [],
+                  children: [
+                    Text(
+                      widget.deets.order_id.toString(),
+                      softWrap: true,
+                      style: const TextStyle(
+                          color: Palette.placeholderGrey, fontSize: 16),
+                    ),
+                  ],
                 )
               ],
             ),
