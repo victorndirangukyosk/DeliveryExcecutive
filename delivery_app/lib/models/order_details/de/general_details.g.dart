@@ -16,6 +16,11 @@ _$_GeneralDetails _$$_GeneralDetailsFromJson(Map<String, dynamic> json) =>
       payment_method: json['payment_method'] as String?,
       payment_code: json['payment_code'] as String?,
       shipping_method: json['shipping_method'] as String?,
+      date_added: json['date_added'] as String?,
+      date_modified: json['date_modified'] as String?,
+      firstname: json['firstname'] as String?,
+      lastname: json['lastname'] as String?,
+      telephone: json['telephone'] as String?,
     );
 
 Map<String, dynamic> _$$_GeneralDetailsToJson(_$_GeneralDetails instance) =>
@@ -28,4 +33,9 @@ Map<String, dynamic> _$$_GeneralDetailsToJson(_$_GeneralDetails instance) =>
       'payment_method': instance.payment_method,
       'payment_code': instance.payment_code,
       'shipping_method': instance.shipping_method,
+      'date_added': instance.date_added,
+      'date_modified': instance.date_modified,
+      'firstname': instance.firstname,
+      'lastname': instance.lastname,
+      'telephone': instance.telephone,
     };

@@ -28,6 +28,11 @@ mixin _$GeneralDetails {
   String? get payment_method => throw _privateConstructorUsedError;
   String? get payment_code => throw _privateConstructorUsedError;
   String? get shipping_method => throw _privateConstructorUsedError;
+  String? get date_added => throw _privateConstructorUsedError;
+  String? get date_modified => throw _privateConstructorUsedError;
+  String? get firstname => throw _privateConstructorUsedError;
+  String? get lastname => throw _privateConstructorUsedError;
+  String? get telephone => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,7 +53,12 @@ abstract class $GeneralDetailsCopyWith<$Res> {
       String? delivery_date,
       String? payment_method,
       String? payment_code,
-      String? shipping_method});
+      String? shipping_method,
+      String? date_added,
+      String? date_modified,
+      String? firstname,
+      String? lastname,
+      String? telephone});
 }
 
 /// @nodoc
@@ -70,6 +80,11 @@ class _$GeneralDetailsCopyWithImpl<$Res>
     Object? payment_method = freezed,
     Object? payment_code = freezed,
     Object? shipping_method = freezed,
+    Object? date_added = freezed,
+    Object? date_modified = freezed,
+    Object? firstname = freezed,
+    Object? lastname = freezed,
+    Object? telephone = freezed,
   }) {
     return _then(_value.copyWith(
       order_id: order_id == freezed
@@ -104,6 +119,26 @@ class _$GeneralDetailsCopyWithImpl<$Res>
           ? _value.shipping_method
           : shipping_method // ignore: cast_nullable_to_non_nullable
               as String?,
+      date_added: date_added == freezed
+          ? _value.date_added
+          : date_added // ignore: cast_nullable_to_non_nullable
+              as String?,
+      date_modified: date_modified == freezed
+          ? _value.date_modified
+          : date_modified // ignore: cast_nullable_to_non_nullable
+              as String?,
+      firstname: firstname == freezed
+          ? _value.firstname
+          : firstname // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastname: lastname == freezed
+          ? _value.lastname
+          : lastname // ignore: cast_nullable_to_non_nullable
+              as String?,
+      telephone: telephone == freezed
+          ? _value.telephone
+          : telephone // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -123,7 +158,12 @@ abstract class _$$_GeneralDetailsCopyWith<$Res>
       String? delivery_date,
       String? payment_method,
       String? payment_code,
-      String? shipping_method});
+      String? shipping_method,
+      String? date_added,
+      String? date_modified,
+      String? firstname,
+      String? lastname,
+      String? telephone});
 }
 
 /// @nodoc
@@ -147,6 +187,11 @@ class __$$_GeneralDetailsCopyWithImpl<$Res>
     Object? payment_method = freezed,
     Object? payment_code = freezed,
     Object? shipping_method = freezed,
+    Object? date_added = freezed,
+    Object? date_modified = freezed,
+    Object? firstname = freezed,
+    Object? lastname = freezed,
+    Object? telephone = freezed,
   }) {
     return _then(_$_GeneralDetails(
       order_id: order_id == freezed
@@ -181,6 +226,26 @@ class __$$_GeneralDetailsCopyWithImpl<$Res>
           ? _value.shipping_method
           : shipping_method // ignore: cast_nullable_to_non_nullable
               as String?,
+      date_added: date_added == freezed
+          ? _value.date_added
+          : date_added // ignore: cast_nullable_to_non_nullable
+              as String?,
+      date_modified: date_modified == freezed
+          ? _value.date_modified
+          : date_modified // ignore: cast_nullable_to_non_nullable
+              as String?,
+      firstname: firstname == freezed
+          ? _value.firstname
+          : firstname // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastname: lastname == freezed
+          ? _value.lastname
+          : lastname // ignore: cast_nullable_to_non_nullable
+              as String?,
+      telephone: telephone == freezed
+          ? _value.telephone
+          : telephone // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -196,7 +261,12 @@ class _$_GeneralDetails implements _GeneralDetails {
       this.delivery_date,
       this.payment_method,
       this.payment_code,
-      this.shipping_method});
+      this.shipping_method,
+      this.date_added,
+      this.date_modified,
+      this.firstname,
+      this.lastname,
+      this.telephone});
 
   factory _$_GeneralDetails.fromJson(Map<String, dynamic> json) =>
       _$$_GeneralDetailsFromJson(json);
@@ -217,10 +287,20 @@ class _$_GeneralDetails implements _GeneralDetails {
   final String? payment_code;
   @override
   final String? shipping_method;
+  @override
+  final String? date_added;
+  @override
+  final String? date_modified;
+  @override
+  final String? firstname;
+  @override
+  final String? lastname;
+  @override
+  final String? telephone;
 
   @override
   String toString() {
-    return 'GeneralDetails(order_id: $order_id, products_count: $products_count, vehicle_number: $vehicle_number, shipping_landmark: $shipping_landmark, delivery_date: $delivery_date, payment_method: $payment_method, payment_code: $payment_code, shipping_method: $shipping_method)';
+    return 'GeneralDetails(order_id: $order_id, products_count: $products_count, vehicle_number: $vehicle_number, shipping_landmark: $shipping_landmark, delivery_date: $delivery_date, payment_method: $payment_method, payment_code: $payment_code, shipping_method: $shipping_method, date_added: $date_added, date_modified: $date_modified, firstname: $firstname, lastname: $lastname, telephone: $telephone)';
   }
 
   @override
@@ -242,7 +322,14 @@ class _$_GeneralDetails implements _GeneralDetails {
             const DeepCollectionEquality()
                 .equals(other.payment_code, payment_code) &&
             const DeepCollectionEquality()
-                .equals(other.shipping_method, shipping_method));
+                .equals(other.shipping_method, shipping_method) &&
+            const DeepCollectionEquality()
+                .equals(other.date_added, date_added) &&
+            const DeepCollectionEquality()
+                .equals(other.date_modified, date_modified) &&
+            const DeepCollectionEquality().equals(other.firstname, firstname) &&
+            const DeepCollectionEquality().equals(other.lastname, lastname) &&
+            const DeepCollectionEquality().equals(other.telephone, telephone));
   }
 
   @JsonKey(ignore: true)
@@ -256,7 +343,12 @@ class _$_GeneralDetails implements _GeneralDetails {
       const DeepCollectionEquality().hash(delivery_date),
       const DeepCollectionEquality().hash(payment_method),
       const DeepCollectionEquality().hash(payment_code),
-      const DeepCollectionEquality().hash(shipping_method));
+      const DeepCollectionEquality().hash(shipping_method),
+      const DeepCollectionEquality().hash(date_added),
+      const DeepCollectionEquality().hash(date_modified),
+      const DeepCollectionEquality().hash(firstname),
+      const DeepCollectionEquality().hash(lastname),
+      const DeepCollectionEquality().hash(telephone));
 
   @JsonKey(ignore: true)
   @override
@@ -278,7 +370,12 @@ abstract class _GeneralDetails implements GeneralDetails {
       final String? delivery_date,
       final String? payment_method,
       final String? payment_code,
-      final String? shipping_method}) = _$_GeneralDetails;
+      final String? shipping_method,
+      final String? date_added,
+      final String? date_modified,
+      final String? firstname,
+      final String? lastname,
+      final String? telephone}) = _$_GeneralDetails;
 
   factory _GeneralDetails.fromJson(Map<String, dynamic> json) =
       _$_GeneralDetails.fromJson;
@@ -299,6 +396,16 @@ abstract class _GeneralDetails implements GeneralDetails {
   String? get payment_code => throw _privateConstructorUsedError;
   @override
   String? get shipping_method => throw _privateConstructorUsedError;
+  @override
+  String? get date_added => throw _privateConstructorUsedError;
+  @override
+  String? get date_modified => throw _privateConstructorUsedError;
+  @override
+  String? get firstname => throw _privateConstructorUsedError;
+  @override
+  String? get lastname => throw _privateConstructorUsedError;
+  @override
+  String? get telephone => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_GeneralDetailsCopyWith<_$_GeneralDetails> get copyWith =>

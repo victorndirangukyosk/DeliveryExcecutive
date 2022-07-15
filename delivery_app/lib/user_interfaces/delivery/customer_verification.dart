@@ -59,8 +59,13 @@ class _CustomerVerificationState extends State<CustomerVerification> {
             Row(
               children: [
                 const Text(
-                  'Hi Client, your order has been Delivered',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  'your order has been Delivered',
+                  style: TextStyle(
+                      color: Palette.placeholderGrey,
+                      fontStyle: FontStyle.italic,
+                      fontFamily: 'BOXICONS',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18),
                 ),
                 Expanded(child: Container()),
                 Padding(
@@ -110,78 +115,91 @@ class SummaryTileList extends StatelessWidget {
                   decoration: BoxDecoration(
                       border: Border.all(color: Palette.orangeColor),
                       borderRadius: BorderRadius.all(Radius.circular(20))),
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(40.0),
-                      child: Row(
-                        children: [
-                          context.watch<PickImageCubit>().state.path.length < 2
-                              ? InkWell(
-                                  onTap: () async {
-                                    var x = await ImagePicker()
-                                        .pickImage(source: ImageSource.camera);
-                                    context
-                                        .read<PickImageCubit>()
-                                        .emit(File(x!.path));
-                                  },
-                                  child: AnimatedContainer(
-                                    duration: const Duration(seconds: 3),
-                                    height: 200,
-                                    width: 200,
-                                    // decoration: BoxDecoration(
-                                    //     border: Border.all(width: 2)),
-                                    child: Center(
-                                      child: UserProfileAvatar(
-                                        avatarUrl: '',
-                                        onAvatarTap: () async {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(SnackBar(
-                                            content: Text('Tapped on avatar'),
-                                          ));
-                                          var x = await ImagePicker().pickImage(
-                                              source: ImageSource.camera);
-                                          context
-                                              .read<PickImageCubit>()
-                                              .emit(File(x!.path));
-                                        },
-                                        // notificationCount: 10,
-                                        notificationBubbleTextStyle:
-                                            const TextStyle(
-                                          fontSize: 30,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
+                  child: Column(
+                    children: [
+                      // Text('CUSTOMER PHOTO'),
+                      Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(40.0),
+                          child: Row(
+                            children: [
+                              context
+                                          .watch<PickImageCubit>()
+                                          .state
+                                          .path
+                                          .length <
+                                      2
+                                  ? InkWell(
+                                      onTap: () async {
+                                        var x = await ImagePicker().pickImage(
+                                            source: ImageSource.camera);
+                                        context
+                                            .read<PickImageCubit>()
+                                            .emit(File(x!.path));
+                                      },
+                                      child: AnimatedContainer(
+                                        duration: const Duration(seconds: 3),
+                                        height: 160,
+                                        width: 200,
+                                        // decoration: BoxDecoration(
+                                        //     border: Border.all(width: 2)),
+                                        child: Center(
+                                          child: UserProfileAvatar(
+                                            avatarUrl: '',
+                                            onAvatarTap: () async {
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(SnackBar(
+                                                content:
+                                                    Text('Tapped on avatar'),
+                                              ));
+                                              var x = await ImagePicker()
+                                                  .pickImage(
+                                                      source:
+                                                          ImageSource.camera);
+                                              context
+                                                  .read<PickImageCubit>()
+                                                  .emit(File(x!.path));
+                                            },
+                                            // notificationCount: 10,
+                                            notificationBubbleTextStyle:
+                                                const TextStyle(
+                                              fontSize: 30,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                            avatarSplashColor: Colors.purple,
+                                            radius: 100,
+                                            isActivityIndicatorSmall: false,
+                                            avatarBorderData: AvatarBorderData(
+                                              borderColor: Colors.black54,
+                                              borderWidth: 5.0,
+                                            ),
+                                          ),
                                         ),
-                                        avatarSplashColor: Colors.purple,
-                                        radius: 100,
-                                        isActivityIndicatorSmall: false,
-                                        avatarBorderData: AvatarBorderData(
-                                          borderColor: Colors.black54,
-                                          borderWidth: 5.0,
+                                      ),
+                                    )
+                                  : InkWell(
+                                      onTap: () async {
+                                        var x = await ImagePicker().pickImage(
+                                            source: ImageSource.camera);
+                                        context
+                                            .read<PickImageCubit>()
+                                            .emit(File(x!.path));
+                                      },
+                                      child: Flexible(
+                                        child: Image.file(
+                                          context.read<PickImageCubit>().state,
+                                          height: 200,
+                                          width: 200,
+                                          fit: BoxFit.cover,
                                         ),
                                       ),
                                     ),
-                                  ),
-                                )
-                              : InkWell(
-                                  onTap: () async {
-                                    var x = await ImagePicker()
-                                        .pickImage(source: ImageSource.camera);
-                                    context
-                                        .read<PickImageCubit>()
-                                        .emit(File(x!.path));
-                                  },
-                                  child: Flexible(
-                                    child: Image.file(
-                                      context.read<PickImageCubit>().state,
-                                      height: 270,
-                                      width: 200,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                        ],
+                            ],
+                          ),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
                 ),
               ),
@@ -218,6 +236,14 @@ class SummaryTileList extends StatelessWidget {
                       }, success: (generalDetails) {
                         return Column(
                           children: [
+                            Text(
+                              'ORDER INFO',
+                              style: TextStyle(
+                                  color: Palette.placeholderGrey,
+                                  fontFamily: 'BOXICONS',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16),
+                            ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Row(
@@ -227,6 +253,7 @@ class SummaryTileList extends StatelessWidget {
                                   Text(
                                     'Order ID',
                                     style: TextStyle(
+                                        color: Palette.placeholderGrey,
                                         fontFamily: 'BOXICONS',
                                         fontWeight: FontWeight.bold,
                                         fontSize: 14),
@@ -234,6 +261,7 @@ class SummaryTileList extends StatelessWidget {
                                   Text(
                                     generalDetails.order_id.toString(),
                                     style: TextStyle(
+                                        color: Palette.placeholderGrey,
                                         fontFamily: 'BOXICONS',
                                         fontWeight: FontWeight.bold,
                                         fontSize: 14),
@@ -250,15 +278,17 @@ class SummaryTileList extends StatelessWidget {
                                   Text(
                                     'Placed on',
                                     style: TextStyle(
+                                        color: Palette.placeholderGrey,
                                         fontFamily: 'BOXICONS',
                                         fontWeight: FontWeight.bold,
                                         fontSize: 14),
                                   ),
                                   Text(
                                     CalendarTime(DateTime.parse(
-                                            generalDetails.delivery_date!))
+                                            generalDetails.date_added!))
                                         .toHuman,
                                     style: TextStyle(
+                                        color: Palette.placeholderGrey,
                                         fontFamily: 'BOXICONS',
                                         fontWeight: FontWeight.bold,
                                         fontSize: 14),
@@ -271,17 +301,21 @@ class SummaryTileList extends StatelessWidget {
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
-                                children: const [
+                                children: [
                                   Text(
                                     'Delivered on',
                                     style: TextStyle(
+                                        color: Palette.placeholderGrey,
                                         fontFamily: 'BOXICONS',
                                         fontWeight: FontWeight.bold,
                                         fontSize: 14),
                                   ),
                                   Text(
-                                    'ORDER INFO',
+                                    CalendarTime(DateTime.parse(
+                                            generalDetails.delivery_date!))
+                                        .toHuman,
                                     style: TextStyle(
+                                        color: Palette.placeholderGrey,
                                         fontFamily: 'BOXICONS',
                                         fontWeight: FontWeight.bold,
                                         fontSize: 14),
@@ -305,75 +339,121 @@ class SummaryTileList extends StatelessWidget {
                   decoration: BoxDecoration(
                       border: Border.all(color: Palette.orangeColor),
                       borderRadius: BorderRadius.all(Radius.circular(20))),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
-                            Text(
-                              'Tax Invoice',
+                  child: BlocConsumer<DeOrderDetailsCubit, DeOrderDetailsState>(
+                    listener: (context, state) {
+                      // TODO: implement listener
+                      state.maybeWhen(
+                          orElse: () {},
+                          failed: (e) {
+                            showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return CupertinoAlertDialog(
+                                    title: Text('Error'),
+                                    content: Text(e),
+                                  );
+                                });
+                          });
+                    },
+                    builder: (context, state) {
+                      return state.maybeWhen(loading: () {
+                        return const Center(
+                          child: CupertinoActivityIndicator(
+                            color: Palette.greenColor,
+                          ),
+                        );
+                      }, success: (generalDetails) {
+                        return Column(
+                          children: [
+                            const Text(
+                              'DELIVERY EXCECUTIVE DETAILS',
                               style: TextStyle(
+                                  color: Palette.placeholderGrey,
                                   fontFamily: 'BOXICONS',
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 14),
+                                  fontSize: 16),
                             ),
-                            Text(
-                              'ORDER INFO',
-                              style: TextStyle(
-                                  fontFamily: 'BOXICONS',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'First Name',
+                                    style: TextStyle(
+                                        color: Palette.placeholderGrey,
+                                        fontFamily: 'BOXICONS',
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14),
+                                  ),
+                                  Text(
+                                    generalDetails.firstname!,
+                                    style: TextStyle(
+                                        color: Palette.placeholderGrey,
+                                        fontFamily: 'BOXICONS',
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Last name',
+                                    style: TextStyle(
+                                        color: Palette.placeholderGrey,
+                                        fontFamily: 'BOXICONS',
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14),
+                                  ),
+                                  Text(
+                                    generalDetails.lastname!,
+                                    style: TextStyle(
+                                        color: Palette.placeholderGrey,
+                                        fontFamily: 'BOXICONS',
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Phone',
+                                    style: TextStyle(
+                                        color: Palette.placeholderGrey,
+                                        fontFamily: 'BOXICONS',
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14),
+                                  ),
+                                  Text(
+                                    generalDetails.telephone!,
+                                    style: TextStyle(
+                                        color: Palette.placeholderGrey,
+                                        fontFamily: 'BOXICONS',
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14),
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
-                            Text(
-                              'Placed on',
-                              style: TextStyle(
-                                  fontFamily: 'BOXICONS',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14),
-                            ),
-                            Text(
-                              'ORDER INFO',
-                              style: TextStyle(
-                                  fontFamily: 'BOXICONS',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
-                            Text(
-                              'Delivered on',
-                              style: TextStyle(
-                                  fontFamily: 'BOXICONS',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14),
-                            ),
-                            Text(
-                              'ORDER INFO',
-                              style: TextStyle(
-                                  fontFamily: 'BOXICONS',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                        );
+                      }, orElse: () {
+                        return Container();
+                      });
+                    },
                   ),
                 ),
               ),
@@ -473,7 +553,7 @@ class SummaryTileList extends StatelessWidget {
                                     child: Column(
                                       children: const [
                                         Text(
-                                          'Total',
+                                          'Price',
                                           style: TextStyle(
                                               fontSize: 18,
                                               color: Colors.white,
@@ -536,11 +616,52 @@ class SummaryTileList extends StatelessWidget {
               ),
               StaggeredGridTile.count(
                 crossAxisCellCount: 4,
-                mainAxisCellCount: 2,
+                mainAxisCellCount: 3,
                 child: Container(
                   decoration: BoxDecoration(
                       border: Border.all(color: Palette.orangeColor),
                       borderRadius: BorderRadius.all(Radius.circular(20))),
+                  child: Column(
+                    children: [
+                      const Text(
+                        'Customer signature',
+                        style: TextStyle(
+                            color: Palette.greenColor,
+                            fontSize: 20,
+                            fontFamily: 'Helvetica',
+                            fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                      ),
+                      Container(
+                        height: 200,
+                        width: 300,
+                        decoration: BoxDecoration(
+                          color: Palette.greenColor,
+                          border: Border.all(width: 1),
+                          // borderRadius: BorderRadius.circular(30),
+                        ),
+                        //we can have the following cubits analyzed
+                        child: Signature(
+                          controller: SignatureController(),
+                          height: 200,
+                          width: 300,
+                          backgroundColor: Colors.white,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 40,
+                      ),
+                      CupertinoButton(
+                          child: const Text('Submit'),
+                          color: Palette.greenColor,
+                          onPressed: () {
+                            // context.read<CustomerVerificationCubit>();
+                            AutoRouter.of(context).replace(InvoiceRoute());
+                          })
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -548,20 +669,6 @@ class SummaryTileList extends StatelessWidget {
         )
       ]),
     );
-  }
-}
-
-class ColumnOne extends StatefulWidget {
-  ColumnOne({Key? key}) : super(key: key);
-
-  @override
-  State<ColumnOne> createState() => _ColumnOneState();
-}
-
-class _ColumnOneState extends State<ColumnOne> {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }
 
@@ -668,7 +775,7 @@ class _CardWidgetState extends State<CardWidget> {
                 Row(
                   children: [
                     Text(
-                      widget.deets.order_id.toString(),
+                      widget.deets.price.toString(),
                       softWrap: true,
                       style: const TextStyle(
                           color: Palette.placeholderGrey, fontSize: 16),
@@ -768,7 +875,7 @@ class _CustomerVerificatioState extends State<CustomerVerification> {
                         context.read<PickImageCubit>().state,
                         height: 200,
                         width: 300,
-                        fit: BoxFit.cover,
+                        fit: BoxFit.fitHeight,
                       ),
                     ),
               const SizedBox(
@@ -809,7 +916,8 @@ class _CustomerVerificatioState extends State<CustomerVerification> {
                   color: Palette.greenColor,
                   onPressed: () {
                     // context.read<CustomerVerificationCubit>();
-                    AutoRouter.of(context).replace(InvoiceRoute());
+                    AutoRouter.of(context)
+                        .replace(MainHomeDeliveryExecutiveRoute());
                   })
             ],
           ),
