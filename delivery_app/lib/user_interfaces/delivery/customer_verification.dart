@@ -658,7 +658,8 @@ class SummaryTileList extends StatelessWidget {
                           color: Palette.greenColor,
                           onPressed: () {
                             // context.read<CustomerVerificationCubit>();
-                            AutoRouter.of(context).replace(InvoiceRoute());
+                            AutoRouter.of(context)
+                                .replace(MainHomeDeliveryExecutiveRoute());
                           })
                     ],
                   ),
@@ -758,7 +759,7 @@ class _CardWidgetState extends State<CardWidget> {
             children: [
               Flexible(
                 child: Text(
-                  widget.deets.product_note!,
+                  widget.deets.product_note ?? '',
                   softWrap: true,
                   style: const TextStyle(
                       color: Palette.placeholderGrey, fontSize: 16),
