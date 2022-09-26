@@ -15,9 +15,9 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 class LoginPage extends StatelessWidget {
-   
- 
-  const LoginPage({Key? key, }) : super(key: key);
+  const LoginPage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +26,7 @@ class LoginPage extends StatelessWidget {
       duration: const Duration(seconds: 1),
       // ignore: sort_child_properties_last
       child: Center(
-        child: LoginCard(
-        
-        ),
+        child: LoginCard(),
       ),
       decoration: const BoxDecoration(color: Palette.orangeColor
           // gradient: LinearGradient(
@@ -42,9 +40,9 @@ class LoginPage extends StatelessWidget {
 }
 
 class LoginCard extends StatelessWidget {
-    
-
-  const LoginCard({Key? key, }) : super(key: key);
+  const LoginCard({
+    Key? key,
+  }) : super(key: key);
 
   static var _formKey = GlobalKey<FormBuilderState>();
   @override
@@ -172,12 +170,10 @@ class LoginCard extends StatelessWidget {
                           .saveToken(state.loginResponse.token!);
 
                       isOp
-                          ? AutoRouter.of(context)
-                              .replace(MainHomeRoute())
+                          ? AutoRouter.of(context).replace(MainHomeRoute())
                           : isDe
-                              ? AutoRouter.of(context).replace(
-                                  MainHomeDeliveryExecutiveRoute(
-                                     ))
+                              ? AutoRouter.of(context)
+                                  .replace(MainHomeDeliveryExecutiveRoute())
                               : print('Error');
                     }
                     if (state is LoginFailed) {

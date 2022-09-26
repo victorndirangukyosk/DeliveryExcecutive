@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:delivery_app/models/odetails_list/de/odetails_de.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 import 'package:delivery_app/user_interfaces/delivery/directions_to_address/components/api_secret.dart';
+import 'package:delivery_app/utilities/rest_client/rest_client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
@@ -16,7 +17,6 @@ import 'dart:math' show cos, sqrt, asin;
 import 'package:permission_handler/permission_handler.dart';
 
 class DirectionsToAddress extends StatefulWidget {
- 
   final int orderId;
   const DirectionsToAddress({Key? key, required this.orderId})
       : super(key: key);
@@ -37,7 +37,15 @@ class _DirectionsToAddressState extends State<DirectionsToAddress> {
   static const String _kPermissionGrantedMessage = 'Permission granted.';
   final List<_PositionItem> _positionItems = <_PositionItem>[];
 
-  late Position _currentPosition;
+  Position _currentPosition = Position(
+      longitude: 0,
+      latitude: 0,
+      timestamp: DateTime.now(),
+      accuracy: 0,
+      altitude: 0,
+      heading: 0,
+      speed: 1,
+      speedAccuracy: 1);
 // static LatLng _currentPosition;
   String _currentAddress = '';
 
@@ -74,6 +82,7 @@ class _DirectionsToAddressState extends State<DirectionsToAddress> {
       child: TextField(
         onChanged: (value) {
           locationCallback(value);
+          findPlace(value);
         },
         controller: controller,
         focusNode: focusNode,
@@ -488,7 +497,7 @@ class _DirectionsToAddressState extends State<DirectionsToAddress> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
-                          Text(
+                          const Text(
                             'Places',
                             style: TextStyle(fontSize: 20.0),
                           ),
@@ -500,6 +509,8 @@ class _DirectionsToAddressState extends State<DirectionsToAddress> {
                               suffixIcon: IconButton(
                                 icon: Icon(Icons.my_location),
                                 onPressed: () async {
+                                  // await _getCurrentLocation();
+                                  _handlePermission;
                                   final GoogleMapController controller =
                                       await mapController.future;
                                   controller.animateCamera(
@@ -513,7 +524,6 @@ class _DirectionsToAddressState extends State<DirectionsToAddress> {
                                       ),
                                     ),
                                   );
-                                  _handlePermission;
                                 },
                               ),
                               controller: startAddressController,
@@ -616,7 +626,8 @@ class _DirectionsToAddressState extends State<DirectionsToAddress> {
               alignment: Alignment.bottomCenter,
               child: ElevatedButton(
                 onPressed: () {
-                  AutoRouter.of(context).replace(CustomerVerification(orderId: widget.orderId));
+                  AutoRouter.of(context)
+                      .replace(CustomerVerification(orderId: widget.orderId));
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -653,6 +664,7 @@ class _DirectionsToAddressState extends State<DirectionsToAddress> {
                               child: Icon(Icons.my_location),
                             ),
                             onTap: () async {
+                              _handlePermission;
                               final GoogleMapController controller =
                                   await mapController.future;
                               controller.animateCamera(
@@ -666,7 +678,6 @@ class _DirectionsToAddressState extends State<DirectionsToAddress> {
                                   ),
                                 ),
                               );
-                              _handlePermission;
                             },
                           )),
                     )),
@@ -676,6 +687,19 @@ class _DirectionsToAddressState extends State<DirectionsToAddress> {
         ),
       ),
     );
+  }
+
+  void findPlace(String placeName) async {
+    if (placeName.length > 1) {
+      String autoCompleteUrl =
+          'https://maps.googleapis.com/maps/api/place/autocomplete/json?input=$placeName&key=${Secrets.API_KEY}&components=country:ke';
+      var res = await RestClient().dio!.get(autoCompleteUrl);
+      if (res.data['data'] == 'failed') {
+        return;
+      }
+      print('Places Prediction Response ::');
+      print(res.data['data']);
+    }
   }
 }
 

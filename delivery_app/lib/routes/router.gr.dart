@@ -11,6 +11,7 @@
 // ignore_for_file: type=lint
 
 import 'package:auto_route/auto_route.dart' as _i15;
+import 'package:flutter/cupertino.dart' as _i17;
 import 'package:flutter/material.dart' as _i16;
 
 import '../user_interfaces/authentication_screens/reset_password_page.dart'
@@ -208,7 +209,7 @@ class ReadyForDelivery extends _i15.PageRouteInfo<void> {
 /// [_i8.CustomerVerification]
 class CustomerVerification
     extends _i15.PageRouteInfo<CustomerVerificationArgs> {
-  CustomerVerification({_i16.Key? key, required int orderId})
+  CustomerVerification({_i17.Key? key, required int orderId})
       : super(CustomerVerification.name,
             path: '/customer-verification',
             args: CustomerVerificationArgs(key: key, orderId: orderId));
@@ -219,7 +220,7 @@ class CustomerVerification
 class CustomerVerificationArgs {
   const CustomerVerificationArgs({this.key, required this.orderId});
 
-  final _i16.Key? key;
+  final _i17.Key? key;
 
   final int orderId;
 
@@ -232,7 +233,7 @@ class CustomerVerificationArgs {
 /// generated route for
 /// [_i9.DirectionsToAddress]
 class DirectionsToAddress extends _i15.PageRouteInfo<DirectionsToAddressArgs> {
-  DirectionsToAddress({_i16.Key? key, required int orderId})
+  DirectionsToAddress({_i17.Key? key, required int orderId})
       : super(DirectionsToAddress.name,
             path: '/directions-to-address',
             args: DirectionsToAddressArgs(key: key, orderId: orderId));
@@ -243,7 +244,7 @@ class DirectionsToAddress extends _i15.PageRouteInfo<DirectionsToAddressArgs> {
 class DirectionsToAddressArgs {
   const DirectionsToAddressArgs({this.key, required this.orderId});
 
-  final _i16.Key? key;
+  final _i17.Key? key;
 
   final int orderId;
 
@@ -265,7 +266,7 @@ class ResetPasswordRoute extends _i15.PageRouteInfo<void> {
 /// generated route for
 /// [_i11.SummaryPage]
 class SummaryRoute extends _i15.PageRouteInfo<SummaryRouteArgs> {
-  SummaryRoute({_i16.Key? key, required int orderId})
+  SummaryRoute({_i17.Key? key, required int orderId})
       : super(SummaryRoute.name,
             path: '/summary-page',
             args: SummaryRouteArgs(key: key, orderId: orderId));
@@ -276,7 +277,7 @@ class SummaryRoute extends _i15.PageRouteInfo<SummaryRouteArgs> {
 class SummaryRouteArgs {
   const SummaryRouteArgs({this.key, required this.orderId});
 
-  final _i16.Key? key;
+  final _i17.Key? key;
 
   final int orderId;
 
@@ -289,7 +290,7 @@ class SummaryRouteArgs {
 /// generated route for
 /// [_i12.OrderDetailsPage]
 class OrderDetailsRoute extends _i15.PageRouteInfo<OrderDetailsRouteArgs> {
-  OrderDetailsRoute({_i16.Key? key, required int orderId})
+  OrderDetailsRoute({_i17.Key? key, required int orderId})
       : super(OrderDetailsRoute.name,
             path: '/order-details-page',
             args: OrderDetailsRouteArgs(key: key, orderId: orderId));
@@ -300,7 +301,7 @@ class OrderDetailsRoute extends _i15.PageRouteInfo<OrderDetailsRouteArgs> {
 class OrderDetailsRouteArgs {
   const OrderDetailsRouteArgs({this.key, required this.orderId});
 
-  final _i16.Key? key;
+  final _i17.Key? key;
 
   final int orderId;
 
@@ -313,7 +314,7 @@ class OrderDetailsRouteArgs {
 /// generated route for
 /// [_i13.CratesPage]
 class CratesRoute extends _i15.PageRouteInfo<CratesRouteArgs> {
-  CratesRoute({_i16.Key? key, required int orderId})
+  CratesRoute({_i17.Key? key, required int orderId})
       : super(CratesRoute.name,
             path: '/crates-page',
             args: CratesRouteArgs(key: key, orderId: orderId));
@@ -324,7 +325,7 @@ class CratesRoute extends _i15.PageRouteInfo<CratesRouteArgs> {
 class CratesRouteArgs {
   const CratesRouteArgs({this.key, required this.orderId});
 
-  final _i16.Key? key;
+  final _i17.Key? key;
 
   final int orderId;
 

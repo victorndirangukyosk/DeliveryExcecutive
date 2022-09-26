@@ -8,6 +8,7 @@ import 'package:flutter_services_binding/flutter_services_binding.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'app/app.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 ///This is the starting point for the application
 main() async {
@@ -18,10 +19,11 @@ main() async {
     final license = await rootBundle.loadString('google_fonts/OFL.txt');
     yield LicenseEntryWithLineBreaks(['google_fonts'], license);
   });
-  // await [
-  //   // Permission.camera,
-  //   Permission.storage,
-  // ].request();
+  await [
+    Permission.camera,
+    Permission.storage,
+    Permission.locationWhenInUse,
+  ].request();
 
   ///Allow getit reassignments for smoother debuging
   GetIt.I.allowReassignment = true;
