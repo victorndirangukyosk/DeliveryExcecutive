@@ -313,7 +313,9 @@ class _$_FilterFlag implements _FilterFlag {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_FilterFlagToJson(this);
+    return _$$_FilterFlagToJson(
+      this,
+    );
   }
 }
 
@@ -335,27 +337,27 @@ abstract class _FilterFlag implements FilterFlag {
       _$_FilterFlag.fromJson;
 
   @override
-  num? get order_product_id => throw _privateConstructorUsedError;
+  num? get order_product_id;
   @override
-  num? get order_id => throw _privateConstructorUsedError;
+  num? get order_id;
   @override
-  num? get product_id => throw _privateConstructorUsedError;
+  num? get product_id;
   @override
-  num? get product_general_id => throw _privateConstructorUsedError;
+  num? get product_general_id;
   @override
-  num? get quantity => throw _privateConstructorUsedError;
+  num? get quantity;
   @override
-  num? get price => throw _privateConstructorUsedError;
+  num? get price;
   @override
-  num? get total => throw _privateConstructorUsedError;
+  num? get total;
   @override
-  num? get tax => throw _privateConstructorUsedError;
+  num? get tax;
   @override
-  String? get name => throw _privateConstructorUsedError;
+  String? get name;
   @override
-  String? get unit => throw _privateConstructorUsedError;
+  String? get unit;
   @override
-  String? get status => throw _privateConstructorUsedError;
+  String? get status;
   @override
   @JsonKey(ignore: true)
   _$$_FilterFlagCopyWith<_$_FilterFlag> get copyWith =>

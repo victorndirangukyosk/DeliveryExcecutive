@@ -25,6 +25,8 @@ _$_AssignedDe _$$_AssignedDeFromJson(Map<String, dynamic> json) =>
       telephone: json['telephone'] as String?,
       email: json['email'] as String?,
       customer_id: json['customer_id'] as num?,
+      paid: json['paid'] as String?,
+      amount_partialy_paid: json['amount_partialy_paid'] as int?,
     );
 
 Map<String, dynamic> _$$_AssignedDeToJson(_$_AssignedDe instance) =>
@@ -46,4 +48,6 @@ Map<String, dynamic> _$$_AssignedDeToJson(_$_AssignedDe instance) =>
       'telephone': instance.telephone,
       'email': instance.email,
       'customer_id': instance.customer_id,
+      'paid': instance.paid,
+      'amount_partialy_paid': instance.amount_partialy_paid,
     };

@@ -376,7 +376,9 @@ class _$_Order implements _Order {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_OrderToJson(this);
+    return _$$_OrderToJson(
+      this,
+    );
   }
 }
 
@@ -400,34 +402,33 @@ abstract class _Order implements Order {
   factory _Order.fromJson(Map<String, dynamic> json) = _$_Order.fromJson;
 
   @override
-  String? get order_id => throw _privateConstructorUsedError;
+  String? get order_id;
   @override
-  String? get status => throw _privateConstructorUsedError;
+  String? get status;
   @override
-  String? get order_status_id => throw _privateConstructorUsedError;
+  String? get order_status_id;
   @override
-  String? get app_status => throw _privateConstructorUsedError;
+  String? get app_status;
   @override
-  List<Map<String, dynamic>>? get all_app_order_status =>
-      throw _privateConstructorUsedError;
+  List<Map<String, dynamic>>? get all_app_order_status;
   @override
-  bool? get shipped => throw _privateConstructorUsedError;
+  bool? get shipped;
   @override
-  String? get shippng_method => throw _privateConstructorUsedError;
+  String? get shippng_method;
   @override
-  String? get date_added => throw _privateConstructorUsedError;
+  String? get date_added;
   @override
-  num? get products => throw _privateConstructorUsedError;
+  num? get products;
   @override
-  num? get real_products => throw _privateConstructorUsedError;
+  num? get real_products;
   @override
-  String? get sub_total => throw _privateConstructorUsedError;
+  String? get sub_total;
   @override
-  String? get total => throw _privateConstructorUsedError;
+  String? get total;
   @override
-  String? get order_company => throw _privateConstructorUsedError;
+  String? get order_company;
   @override
-  String? get store_name => throw _privateConstructorUsedError;
+  String? get store_name;
   @override
   @JsonKey(ignore: true)
   _$$_OrderCopyWith<_$_Order> get copyWith =>

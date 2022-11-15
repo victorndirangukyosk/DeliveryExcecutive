@@ -567,7 +567,7 @@ class _$_Error implements _Error {
 abstract class _Error implements AddCratesState {
   const factory _Error(final String error) = _$_Error;
 
-  String get error => throw _privateConstructorUsedError;
+  String get error;
   @JsonKey(ignore: true)
   _$$_ErrorCopyWith<_$_Error> get copyWith =>
       throw _privateConstructorUsedError;

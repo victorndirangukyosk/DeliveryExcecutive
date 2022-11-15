@@ -466,7 +466,7 @@ class _$_Success implements _Success {
 abstract class _Success implements DeOrderDetailsState {
   const factory _Success(final GeneralDetails generalDetails) = _$_Success;
 
-  GeneralDetails get generalDetails => throw _privateConstructorUsedError;
+  GeneralDetails get generalDetails;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;
@@ -610,7 +610,7 @@ class _$_Failed implements _Failed {
 abstract class _Failed implements DeOrderDetailsState {
   const factory _Failed(final String error) = _$_Failed;
 
-  String get error => throw _privateConstructorUsedError;
+  String get error;
   @JsonKey(ignore: true)
   _$$_FailedCopyWith<_$_Failed> get copyWith =>
       throw _privateConstructorUsedError;

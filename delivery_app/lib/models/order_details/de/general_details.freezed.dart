@@ -33,6 +33,7 @@ mixin _$GeneralDetails {
   String? get firstname => throw _privateConstructorUsedError;
   String? get lastname => throw _privateConstructorUsedError;
   String? get telephone => throw _privateConstructorUsedError;
+  String? get paid => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -58,7 +59,8 @@ abstract class $GeneralDetailsCopyWith<$Res> {
       String? date_modified,
       String? firstname,
       String? lastname,
-      String? telephone});
+      String? telephone,
+      String? paid});
 }
 
 /// @nodoc
@@ -85,6 +87,7 @@ class _$GeneralDetailsCopyWithImpl<$Res>
     Object? firstname = freezed,
     Object? lastname = freezed,
     Object? telephone = freezed,
+    Object? paid = freezed,
   }) {
     return _then(_value.copyWith(
       order_id: order_id == freezed
@@ -139,6 +142,10 @@ class _$GeneralDetailsCopyWithImpl<$Res>
           ? _value.telephone
           : telephone // ignore: cast_nullable_to_non_nullable
               as String?,
+      paid: paid == freezed
+          ? _value.paid
+          : paid // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -163,7 +170,8 @@ abstract class _$$_GeneralDetailsCopyWith<$Res>
       String? date_modified,
       String? firstname,
       String? lastname,
-      String? telephone});
+      String? telephone,
+      String? paid});
 }
 
 /// @nodoc
@@ -192,6 +200,7 @@ class __$$_GeneralDetailsCopyWithImpl<$Res>
     Object? firstname = freezed,
     Object? lastname = freezed,
     Object? telephone = freezed,
+    Object? paid = freezed,
   }) {
     return _then(_$_GeneralDetails(
       order_id: order_id == freezed
@@ -246,6 +255,10 @@ class __$$_GeneralDetailsCopyWithImpl<$Res>
           ? _value.telephone
           : telephone // ignore: cast_nullable_to_non_nullable
               as String?,
+      paid: paid == freezed
+          ? _value.paid
+          : paid // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -266,7 +279,8 @@ class _$_GeneralDetails implements _GeneralDetails {
       this.date_modified,
       this.firstname,
       this.lastname,
-      this.telephone});
+      this.telephone,
+      this.paid});
 
   factory _$_GeneralDetails.fromJson(Map<String, dynamic> json) =>
       _$$_GeneralDetailsFromJson(json);
@@ -297,10 +311,12 @@ class _$_GeneralDetails implements _GeneralDetails {
   final String? lastname;
   @override
   final String? telephone;
+  @override
+  final String? paid;
 
   @override
   String toString() {
-    return 'GeneralDetails(order_id: $order_id, products_count: $products_count, vehicle_number: $vehicle_number, shipping_landmark: $shipping_landmark, delivery_date: $delivery_date, payment_method: $payment_method, payment_code: $payment_code, shipping_method: $shipping_method, date_added: $date_added, date_modified: $date_modified, firstname: $firstname, lastname: $lastname, telephone: $telephone)';
+    return 'GeneralDetails(order_id: $order_id, products_count: $products_count, vehicle_number: $vehicle_number, shipping_landmark: $shipping_landmark, delivery_date: $delivery_date, payment_method: $payment_method, payment_code: $payment_code, shipping_method: $shipping_method, date_added: $date_added, date_modified: $date_modified, firstname: $firstname, lastname: $lastname, telephone: $telephone, paid: $paid)';
   }
 
   @override
@@ -329,7 +345,8 @@ class _$_GeneralDetails implements _GeneralDetails {
                 .equals(other.date_modified, date_modified) &&
             const DeepCollectionEquality().equals(other.firstname, firstname) &&
             const DeepCollectionEquality().equals(other.lastname, lastname) &&
-            const DeepCollectionEquality().equals(other.telephone, telephone));
+            const DeepCollectionEquality().equals(other.telephone, telephone) &&
+            const DeepCollectionEquality().equals(other.paid, paid));
   }
 
   @JsonKey(ignore: true)
@@ -348,7 +365,8 @@ class _$_GeneralDetails implements _GeneralDetails {
       const DeepCollectionEquality().hash(date_modified),
       const DeepCollectionEquality().hash(firstname),
       const DeepCollectionEquality().hash(lastname),
-      const DeepCollectionEquality().hash(telephone));
+      const DeepCollectionEquality().hash(telephone),
+      const DeepCollectionEquality().hash(paid));
 
   @JsonKey(ignore: true)
   @override
@@ -357,7 +375,9 @@ class _$_GeneralDetails implements _GeneralDetails {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GeneralDetailsToJson(this);
+    return _$$_GeneralDetailsToJson(
+      this,
+    );
   }
 }
 
@@ -375,37 +395,40 @@ abstract class _GeneralDetails implements GeneralDetails {
       final String? date_modified,
       final String? firstname,
       final String? lastname,
-      final String? telephone}) = _$_GeneralDetails;
+      final String? telephone,
+      final String? paid}) = _$_GeneralDetails;
 
   factory _GeneralDetails.fromJson(Map<String, dynamic> json) =
       _$_GeneralDetails.fromJson;
 
   @override
-  String? get order_id => throw _privateConstructorUsedError;
+  String? get order_id;
   @override
-  num? get products_count => throw _privateConstructorUsedError;
+  num? get products_count;
   @override
-  String? get vehicle_number => throw _privateConstructorUsedError;
+  String? get vehicle_number;
   @override
-  String? get shipping_landmark => throw _privateConstructorUsedError;
+  String? get shipping_landmark;
   @override
-  String? get delivery_date => throw _privateConstructorUsedError;
+  String? get delivery_date;
   @override
-  String? get payment_method => throw _privateConstructorUsedError;
+  String? get payment_method;
   @override
-  String? get payment_code => throw _privateConstructorUsedError;
+  String? get payment_code;
   @override
-  String? get shipping_method => throw _privateConstructorUsedError;
+  String? get shipping_method;
   @override
-  String? get date_added => throw _privateConstructorUsedError;
+  String? get date_added;
   @override
-  String? get date_modified => throw _privateConstructorUsedError;
+  String? get date_modified;
   @override
-  String? get firstname => throw _privateConstructorUsedError;
+  String? get firstname;
   @override
-  String? get lastname => throw _privateConstructorUsedError;
+  String? get lastname;
   @override
-  String? get telephone => throw _privateConstructorUsedError;
+  String? get telephone;
+  @override
+  String? get paid;
   @override
   @JsonKey(ignore: true)
   _$$_GeneralDetailsCopyWith<_$_GeneralDetails> get copyWith =>

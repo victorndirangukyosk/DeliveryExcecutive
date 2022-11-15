@@ -203,7 +203,9 @@ class _$_LoggedInDe implements _LoggedInDe {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_LoggedInDeToJson(this);
+    return _$$_LoggedInDeToJson(
+      this,
+    );
   }
 }
 
@@ -219,15 +221,15 @@ abstract class _LoggedInDe implements LoggedInDe {
       _$_LoggedInDe.fromJson;
 
   @override
-  String? get firstname => throw _privateConstructorUsedError;
+  String? get firstname;
   @override
-  String? get lastname => throw _privateConstructorUsedError;
+  String? get lastname;
   @override
-  String? get email => throw _privateConstructorUsedError;
+  String? get email;
   @override
-  String? get date_added => throw _privateConstructorUsedError;
+  String? get date_added;
   @override
-  String? get username => throw _privateConstructorUsedError;
+  String? get username;
   @override
   @JsonKey(ignore: true)
   _$$_LoggedInDeCopyWith<_$_LoggedInDe> get copyWith =>

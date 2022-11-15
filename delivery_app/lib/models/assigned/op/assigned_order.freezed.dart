@@ -264,7 +264,9 @@ class _$_AssignedOrder implements _AssignedOrder {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AssignedOrderToJson(this);
+    return _$$_AssignedOrderToJson(
+      this,
+    );
   }
 }
 
@@ -283,21 +285,21 @@ abstract class _AssignedOrder implements AssignedOrder {
       _$_AssignedOrder.fromJson;
 
   @override
-  String? get order_status => throw _privateConstructorUsedError;
+  String? get order_status;
   @override
-  num? get products_count => throw _privateConstructorUsedError;
+  num? get products_count;
   @override
-  String? get delivery_date => throw _privateConstructorUsedError;
+  String? get delivery_date;
   @override
-  String? get delivery_timeslot => throw _privateConstructorUsedError;
+  String? get delivery_timeslot;
   @override
-  String? get comment => throw _privateConstructorUsedError;
+  String? get comment;
   @override
-  int? get order_id => throw _privateConstructorUsedError;
+  int? get order_id;
   @override
-  num? get order_processing_group_id => throw _privateConstructorUsedError;
+  num? get order_processing_group_id;
   @override
-  num? get order_processor_id => throw _privateConstructorUsedError;
+  num? get order_processor_id;
   @override
   @JsonKey(ignore: true)
   _$$_AssignedOrderCopyWith<_$_AssignedOrder> get copyWith =>

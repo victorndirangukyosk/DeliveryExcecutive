@@ -73,7 +73,8 @@ class _HomeIconPagePackingState extends State<HomeIconPagePacking> {
               return const Center(
                 child: CupertinoActivityIndicator(color: Palette.greenColor),
               );
-            }, success: (orders) {
+            },
+             success: (orders) {
               return LayoutBuilder(
                 builder: (BuildContext context, BoxConstraints constraints) {
                   if (constraints.maxWidth <= 600) {
@@ -115,62 +116,11 @@ class _HomeIconPagePackingState extends State<HomeIconPagePacking> {
                   }
                 },
               );
-
-              // mainAxisAlignment: MainAxisAlignment.center,
-              // children: List.generate(100, (index) => CardWidget())),
-              // children: List.generate(
-              //     orders.length,
-              //     (index) => CardWidget(
-              //           order: orders[index],
-              //         ))
             }, orElse: () {
               return Container();
             });
           },
-        )
-        //   padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-        //   child: BlocConsumer<MyOrdersCubit, MyOrdersState>(
-        //     listener: (context, state) {
-        //       state.maybeWhen(
-        //           orElse: () {},
-        //           failed: (error) {
-        //             AppToast.showToast(message: error, isError: true);
-        //           });
-        //     },
-        //     builder: (context, state) {
-        //       return state.maybeWhen(
-        //           loading: () => const Center(
-        //                 child: SpinKitSpinningLines(
-        //                   color: Palette.greenColor,
-        //                 ),
-        //               ),
-        //           success: (orders) {
-        //             return CustomScrollView(
-        //               physics: const BouncingScrollPhysics(
-        //                   parent: AlwaysScrollableScrollPhysics()),
-        //               slivers: [
-        //                 CupertinoSliverRefreshControl(
-        //                   refreshTriggerPullDistance: 200,
-        //                   onRefresh: () {
-        //                     return context.read<MyOrdersCubit>().getMyOrders();
-        //                   },
-        //                 ),
-        //                 SliverList(
-        //                     delegate:
-        //                         SliverChildBuilderDelegate((context, index) {
-        //                   return SingleOrderWidget(order: orders[index]);
-        //                 }, childCount: orders.length)),
-        //               ],
-        //             );
-        //           },
-        //           orElse: () {
-        //             return Container();
-        //           });
-        //     },
-        //   ),
-        // ),
-
-        );
+        ));
   }
 }
 

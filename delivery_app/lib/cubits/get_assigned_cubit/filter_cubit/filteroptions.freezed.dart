@@ -503,7 +503,7 @@ class _$_Timeslot implements _Timeslot {
 abstract class _Timeslot implements FilterOptions {
   factory _Timeslot(final String timeslot) = _$_Timeslot;
 
-  String get timeslot => throw _privateConstructorUsedError;
+  String get timeslot;
   @JsonKey(ignore: true)
   _$$_TimeslotCopyWith<_$_Timeslot> get copyWith =>
       throw _privateConstructorUsedError;
@@ -791,7 +791,7 @@ class _$_DateAssigned implements _DateAssigned {
 abstract class _DateAssigned implements FilterOptions {
   factory _DateAssigned(final DateTime dateAssigned) = _$_DateAssigned;
 
-  DateTime get dateAssigned => throw _privateConstructorUsedError;
+  DateTime get dateAssigned;
   @JsonKey(ignore: true)
   _$$_DateAssignedCopyWith<_$_DateAssigned> get copyWith =>
       throw _privateConstructorUsedError;

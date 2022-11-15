@@ -178,7 +178,9 @@ class _$_Missing implements _Missing {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MissingToJson(this);
+    return _$$_MissingToJson(
+      this,
+    );
   }
 }
 
@@ -189,13 +191,13 @@ abstract class _Missing implements Missing {
   factory _Missing.fromJson(Map<String, dynamic> json) = _$_Missing.fromJson;
 
   @override
-  String? get prouct_id => throw _privateConstructorUsedError;
+  String? get prouct_id;
   @override
-  String? get quantity => throw _privateConstructorUsedError;
+  String? get quantity;
   @override
-  String? get quantity_required => throw _privateConstructorUsedError;
+  String? get quantity_required;
   @override
-  String? get comment => throw _privateConstructorUsedError;
+  String? get comment;
   @override
   @JsonKey(ignore: true)
   _$$_MissingCopyWith<_$_Missing> get copyWith =>

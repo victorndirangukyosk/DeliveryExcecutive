@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:delivery_app/utilities/rest_client/rest_client_customer.dart';
 import 'package:delivery_app/utilities/utilities.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,10 @@ main() async {
   GetIt.I.allowReassignment = true;
 
   ///Register the rest client to be accessible throughout the app {DI}
-  GetIt.I.registerSingleton<RestClient>(RestClient());
+  await [
+    GetIt.I.registerSingleton<RestClient>(RestClient()),
+    GetIt.I.registerSingleton<RestClientCustomer>(RestClientCustomer()),
+  ];
 
   ///Get directory to store all state persists (Securely 😊😊)
   Directory storageDirectory = await getApplicationDocumentsDirectory();

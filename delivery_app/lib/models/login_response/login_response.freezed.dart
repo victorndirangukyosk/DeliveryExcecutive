@@ -316,7 +316,9 @@ class _$_LoginResponse implements _LoginResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_LoginResponseToJson(this);
+    return _$$_LoginResponseToJson(
+      this,
+    );
   }
 }
 
@@ -338,27 +340,27 @@ abstract class _LoginResponse implements LoginResponse {
       _$_LoginResponse.fromJson;
 
   @override
-  num? get delivery_executive_id => throw _privateConstructorUsedError;
+  num? get delivery_executive_id;
   @override
-  num? get order_processor_id => throw _privateConstructorUsedError;
+  num? get order_processor_id;
   @override
-  String? get firstname => throw _privateConstructorUsedError;
+  String? get firstname;
   @override
-  num? get status => throw _privateConstructorUsedError;
+  num? get status;
   @override
-  String? get date_added => throw _privateConstructorUsedError;
+  String? get date_added;
   @override
-  String? get username => throw _privateConstructorUsedError;
+  String? get username;
   @override
-  String? get telephone => throw _privateConstructorUsedError;
+  String? get telephone;
   @override
-  num? get order_processing_group_id => throw _privateConstructorUsedError;
+  num? get order_processing_group_id;
   @override
-  String? get lastname => throw _privateConstructorUsedError;
+  String? get lastname;
   @override
-  String? get email => throw _privateConstructorUsedError;
+  String? get email;
   @override
-  String? get token => throw _privateConstructorUsedError;
+  String? get token;
   @override
   @JsonKey(ignore: true)
   _$$_LoginResponseCopyWith<_$_LoginResponse> get copyWith =>

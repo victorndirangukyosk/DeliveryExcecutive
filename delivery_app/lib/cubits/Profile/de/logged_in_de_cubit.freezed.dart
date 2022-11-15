@@ -459,7 +459,7 @@ class _$_Success implements _Success {
 abstract class _Success implements LoggedInDeState {
   const factory _Success(final List<LoggedInDe> loggedinde) = _$_Success;
 
-  List<LoggedInDe> get loggedinde => throw _privateConstructorUsedError;
+  List<LoggedInDe> get loggedinde;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;
@@ -602,7 +602,7 @@ class _$_Error implements _Error {
 abstract class _Error implements LoggedInDeState {
   const factory _Error(final String error) = _$_Error;
 
-  String get error => throw _privateConstructorUsedError;
+  String get error;
   @JsonKey(ignore: true)
   _$$_ErrorCopyWith<_$_Error> get copyWith =>
       throw _privateConstructorUsedError;

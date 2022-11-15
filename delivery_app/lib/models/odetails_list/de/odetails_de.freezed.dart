@@ -314,7 +314,9 @@ class _$_OdetailsDe implements _OdetailsDe {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_OdetailsDeToJson(this);
+    return _$$_OdetailsDeToJson(
+      this,
+    );
   }
 }
 
@@ -336,27 +338,27 @@ abstract class _OdetailsDe implements OdetailsDe {
       _$_OdetailsDe.fromJson;
 
   @override
-  String? get name => throw _privateConstructorUsedError;
+  String? get name;
   @override
-  String? get product_note => throw _privateConstructorUsedError;
+  String? get product_note;
   @override
-  String? get unit => throw _privateConstructorUsedError;
+  String? get unit;
   @override
-  String? get model => throw _privateConstructorUsedError;
+  String? get model;
   @override
-  String? get product_type => throw _privateConstructorUsedError;
+  String? get product_type;
   @override
-  num? get general_product_id => throw _privateConstructorUsedError;
+  num? get general_product_id;
   @override
-  num? get order_id => throw _privateConstructorUsedError;
+  num? get order_id;
   @override
-  num? get variation_id => throw _privateConstructorUsedError;
+  num? get variation_id;
   @override
-  num? get quantity => throw _privateConstructorUsedError;
+  num? get quantity;
   @override
-  num? get price => throw _privateConstructorUsedError;
+  num? get price;
   @override
-  num? get total => throw _privateConstructorUsedError;
+  num? get total;
   @override
   @JsonKey(ignore: true)
   _$$_OdetailsDeCopyWith<_$_OdetailsDe> get copyWith =>

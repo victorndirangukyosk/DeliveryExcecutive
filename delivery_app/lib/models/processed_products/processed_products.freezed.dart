@@ -180,7 +180,9 @@ class _$_ProcessedProducts implements _ProcessedProducts {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ProcessedProductsToJson(this);
+    return _$$_ProcessedProductsToJson(
+      this,
+    );
   }
 }
 
@@ -195,13 +197,13 @@ abstract class _ProcessedProducts implements ProcessedProducts {
       _$_ProcessedProducts.fromJson;
 
   @override
-  num? get order_product_id => throw _privateConstructorUsedError;
+  num? get order_product_id;
   @override
-  num? get order_id => throw _privateConstructorUsedError;
+  num? get order_id;
   @override
-  num? get product_id => throw _privateConstructorUsedError;
+  num? get product_id;
   @override
-  String? get status => throw _privateConstructorUsedError;
+  String? get status;
   @override
   @JsonKey(ignore: true)
   _$$_ProcessedProductsCopyWith<_$_ProcessedProducts> get copyWith =>

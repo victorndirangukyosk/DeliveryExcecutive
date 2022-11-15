@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:delivery_app/configuration/configuration.dart';
+import 'package:delivery_app/cubits/authentication/customer_token.dart';
 import 'package:delivery_app/cubits/authentication/token_cubit.dart';
 import 'package:delivery_app/cubits/is_de_cubit/is_de_cubit.dart';
+import 'package:delivery_app/models/customer_token_model.dart';
 import 'package:delivery_app/models/odetails_list/de/odetails_de.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,8 +14,9 @@ import 'package:get_it/get_it.dart';
 // import 'package:kiosk_mode/kiosk_mode.dart';
 
 class SplashScreen extends StatefulWidget {
-    
-  const SplashScreen({Key? key, }) : super(key: key);
+  const SplashScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -44,6 +47,14 @@ class _SplashScreenState extends State<SplashScreen> {
     GetIt.I.registerSingleton(tokenCubit);
     IsDeCubit isDeCubit = BlocProvider.of<IsDeCubit>(context);
     GetIt.I.registerSingleton(isDeCubit);
+    CustomerTokenCubit customertokenCubit =
+        BlocProvider.of<CustomerTokenCubit>(context);
+    // GetIt.I.registerSingleton<CustomerTokenModel>();
+    // GetIt.I.registerSingleton<CustomerTokenModel>(
+    //                                   CustomerTokenModel(
+    //                                       token: data, cookie: cookieData));
+    GetIt.I.registerSingleton(tokenCubit);
+    GetIt.I.registerSingleton(customertokenCubit);
     return Scaffold(
         body: Stack(
       children: [

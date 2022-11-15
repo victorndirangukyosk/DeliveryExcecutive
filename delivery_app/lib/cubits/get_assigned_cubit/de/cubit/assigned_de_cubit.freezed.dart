@@ -457,7 +457,7 @@ class _$_Success implements _Success {
 abstract class _Success implements AssignedDeState {
   const factory _Success(final List<AssignedDe> ordersde) = _$_Success;
 
-  List<AssignedDe> get ordersde => throw _privateConstructorUsedError;
+  List<AssignedDe> get ordersde;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;
@@ -600,7 +600,7 @@ class _$_Failed implements _Failed {
 abstract class _Failed implements AssignedDeState {
   const factory _Failed(final String string) = _$_Failed;
 
-  String get string => throw _privateConstructorUsedError;
+  String get string;
   @JsonKey(ignore: true)
   _$$_FailedCopyWith<_$_Failed> get copyWith =>
       throw _privateConstructorUsedError;

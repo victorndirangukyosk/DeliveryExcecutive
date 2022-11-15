@@ -23,6 +23,8 @@ class AssignedDe with _$AssignedDe {
     String? telephone,
     String? email,
     num? customer_id,
+    String? paid,
+    int? amount_partialy_paid,
   }) = _AssignedDe;
 
   factory AssignedDe.fromJson(Map<String, dynamic> json) =>

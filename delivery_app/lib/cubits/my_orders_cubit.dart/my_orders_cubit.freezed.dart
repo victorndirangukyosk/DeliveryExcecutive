@@ -457,7 +457,7 @@ class _$_Success implements _Success {
 abstract class _Success implements MyOrdersState {
   const factory _Success(final List<Order> orders) = _$_Success;
 
-  List<Order> get orders => throw _privateConstructorUsedError;
+  List<Order> get orders;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;
@@ -600,7 +600,7 @@ class _$_Failed implements _Failed {
 abstract class _Failed implements MyOrdersState {
   const factory _Failed(final String error) = _$_Failed;
 
-  String get error => throw _privateConstructorUsedError;
+  String get error;
   @JsonKey(ignore: true)
   _$$_FailedCopyWith<_$_Failed> get copyWith =>
       throw _privateConstructorUsedError;

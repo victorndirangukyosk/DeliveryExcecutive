@@ -145,7 +145,9 @@ class _$_GetOrdersState implements _GetOrdersState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GetOrdersStateToJson(this);
+    return _$$_GetOrdersStateToJson(
+      this,
+    );
   }
 }
 
@@ -157,9 +159,9 @@ abstract class _GetOrdersState implements GetOrdersState {
       _$_GetOrdersState.fromJson;
 
   @override
-  num? get order_status_id => throw _privateConstructorUsedError;
+  num? get order_status_id;
   @override
-  String? get name => throw _privateConstructorUsedError;
+  String? get name;
   @override
   @JsonKey(ignore: true)
   _$$_GetOrdersStateCopyWith<_$_GetOrdersState> get copyWith =>

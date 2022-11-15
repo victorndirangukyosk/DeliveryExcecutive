@@ -567,7 +567,7 @@ class _$_Failed implements _Failed {
 abstract class _Failed implements FilterFlagState {
   const factory _Failed(final String error) = _$_Failed;
 
-  String get error => throw _privateConstructorUsedError;
+  String get error;
   @JsonKey(ignore: true)
   _$$_FailedCopyWith<_$_Failed> get copyWith =>
       throw _privateConstructorUsedError;

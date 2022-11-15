@@ -37,6 +37,8 @@ mixin _$AssignedDe {
   String? get telephone => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   num? get customer_id => throw _privateConstructorUsedError;
+  String? get paid => throw _privateConstructorUsedError;
+  int? get amount_partialy_paid => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -66,7 +68,9 @@ abstract class $AssignedDeCopyWith<$Res> {
       String? lastname,
       String? telephone,
       String? email,
-      num? customer_id});
+      num? customer_id,
+      String? paid,
+      int? amount_partialy_paid});
 }
 
 /// @nodoc
@@ -96,6 +100,8 @@ class _$AssignedDeCopyWithImpl<$Res> implements $AssignedDeCopyWith<$Res> {
     Object? telephone = freezed,
     Object? email = freezed,
     Object? customer_id = freezed,
+    Object? paid = freezed,
+    Object? amount_partialy_paid = freezed,
   }) {
     return _then(_value.copyWith(
       order_status: order_status == freezed
@@ -166,6 +172,14 @@ class _$AssignedDeCopyWithImpl<$Res> implements $AssignedDeCopyWith<$Res> {
           ? _value.customer_id
           : customer_id // ignore: cast_nullable_to_non_nullable
               as num?,
+      paid: paid == freezed
+          ? _value.paid
+          : paid // ignore: cast_nullable_to_non_nullable
+              as String?,
+      amount_partialy_paid: amount_partialy_paid == freezed
+          ? _value.amount_partialy_paid
+          : amount_partialy_paid // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -194,7 +208,9 @@ abstract class _$$_AssignedDeCopyWith<$Res>
       String? lastname,
       String? telephone,
       String? email,
-      num? customer_id});
+      num? customer_id,
+      String? paid,
+      int? amount_partialy_paid});
 }
 
 /// @nodoc
@@ -226,6 +242,8 @@ class __$$_AssignedDeCopyWithImpl<$Res> extends _$AssignedDeCopyWithImpl<$Res>
     Object? telephone = freezed,
     Object? email = freezed,
     Object? customer_id = freezed,
+    Object? paid = freezed,
+    Object? amount_partialy_paid = freezed,
   }) {
     return _then(_$_AssignedDe(
       order_status: order_status == freezed
@@ -296,6 +314,14 @@ class __$$_AssignedDeCopyWithImpl<$Res> extends _$AssignedDeCopyWithImpl<$Res>
           ? _value.customer_id
           : customer_id // ignore: cast_nullable_to_non_nullable
               as num?,
+      paid: paid == freezed
+          ? _value.paid
+          : paid // ignore: cast_nullable_to_non_nullable
+              as String?,
+      amount_partialy_paid: amount_partialy_paid == freezed
+          ? _value.amount_partialy_paid
+          : amount_partialy_paid // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -320,7 +346,9 @@ class _$_AssignedDe implements _AssignedDe {
       this.lastname,
       this.telephone,
       this.email,
-      this.customer_id});
+      this.customer_id,
+      this.paid,
+      this.amount_partialy_paid});
 
   factory _$_AssignedDe.fromJson(Map<String, dynamic> json) =>
       _$$_AssignedDeFromJson(json);
@@ -359,10 +387,14 @@ class _$_AssignedDe implements _AssignedDe {
   final String? email;
   @override
   final num? customer_id;
+  @override
+  final String? paid;
+  @override
+  final int? amount_partialy_paid;
 
   @override
   String toString() {
-    return 'AssignedDe(order_status: $order_status, products_count: $products_count, delivery_date: $delivery_date, delivery_timeslot: $delivery_timeslot, comment: $comment, shipping_address: $shipping_address, shopper_distance: $shopper_distance, vehicle_number: $vehicle_number, shipping_building_name: $shipping_building_name, delivery_executive_id: $delivery_executive_id, shipping_flat_number: $shipping_flat_number, order_id: $order_id, firstname: $firstname, lastname: $lastname, telephone: $telephone, email: $email, customer_id: $customer_id)';
+    return 'AssignedDe(order_status: $order_status, products_count: $products_count, delivery_date: $delivery_date, delivery_timeslot: $delivery_timeslot, comment: $comment, shipping_address: $shipping_address, shopper_distance: $shopper_distance, vehicle_number: $vehicle_number, shipping_building_name: $shipping_building_name, delivery_executive_id: $delivery_executive_id, shipping_flat_number: $shipping_flat_number, order_id: $order_id, firstname: $firstname, lastname: $lastname, telephone: $telephone, email: $email, customer_id: $customer_id, paid: $paid, amount_partialy_paid: $amount_partialy_paid)';
   }
 
   @override
@@ -397,30 +429,36 @@ class _$_AssignedDe implements _AssignedDe {
             const DeepCollectionEquality().equals(other.telephone, telephone) &&
             const DeepCollectionEquality().equals(other.email, email) &&
             const DeepCollectionEquality()
-                .equals(other.customer_id, customer_id));
+                .equals(other.customer_id, customer_id) &&
+            const DeepCollectionEquality().equals(other.paid, paid) &&
+            const DeepCollectionEquality()
+                .equals(other.amount_partialy_paid, amount_partialy_paid));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(order_status),
-      const DeepCollectionEquality().hash(products_count),
-      const DeepCollectionEquality().hash(delivery_date),
-      const DeepCollectionEquality().hash(delivery_timeslot),
-      const DeepCollectionEquality().hash(comment),
-      const DeepCollectionEquality().hash(shipping_address),
-      const DeepCollectionEquality().hash(shopper_distance),
-      const DeepCollectionEquality().hash(vehicle_number),
-      const DeepCollectionEquality().hash(shipping_building_name),
-      const DeepCollectionEquality().hash(delivery_executive_id),
-      const DeepCollectionEquality().hash(shipping_flat_number),
-      const DeepCollectionEquality().hash(order_id),
-      const DeepCollectionEquality().hash(firstname),
-      const DeepCollectionEquality().hash(lastname),
-      const DeepCollectionEquality().hash(telephone),
-      const DeepCollectionEquality().hash(email),
-      const DeepCollectionEquality().hash(customer_id));
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(order_status),
+        const DeepCollectionEquality().hash(products_count),
+        const DeepCollectionEquality().hash(delivery_date),
+        const DeepCollectionEquality().hash(delivery_timeslot),
+        const DeepCollectionEquality().hash(comment),
+        const DeepCollectionEquality().hash(shipping_address),
+        const DeepCollectionEquality().hash(shopper_distance),
+        const DeepCollectionEquality().hash(vehicle_number),
+        const DeepCollectionEquality().hash(shipping_building_name),
+        const DeepCollectionEquality().hash(delivery_executive_id),
+        const DeepCollectionEquality().hash(shipping_flat_number),
+        const DeepCollectionEquality().hash(order_id),
+        const DeepCollectionEquality().hash(firstname),
+        const DeepCollectionEquality().hash(lastname),
+        const DeepCollectionEquality().hash(telephone),
+        const DeepCollectionEquality().hash(email),
+        const DeepCollectionEquality().hash(customer_id),
+        const DeepCollectionEquality().hash(paid),
+        const DeepCollectionEquality().hash(amount_partialy_paid)
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -429,7 +467,9 @@ class _$_AssignedDe implements _AssignedDe {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AssignedDeToJson(this);
+    return _$$_AssignedDeToJson(
+      this,
+    );
   }
 }
 
@@ -451,45 +491,51 @@ abstract class _AssignedDe implements AssignedDe {
       final String? lastname,
       final String? telephone,
       final String? email,
-      final num? customer_id}) = _$_AssignedDe;
+      final num? customer_id,
+      final String? paid,
+      final int? amount_partialy_paid}) = _$_AssignedDe;
 
   factory _AssignedDe.fromJson(Map<String, dynamic> json) =
       _$_AssignedDe.fromJson;
 
   @override
-  String? get order_status => throw _privateConstructorUsedError;
+  String? get order_status;
   @override
-  num? get products_count => throw _privateConstructorUsedError;
+  num? get products_count;
   @override
-  String? get delivery_date => throw _privateConstructorUsedError;
+  String? get delivery_date;
   @override
-  String? get delivery_timeslot => throw _privateConstructorUsedError;
+  String? get delivery_timeslot;
   @override
-  String? get comment => throw _privateConstructorUsedError;
+  String? get comment;
   @override
-  String? get shipping_address => throw _privateConstructorUsedError;
+  String? get shipping_address;
   @override
-  num? get shopper_distance => throw _privateConstructorUsedError;
+  num? get shopper_distance;
   @override
-  String? get vehicle_number => throw _privateConstructorUsedError;
+  String? get vehicle_number;
   @override
-  String? get shipping_building_name => throw _privateConstructorUsedError;
+  String? get shipping_building_name;
   @override
-  num? get delivery_executive_id => throw _privateConstructorUsedError;
+  num? get delivery_executive_id;
   @override
-  String? get shipping_flat_number => throw _privateConstructorUsedError;
+  String? get shipping_flat_number;
   @override
-  int? get order_id => throw _privateConstructorUsedError;
+  int? get order_id;
   @override
-  String? get firstname => throw _privateConstructorUsedError;
+  String? get firstname;
   @override
-  String? get lastname => throw _privateConstructorUsedError;
+  String? get lastname;
   @override
-  String? get telephone => throw _privateConstructorUsedError;
+  String? get telephone;
   @override
-  String? get email => throw _privateConstructorUsedError;
+  String? get email;
   @override
-  num? get customer_id => throw _privateConstructorUsedError;
+  num? get customer_id;
+  @override
+  String? get paid;
+  @override
+  int? get amount_partialy_paid;
   @override
   @JsonKey(ignore: true)
   _$$_AssignedDeCopyWith<_$_AssignedDe> get copyWith =>

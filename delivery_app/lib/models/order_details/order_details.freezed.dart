@@ -208,7 +208,9 @@ class _$_OrderDetails implements _OrderDetails {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_OrderDetailsToJson(this);
+    return _$$_OrderDetailsToJson(
+      this,
+    );
   }
 }
 
@@ -224,15 +226,15 @@ abstract class _OrderDetails implements OrderDetails {
       _$_OrderDetails.fromJson;
 
   @override // dynamic? data,
-  String? get order_id => throw _privateConstructorUsedError;
+  String? get order_id;
   @override
-  num? get products_count => throw _privateConstructorUsedError;
+  num? get products_count;
   @override
-  String? get delivery_date => throw _privateConstructorUsedError;
+  String? get delivery_date;
   @override
-  String? get delivery_timeslot => throw _privateConstructorUsedError;
+  String? get delivery_timeslot;
   @override
-  String? get comment => throw _privateConstructorUsedError;
+  String? get comment;
   @override
   @JsonKey(ignore: true)
   _$$_OrderDetailsCopyWith<_$_OrderDetails> get copyWith =>

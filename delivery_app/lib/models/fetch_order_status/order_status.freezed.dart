@@ -223,7 +223,9 @@ class _$_OrderStatus implements _OrderStatus {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_OrderStatusToJson(this);
+    return _$$_OrderStatusToJson(
+      this,
+    );
   }
 }
 
@@ -240,17 +242,17 @@ abstract class _OrderStatus implements OrderStatus {
       _$_OrderStatus.fromJson;
 
   @override
-  num? get order_status_id => throw _privateConstructorUsedError;
+  num? get order_status_id;
   @override
-  num? get language_id => throw _privateConstructorUsedError;
+  num? get language_id;
   @override
-  String? get name => throw _privateConstructorUsedError;
+  String? get name;
   @override
-  String? get message => throw _privateConstructorUsedError;
+  String? get message;
   @override
-  String? get color => throw _privateConstructorUsedError;
+  String? get color;
   @override
-  num? get sort_order => throw _privateConstructorUsedError;
+  num? get sort_order;
   @override
   @JsonKey(ignore: true)
   _$$_OrderStatusCopyWith<_$_OrderStatus> get copyWith =>

@@ -295,7 +295,9 @@ class _$_AcceptReject implements _AcceptReject {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AcceptRejectToJson(this);
+    return _$$_AcceptRejectToJson(
+      this,
+    );
   }
 }
 
@@ -316,25 +318,25 @@ abstract class _AcceptReject implements AcceptReject {
       _$_AcceptReject.fromJson;
 
   @override
-  String? get status => throw _privateConstructorUsedError;
+  String? get status;
   @override
-  String? get product_store_id => throw _privateConstructorUsedError;
+  String? get product_store_id;
   @override
-  String? get product_id => throw _privateConstructorUsedError;
+  String? get product_id;
   @override
-  String? get quantity => throw _privateConstructorUsedError;
+  String? get quantity;
   @override
-  String? get price => throw _privateConstructorUsedError;
+  String? get price;
   @override
-  String? get total => throw _privateConstructorUsedError;
+  String? get total;
   @override
-  String? get tax => throw _privateConstructorUsedError;
+  String? get tax;
   @override
-  String? get name => throw _privateConstructorUsedError;
+  String? get name;
   @override
-  String? get unit => throw _privateConstructorUsedError;
+  String? get unit;
   @override
-  String? get comment => throw _privateConstructorUsedError;
+  String? get comment;
   @override
   @JsonKey(ignore: true)
   _$$_AcceptRejectCopyWith<_$_AcceptReject> get copyWith =>

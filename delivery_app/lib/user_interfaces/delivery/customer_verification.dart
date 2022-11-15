@@ -228,7 +228,7 @@ class SummaryTileList extends StatelessWidget {
                     ),
                     StaggeredGridTile.count(
                       crossAxisCellCount: 2,
-                      mainAxisCellCount: 1,
+                      mainAxisCellCount: 1.2,
                       child: Container(
                         decoration: BoxDecoration(
                             border: Border.all(color: Palette.orangeColor),
@@ -350,6 +350,50 @@ class SummaryTileList extends StatelessWidget {
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 14),
                                             ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Flexible(
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            const Text(
+                                              'Payment Status',
+                                              style: TextStyle(
+                                                  color:
+                                                      Palette.placeholderGrey,
+                                                  fontFamily: 'BOXICONS',
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 14),
+                                            ),
+                                            generalDetails.paid! == 'N'
+                                                //TODO: Add mpesa checkout
+                                                ? CupertinoButton.filled(
+                                                    minSize: 2,
+                                                    onPressed: () {
+                                                      AutoRouter.of(context)
+                                                          .push(
+                                                              MpesaPaymentRoute(
+                                                                  data: {},
+                                                                  orderReference:
+                                                                      ''));
+                                                    },
+                                                    child: Text('Pay now'),
+                                                  )
+                                                : Text(
+                                                    generalDetails.paid!,
+                                                    style: const TextStyle(
+                                                        color: Palette
+                                                            .placeholderGrey,
+                                                        fontFamily: 'BOXICONS',
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 14),
+                                                  ),
                                           ],
                                         ),
                                       ),

@@ -179,7 +179,9 @@ class _$_Crate implements _Crate {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CrateToJson(this);
+    return _$$_CrateToJson(
+      this,
+    );
   }
 }
 
@@ -193,13 +195,13 @@ abstract class _Crate implements Crate {
   factory _Crate.fromJson(Map<String, dynamic> json) = _$_Crate.fromJson;
 
   @override
-  String? get serial_number => throw _privateConstructorUsedError;
+  String? get serial_number;
   @override
-  String? get color => throw _privateConstructorUsedError;
+  String? get color;
   @override
-  String? get department => throw _privateConstructorUsedError;
+  String? get department;
   @override
-  String? get purchase_date => throw _privateConstructorUsedError;
+  String? get purchase_date;
   @override
   @JsonKey(ignore: true)
   _$$_CrateCopyWith<_$_Crate> get copyWith =>

@@ -303,7 +303,9 @@ class _$_ChangeOrderStatus implements _ChangeOrderStatus {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ChangeOrderStatusToJson(this);
+    return _$$_ChangeOrderStatusToJson(
+      this,
+    );
   }
 }
 
@@ -324,25 +326,25 @@ abstract class _ChangeOrderStatus implements ChangeOrderStatus {
       _$_ChangeOrderStatus.fromJson;
 
   @override
-  String? get tracking => throw _privateConstructorUsedError;
+  String? get tracking;
   @override
-  String? get paid => throw _privateConstructorUsedError;
+  String? get paid;
   @override
-  String? get amount_partially_paid => throw _privateConstructorUsedError;
+  String? get amount_partially_paid;
   @override
-  String? get vehicle_number => throw _privateConstructorUsedError;
+  String? get vehicle_number;
   @override
-  String? get shipping_landmark => throw _privateConstructorUsedError;
+  String? get shipping_landmark;
   @override
-  String? get shipping_building_name => throw _privateConstructorUsedError;
+  String? get shipping_building_name;
   @override
-  String? get shipping_flat_number => throw _privateConstructorUsedError;
+  String? get shipping_flat_number;
   @override
-  num? get customer_id => throw _privateConstructorUsedError;
+  num? get customer_id;
   @override
-  num? get invoice_no => throw _privateConstructorUsedError;
+  num? get invoice_no;
   @override
-  String? get invoice_prefix => throw _privateConstructorUsedError;
+  String? get invoice_prefix;
   @override
   @JsonKey(ignore: true)
   _$$_ChangeOrderStatusCopyWith<_$_ChangeOrderStatus> get copyWith =>

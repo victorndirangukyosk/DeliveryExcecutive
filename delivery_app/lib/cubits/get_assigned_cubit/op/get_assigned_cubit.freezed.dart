@@ -465,7 +465,7 @@ abstract class _Success implements GetAssignedState {
   const factory _Success({final List<AssignedOrder>? assignedOrders}) =
       _$_Success;
 
-  List<AssignedOrder>? get assignedOrders => throw _privateConstructorUsedError;
+  List<AssignedOrder>? get assignedOrders;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;
@@ -608,7 +608,7 @@ class _$_Failed implements _Failed {
 abstract class _Failed implements GetAssignedState {
   const factory _Failed(final String string) = _$_Failed;
 
-  String get string => throw _privateConstructorUsedError;
+  String get string;
   @JsonKey(ignore: true)
   _$$_FailedCopyWith<_$_Failed> get copyWith =>
       throw _privateConstructorUsedError;
