@@ -113,7 +113,7 @@ class SummaryTileList extends StatelessWidget {
                   children: [
                     StaggeredGridTile.count(
                       crossAxisCellCount: 2,
-                      mainAxisCellCount: 2,
+                      mainAxisCellCount: 2.1,
                       child: Container(
                         // color: Palette.placeholderGrey,
                         decoration: BoxDecoration(
@@ -123,7 +123,7 @@ class SummaryTileList extends StatelessWidget {
                         child: Flexible(
                           child: Column(
                             children: [
-                              // Text('CUSTOMER PHOTO'),
+                              const Text('CUSTOMER PHOTO'),
                               Center(
                                 child: Padding(
                                   padding: const EdgeInsets.all(40.0),
@@ -744,14 +744,21 @@ class SummaryTileList extends StatelessWidget {
                               const SizedBox(
                                 height: 40,
                               ),
-                              CupertinoButton(
-                                  child: const Text('Submit'),
-                                  color: Palette.greenColor,
-                                  onPressed: () {
-                                    // context.read<CustomerVerificationCubit>();
-                                    AutoRouter.of(context).replace(
-                                        MainHomeDeliveryExecutiveRoute());
-                                  })
+                              //TODO: wrap in customer verification cubit
+                              BlocBuilder<CustomerVerificationCubit,
+                                  CustomerVerificationState>(
+                                builder: (context, state) {
+                                  return CupertinoButton(
+                                      child: const Text('Submit'),
+                                      color: Palette.greenColor,
+                                      onPressed: () {
+                                        context
+                                            .read<CustomerVerificationCubit>();
+                                        AutoRouter.of(context).replace(
+                                            MainHomeDeliveryExecutiveRoute());
+                                      });
+                                },
+                              )
                             ],
                           ),
                         ),
