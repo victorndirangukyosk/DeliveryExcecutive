@@ -30,6 +30,9 @@ mixin _$OdetailsDe {
   num? get variation_id => throw _privateConstructorUsedError;
   num? get quantity => throw _privateConstructorUsedError;
   num? get price => throw _privateConstructorUsedError;
+  num? get product_id => throw _privateConstructorUsedError;
+  num? get tax => throw _privateConstructorUsedError;
+  String? get product_store_id => throw _privateConstructorUsedError;
   num? get total => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -54,6 +57,9 @@ abstract class $OdetailsDeCopyWith<$Res> {
       num? variation_id,
       num? quantity,
       num? price,
+      num? product_id,
+      num? tax,
+      String? product_store_id,
       num? total});
 }
 
@@ -77,6 +83,9 @@ class _$OdetailsDeCopyWithImpl<$Res> implements $OdetailsDeCopyWith<$Res> {
     Object? variation_id = freezed,
     Object? quantity = freezed,
     Object? price = freezed,
+    Object? product_id = freezed,
+    Object? tax = freezed,
+    Object? product_store_id = freezed,
     Object? total = freezed,
   }) {
     return _then(_value.copyWith(
@@ -120,6 +129,18 @@ class _$OdetailsDeCopyWithImpl<$Res> implements $OdetailsDeCopyWith<$Res> {
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as num?,
+      product_id: product_id == freezed
+          ? _value.product_id
+          : product_id // ignore: cast_nullable_to_non_nullable
+              as num?,
+      tax: tax == freezed
+          ? _value.tax
+          : tax // ignore: cast_nullable_to_non_nullable
+              as num?,
+      product_store_id: product_store_id == freezed
+          ? _value.product_store_id
+          : product_store_id // ignore: cast_nullable_to_non_nullable
+              as String?,
       total: total == freezed
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
@@ -146,6 +167,9 @@ abstract class _$$_OdetailsDeCopyWith<$Res>
       num? variation_id,
       num? quantity,
       num? price,
+      num? product_id,
+      num? tax,
+      String? product_store_id,
       num? total});
 }
 
@@ -171,6 +195,9 @@ class __$$_OdetailsDeCopyWithImpl<$Res> extends _$OdetailsDeCopyWithImpl<$Res>
     Object? variation_id = freezed,
     Object? quantity = freezed,
     Object? price = freezed,
+    Object? product_id = freezed,
+    Object? tax = freezed,
+    Object? product_store_id = freezed,
     Object? total = freezed,
   }) {
     return _then(_$_OdetailsDe(
@@ -214,6 +241,18 @@ class __$$_OdetailsDeCopyWithImpl<$Res> extends _$OdetailsDeCopyWithImpl<$Res>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as num?,
+      product_id: product_id == freezed
+          ? _value.product_id
+          : product_id // ignore: cast_nullable_to_non_nullable
+              as num?,
+      tax: tax == freezed
+          ? _value.tax
+          : tax // ignore: cast_nullable_to_non_nullable
+              as num?,
+      product_store_id: product_store_id == freezed
+          ? _value.product_store_id
+          : product_store_id // ignore: cast_nullable_to_non_nullable
+              as String?,
       total: total == freezed
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
@@ -236,6 +275,9 @@ class _$_OdetailsDe implements _OdetailsDe {
       this.variation_id,
       this.quantity,
       this.price,
+      this.product_id,
+      this.tax,
+      this.product_store_id,
       this.total});
 
   factory _$_OdetailsDe.fromJson(Map<String, dynamic> json) =>
@@ -262,11 +304,17 @@ class _$_OdetailsDe implements _OdetailsDe {
   @override
   final num? price;
   @override
+  final num? product_id;
+  @override
+  final num? tax;
+  @override
+  final String? product_store_id;
+  @override
   final num? total;
 
   @override
   String toString() {
-    return 'OdetailsDe(name: $name, product_note: $product_note, unit: $unit, model: $model, product_type: $product_type, general_product_id: $general_product_id, order_id: $order_id, variation_id: $variation_id, quantity: $quantity, price: $price, total: $total)';
+    return 'OdetailsDe(name: $name, product_note: $product_note, unit: $unit, model: $model, product_type: $product_type, general_product_id: $general_product_id, order_id: $order_id, variation_id: $variation_id, quantity: $quantity, price: $price, product_id: $product_id, tax: $tax, product_store_id: $product_store_id, total: $total)';
   }
 
   @override
@@ -288,6 +336,11 @@ class _$_OdetailsDe implements _OdetailsDe {
                 .equals(other.variation_id, variation_id) &&
             const DeepCollectionEquality().equals(other.quantity, quantity) &&
             const DeepCollectionEquality().equals(other.price, price) &&
+            const DeepCollectionEquality()
+                .equals(other.product_id, product_id) &&
+            const DeepCollectionEquality().equals(other.tax, tax) &&
+            const DeepCollectionEquality()
+                .equals(other.product_store_id, product_store_id) &&
             const DeepCollectionEquality().equals(other.total, total));
   }
 
@@ -305,6 +358,9 @@ class _$_OdetailsDe implements _OdetailsDe {
       const DeepCollectionEquality().hash(variation_id),
       const DeepCollectionEquality().hash(quantity),
       const DeepCollectionEquality().hash(price),
+      const DeepCollectionEquality().hash(product_id),
+      const DeepCollectionEquality().hash(tax),
+      const DeepCollectionEquality().hash(product_store_id),
       const DeepCollectionEquality().hash(total));
 
   @JsonKey(ignore: true)
@@ -332,6 +388,9 @@ abstract class _OdetailsDe implements OdetailsDe {
       final num? variation_id,
       final num? quantity,
       final num? price,
+      final num? product_id,
+      final num? tax,
+      final String? product_store_id,
       final num? total}) = _$_OdetailsDe;
 
   factory _OdetailsDe.fromJson(Map<String, dynamic> json) =
@@ -357,6 +416,12 @@ abstract class _OdetailsDe implements OdetailsDe {
   num? get quantity;
   @override
   num? get price;
+  @override
+  num? get product_id;
+  @override
+  num? get tax;
+  @override
+  String? get product_store_id;
   @override
   num? get total;
   @override

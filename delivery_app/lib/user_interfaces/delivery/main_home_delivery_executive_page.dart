@@ -1374,7 +1374,7 @@ class CardTwoo extends StatelessWidget {
             ),
             child: Column(children: [
               Container(
-                height: height / 5,
+                height: height / 4,
                 padding: const EdgeInsets.all(8),
                 // width: width,
                 child: SingleChildScrollView(
@@ -1415,6 +1415,34 @@ class CardTwoo extends StatelessWidget {
                               ),
                               SizedBox(height: height * 0.02),
                               Row(
+                                // crossAxisAlignment: CrossAxisAlignment.start,
+                                // mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  const Text(
+                                    "Customer Name",
+                                    style: TextStyle(
+                                      fontFamily: 'Red Hat Display',
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Palette.orangeColor,
+                                    ),
+                                  ),
+                                  SizedBox(width: width * 0.01),
+                                  Text(
+                                    orderde.firstname!,
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Palette.placeholderGrey,
+                                      // color: Colors.orange,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: height * 0.02),
+                              Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   const Text(
@@ -1444,22 +1472,33 @@ class CardTwoo extends StatelessWidget {
                             Row(
                               children: [
                                 const Text(
-                                  'Number of Products',
+                                  'Delivery Location',
                                   style: TextStyle(
-                                      fontFamily: 'Red Hat Display',
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Palette.orangeColor),
-                                ),
-                                SizedBox(width: width * 0.01),
-                                Text(
-                                  orderde.products_count!.toString(),
-                                  style: const TextStyle(
-                                    fontSize: 16,
+                                    fontSize: 20,
                                     fontWeight: FontWeight.bold,
-                                    color: Palette.placeholderGrey,
+                                    color: Palette.orangeColor,
+                                    fontFamily: 'Red Hat Display',
                                   ),
                                 ),
+                                SizedBox(width: width * 0.01),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 150,
+                                  child: Text(
+                                    orderde.shipping_address!,
+                                    maxLines: 3,
+                                    overflow: TextOverflow.clip,
+                                    // softWrap: false,
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Palette.placeholderGrey,
+                                    ),
+                                  ),
+                                )
                               ],
                             ),
                             Spacer(),
@@ -1493,6 +1532,30 @@ class CardTwoo extends StatelessWidget {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            Row(
+                              children: [
+                                const Text(
+                                  'Number of Products',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Palette.orangeColor,
+                                    fontFamily: 'Red Hat Display',
+                                  ),
+                                ),
+                                SizedBox(width: width * 0.01),
+                                Text(
+                                  // order.delivery_date!,
+                                  orderde.products_count.toString(),
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Palette.placeholderGrey,
+                                  ),
+                                )
+                              ],
+                            ),
+                            SizedBox(height: height * 0.02),
                             Row(
                               children: [
                                 const Text(
@@ -1582,7 +1645,7 @@ class CardWidget extends StatelessWidget {
             ),
             child: Column(children: [
               Container(
-                height: height / 6,
+                height: height / 4,
                 padding: const EdgeInsets.all(8),
                 // width: width,
                 child: SingleChildScrollView(
@@ -1626,6 +1689,29 @@ class CardWidget extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   const Text(
+                                    "Customer",
+                                    style: TextStyle(
+                                        fontFamily: 'Red Hat Display',
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: Palette.orangeColor),
+                                  ),
+                                  SizedBox(width: width * 0.01),
+                                  Text(
+                                    orderde.firstname!,
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Palette.placeholderGrey,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: height * 0.02),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Text(
                                     "Order Status",
                                     style: TextStyle(
                                         fontFamily: 'Red Hat Display',
@@ -1652,25 +1738,38 @@ class CardWidget extends StatelessWidget {
                             Row(
                               children: [
                                 const Text(
-                                  'Number of Products',
+                                  'Delivery Location',
                                   style: TextStyle(
-                                      fontFamily: 'Red Hat Display',
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Palette.orangeColor),
-                                ),
-                                SizedBox(width: width * 0.01),
-                                Text(
-                                  orderde.products_count!.toString(),
-                                  style: const TextStyle(
-                                    fontSize: 16,
+                                    fontSize: 20,
                                     fontWeight: FontWeight.bold,
-                                    color: Palette.placeholderGrey,
+                                    color: Palette.orangeColor,
+                                    fontFamily: 'Red Hat Display',
                                   ),
                                 ),
+                                SizedBox(width: width * 0.01),
                               ],
                             ),
-                            Spacer(),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 150,
+                                  child: Text(
+                                    orderde.shipping_address!,
+                                    maxLines: 3,
+                                    overflow: TextOverflow.clip,
+                                    // softWrap: false,
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Palette.placeholderGrey,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                            const Spacer(
+                              flex: 3,
+                            ),
                             Align(
                               alignment: Alignment.bottomRight,
                               child: CupertinoButton.filled(
@@ -1699,6 +1798,28 @@ class CardWidget extends StatelessWidget {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            Row(
+                              children: [
+                                const Text(
+                                  'Number of Products',
+                                  style: TextStyle(
+                                      fontFamily: 'Red Hat Display',
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Palette.orangeColor),
+                                ),
+                                SizedBox(width: width * 0.01),
+                                Text(
+                                  orderde.products_count!.toString(),
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Palette.placeholderGrey,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: height * 0.02),
                             Row(
                               children: [
                                 const Text(

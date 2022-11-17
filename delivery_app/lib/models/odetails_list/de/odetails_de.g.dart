@@ -18,6 +18,9 @@ _$_OdetailsDe _$$_OdetailsDeFromJson(Map<String, dynamic> json) =>
       variation_id: json['variation_id'] as num?,
       quantity: json['quantity'] as num?,
       price: json['price'] as num?,
+      product_id: json['product_id'] as num?,
+      tax: json['tax'] as num?,
+      product_store_id: json['product_store_id'] as String?,
       total: json['total'] as num?,
     );
 
@@ -33,5 +36,8 @@ Map<String, dynamic> _$$_OdetailsDeToJson(_$_OdetailsDe instance) =>
       'variation_id': instance.variation_id,
       'quantity': instance.quantity,
       'price': instance.price,
+      'product_id': instance.product_id,
+      'tax': instance.tax,
+      'product_store_id': instance.product_store_id,
       'total': instance.total,
     };

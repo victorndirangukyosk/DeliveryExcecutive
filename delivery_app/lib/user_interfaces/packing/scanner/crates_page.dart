@@ -89,6 +89,12 @@ class _CratesPageState extends State<CratesPage> {
                 return CupertinoButton(
                     child: const Text('Submit'),
                     onPressed: () {
+                      //TODO:REMOVE NAVIGATOR
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  OrderList(orderId: widget.orderId)));
                       context.read<AddCratesCubit>().addCrates(
                           crates: List.generate(
                             context.read<CratesQRCubit>().state.length,

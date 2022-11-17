@@ -18,6 +18,9 @@ class OdetailsDe with _$OdetailsDe {
       num? variation_id,
       num? quantity,
       num? price,
+      num? product_id,
+      num? tax,
+      String? product_store_id,
       num? total}) = _OdetailsDe;
 
   factory OdetailsDe.fromJson(Map<String, dynamic> json) =>
