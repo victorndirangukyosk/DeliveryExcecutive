@@ -1,13 +1,18 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:delivery_app/configuration/configuration.dart';
+import 'package:delivery_app/cubits/location_prediction/location_prediction_display_cubit.dart';
 import 'package:delivery_app/models/odetails_list/de/odetails_de.dart';
+import 'package:delivery_app/models/prediction/place_prediction.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 import 'package:delivery_app/user_interfaces/delivery/directions_to_address/components/api_secret.dart';
 import 'package:delivery_app/utilities/rest_client/rest_client.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -83,6 +88,9 @@ class _DirectionsToAddressState extends State<DirectionsToAddress> {
         onChanged: (value) {
           locationCallback(value);
           findPlace(value);
+          context
+              .read<LocationPredictionDisplayCubit>()
+              .showPlacePredictions('');
         },
         controller: controller,
         focusNode: focusNode,
@@ -558,6 +566,59 @@ class _DirectionsToAddressState extends State<DirectionsToAddress> {
                               ),
                             ),
                           ),
+                          const SizedBox(height: 5),
+                          SafeArea(
+                            child: BlocConsumer<LocationPredictionDisplayCubit,
+                                LocationPredictionDisplayState>(
+                              listener: (context, state) {
+                                // TODO: implement listener
+                              },
+                              builder: (context, state) {
+                                return state.maybeWhen(
+                                  loading: () {
+                                    return const Center(
+                                        child: CupertinoActivityIndicator(
+                                      color: Palette.greenColor,
+                                    ));
+                                  },
+                                  success: ((predictions) {
+                                    return Container(
+                                      decoration: const BoxDecoration(
+                                        color: Colors.white70,
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(20.0),
+                                        ),
+                                      ),
+                                      width: width * 0.9,
+                                      height: 150,
+                                      child: ListView.builder(
+                                        itemCount: predictions.length,
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                          return AnimationConfiguration
+                                              .staggeredList(
+                                            position: index,
+                                            duration: const Duration(
+                                                milliseconds: 500),
+                                            child: SlideAnimation(
+                                                verticalOffset: 50.0,
+                                                child: FadeInAnimation(
+                                                    child: CardMap(
+                                                  predictions:
+                                                      predictions[index],
+                                                ))),
+                                          );
+                                        },
+                                      ),
+                                    );
+                                  }),
+                                  orElse: () {
+                                    return Container();
+                                  },
+                                );
+                              },
+                            ),
+                          ),
                           SizedBox(height: 5),
                           ElevatedButton(
                             onPressed: (_startAddress != '' &&
@@ -700,6 +761,19 @@ class _DirectionsToAddressState extends State<DirectionsToAddress> {
       print('Places Prediction Response ::');
       print(res.data['data']);
     }
+
+    void displayPlace(String placeName) async {
+      if (placeName.length > 1) {
+        String autoCompleteUrl =
+            'https://maps.googleapis.com/maps/api/place/autocomplete/json?input=$placeName&key=${Secrets.API_KEY}&components=country:ke';
+        var res = await RestClient().dio!.get(autoCompleteUrl);
+        if (res.data['data'] == 'failed') {
+          return;
+        }
+        print('Places Prediction Response ::');
+        print(res.data['data']);
+      }
+    }
   }
 }
 
@@ -713,4 +787,28 @@ class _PositionItem {
 
   final _PositionItemType type;
   final String displayValue;
+}
+
+class CardMap extends StatelessWidget {
+  final PlacePrediction predictions;
+  const CardMap({Key? key, required this.predictions}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Row(
+        children: [
+          const Icon(CupertinoIcons.location_circle),
+          Text(
+            predictions.description!,
+            style: const TextStyle(
+              color: Palette.greenColor,
+              fontSize: 13,
+            ),
+          ),
+          const Icon(CupertinoIcons.search_circle)
+        ],
+      ),
+    );
+  }
 }

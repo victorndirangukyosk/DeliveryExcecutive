@@ -34,6 +34,7 @@ mixin _$GeneralDetails {
   String? get lastname => throw _privateConstructorUsedError;
   String? get telephone => throw _privateConstructorUsedError;
   String? get paid => throw _privateConstructorUsedError;
+  String? get total => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -60,7 +61,8 @@ abstract class $GeneralDetailsCopyWith<$Res> {
       String? firstname,
       String? lastname,
       String? telephone,
-      String? paid});
+      String? paid,
+      String? total});
 }
 
 /// @nodoc
@@ -88,6 +90,7 @@ class _$GeneralDetailsCopyWithImpl<$Res>
     Object? lastname = freezed,
     Object? telephone = freezed,
     Object? paid = freezed,
+    Object? total = freezed,
   }) {
     return _then(_value.copyWith(
       order_id: order_id == freezed
@@ -146,6 +149,10 @@ class _$GeneralDetailsCopyWithImpl<$Res>
           ? _value.paid
           : paid // ignore: cast_nullable_to_non_nullable
               as String?,
+      total: total == freezed
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -171,7 +178,8 @@ abstract class _$$_GeneralDetailsCopyWith<$Res>
       String? firstname,
       String? lastname,
       String? telephone,
-      String? paid});
+      String? paid,
+      String? total});
 }
 
 /// @nodoc
@@ -201,6 +209,7 @@ class __$$_GeneralDetailsCopyWithImpl<$Res>
     Object? lastname = freezed,
     Object? telephone = freezed,
     Object? paid = freezed,
+    Object? total = freezed,
   }) {
     return _then(_$_GeneralDetails(
       order_id: order_id == freezed
@@ -259,6 +268,10 @@ class __$$_GeneralDetailsCopyWithImpl<$Res>
           ? _value.paid
           : paid // ignore: cast_nullable_to_non_nullable
               as String?,
+      total: total == freezed
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -280,7 +293,8 @@ class _$_GeneralDetails implements _GeneralDetails {
       this.firstname,
       this.lastname,
       this.telephone,
-      this.paid});
+      this.paid,
+      this.total});
 
   factory _$_GeneralDetails.fromJson(Map<String, dynamic> json) =>
       _$$_GeneralDetailsFromJson(json);
@@ -313,10 +327,12 @@ class _$_GeneralDetails implements _GeneralDetails {
   final String? telephone;
   @override
   final String? paid;
+  @override
+  final String? total;
 
   @override
   String toString() {
-    return 'GeneralDetails(order_id: $order_id, products_count: $products_count, vehicle_number: $vehicle_number, shipping_landmark: $shipping_landmark, delivery_date: $delivery_date, payment_method: $payment_method, payment_code: $payment_code, shipping_method: $shipping_method, date_added: $date_added, date_modified: $date_modified, firstname: $firstname, lastname: $lastname, telephone: $telephone, paid: $paid)';
+    return 'GeneralDetails(order_id: $order_id, products_count: $products_count, vehicle_number: $vehicle_number, shipping_landmark: $shipping_landmark, delivery_date: $delivery_date, payment_method: $payment_method, payment_code: $payment_code, shipping_method: $shipping_method, date_added: $date_added, date_modified: $date_modified, firstname: $firstname, lastname: $lastname, telephone: $telephone, paid: $paid, total: $total)';
   }
 
   @override
@@ -346,7 +362,8 @@ class _$_GeneralDetails implements _GeneralDetails {
             const DeepCollectionEquality().equals(other.firstname, firstname) &&
             const DeepCollectionEquality().equals(other.lastname, lastname) &&
             const DeepCollectionEquality().equals(other.telephone, telephone) &&
-            const DeepCollectionEquality().equals(other.paid, paid));
+            const DeepCollectionEquality().equals(other.paid, paid) &&
+            const DeepCollectionEquality().equals(other.total, total));
   }
 
   @JsonKey(ignore: true)
@@ -366,7 +383,8 @@ class _$_GeneralDetails implements _GeneralDetails {
       const DeepCollectionEquality().hash(firstname),
       const DeepCollectionEquality().hash(lastname),
       const DeepCollectionEquality().hash(telephone),
-      const DeepCollectionEquality().hash(paid));
+      const DeepCollectionEquality().hash(paid),
+      const DeepCollectionEquality().hash(total));
 
   @JsonKey(ignore: true)
   @override
@@ -396,7 +414,8 @@ abstract class _GeneralDetails implements GeneralDetails {
       final String? firstname,
       final String? lastname,
       final String? telephone,
-      final String? paid}) = _$_GeneralDetails;
+      final String? paid,
+      final String? total}) = _$_GeneralDetails;
 
   factory _GeneralDetails.fromJson(Map<String, dynamic> json) =
       _$_GeneralDetails.fromJson;
@@ -429,6 +448,8 @@ abstract class _GeneralDetails implements GeneralDetails {
   String? get telephone;
   @override
   String? get paid;
+  @override
+  String? get total;
   @override
   @JsonKey(ignore: true)
   _$$_GeneralDetailsCopyWith<_$_GeneralDetails> get copyWith =>

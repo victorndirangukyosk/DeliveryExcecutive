@@ -22,6 +22,7 @@ _$_GeneralDetails _$$_GeneralDetailsFromJson(Map<String, dynamic> json) =>
       lastname: json['lastname'] as String?,
       telephone: json['telephone'] as String?,
       paid: json['paid'] as String?,
+      total: json['total'] as String?,
     );
 
 Map<String, dynamic> _$$_GeneralDetailsToJson(_$_GeneralDetails instance) =>
@@ -40,4 +41,5 @@ Map<String, dynamic> _$$_GeneralDetailsToJson(_$_GeneralDetails instance) =>
       'lastname': instance.lastname,
       'telephone': instance.telephone,
       'paid': instance.paid,
+      'total': instance.total,
     };

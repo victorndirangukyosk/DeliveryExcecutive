@@ -14,6 +14,7 @@ import 'package:delivery_app/cubits/general_order_details_cubit/de/cubit/de_orde
 import 'package:delivery_app/cubits/get_assigned_cubit/de/cubit/assigned_de_cubit.dart';
 import 'package:delivery_app/cubits/order_details_list/de/o_details_de_cubit.dart';
 import 'package:delivery_app/cubits/processed_items_cubit/processed_items_cubit.dart';
+import 'package:delivery_app/cubits/update_invoice/update_invoice_cubit.dart';
 import 'package:delivery_app/models/accept_reject/accept_reject.dart';
 import 'package:delivery_app/models/missing/missing.dart';
 import 'package:delivery_app/models/odetails_list/de/odetails_de.dart';
@@ -27,6 +28,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:signature/signature.dart';
 import 'package:user_profile_avatar/user_profile_avatar.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class CustomerVerification extends StatefulWidget {
   final int orderId;
@@ -69,10 +71,9 @@ class _CustomerVerificationState extends State<CustomerVerification> {
                   'your order has been Delivered',
                   style: TextStyle(
                       color: Palette.placeholderGrey,
-                      fontStyle: FontStyle.italic,
                       fontFamily: 'BOXICONS',
                       fontWeight: FontWeight.bold,
-                      fontSize: 18),
+                      fontSize: 14),
                 ),
                 Expanded(child: Container()),
                 Padding(
@@ -83,8 +84,8 @@ class _CustomerVerificationState extends State<CustomerVerification> {
                         //     CustomerVerification());
                       },
                       icon: const Icon(
-                        CupertinoIcons.check_mark,
-                        size: 30,
+                        CupertinoIcons.check_mark_circled_solid,
+                        size: 20,
                         color: Palette.greenColor,
                       )),
                 )
@@ -113,705 +114,605 @@ class SummaryTileList extends StatelessWidget {
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
       if (constraints.maxWidth <= 600) {
-        return SingleChildScrollView(
-          child: Column(
+        return Padding(
+          padding: const EdgeInsets.only(top: 12.0),
+          child: StaggeredGrid.count(
+            crossAxisCount: 2,
+            mainAxisSpacing: 2,
+            crossAxisSpacing: 2,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 12.0),
-                child: StaggeredGrid.count(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 2,
-                  crossAxisSpacing: 2,
+              StaggeredGridTile.count(
+                crossAxisCellCount: 4,
+                mainAxisCellCount: 0.3,
+                child: Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Palette.greenColor,
+                        width: 3,
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                  child: SingleChildScrollView(
+                    physics: const NeverScrollableScrollPhysics(),
+                    child: Column(
+                      children: [
+                        CupertinoButton(
+                            child: Text(
+                              'Update Invoice',
+                              style: TextStyle(
+                                  color: Palette.greenColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16),
+                            ),
+                            onPressed: (() {
+                              context
+                                  .read<UpdateInvoiceCubit>()
+                                  .updateInvoice(orderId: orderId);
+                            }))
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              StaggeredGridTile.count(
+                crossAxisCellCount: 2,
+                mainAxisCellCount: 0.3,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    StaggeredGridTile.count(
-                      crossAxisCellCount: 2,
-                      mainAxisCellCount: 2.1,
-                      child: Container(
-                        // color: Palette.placeholderGrey,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Palette.orangeColor),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20))),
-                        child: Flexible(
+                    DefaultTextStyle(
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 11.5,
+                          color: Palette.orangeColor),
+                      child: AnimatedTextKit(
+                        animatedTexts: [
+                          WavyAnimatedText(
+                              ' After updating the product statuses,please update your invoice above',
+                              speed: Duration(milliseconds: 200)),
+                          // WavyAnimatedText(
+                          //     'please update your invoice above',
+                          //     speed: Duration(milliseconds: 200)),
+                        ],
+                        isRepeatingAnimation: true,
+                        repeatForever: true,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              StaggeredGridTile.count(
+                crossAxisCellCount: 2,
+                mainAxisCellCount: 1.4,
+                child: Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Palette.orangeColor),
+                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                  child: BlocConsumer<DeOrderDetailsCubit, DeOrderDetailsState>(
+                    listener: (context, state) {
+                      // TODO: implement listener
+                      state.maybeWhen(
+                          orElse: () {},
+                          failed: (e) {
+                            showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return CupertinoAlertDialog(
+                                    title: Text('Error'),
+                                    content: Text(e),
+                                  );
+                                });
+                          });
+                    },
+                    builder: (context, state) {
+                      return state.maybeWhen(loading: () {
+                        return const Center(
+                          child: CupertinoActivityIndicator(
+                            color: Palette.greenColor,
+                          ),
+                        );
+                      }, success: (generalDetails) {
+                        return Flexible(
                           child: Column(
                             children: [
-                              const Text('CUSTOMER PHOTO'),
-                              Center(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(40.0),
-                                  child: Row(
-                                    children: [
-                                      context
-                                                  .watch<PickImageCubit>()
-                                                  .state
-                                                  .path
-                                                  .length <
-                                              2
-                                          ? InkWell(
-                                              onTap: () async {
-                                                var x = await ImagePicker()
-                                                    .pickImage(
-                                                        source:
-                                                            ImageSource.camera);
-                                                context
-                                                    .read<PickImageCubit>()
-                                                    .emit(File(x!.path));
-                                              },
-                                              child: AnimatedContainer(
-                                                duration:
-                                                    const Duration(seconds: 3),
-                                                height: 280,
-                                                width: 280,
-                                                // decoration: BoxDecoration(
-                                                //     border: Border.all(width: 2)),
-                                                child: Center(
-                                                  child: UserProfileAvatar(
-                                                    avatarUrl: '',
-                                                    onAvatarTap: () async {
-                                                      ScaffoldMessenger.of(
-                                                              context)
-                                                          .showSnackBar(
-                                                              SnackBar(
-                                                        content: Text(
-                                                            'Tapped on avatar'),
-                                                      ));
-                                                      var x = await ImagePicker()
-                                                          .pickImage(
-                                                              source:
-                                                                  ImageSource
-                                                                      .camera);
-                                                      context
-                                                          .read<
-                                                              PickImageCubit>()
-                                                          .emit(File(x!.path));
-                                                    },
-                                                    // notificationCount: 10,
-                                                    notificationBubbleTextStyle:
-                                                        const TextStyle(
-                                                      fontSize: 30,
-                                                      color: Colors.white,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
-                                                    avatarSplashColor:
-                                                        Colors.purple,
-                                                    radius: 100,
-                                                    isActivityIndicatorSmall:
-                                                        false,
-                                                    avatarBorderData:
-                                                        AvatarBorderData(
-                                                      borderColor:
-                                                          Colors.black54,
-                                                      borderWidth: 5.0,
-                                                    ),
-                                                  ),
-                                                ),
+                              const Text(
+                                'ORDER INFO',
+                                style: TextStyle(
+                                    color: Palette.greenColor,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Text(
+                                      'Order ID',
+                                      style: TextStyle(
+                                          color: Palette.placeholderGrey,
+                                          fontFamily: 'BOXICONS',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14),
+                                    ),
+                                    Text(
+                                      generalDetails.order_id.toString(),
+                                      style: const TextStyle(
+                                          color: Palette.placeholderGrey,
+                                          fontFamily: 'BOXICONS',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Placed on',
+                                      style: TextStyle(
+                                          color: Palette.placeholderGrey,
+                                          fontFamily: 'BOXICONS',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14),
+                                    ),
+                                    Text(
+                                      CalendarTime(DateTime.parse(
+                                              generalDetails.date_added!))
+                                          .toHuman,
+                                      style: TextStyle(
+                                          color: Palette.placeholderGrey,
+                                          fontFamily: 'BOXICONS',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Delivered on',
+                                      style: TextStyle(
+                                          color: Palette.placeholderGrey,
+                                          fontFamily: 'BOXICONS',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14),
+                                    ),
+                                    Text(
+                                      CalendarTime(DateTime.parse(
+                                              generalDetails.delivery_date!))
+                                          .toHuman,
+                                      style: TextStyle(
+                                          color: Palette.placeholderGrey,
+                                          fontFamily: 'BOXICONS',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Text(
+                                      'Order Total',
+                                      style: TextStyle(
+                                          color: Palette.placeholderGrey,
+                                          fontFamily: 'BOXICONS',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14),
+                                    ),
+                                    Text(
+                                      generalDetails.total!,
+                                      style: const TextStyle(
+                                          color: Palette.placeholderGrey,
+                                          fontFamily: 'BOXICONS',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Text(
+                                      'Payment Status',
+                                      style: TextStyle(
+                                          color: Palette.placeholderGrey,
+                                          fontFamily: 'BOXICONS',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14),
+                                    ),
+                                    generalDetails.paid! == 'N'
+                                        //TODO: Add mpesa checkout
+                                        ? CupertinoButton.filled(
+                                            minSize: 1,
+                                            onPressed: () {
+                                              AutoRouter.of(context)
+                                                  .push(TransactionalMpesaRoute(
+                                                orderId: int.parse(
+                                                    generalDetails.order_id!),
+                                              ));
+                                            },
+                                            child: const Text('Pay Now'),
+                                          )
+                                        : Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: const [
+                                              Icon(
+                                                CupertinoIcons
+                                                    .check_mark_circled_solid,
+                                                color: Palette.greenColor,
                                               ),
-                                            )
-                                          : InkWell(
-                                              onTap: () async {
-                                                var x = await ImagePicker()
-                                                    .pickImage(
-                                                        source:
-                                                            ImageSource.camera);
-                                                context
-                                                    .read<PickImageCubit>()
-                                                    .emit(File(x!.path));
-                                              },
-                                              child: Flexible(
-                                                child: Image.file(
-                                                  context
-                                                      .read<PickImageCubit>()
-                                                      .state,
-                                                  height: 200,
-                                                  width: 200,
-                                                  fit: BoxFit.cover,
-                                                ),
+                                              SizedBox(
+                                                width: 4,
                                               ),
-                                            ),
-                                    ],
-                                  ),
+                                              Text(
+                                                'Paid',
+                                                style: TextStyle(
+                                                  color: Palette.greenColor,
+                                                  fontSize: 14,
+                                                ),
+                                              )
+                                            ],
+                                          )
+                                  ],
                                 ),
                               ),
                             ],
                           ),
-                        ),
-                      ),
-                    ),
-                    StaggeredGridTile.count(
-                      crossAxisCellCount: 2,
-                      mainAxisCellCount: 1.2,
-                      child: Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Palette.orangeColor),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20))),
-                        child: BlocConsumer<DeOrderDetailsCubit,
-                            DeOrderDetailsState>(
-                          listener: (context, state) {
-                            // TODO: implement listener
-                            state.maybeWhen(
-                                orElse: () {},
-                                failed: (e) {
-                                  showDialog(
-                                      context: context,
-                                      builder: (context) {
-                                        return CupertinoAlertDialog(
-                                          title: Text('Error'),
-                                          content: Text(e),
-                                        );
-                                      });
-                                });
-                          },
-                          builder: (context, state) {
-                            return state.maybeWhen(loading: () {
-                              return const Center(
-                                child: CupertinoActivityIndicator(
-                                  color: Palette.greenColor,
-                                ),
-                              );
-                            }, success: (generalDetails) {
-                              return Flexible(
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      'ORDER INFO',
-                                      style: TextStyle(
-                                          color: Palette.placeholderGrey,
-                                          fontFamily: 'BOXICONS',
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            'Order ID',
-                                            style: TextStyle(
-                                                color: Palette.placeholderGrey,
-                                                fontFamily: 'BOXICONS',
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 14),
-                                          ),
-                                          Text(
-                                            generalDetails.order_id.toString(),
-                                            style: TextStyle(
-                                                color: Palette.placeholderGrey,
-                                                fontFamily: 'BOXICONS',
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 14),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            'Placed on',
-                                            style: TextStyle(
-                                                color: Palette.placeholderGrey,
-                                                fontFamily: 'BOXICONS',
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 14),
-                                          ),
-                                          Text(
-                                            CalendarTime(DateTime.parse(
-                                                    generalDetails.date_added!))
-                                                .toHuman,
-                                            style: TextStyle(
-                                                color: Palette.placeholderGrey,
-                                                fontFamily: 'BOXICONS',
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 14),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Flexible(
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              'Delivered on',
-                                              style: TextStyle(
-                                                  color:
-                                                      Palette.placeholderGrey,
-                                                  fontFamily: 'BOXICONS',
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 14),
-                                            ),
-                                            Text(
-                                              CalendarTime(DateTime.parse(
-                                                      generalDetails
-                                                          .delivery_date!))
-                                                  .toHuman,
-                                              style: TextStyle(
-                                                  color:
-                                                      Palette.placeholderGrey,
-                                                  fontFamily: 'BOXICONS',
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 14),
-                                            ),
-                                          ],
+                        );
+                      }, orElse: () {
+                        return Container();
+                      });
+                    },
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              StaggeredGridTile.count(
+                crossAxisCellCount: 4,
+                mainAxisCellCount: 4,
+                child: Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Palette.greenColor),
+                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                  child: SingleChildScrollView(
+                    physics: const NeverScrollableScrollPhysics(),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: 80,
+                            // padding: const EdgeInsets.only(left: 20, right: 8),
+                            padding: EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                                color: Palette.greenColor,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: IntrinsicHeight(
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Expanded(
+                                    child: Column(
+                                      children: const [
+                                        Text(
+                                          'Product Name',
+                                          maxLines: 2,
+                                          overflow: TextOverflow.fade,
+                                          softWrap: false,
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
                                         ),
-                                      ),
+                                      ],
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Flexible(
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            const Text(
-                                              'Payment Status',
-                                              style: TextStyle(
-                                                  color:
-                                                      Palette.placeholderGrey,
-                                                  fontFamily: 'BOXICONS',
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 14),
-                                            ),
-                                            generalDetails.paid! == 'N'
-                                                //TODO: Add mpesa checkout
-                                                ? CupertinoButton.filled(
-                                                    minSize: 2,
-                                                    onPressed: () {
-                                                      AutoRouter.of(context)
-                                                          .push(
-                                                              MpesaPaymentRoute(
-                                                                  data: {},
-                                                                  orderReference:
-                                                                      ''));
-                                                    },
-                                                    child: Text('Pay now'),
-                                                  )
-                                                : Text(
-                                                    generalDetails.paid!,
-                                                    style: const TextStyle(
-                                                        color: Palette
-                                                            .placeholderGrey,
-                                                        fontFamily: 'BOXICONS',
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 14),
-                                                  ),
-                                          ],
+                                  ),
+                                  const VerticalDivider(),
+                                  Expanded(
+                                    child: Column(
+                                      children: const [
+                                        Text(
+                                          'Quantity',
+                                          maxLines: 1,
+                                          overflow: TextOverflow.fade,
+                                          softWrap: false,
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
                                         ),
-                                      ),
+                                      ],
                                     ),
-                                  ],
-                                ),
-                              );
-                            }, orElse: () {
-                              return Container();
-                            });
-                          },
-                        ),
-                      ),
-                    ),
-                    StaggeredGridTile.count(
-                      crossAxisCellCount: 2,
-                      mainAxisCellCount: 1,
-                      child: Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Palette.orangeColor),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20))),
-                        child: BlocConsumer<DeOrderDetailsCubit,
-                            DeOrderDetailsState>(
-                          listener: (context, state) {
-                            // TODO: implement listener
-                            state.maybeWhen(
-                                orElse: () {},
-                                failed: (e) {
-                                  showDialog(
-                                      context: context,
-                                      builder: (context) {
-                                        return CupertinoAlertDialog(
-                                          title: Text('Error'),
-                                          content: Text(e),
-                                        );
-                                      });
-                                });
-                          },
-                          builder: (context, state) {
-                            return state.maybeWhen(loading: () {
-                              return const Center(
-                                child: CupertinoActivityIndicator(
-                                  color: Palette.greenColor,
-                                ),
-                              );
-                            }, success: (generalDetails) {
-                              return Flexible(
-                                child: Column(
-                                  children: [
-                                    const Text(
-                                      'DELIVERY EXCECUTIVE DETAILS',
-                                      style: TextStyle(
-                                          color: Palette.placeholderGrey,
-                                          fontFamily: 'BOXICONS',
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            'First Name',
+                                  ),
+                                  const VerticalDivider(),
+                                  Expanded(
+                                    child: Column(
+                                      children: const [
+                                        Flexible(
+                                          child: Text(
+                                            'Specifications',
+                                            maxLines: 1,
+                                            overflow: TextOverflow.fade,
+                                            softWrap: false,
                                             style: TextStyle(
-                                                color: Palette.placeholderGrey,
-                                                fontFamily: 'BOXICONS',
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 14),
-                                          ),
-                                          Text(
-                                            generalDetails.firstname!,
-                                            style: TextStyle(
-                                                color: Palette.placeholderGrey,
-                                                fontFamily: 'BOXICONS',
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 14),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            'Last name',
-                                            style: TextStyle(
-                                                color: Palette.placeholderGrey,
-                                                fontFamily: 'BOXICONS',
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 14),
-                                          ),
-                                          Text(
-                                            generalDetails.lastname!,
-                                            style: TextStyle(
-                                                color: Palette.placeholderGrey,
-                                                fontFamily: 'BOXICONS',
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 14),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            'Phone',
-                                            style: TextStyle(
-                                                color: Palette.placeholderGrey,
-                                                fontFamily: 'BOXICONS',
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 14),
-                                          ),
-                                          Text(
-                                            generalDetails.telephone!,
-                                            style: TextStyle(
-                                                color: Palette.placeholderGrey,
-                                                fontFamily: 'BOXICONS',
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 14),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            }, orElse: () {
-                              return Container();
-                            });
-                          },
-                        ),
-                      ),
-                    ),
-                    // StaggeredGridTile.count(
-                    //   crossAxisCellCount: 1,
-                    //   mainAxisCellCount: 1,
-                    //   child: Container(
-                    //     decoration: BoxDecoration(
-                    //         border: Border.all(color: Palette.orangeColor),
-                    //         borderRadius: BorderRadius.all(Radius.circular(20))),
-                    //   ),
-                    // ),
-                    // StaggeredGridTile.count(
-                    //   crossAxisCellCount: 1,
-                    //   mainAxisCellCount: 1,
-                    //   child: Container(decoration: BoxDecoration(
-                    //         border: Border.all(color: Palette.orangeColor),
-                    //         borderRadius: BorderRadius.all(Radius.circular(20))),),
-                    // ),
-                    StaggeredGridTile.count(
-                      crossAxisCellCount: 4,
-                      mainAxisCellCount: 6,
-                      child: Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Palette.orangeColor),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20))),
-                        child: SingleChildScrollView(
-                          physics: const NeverScrollableScrollPhysics(),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                  height: 80,
-                                  // padding: const EdgeInsets.only(left: 20, right: 8),
-                                  padding: EdgeInsets.all(8),
-                                  decoration: BoxDecoration(
-                                      color: Palette.greenColor,
-                                      borderRadius: BorderRadius.circular(10)),
-                                  child: IntrinsicHeight(
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.stretch,
-                                      children: [
-                                        Expanded(
-                                          child: Column(
-                                            children: const [
-                                              Text(
-                                                'Product Name',
-                                                maxLines: 1,
-                                                overflow: TextOverflow.fade,
-                                                softWrap: false,
-                                                style: TextStyle(
-                                                    fontSize: 18,
-                                                    color: Colors.white,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        const VerticalDivider(),
-                                        Expanded(
-                                          child: Column(
-                                            children: const [
-                                              Text(
-                                                'Quantity',
-                                                maxLines: 1,
-                                                overflow: TextOverflow.fade,
-                                                softWrap: false,
-                                                style: TextStyle(
-                                                    fontSize: 18,
-                                                    color: Colors.white,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        const VerticalDivider(),
-                                        Expanded(
-                                          child: Column(
-                                            children: const [
-                                              Flexible(
-                                                child: Text(
-                                                  'Specifications',
-                                                  maxLines: 1,
-                                                  overflow: TextOverflow.fade,
-                                                  softWrap: false,
-                                                  style: TextStyle(
-                                                      fontSize: 18,
-                                                      color: Colors.white,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        const VerticalDivider(),
-                                        Expanded(
-                                          child: Column(
-                                            children: const [
-                                              Text(
-                                                'Price',
-                                                style: TextStyle(
-                                                    fontSize: 18,
-                                                    color: Colors.white,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                            ],
+                                                fontSize: 14,
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold),
                                           ),
                                         ),
                                       ],
                                     ),
                                   ),
-                                ),
+                                  const VerticalDivider(),
+                                  Expanded(
+                                    child: Column(
+                                      children: const [
+                                        Text(
+                                          'Quick Actions',
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
                               ),
-                              BlocConsumer<ODetailsDeCubit, ODetailsDeState>(
-                                  listener: (context, state) {
-                                // TODO: implement listener
-                                state.maybeWhen(
-                                    orElse: () {},
-                                    failed: (e) {
-                                      showDialog(
-                                          context: context,
-                                          builder: (context) {
-                                            return CupertinoAlertDialog(
-                                              title: Text('Error'),
-                                              content: Text(e),
-                                            );
-                                          });
-                                    });
-                              }, builder: (context, state) {
-                                return state.maybeWhen(
-                                  loading: () {
-                                    return const Center(
-                                      child: CircularProgressIndicator(
-                                        color: Palette.greenColor,
-                                      ),
-                                    );
-                                  },
-                                  success: (odeDetailsList) {
-                                    return SingleChildScrollView(
-                                      child: Column(children: [
-                                        ...List.generate(
-                                            odeDetailsList!.length,
-                                            (index) => CardWidget(
-                                                  deets: odeDetailsList[index],
-                                                  // orderId: orderId,
-                                                  index: index,
-                                                  acceptReject: AcceptReject(
-                                                      status: 'A',
-                                                      price:
-                                                          odeDetailsList[index]
-                                                              .price!
-                                                              .toString(),
-                                                      product_id:
-                                                          odeDetailsList[index]
-                                                              .product_id!
-                                                              .toString(),
-                                                      unit:
-                                                          odeDetailsList[index]
-                                                              .unit,
-                                                      name:
-                                                          odeDetailsList[index]
-                                                              .name,
-                                                      tax: odeDetailsList[index]
-                                                          .tax!
-                                                          .toString(),
-                                                      total:
-                                                          odeDetailsList[index]
-                                                              .total
-                                                              .toString(),
-                                                      quantity:
-                                                          odeDetailsList[index]
-                                                              .quantity!
-                                                              .toString(),
-                                                      product_store_id:
-                                                          odeDetailsList[index]
-                                                              .product_store_id,
-                                                      comment:
-                                                          'Products accepted'),
-                                                  orderId: orderId,
-                                                ))
-                                      ]),
-                                    );
-                                  },
-                                  orElse: () {
-                                    return Container();
-                                  },
-                                );
-                              }),
-                            ],
+                            ),
                           ),
                         ),
-                      ),
+                        BlocConsumer<ODetailsDeCubit, ODetailsDeState>(
+                            listener: (context, state) {
+                          // TODO: implement listener
+                          state.maybeWhen(
+                              orElse: () {},
+                              failed: (e) {
+                                showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return CupertinoAlertDialog(
+                                        title: Text('Error'),
+                                        content: Text(e),
+                                      );
+                                    });
+                              });
+                        }, builder: (context, state) {
+                          return state.maybeWhen(
+                            loading: () {
+                              return const Center(
+                                child: CircularProgressIndicator(
+                                  color: Palette.greenColor,
+                                ),
+                              );
+                            },
+                            success: (odeDetailsList) {
+                              return SingleChildScrollView(
+                                scrollDirection: Axis.vertical,
+                                child: Column(children: [
+                                  ...List.generate(
+                                      odeDetailsList!.length,
+                                      (index) => CardWidget(
+                                            deets: odeDetailsList[index],
+                                            // orderId: orderId,
+                                            index: index,
+                                            acceptReject: AcceptReject(
+                                                status: 'A',
+                                                price: odeDetailsList[index]
+                                                    .price!
+                                                    .toString(),
+                                                product_id:
+                                                    odeDetailsList[index]
+                                                        .product_id!
+                                                        .toString(),
+                                                unit:
+                                                    odeDetailsList[index].unit,
+                                                name:
+                                                    odeDetailsList[index].name,
+                                                tax: odeDetailsList[index]
+                                                    .tax!
+                                                    .toString(),
+                                                total: odeDetailsList[index]
+                                                    .total
+                                                    .toString(),
+                                                quantity: odeDetailsList[index]
+                                                    .quantity!
+                                                    .toString(),
+                                                product_store_id:
+                                                    odeDetailsList[index]
+                                                        .product_store_id,
+                                                comment: 'Products accepted'),
+                                            orderId: orderId,
+                                          ))
+                                ]),
+                              );
+                            },
+                            orElse: () {
+                              return Container();
+                            },
+                          );
+                        }),
+                      ],
                     ),
-                    StaggeredGridTile.count(
-                      crossAxisCellCount: 4,
-                      mainAxisCellCount: 3,
-                      child: Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Palette.orangeColor),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20))),
-                        child: Flexible(
+                  ),
+                ),
+              ),
+              StaggeredGridTile.count(
+                crossAxisCellCount: 2,
+                mainAxisCellCount: 1,
+                child: Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Palette.orangeColor),
+                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                  child: BlocConsumer<DeOrderDetailsCubit, DeOrderDetailsState>(
+                    listener: (context, state) {
+                      // TODO: implement listener
+                      state.maybeWhen(
+                          orElse: () {},
+                          failed: (e) {
+                            showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return CupertinoAlertDialog(
+                                    title: Text('Error'),
+                                    content: Text(e),
+                                  );
+                                });
+                          });
+                    },
+                    builder: (context, state) {
+                      return state.maybeWhen(loading: () {
+                        return const Center(
+                          child: CupertinoActivityIndicator(
+                            color: Palette.greenColor,
+                          ),
+                        );
+                      }, success: (generalDetails) {
+                        return Flexible(
                           child: Column(
                             children: [
                               const Text(
-                                'Customer signature',
+                                'DELIVERY EXCECUTIVE DETAILS',
                                 style: TextStyle(
-                                    color: Palette.greenColor,
-                                    fontSize: 20,
-                                    fontFamily: 'Helvetica',
-                                    fontWeight: FontWeight.bold),
+                                    color: Palette.placeholderGrey,
+                                    fontFamily: 'BOXICONS',
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16),
                               ),
-                              SizedBox(
-                                width: MediaQuery.of(context).size.width,
-                              ),
-                              Container(
-                                height: 200,
-                                width: 300,
-                                decoration: BoxDecoration(
-                                  color: Palette.greenColor,
-                                  border: Border.all(width: 1),
-                                  // borderRadius: BorderRadius.circular(30),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'First Name',
+                                      style: TextStyle(
+                                          color: Palette.placeholderGrey,
+                                          fontFamily: 'BOXICONS',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14),
+                                    ),
+                                    Text(
+                                      generalDetails.firstname!,
+                                      style: TextStyle(
+                                          color: Palette.placeholderGrey,
+                                          fontFamily: 'BOXICONS',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14),
+                                    ),
+                                  ],
                                 ),
-                                //we can have the following cubits analyzed
-                                child: Signature(
-                                  controller: SignatureController(),
-                                  height: 200,
-                                  width: 300,
-                                  backgroundColor: Colors.white,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Last name',
+                                      style: TextStyle(
+                                          color: Palette.placeholderGrey,
+                                          fontFamily: 'BOXICONS',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14),
+                                    ),
+                                    Text(
+                                      generalDetails.lastname!,
+                                      style: TextStyle(
+                                          color: Palette.placeholderGrey,
+                                          fontFamily: 'BOXICONS',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              const SizedBox(
-                                height: 40,
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Phone',
+                                      style: TextStyle(
+                                          color: Palette.placeholderGrey,
+                                          fontFamily: 'BOXICONS',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14),
+                                    ),
+                                    Text(
+                                      generalDetails.telephone!,
+                                      style: TextStyle(
+                                          color: Palette.placeholderGrey,
+                                          fontFamily: 'BOXICONS',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14),
+                                    ),
+                                  ],
+                                ),
                               ),
-                              //TODO: wrap in customer verification cubit
-                              BlocBuilder<CustomerVerificationCubit,
-                                  CustomerVerificationState>(
-                                builder: (context, state) {
-                                  return CupertinoButton(
-                                      child: const Text('Submit'),
-                                      color: Palette.greenColor,
-                                      onPressed: () {
-                                        context
-                                            .read<CustomerVerificationCubit>();
-                                        AutoRouter.of(context).replace(
-                                            MainHomeDeliveryExecutiveRoute());
-                                      });
-                                },
-                              )
                             ],
                           ),
-                        ),
-                      ),
-                    ),
-                  ],
+                        );
+                      }, orElse: () {
+                        return Container();
+                      });
+                    },
+                  ),
                 ),
-              )
+              ),
+              StaggeredGridTile.count(
+                  crossAxisCellCount: 1,
+                  mainAxisCellCount: 0.4,
+                  child: Flexible(
+                    child: Column(
+                      children: [
+                        CupertinoButton.filled(
+                            child: const Text('Submit'),
+                            onPressed: () {
+                              // context.read<CustomerVerificationCubit>();
+                              AutoRouter.of(context)
+                                  .replace(MainHomeDeliveryExecutiveRoute());
+                            }),
+                      ],
+                    ),
+                  )),
             ],
           ),
         );
@@ -826,122 +727,75 @@ class SummaryTileList extends StatelessWidget {
                   mainAxisSpacing: 4,
                   crossAxisSpacing: 4,
                   children: [
-                    // StaggeredGridTile.count(
-                    //   crossAxisCellCount: 2,
-                    //   mainAxisCellCount: 2,
-                    //   child: Container(
-                    //     // color: Palette.placeholderGrey,
-                    //     decoration: BoxDecoration(
-                    //         border: Border.all(color: Palette.orangeColor),
-                    //         borderRadius:
-                    //             BorderRadius.all(Radius.circular(20))),
-                    //     child: Flexible(
-                    //       child: Column(
-                    //         children: [
-                    //           // Text('CUSTOMER PHOTO'),
-                    //           Center(
-                    //             child: Padding(
-                    //               padding: const EdgeInsets.all(40.0),
-                    //               child: Row(
-                    //                 children: [
-                    //                   context
-                    //                               .watch<PickImageCubit>()
-                    //                               .state
-                    //                               .path
-                    //                               .length <
-                    //                           2
-                    //                       ? InkWell(
-                    //                           onTap: () async {
-                    //                             var x = await ImagePicker()
-                    //                                 .pickImage(
-                    //                                     source:
-                    //                                         ImageSource.camera);
-                    //                             context
-                    //                                 .read<PickImageCubit>()
-                    //                                 .emit(File(x!.path));
-                    //                           },
-                    //                           child: AnimatedContainer(
-                    //                             duration:
-                    //                                 const Duration(seconds: 3),
-                    //                             height: 160,
-                    //                             width: 200,
-                    //                             // decoration: BoxDecoration(
-                    //                             //     border: Border.all(width: 2)),
-                    //                             child: Center(
-                    //                               child: UserProfileAvatar(
-                    //                                 avatarUrl: '',
-                    //                                 onAvatarTap: () async {
-                    //                                   ScaffoldMessenger.of(
-                    //                                           context)
-                    //                                       .showSnackBar(
-                    //                                           SnackBar(
-                    //                                     content: Text(
-                    //                                         'Tapped on avatar'),
-                    //                                   ));
-                    //                                   var x = await ImagePicker()
-                    //                                       .pickImage(
-                    //                                           source:
-                    //                                               ImageSource
-                    //                                                   .camera);
-                    //                                   context
-                    //                                       .read<
-                    //                                           PickImageCubit>()
-                    //                                       .emit(File(x!.path));
-                    //                                 },
-                    //                                 // notificationCount: 10,
-                    //                                 notificationBubbleTextStyle:
-                    //                                     const TextStyle(
-                    //                                   fontSize: 30,
-                    //                                   color: Colors.white,
-                    //                                   fontWeight:
-                    //                                       FontWeight.bold,
-                    //                                 ),
-                    //                                 avatarSplashColor:
-                    //                                     Colors.purple,
-                    //                                 radius: 100,
-                    //                                 isActivityIndicatorSmall:
-                    //                                     false,
-                    //                                 avatarBorderData:
-                    //                                     AvatarBorderData(
-                    //                                   borderColor:
-                    //                                       Colors.black54,
-                    //                                   borderWidth: 5.0,
-                    //                                 ),
-                    //                               ),
-                    //                             ),
-                    //                           ),
-                    //                         )
-                    //                       : InkWell(
-                    //                           onTap: () async {
-                    //                             var x = await ImagePicker()
-                    //                                 .pickImage(
-                    //                                     source:
-                    //                                         ImageSource.camera);
-                    //                             context
-                    //                                 .read<PickImageCubit>()
-                    //                                 .emit(File(x!.path));
-                    //                           },
-                    //                           child: Flexible(
-                    //                             child: Image.file(
-                    //                               context
-                    //                                   .read<PickImageCubit>()
-                    //                                   .state,
-                    //                               height: 200,
-                    //                               width: 200,
-                    //                               fit: BoxFit.cover,
-                    //                             ),
-                    //                           ),
-                    //                         ),
-                    //                 ],
-                    //               ),
-                    //             ),
-                    //           ),
-                    //         ],
-                    //       ),
-                    //     ),
-                    //   ),
+                    StaggeredGridTile.count(
+                      crossAxisCellCount: 4,
+                      mainAxisCellCount: 0.3,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Palette.greenColor,
+                              width: 3,
+                            ),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20))),
+                        child: SingleChildScrollView(
+                          physics: const NeverScrollableScrollPhysics(),
+                          child: Column(
+                            children: [
+                              CupertinoButton(
+                                  child: Text(
+                                    'Update Invoice',
+                                    style: TextStyle(
+                                        color: Palette.greenColor,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16),
+                                  ),
+                                  onPressed: (() {
+                                    context
+                                        .read<UpdateInvoiceCubit>()
+                                        .updateInvoice(orderId: orderId);
+                                  }))
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    StaggeredGridTile.count(
+                      crossAxisCellCount: 4,
+                      mainAxisCellCount: 0.3,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          DefaultTextStyle(
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14.5,
+                                color: Palette.orangeColor),
+                            child: AnimatedTextKit(
+                              animatedTexts: [
+                                WavyAnimatedText(
+                                    ' After updating the product statuses,please update your invoice above',
+                                    speed: Duration(milliseconds: 200)),
+                                // WavyAnimatedText(
+                                //     'please update your invoice above',
+                                //     speed: Duration(milliseconds: 200)),
+                              ],
+                              isRepeatingAnimation: true,
+                              repeatForever: true,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    // const SizedBox(
+                    //   height: 20,
                     // ),
-
                     StaggeredGridTile.count(
                       crossAxisCellCount: 2,
                       mainAxisCellCount: 1,
@@ -1040,93 +894,109 @@ class SummaryTileList extends StatelessWidget {
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
-                                      child: Flexible(
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              'Delivered on',
-                                              style: TextStyle(
-                                                  color:
-                                                      Palette.placeholderGrey,
-                                                  fontFamily: 'BOXICONS',
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 14),
-                                            ),
-                                            Text(
-                                              CalendarTime(DateTime.parse(
-                                                      generalDetails
-                                                          .delivery_date!))
-                                                  .toHuman,
-                                              style: TextStyle(
-                                                  color:
-                                                      Palette.placeholderGrey,
-                                                  fontFamily: 'BOXICONS',
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 14),
-                                            ),
-                                          ],
-                                        ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            'Delivered on',
+                                            style: TextStyle(
+                                                color: Palette.placeholderGrey,
+                                                fontFamily: 'BOXICONS',
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14),
+                                          ),
+                                          Text(
+                                            CalendarTime(DateTime.parse(
+                                                    generalDetails
+                                                        .delivery_date!))
+                                                .toHuman,
+                                            style: TextStyle(
+                                                color: Palette.placeholderGrey,
+                                                fontFamily: 'BOXICONS',
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
-                                      child: Flexible(
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            const Text(
-                                              'Payment Status',
-                                              style: TextStyle(
-                                                  color:
-                                                      Palette.placeholderGrey,
-                                                  fontFamily: 'BOXICONS',
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 14),
-                                            ),
-                                            generalDetails.paid! == 'N'
-                                                //TODO: Add mpesa checkout
-                                                ? CupertinoButton.filled(
-                                                    minSize: 2,
-                                                    onPressed: () {
-                                                      AutoRouter.of(context)
-                                                          .push(
-                                                              MpesaPaymentRoute(
-                                                                  data: {},
-                                                                  orderReference:
-                                                                      ''));
-                                                    },
-                                                    child:
-                                                        const Text('Pay now'),
-                                                  )
-                                                : Row(
-                                                    children: const [
-                                                      Text(
-                                                        'PAID',
-                                                        style: TextStyle(
-                                                            color: Palette
-                                                                .greenColor,
-                                                            fontFamily:
-                                                                'BOXICONS',
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            fontSize: 14),
-                                                      ),
-                                                      SizedBox(
-                                                        width: 10,
-                                                      ),
-                                                      Icon(
-                                                        CupertinoIcons
-                                                            .check_mark_circled_solid,
-                                                        color:
-                                                            Palette.greenColor,
-                                                      ),
-                                                    ],
-                                                  )
-                                          ],
-                                        ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            'Order Total',
+                                            style: TextStyle(
+                                                color: Palette.placeholderGrey,
+                                                fontFamily: 'BOXICONS',
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14),
+                                          ),
+                                          Text(
+                                            '${'KES'} ${generalDetails.total!}',
+                                            style: TextStyle(
+                                                color: Palette.placeholderGrey,
+                                                fontFamily: 'BOXICONS',
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          const Text(
+                                            'Payment Status',
+                                            style: TextStyle(
+                                                color: Palette.placeholderGrey,
+                                                fontFamily: 'BOXICONS',
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14),
+                                          ),
+                                          generalDetails.paid! == 'N'
+                                              //TODO: Add mpesa checkout
+                                              ? CupertinoButton.filled(
+                                                  minSize: 2,
+                                                  onPressed: () {
+                                                    AutoRouter.of(context).push(
+                                                        TransactionalMpesaRoute(
+                                                      orderId: int.parse(
+                                                          generalDetails
+                                                              .order_id!),
+                                                    ));
+                                                  },
+                                                  child: const Text('Pay Now'),
+                                                )
+                                              : Row(
+                                                  children: const [
+                                                    Text(
+                                                      'PAID',
+                                                      style: TextStyle(
+                                                          color: Palette
+                                                              .greenColor,
+                                                          fontFamily:
+                                                              'BOXICONS',
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 14),
+                                                    ),
+                                                    SizedBox(
+                                                      width: 10,
+                                                    ),
+                                                    Icon(
+                                                      CupertinoIcons
+                                                          .check_mark_circled_solid,
+                                                      color: Palette.greenColor,
+                                                    ),
+                                                  ],
+                                                )
+                                        ],
                                       ),
                                     ),
                                   ],
@@ -1139,6 +1009,7 @@ class SummaryTileList extends StatelessWidget {
                         ),
                       ),
                     ),
+
                     StaggeredGridTile.count(
                       crossAxisCellCount: 2,
                       mainAxisCellCount: 1,
@@ -1268,22 +1139,7 @@ class SummaryTileList extends StatelessWidget {
                         ),
                       ),
                     ),
-                    // StaggeredGridTile.count(
-                    //   crossAxisCellCount: 1,
-                    //   mainAxisCellCount: 1,
-                    //   child: Container(
-                    //     decoration: BoxDecoration(
-                    //         border: Border.all(color: Palette.orangeColor),
-                    //         borderRadius: BorderRadius.all(Radius.circular(20))),
-                    //   ),
-                    // ),
-                    // StaggeredGridTile.count(
-                    //   crossAxisCellCount: 1,
-                    //   mainAxisCellCount: 1,
-                    //   child: Container(decoration: BoxDecoration(
-                    //         border: Border.all(color: Palette.orangeColor),
-                    //         borderRadius: BorderRadius.all(Radius.circular(20))),),
-                    // ),
+
                     StaggeredGridTile.count(
                       crossAxisCellCount: 4,
                       mainAxisCellCount: 4,
@@ -1475,6 +1331,139 @@ class SummaryTileList extends StatelessWidget {
                         ),
                       ),
                     ),
+
+                    // StaggeredGridTile.count(
+                    //   crossAxisCellCount: 2,
+                    //   mainAxisCellCount: 2,
+                    //   child: Container(
+                    //     // color: Palette.placeholderGrey,
+                    //     decoration: BoxDecoration(
+                    //         border: Border.all(color: Palette.orangeColor),
+                    //         borderRadius:
+                    //             BorderRadius.all(Radius.circular(20))),
+                    //     child: Flexible(
+                    //       child: Column(
+                    //         children: [
+                    //           // Text('CUSTOMER PHOTO'),
+                    //           Center(
+                    //             child: Padding(
+                    //               padding: const EdgeInsets.all(40.0),
+                    //               child: Row(
+                    //                 children: [
+                    //                   context
+                    //                               .watch<PickImageCubit>()
+                    //                               .state
+                    //                               .path
+                    //                               .length <
+                    //                           2
+                    //                       ? InkWell(
+                    //                           onTap: () async {
+                    //                             var x = await ImagePicker()
+                    //                                 .pickImage(
+                    //                                     source:
+                    //                                         ImageSource.camera);
+                    //                             context
+                    //                                 .read<PickImageCubit>()
+                    //                                 .emit(File(x!.path));
+                    //                           },
+                    //                           child: AnimatedContainer(
+                    //                             duration:
+                    //                                 const Duration(seconds: 3),
+                    //                             height: 160,
+                    //                             width: 200,
+                    //                             // decoration: BoxDecoration(
+                    //                             //     border: Border.all(width: 2)),
+                    //                             child: Center(
+                    //                               child: UserProfileAvatar(
+                    //                                 avatarUrl: '',
+                    //                                 onAvatarTap: () async {
+                    //                                   ScaffoldMessenger.of(
+                    //                                           context)
+                    //                                       .showSnackBar(
+                    //                                           SnackBar(
+                    //                                     content: Text(
+                    //                                         'Tapped on avatar'),
+                    //                                   ));
+                    //                                   var x = await ImagePicker()
+                    //                                       .pickImage(
+                    //                                           source:
+                    //                                               ImageSource
+                    //                                                   .camera);
+                    //                                   context
+                    //                                       .read<
+                    //                                           PickImageCubit>()
+                    //                                       .emit(File(x!.path));
+                    //                                 },
+                    //                                 // notificationCount: 10,
+                    //                                 notificationBubbleTextStyle:
+                    //                                     const TextStyle(
+                    //                                   fontSize: 30,
+                    //                                   color: Colors.white,
+                    //                                   fontWeight:
+                    //                                       FontWeight.bold,
+                    //                                 ),
+                    //                                 avatarSplashColor:
+                    //                                     Colors.purple,
+                    //                                 radius: 100,
+                    //                                 isActivityIndicatorSmall:
+                    //                                     false,
+                    //                                 avatarBorderData:
+                    //                                     AvatarBorderData(
+                    //                                   borderColor:
+                    //                                       Colors.black54,
+                    //                                   borderWidth: 5.0,
+                    //                                 ),
+                    //                               ),
+                    //                             ),
+                    //                           ),
+                    //                         )
+                    //                       : InkWell(
+                    //                           onTap: () async {
+                    //                             var x = await ImagePicker()
+                    //                                 .pickImage(
+                    //                                     source:
+                    //                                         ImageSource.camera);
+                    //                             context
+                    //                                 .read<PickImageCubit>()
+                    //                                 .emit(File(x!.path));
+                    //                           },
+                    //                           child: Flexible(
+                    //                             child: Image.file(
+                    //                               context
+                    //                                   .read<PickImageCubit>()
+                    //                                   .state,
+                    //                               height: 200,
+                    //                               width: 200,
+                    //                               fit: BoxFit.cover,
+                    //                             ),
+                    //                           ),
+                    //                         ),
+                    //                 ],
+                    //               ),
+                    //             ),
+                    //           ),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
+
+                    // StaggeredGridTile.count(
+                    //   crossAxisCellCount: 1,
+                    //   mainAxisCellCount: 1,
+                    //   child: Container(
+                    //     decoration: BoxDecoration(
+                    //         border: Border.all(color: Palette.orangeColor),
+                    //         borderRadius: BorderRadius.all(Radius.circular(20))),
+                    //   ),
+                    // ),
+                    // StaggeredGridTile.count(
+                    //   crossAxisCellCount: 1,
+                    //   mainAxisCellCount: 1,
+                    //   child: Container(decoration: BoxDecoration(
+                    //         border: Border.all(color: Palette.orangeColor),
+                    //         borderRadius: BorderRadius.all(Radius.circular(20))),),
+                    // ),
                     // StaggeredGridTile.count(
                     //   crossAxisCellCount: 4,
                     //   mainAxisCellCount: 3,
@@ -1581,13 +1570,13 @@ class _CardWidgetState extends State<CardWidget> {
           return FormBuilder(
             key: _formKey,
             child: AlertDialog(
-              title: Text('Add Packing Notes'),
+              title: const Text('Add Packing Notes'),
               content: SizedBox(
                 height: 200,
                 child: Column(
                   children: [
                     FormBuilderTextField(
-                      name: 'Packed_quantity ',
+                      name: 'Received_quantity',
                       textInputAction: TextInputAction.go,
                       decoration: InputDecoration(hintText: "packed quantity"),
                     ),
@@ -1616,7 +1605,7 @@ class _CardWidgetState extends State<CardWidget> {
               ),
               actions: <Widget>[
                 CupertinoButton(
-                  child: Text(
+                  child: const Text(
                     'Submit',
                   ),
                   onPressed: () {
@@ -1659,7 +1648,7 @@ class _CardWidgetState extends State<CardWidget> {
                 Text(
                   widget.deets.name!,
                   style: const TextStyle(
-                      color: Palette.placeholderGrey, fontSize: 16),
+                      color: Palette.placeholderGrey, fontSize: 14),
                 ),
               ],
             ),
@@ -1677,14 +1666,14 @@ class _CardWidgetState extends State<CardWidget> {
                     widget.deets.quantity!.toString(),
                     style: const TextStyle(
                         color: Palette.placeholderGrey,
-                        fontSize: 16,
+                        fontSize: 14,
                         fontWeight: FontWeight.w200),
                   ),
                   Text(
                     widget.deets.unit.toString(),
                     style: const TextStyle(
                         color: Palette.placeholderGrey,
-                        fontSize: 16,
+                        fontSize: 14,
                         fontWeight: FontWeight.w200),
                   )
                 ])
@@ -1701,7 +1690,7 @@ class _CardWidgetState extends State<CardWidget> {
                   widget.deets.product_note ?? '',
                   softWrap: true,
                   style: const TextStyle(
-                      color: Palette.placeholderGrey, fontSize: 16),
+                      color: Palette.placeholderGrey, fontSize: 14),
                 ),
               )
             ],
@@ -1751,26 +1740,8 @@ class _CardWidgetState extends State<CardWidget> {
                                     : FormBuilderDropdown<dynamic>(
                                         name: 'status',
                                         onChanged: (e) async {
-                                          if (e == 'Accepted') {
+                                          if (e == 'Rejected') {
                                             ///Accepted api call
-                                            context
-                                                .read<AcceptRejectCubit>()
-                                                .actionArea(accept: [
-                                              widget.acceptReject.copyWith(
-                                                  status: 'A',
-                                                  comment: 'Accept')
-                                            ], orderId: widget.orderId);
-                                            // TODO: This is a temporary solution
-                                            context
-                                                .read<ProcessedItemsCubit>()
-                                                .state
-                                                .add({
-                                              'order_id': widget.orderId,
-                                              'product_id':
-                                                  widget.deets.product_id,
-                                              'status': 'Accepted'
-                                            });
-                                          } else if (e == 'Rejected') {
                                             context
                                                 .read<AcceptRejectCubit>()
                                                 .actionArea(accept: [
@@ -1810,28 +1781,34 @@ class _CardWidgetState extends State<CardWidget> {
                                           }
                                         },
                                         isExpanded: true,
-                                        items:
-                                            ['Accepted', 'Rejected', 'Missing']
-                                                .map((e) => DropdownMenuItem(
-                                                    onTap: () {
-                                                      // if (e == 'Fully-Packed') {
-                                                      //   ///Accepted api call
-                                                      //   context
-                                                      //       .read<AcceptRejectCubit>()
-                                                      //       .actionArea(accept: [
-                                                      //     widget.acceptReject
-                                                      //   ], orderId: widget.orderId);
-                                                      // } else if (e == 'Rejected') {
-                                                      //   /// Rejected api call
+                                        items: ['Rejected', 'Missing']
+                                            .map((e) => DropdownMenuItem(
+                                                onTap: () {
+                                                  // if (e == 'Fully-Packed') {
+                                                  //   ///Accepted api call
+                                                  //   context
+                                                  //       .read<AcceptRejectCubit>()
+                                                  //       .actionArea(accept: [
+                                                  //     widget.acceptReject
+                                                  //   ], orderId: widget.orderId);
+                                                  // } else if (e == 'Rejected') {
+                                                  //   /// Rejected api call
 
-                                                      // } else if (e == 'Missing') {
-                                                      //   /// Missing api call
+                                                  // } else if (e == 'Missing') {
+                                                  //   /// Missing api call
 
-                                                      // }
-                                                    },
-                                                    value: e,
-                                                    child: Text(e)))
-                                                .toList()
+                                                  // }
+                                                },
+                                                value: e,
+                                                child: Text(
+                                                  e,
+                                                  maxLines: 1,
+                                                  overflow: TextOverflow.fade,
+                                                  style: const TextStyle(
+                                                    fontSize: 10,
+                                                  ),
+                                                )))
+                                            .toList()
                                         // List.generate(
                                         // statuses.length,
                                         // (index) => DropdownMenuItem(
@@ -1867,7 +1844,12 @@ class _CardWidgetState extends State<CardWidget> {
                                         //   AppToast.showToast(
                                         //       message: 'Success', isError: false);
                                         // },
-                                        hint: const Text("Status"));
+                                        hint: const Text(
+                                          "Status",
+                                          style: TextStyle(
+                                              fontSize: 13,
+                                              color: Palette.greenColor),
+                                        ));
                               });
                             },
                           ),

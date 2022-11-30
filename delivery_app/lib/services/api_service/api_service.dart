@@ -1,3 +1,4 @@
+import 'package:delivery_app/cubits/authentication/customer_token.dart';
 import 'package:delivery_app/models/api_response/api_response.dart';
 import 'package:delivery_app/utilities/rest_client/rest_client.dart';
 import 'package:delivery_app/utilities/rest_client/rest_client_customer.dart';
@@ -29,7 +30,8 @@ class ApiService {
       throw apiResponse.message!;
     }
   }
-    static Future<Map<String, dynamic>> postData({
+
+  static Future<Map<String, dynamic>> postData({
     required Map<String, dynamic> data,
     required String path,
   }) async {
@@ -53,6 +55,7 @@ class ApiService {
       throw e.toString();
     }
   }
+
   static Future<Map<String, dynamic>> postDataMpesa({
     required Map<String, dynamic> data,
     required String path,
@@ -65,6 +68,8 @@ class ApiService {
                 'Content-Type':
                     'application/x-www-form-urlencoded; charset=UTF-8',
                 'X-User': 'customer',
+                'Authorization':
+                    'Bearer ${GetIt.I<CustomerTokenCubit>().state}',
               }));
       return response.data;
     } on DioError catch (error) {
@@ -77,6 +82,7 @@ class ApiService {
       throw e.toString();
     }
   }
+
   ///This method gets data from the API via the [Dio] in the [restClient]
   ///Returns a dynamic based on the API Response
   static Future<dynamic> get(

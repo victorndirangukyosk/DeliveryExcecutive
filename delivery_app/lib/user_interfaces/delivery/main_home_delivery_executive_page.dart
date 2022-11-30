@@ -1182,7 +1182,7 @@ class CancelledWidget extends StatelessWidget {
           }, success: (pendingTransactions, successfulTransactions,
               cancelledTransactions) {
             return cancelledTransactions.isEmpty
-                ? Center(
+                ? const Center(
                     child: Text('No cancelled transactions'),
                   )
                 : AnimationLimiter(

@@ -4,6 +4,7 @@ import 'package:delivery_app/user_interfaces/delivery/customer_verification.dart
 import 'package:delivery_app/user_interfaces/delivery/directions_to_address/directions_to_address.dart';
 import 'package:delivery_app/user_interfaces/delivery/invoice.dart';
 import 'package:delivery_app/user_interfaces/delivery/payments/mpesa_payment_page.dart';
+import 'package:delivery_app/user_interfaces/delivery/payments/transaction_mpesa_payment.dart';
 import 'package:delivery_app/user_interfaces/delivery/ready_for_delivery.dart';
 import 'package:delivery_app/user_interfaces/delivery/main_home_delivery_executive_page.dart';
 import 'package:delivery_app/user_interfaces/delivery/summary_page.dart';
@@ -22,6 +23,7 @@ import 'package:delivery_app/user_interfaces/user_interfaces.dart';
     AutoRoute(page: LoginPage),
     AutoRoute(page: RegisterPage),
     AutoRoute(page: MpesaPaymentPage),
+    AutoRoute(page:  TransactionalMpesaPage),
     AutoRoute(page: MainHomePage),
     AutoRoute(page: SettingsPage),
     AutoRoute(page: MainHomeDeliveryExecutivePage),

@@ -20,15 +20,18 @@ import 'package:delivery_app/cubits/cubits.dart';
 import 'package:delivery_app/cubits/is_de_cubit/is_de_cubit.dart';
 import 'package:delivery_app/cubits/kibandalist/kibandalist_cubit.dart';
 import 'package:delivery_app/cubits/lipa_na_mpesa_cubit/lipa_na_mpesa_cubit.dart';
+import 'package:delivery_app/cubits/location_prediction/location_prediction_display_cubit.dart';
 import 'package:delivery_app/cubits/op_selection_cubit/op_selection_cubit.dart';
 import 'package:delivery_app/cubits/order_details_list/de/o_details_de_cubit.dart';
 import 'package:delivery_app/cubits/order_details_list/op/odetails_list_cubit.dart';
 
 import 'package:delivery_app/cubits/processed_items_cubit/processed_items_cubit.dart';
 import 'package:delivery_app/cubits/selected_kibanda/selected_kibanda_cubit.dart';
+import 'package:delivery_app/cubits/transactional_payment/transactional_payment_cubit.dart';
 import 'package:delivery_app/cubits/transactions/transaction_cubit.dart';
 import 'package:delivery_app/cubits/ui_cubits/home_bottom_index_cubit.dart';
 import 'package:delivery_app/cubits/ui_cubits/transaction_top_index_cubit.dart';
+import 'package:delivery_app/cubits/update_invoice/update_invoice_cubit.dart';
 import 'package:delivery_app/routes/router.gr.dart';
 import 'package:delivery_app/user_interfaces/packing/items_processing/processed_order_list.dart';
 import 'package:flutter/material.dart';
@@ -58,9 +61,12 @@ class KwikBasketDeliveryApp extends StatelessWidget {
         BlocProvider(create: (context) => SelectDateCubit(DateTime.now())),
         BlocProvider(create: (context) => PickImageCubit(File(''))),
         BlocProvider(create: ((context) => ProcessedItemsCubit())),
+        BlocProvider(create: (context) => TransactionalPaymentCubit()),
+        BlocProvider(create: (context) => LocationPredictionDisplayCubit()),
 
         /// This blocprovider persists the token state
         BlocProvider(create: (context) => TokenCubit('')),
+        BlocProvider(create: (context) => UpdateInvoiceCubit()),
         BlocProvider(create: (context) => CustomerVerificationCubit()),
         BlocProvider(create: (context) => AssignedDeCubit()),
         BlocProvider(create: (context) => LoggedInDeCubit()),

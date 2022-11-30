@@ -20,6 +20,7 @@ class GeneralDetails with _$GeneralDetails {
     String? lastname,
     String? telephone,
     String? paid,
+    String? total,
   }) = _GeneralDetails;
 
   factory GeneralDetails.fromJson(Map<String, dynamic> json) =>
